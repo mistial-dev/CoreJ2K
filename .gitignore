@@ -2,9 +2,11 @@
 *.suo
 *.userprefs
 *.lock.json
+.DS_Store
 [Bb]in/
 [Oo]bj/
 [Pp]ackages/
 .vs/
 /UpgradeLog.htm
 [Bb]ackup/
+/.idea/
