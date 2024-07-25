@@ -71,7 +71,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CSJ2K.NetCore\CSJ2K.NetCore.csproj" />
+    <ProjectReference Include="..\CSJ2K.Skia\CSJ2K.Skia.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="SkiaSharp" Version="2.88.8" />

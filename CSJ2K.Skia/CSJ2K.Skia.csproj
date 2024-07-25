@@ -10,15 +10,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="..\CSJ2K\**\*.cs" Exclude="bin\**;obj\**;**\*.xproj;packages\**" />
-    <Compile Update="..\CSJ2K\Util\SKBitmapImageCreator.cs">
-      <Link>Util\SKBitmapImageCreator.cs</Link>
-    </Compile>
-    <Compile Update="..\CSJ2K\Util\SKBitmapImageSource.cs">
-      <Link>Util\SKBitmapImageSource.cs</Link>
-    </Compile>
-    <Compile Update="..\CSJ2K\Util\SKBitmapImage.cs">
-      <Link>Util\SKBitmapImage.cs</Link>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="SkiaSharp" Version="2.88.8" />
