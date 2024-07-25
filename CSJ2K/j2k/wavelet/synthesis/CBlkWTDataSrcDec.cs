@@ -12,10 +12,10 @@
 * 
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -52,7 +52,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 	/// 'getCodeBlock()' or 'getInternCodeBlock()' a new code-block is
 	/// returned. The code-blocks are returned in no specific order.
 	/// 
-	/// <p>This class is the source of data, in general, for the inverse wavelet
+	/// This class is the source of data, in general, for the inverse wavelet
 	/// transforms. See the 'InverseWT' class.</p>
 	/// 
 	/// </summary>
@@ -72,7 +72,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// corresponding to the nominal range of the data in the specified
 		/// component.
 		/// 
-		/// <p>The returned value corresponds to the nominal dynamic range of the
+		/// The returned value corresponds to the nominal dynamic range of the
 		/// reconstructed image data, not of the wavelet coefficients
 		/// themselves. This is because different subbands have different gains and
 		/// thus different nominal ranges. To have an idea of the nominal range in
@@ -80,7 +80,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// structure, returned by the 'getSynSubbandTree()' method, can be
 		/// used. See the 'Subband' class for more details.</p>
 		/// 
-		/// <p>If this number is <i>b</b> then for unsigned data the nominal range
+		/// If this number is <i>b</b> then for unsigned data the nominal range
 		/// is between 0 and 2^b-1, and for signed data it is between -2^(b-1) and
 		/// 2^(b-1)-1.</p>
 		/// 
@@ -119,7 +119,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// <summary> Returns the specified code-block in the current tile for the specified
 		/// component, as a copy (see below).
 		/// 
-		/// <p>The returned code-block may be progressive, which is indicated by
+		/// The returned code-block may be progressive, which is indicated by
 		/// the 'progressive' variable of the returned 'DataBlk' object. If a
 		/// code-block is progressive it means that in a later request to this
 		/// method for the same code-block it is possible to retrieve data which is
@@ -128,7 +128,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// progressive then later calls to this method for the same code-block
 		/// will return the exact same data values.</p>
 		/// 
-		/// <p>The data returned by this method is always a copy of the internal
+		/// The data returned by this method is always a copy of the internal
 		/// data of this object, if any, and it can be modified "in place" without
 		/// any problems after being returned. The 'offset' of the returned data is 
 		/// 0, and the 'scanw' is the same as the code-block width. See the
@@ -167,7 +167,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// <summary> Returns the specified code-block in the current tile for the specified
 		/// component (as a reference or copy).
 		/// 
-		/// <p>The returned code-block may be progressive, which is indicated by
+		/// The returned code-block may be progressive, which is indicated by
 		/// the 'progressive' variable of the returned 'DataBlk' object. If a
 		/// code-block is progressive it means that in a later request to this
 		/// method for the same code-block it is possible to retrieve data which is
@@ -176,7 +176,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// progressive then later calls to this method for the same code-block
 		/// will return the exact same data values.</p>
 		/// 
-		/// <p>The data returned by this method can be the data in the internal
+		/// The data returned by this method can be the data in the internal
 		/// buffer of this object, if any, and thus can not be modified by the
 		/// caller. The 'offset' and 'scanw' of the returned data can be
 		/// arbitrary. See the 'DataBlk' class.</p>

@@ -33,23 +33,23 @@ namespace CSJ2K.Icc.Lut
 		/// <summary> Create an abbreviated string representation of a 16 bit lut.</summary>
 		/// <returns> the lut as a String
 		/// </returns>
-		public override System.String ToString()
+		public override string ToString()
 		{
-			System.Text.StringBuilder rep = new System.Text.StringBuilder("[LookUpTable8 ");
+			var rep = new System.Text.StringBuilder("[LookUpTable8 ");
 			//int row, col;
-			rep.Append("max= " + dwMaxOutput);
-			rep.Append(", nentries= " + dwMaxOutput);
+			rep.Append($"max= {dwMaxOutput}");
+			rep.Append($", nentries= {dwMaxOutput}");
 			return rep.Append("]").ToString();
 		}
 		
 		
 		
-		public virtual System.String toStringWholeLut()
+		public virtual string toStringWholeLut()
 		{
-			System.Text.StringBuilder rep = new System.Text.StringBuilder("LookUpTable8" + eol);
-			rep.Append("maxOutput = " + dwMaxOutput + eol);
-			for (int i = 0; i < dwNumInput; ++i)
-				rep.Append("lut[" + i + "] = " + lut[i] + eol);
+			var rep = new System.Text.StringBuilder($"LookUpTable8{Environment.NewLine}");
+			rep.Append($"maxOutput = {dwMaxOutput}{Environment.NewLine}");
+			for (var i = 0; i < dwNumInput; ++i)
+				rep.Append($"lut[{i}] = {lut[i]}{Environment.NewLine}");
 			return rep.Append("]").ToString();
 		}
 		

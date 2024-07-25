@@ -12,10 +12,10 @@
 *
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -42,6 +42,7 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 using System;
+using System.Linq;
 using CSJ2K.j2k.entropy;
 namespace CSJ2K.j2k.entropy.decoder
 {
@@ -52,7 +53,7 @@ namespace CSJ2K.j2k.entropy.decoder
 	/// code-block. It is applicable to the decoder engine only. Some data of the
 	/// coded-block is stored in the super class, see CodedCBlk.
 	/// 
-	/// <p>A code-block may have its progressive attribute set (i.e. the 'prog'
+	/// A code-block may have its progressive attribute set (i.e. the 'prog'
 	/// flag is true). If a code-block is progressive then it means that more data
 	/// for it may be obtained for an improved quality. If the progressive flag is
 	/// false then no more data is available from the source for this
@@ -112,14 +113,15 @@ namespace CSJ2K.j2k.entropy.decoder
 		/// <returns> Information in a string
 		/// 
 		/// </returns>
-		public override System.String ToString()
+		public override string ToString()
 		{
-			System.String str = "Coded code-block (" + m + "," + n + "): " + skipMSBP + " MSB skipped, " + dl + " bytes, " + nTrunc + " truncation points, " + nl + " layers, " + "progressive=" + prog + ", ulx=" + ulx + ", uly=" + uly + ", w=" + w + ", h=" + h + ", ftpIdx=" + ftpIdx;
+			var str =
+				$"Coded code-block ({m},{n}): {skipMSBP} MSB skipped, {dl} bytes, {nTrunc} truncation points, {nl} layers, progressive={prog}, ulx={ulx}, uly={uly}, w={w}, h={h}, ftpIdx={ftpIdx}";
 			if (tsLengths != null)
 			{
 				str += " {";
-				for (int i = 0; i < tsLengths.Length; i++)
-					str += (" " + tsLengths[i]);
+				str = tsLengths.Aggregate(str, (current, t) => current + (" " + t));
+
 				str += " }";
 			}
 			return str;

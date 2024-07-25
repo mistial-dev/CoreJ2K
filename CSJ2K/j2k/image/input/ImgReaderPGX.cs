@@ -12,10 +12,10 @@
 *
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -54,14 +54,14 @@ namespace CSJ2K.j2k.image.input
 	/// use of JPEG 2000 with images of different bit-depths in the range 1 to 31
 	/// bits per pixel.
 	/// 
-	/// <p>The file consists of a one line text header followed by the data.</p>
+	/// The file consists of a one line text header followed by the data.</p>
 	/// 
-	/// <p>
+	/// 
 	/// <u>Header:</u> "PG"+ <i>ws</i> +&lt;<i>endianess</i>&gt;+ <i>ws</i>
 	/// +[<i>sign</i>]+<i>ws</i> + &lt;<i>bit-depth</i>&gt;+"
 	/// "+&lt;<i>width</i>&gt;+" "+&lt;<i>height</i>&gt;+'\n'</p> 
 	/// 
-	/// <p>where:<br>
+	/// where:<br>
 	/// <ul>
 	/// <li><i>ws</i> (white-spaces) is any combination of characters ' ' and
 	/// '\t'.</li> 
@@ -80,16 +80,16 @@ namespace CSJ2K.j2k.image.input
 	/// upon the bit-depth value).
 	/// </p>
 	/// 
-	/// <p> If the data is unisigned, level shifting is applied subtracting
+	///  If the data is unisigned, level shifting is applied subtracting
 	/// 2^(bitdepth - 1)</p>
 	/// 
-	/// <p>Since it is not possible to know the input file byte-ordering before
+	/// Since it is not possible to know the input file byte-ordering before
 	/// reading its header, this class can not be construct from a
 	/// RandomAccessIO. So, the constructor has to open first the input file, to
 	/// read only its header, and then it can create the appropriate
 	/// BufferedRandomAccessFile (Big-Endian or Little-Endian byte-ordering).</p>
 	/// 
-	/// <p>NOTE: This class is not thread safe, for reasons of internal
+	/// NOTE: This class is not thread safe, for reasons of internal
 	/// buffering.</p>
 	/// 
 	/// </summary>
@@ -140,7 +140,7 @@ namespace CSJ2K.j2k.image.input
 		/// <summary> Creates a new PGX file reader from the specified File object.
 		/// 
 		/// </summary>
-		/// <param name="in">The input file as File object.
+		/// <param name="in_Renamed">The input file as File object.
 		/// 
 		/// </param>
 		/// <exception cref="IOException">If an I/O error occurs.
@@ -148,17 +148,17 @@ namespace CSJ2K.j2k.image.input
 		/// </exception>
 		public ImgReaderPGX(System.IO.Stream in_Renamed)
 		{
-			System.String header;
+			string header;
 			
 			//Opens the given file
 			this.in_Renamed = in_Renamed;
 			try
 			{
-                System.IO.StreamReader in_reader = new System.IO.StreamReader(this.in_Renamed);
+                var in_reader = new System.IO.StreamReader(this.in_Renamed);
 				//UPGRADE_ISSUE: Method 'java.io.RandomAccessFile.readLine' was not converted. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1000_javaioRandomAccessFilereadLine'"
 				header = in_reader.ReadLine();
 			}
-			catch (System.IO.IOException e)
+			catch (System.IO.IOException)
 			{
 				throw new System.IO.IOException("Not a PGX file");
 			}
@@ -169,21 +169,21 @@ namespace CSJ2K.j2k.image.input
 			offset = (header.Length + 1);
 			
 			//Get informations from header
-			SupportClass.Tokenizer st = new SupportClass.Tokenizer(header);
+			var st = new SupportClass.Tokenizer(header);
 			try
 			{
-				int nTokens = st.Count;
+				var nTokens = st.Count;
 				
 				// Magic Number
 				if (!(st.NextToken()).Equals("PG"))
 					throw new System.IO.IOException("Not a PGX file");
 				
 				// Endianess
-				System.String tmp = st.NextToken();
+				var tmp = st.NextToken();
 				if (tmp.Equals("LM"))
-					byteOrder = CSJ2K.j2k.io.EndianType_Fields.LITTLE_ENDIAN;
+					byteOrder = EndianType_Fields.LITTLE_ENDIAN;
 				else if (tmp.Equals("ML"))
-					byteOrder = CSJ2K.j2k.io.EndianType_Fields.BIG_ENDIAN;
+					byteOrder = EndianType_Fields.BIG_ENDIAN;
 				else
 					throw new System.IO.IOException("Not a PGX file");
 				
@@ -202,20 +202,20 @@ namespace CSJ2K.j2k.image.input
 				// bit-depth, width, height
 				try
 				{
-					bitDepth = (System.Int32.Parse(st.NextToken()));
+					bitDepth = (int.Parse(st.NextToken()));
 					// bitDepth must be between 1 and 31
 					if ((bitDepth <= 0) || (bitDepth > 31))
 						throw new System.IO.IOException("Not a PGX file");
 					
-					w = (System.Int32.Parse(st.NextToken()));
-					h = (System.Int32.Parse(st.NextToken()));
+					w = (int.Parse(st.NextToken()));
+					h = (int.Parse(st.NextToken()));
 				}
-				catch (System.FormatException e)
+				catch (FormatException)
 				{
 					throw new System.IO.IOException("Not a PGX file");
 				}
 			}
-			catch (System.ArgumentOutOfRangeException e)
+			catch (ArgumentOutOfRangeException)
 			{
 				throw new System.IO.IOException("Not a PGX file");
 			}
@@ -252,7 +252,7 @@ namespace CSJ2K.j2k.image.input
 		/// <param name="inName">The input file name.
 		/// 
 		/// </param>
-		public ImgReaderPGX(System.String inName):this(FileInfoFactory.New(inName))
+		public ImgReaderPGX(string inName):this(FileInfoFactory.New(inName))
 		{
 		}
 		
@@ -263,7 +263,7 @@ namespace CSJ2K.j2k.image.input
 		/// <exception cref="IOException">If an I/O error occurs.
 		/// 
 		/// </exception>
-		public override void  close()
+		public override void  Close()
 		{
 			in_Renamed.Dispose();
 			in_Renamed = null;
@@ -274,7 +274,7 @@ namespace CSJ2K.j2k.image.input
 		/// data in the specified component. This is the value of bitDepth which is
 		/// read in the PGX file header.
 		/// 
-		/// <P>If this number is <i>b</b> then the nominal range is between
+		/// If this number is <i>b</b> then the nominal range is between
 		/// -2^(b-1) and 2^(b-1)-1, for originally signed or unsigned data
 		/// (unsigned data is level shifted to have a nominal average of 0).
 		/// 
@@ -290,7 +290,7 @@ namespace CSJ2K.j2k.image.input
 		{
 			// Check component index
 			if (c != 0)
-				throw new System.ArgumentException();
+				throw new ArgumentException();
 			
 			return bitDepth;
 		}
@@ -307,11 +307,11 @@ namespace CSJ2K.j2k.image.input
 		/// bits). Always 0 for this ImgReader.
 		/// 
 		/// </returns>
-		public override int getFixedPoint(int c)
+		public override int GetFixedPoint(int c)
 		{
 			// Check component index
 			if (c != 0)
-				throw new System.ArgumentException();
+				throw new ArgumentException();
 			return 0;
 		}
 		
@@ -320,16 +320,16 @@ namespace CSJ2K.j2k.image.input
 		/// returned, as a reference to the internal data, if any, instead of as a
 		/// copy, therefore the returned data should not be modified.
 		/// 
-		/// <p>After being read the coefficients are level shifted by subtracting
-		/// 2^(nominal bit range - 1)<p>
+		/// After being read the coefficients are level shifted by subtracting
+		/// 2^(nominal bit range - 1)
 		/// 
-		/// <p>The rectangular area to return is specified by the 'ulx', 'uly', 'w'
+		/// The rectangular area to return is specified by the 'ulx', 'uly', 'w'
 		/// and 'h' members of the 'blk' argument, relative to the current
 		/// tile. These members are not modified by this method. The 'offset' and
 		/// 'scanw' of the returned data can be arbitrary. See the 'DataBlk'
 		/// class.</p>
 		/// 
-		/// <p>If the data array in <tt>blk</tt> is <tt>null</tt>, then a new one
+		/// If the data array in <tt>blk</tt> is <tt>null</tt>, then a new one
 		/// is created if necessary. The implementation of this interface may
 		/// choose to return the same array or a new one, depending on what is more
 		/// efficient. Therefore, the data array in <tt>blk</tt> prior to the
@@ -337,10 +337,10 @@ namespace CSJ2K.j2k.image.input
 		/// new array may have been created. Instead, get the array from
 		/// <tt>blk</tt> after the method has returned.</p>
 		/// 
-		/// <p>The returned data always has its 'progressive' attribute unset
+		/// The returned data always has its 'progressive' attribute unset
 		/// (i.e. false).</p>
 		/// 
-		/// <p>When an I/O exception is encountered the JJ2KExceptionHandler is
+		/// When an I/O exception is encountered the JJ2KExceptionHandler is
 		/// used. The exception is passed to its handleException method. The action
 		/// that is taken depends on the action that has been registered in
 		/// JJ2KExceptionHandler. See JJ2KExceptionHandler for details.</p>
@@ -357,19 +357,19 @@ namespace CSJ2K.j2k.image.input
 		/// <returns> The requested DataBlk
 		/// 
 		/// </returns>
-		/// <seealso cref="getCompData">
+		/// <seealso cref="GetCompData">
 		/// </seealso>
 		/// <seealso cref="JJ2KExceptionHandler">
 		/// 
 		/// </seealso>
-		public override DataBlk getInternCompData(DataBlk blk, int c)
+		public override DataBlk GetInternCompData(DataBlk blk, int c)
 		{
 			int k, j, i, mi; // counters
-			int levShift = 1 << (bitDepth - 1);
+			var levShift = 1 << (bitDepth - 1);
 			
 			// Check component index
 			if (c != 0)
-				throw new System.ArgumentException();
+				throw new ArgumentException();
 			
 			// Check type of block provided as an argument
 			if (blk.DataType != DataBlk.TYPE_INT)
@@ -387,14 +387,14 @@ namespace CSJ2K.j2k.image.input
 			}
 			
 			// Get data array
-			int[] barr = (int[]) blk.Data;
+			var barr = (int[]) blk.Data;
 			if (barr == null || barr.Length < blk.w * blk.h * packBytes)
 			{
 				barr = new int[blk.w * blk.h];
 				blk.Data = barr;
 			}
 			
-			int paddingLength = (32 - bitDepth);
+			var paddingLength = (32 - bitDepth);
 			if (buf == null || buf.Length < packBytes * blk.w)
 			{
 				buf = new byte[packBytes * blk.w];
@@ -447,14 +447,14 @@ namespace CSJ2K.j2k.image.input
 								switch (byteOrder)
 								{
 									
-									case CSJ2K.j2k.io.EndianType_Fields.LITTLE_ENDIAN: 
+									case EndianType_Fields.LITTLE_ENDIAN: 
 										for (k = (i - blk.uly) * blk.w + blk.w - 1, j = (blk.w << 1) - 1; j >= 0; k--)
 										{
 											barr[k] = ((((buf[j--] & 0xFF) << 8) | (buf[j--] & 0xFF)) << paddingLength) >> paddingLength;
 										}
 										break;
 									
-									case CSJ2K.j2k.io.EndianType_Fields.BIG_ENDIAN: 
+									case EndianType_Fields.BIG_ENDIAN: 
 										for (k = (i - blk.uly) * blk.w + blk.w - 1, j = (blk.w << 1) - 1; j >= 0; k--)
 										{
 											barr[k] = (((buf[j--] & 0xFF) | ((buf[j--] & 0xFF) << 8)) << paddingLength) >> paddingLength;
@@ -462,7 +462,7 @@ namespace CSJ2K.j2k.image.input
 										break;
 									
 									default: 
-										throw new System.InvalidOperationException("Internal JJ2000 bug");
+										throw new InvalidOperationException("Internal JJ2000 bug");
 									
 								}
 							}
@@ -478,14 +478,14 @@ namespace CSJ2K.j2k.image.input
 								switch (byteOrder)
 								{
 									
-									case CSJ2K.j2k.io.EndianType_Fields.LITTLE_ENDIAN: 
+									case EndianType_Fields.LITTLE_ENDIAN: 
 										for (k = (i - blk.uly) * blk.w + blk.w - 1, j = (blk.w << 1) - 1; j >= 0; k--)
 										{
 											barr[k] = (SupportClass.URShift(((((buf[j--] & 0xFF) << 8) | (buf[j--] & 0xFF)) << paddingLength), paddingLength)) - levShift;
 										}
 										break;
 									
-									case CSJ2K.j2k.io.EndianType_Fields.BIG_ENDIAN: 
+									case EndianType_Fields.BIG_ENDIAN: 
 										for (k = (i - blk.uly) * blk.w + blk.w - 1, j = (blk.w << 1) - 1; j >= 0; k--)
 										{
 											barr[k] = (SupportClass.URShift((((buf[j--] & 0xFF) | ((buf[j--] & 0xFF) << 8)) << paddingLength), paddingLength)) - levShift;
@@ -493,7 +493,7 @@ namespace CSJ2K.j2k.image.input
 										break;
 									
 									default: 
-										throw new System.InvalidOperationException("Internal JJ2000 bug");
+										throw new InvalidOperationException("Internal JJ2000 bug");
 									
 								}
 							}
@@ -514,14 +514,14 @@ namespace CSJ2K.j2k.image.input
 								switch (byteOrder)
 								{
 									
-									case CSJ2K.j2k.io.EndianType_Fields.LITTLE_ENDIAN: 
+									case EndianType_Fields.LITTLE_ENDIAN: 
 										for (k = (i - blk.uly) * blk.w + blk.w - 1, j = (blk.w << 2) - 1; j >= 0; k--)
 										{
 											barr[k] = ((((buf[j--] & 0xFF) << 24) | ((buf[j--] & 0xFF) << 16) | ((buf[j--] & 0xFF) << 8) | (buf[j--] & 0xFF)) << paddingLength) >> paddingLength;
 										}
 										break;
 									
-									case CSJ2K.j2k.io.EndianType_Fields.BIG_ENDIAN: 
+									case EndianType_Fields.BIG_ENDIAN: 
 										for (k = (i - blk.uly) * blk.w + blk.w - 1, j = (blk.w << 2) - 1; j >= 0; k--)
 										{
 											barr[k] = (((buf[j--] & 0xFF) | ((buf[j--] & 0xFF) << 8) | ((buf[j--] & 0xFF) << 16) | ((buf[j--] & 0xFF) << 24)) << paddingLength) >> paddingLength;
@@ -529,7 +529,7 @@ namespace CSJ2K.j2k.image.input
 										break;
 									
 									default: 
-										throw new System.InvalidOperationException("Internal JJ2000 bug");
+										throw new InvalidOperationException("Internal JJ2000 bug");
 									
 								}
 							}
@@ -544,14 +544,14 @@ namespace CSJ2K.j2k.image.input
 								switch (byteOrder)
 								{
 									
-									case CSJ2K.j2k.io.EndianType_Fields.LITTLE_ENDIAN: 
+									case EndianType_Fields.LITTLE_ENDIAN: 
 										for (k = (i - blk.uly) * blk.w + blk.w - 1, j = (blk.w << 2) - 1; j >= 0; k--)
 										{
 											barr[k] = (SupportClass.URShift(((((buf[j--] & 0xFF) << 24) | ((buf[j--] & 0xFF) << 16) | ((buf[j--] & 0xFF) << 8) | (buf[j--] & 0xFF)) << paddingLength), paddingLength)) - levShift;
 										}
 										break;
 									
-									case CSJ2K.j2k.io.EndianType_Fields.BIG_ENDIAN: 
+									case EndianType_Fields.BIG_ENDIAN: 
 										for (k = (i - blk.uly) * blk.w + blk.w - 1, j = (blk.w << 2) - 1; j >= 0; k--)
 										{
 											barr[k] = (SupportClass.URShift((((buf[j--] & 0xFF) | ((buf[j--] & 0xFF) << 8) | ((buf[j--] & 0xFF) << 16) | ((buf[j--] & 0xFF) << 24)) << paddingLength), paddingLength)) - levShift;
@@ -559,7 +559,7 @@ namespace CSJ2K.j2k.image.input
 										break;
 									
 									default: 
-										throw new System.InvalidOperationException("Internal JJ2000 bug");
+										throw new InvalidOperationException("Internal JJ2000 bug");
 									
 								}
 							}
@@ -590,26 +590,26 @@ namespace CSJ2K.j2k.image.input
 		/// returned, as a copy of the internal data, therefore the returned data
 		/// can be modified "in place".
 		/// 
-		/// <p>After being read the coefficients are level shifted by subtracting
+		/// After being read the coefficients are level shifted by subtracting
 		/// 2^(nominal bit range - 1)
 		/// 
-		/// <p>The rectangular area to return is specified by the 'ulx', 'uly', 'w'
+		/// The rectangular area to return is specified by the 'ulx', 'uly', 'w'
 		/// and 'h' members of the 'blk' argument, relative to the current
 		/// tile. These members are not modified by this method. The 'offset' of
 		/// the returned data is 0, and the 'scanw' is the same as the block's
 		/// width. See the 'DataBlk' class.</p>
 		/// 
-		/// <p>If the data array in 'blk' is 'null', then a new one is created. If
+		/// If the data array in 'blk' is 'null', then a new one is created. If
 		/// the data array is not 'null' then it is reused, and it must be large
 		/// enough to contain the block's data. Otherwise an 'ArrayStoreException'
 		/// or an 'IndexOutOfBoundsException' is thrown by the Java system.</p>
 		/// 
-		/// <p>The returned data has its 'progressive' attribute unset
+		/// The returned data has its 'progressive' attribute unset
 		/// (i.e. false).</p>
 		/// 
-		/// <p>This method just calls 'getInternCompData(blk,c)'.</p>
+		/// This method just calls 'getInternCompData(blk,c)'.</p>
 		/// 
-		/// <P>When an I/O exception is encountered the JJ2KExceptionHandler is
+		/// When an I/O exception is encountered the JJ2KExceptionHandler is
 		/// used. The exception is passed to its handleException method. The action
 		/// that is taken depends on the action that has been registered in
 		/// JJ2KExceptionHandler. See JJ2KExceptionHandler for details.
@@ -628,14 +628,14 @@ namespace CSJ2K.j2k.image.input
 		/// <returns> The requested DataBlk
 		/// 
 		/// </returns>
-		/// <seealso cref="getInternCompData">
+		/// <seealso cref="GetInternCompData">
 		/// </seealso>
 		/// <seealso cref="JJ2KExceptionHandler">
 		/// 
 		/// </seealso>
-		public override DataBlk getCompData(DataBlk blk, int c)
+		public override DataBlk GetCompData(DataBlk blk, int c)
 		{
-			return getInternCompData(blk, c);
+			return GetInternCompData(blk, c);
 		}
 		
 		/// <summary> Returns true if the data read was originally signed in the specified
@@ -648,11 +648,11 @@ namespace CSJ2K.j2k.image.input
 		/// <returns> true if the data was originally signed, false if not.
 		/// 
 		/// </returns>
-		public override bool isOrigSigned(int c)
+		public override bool IsOrigSigned(int c)
 		{
 			// Check component index
 			if (c != 0)
-				throw new System.ArgumentException();
+				throw new ArgumentException();
 			return isSigned;
 		}
 		
@@ -664,10 +664,11 @@ namespace CSJ2K.j2k.image.input
 		/// <returns> A string of information about the object.
 		/// 
 		/// </returns>
-		public override System.String ToString()
+		public override string ToString()
 		{
 			//UPGRADE_TODO: The equivalent in .NET for method 'java.lang.Object.toString' may return a different value. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1043'"
-			return "ImgReaderPGX: WxH = " + w + "x" + h + ", Component = 0" + ", Bit-depth = " + bitDepth + ", signed = " + isSigned + "\nUnderlying RandomAccessIO:\n" + in_Renamed.ToString();
+			return
+				$"ImgReaderPGX: WxH = {w}x{h}, Component = 0, Bit-depth = {bitDepth}, signed = {isSigned}\nUnderlying RandomAccessIO:\n{in_Renamed}";
 		}
 	}
 }

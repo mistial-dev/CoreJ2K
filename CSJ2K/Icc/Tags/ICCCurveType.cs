@@ -20,12 +20,9 @@ namespace CSJ2K.Icc.Tags
 	/// </author>
 	public class ICCCurveType:ICCTag
 	{
-		
-		//UPGRADE_NOTE: Final was removed from the declaration of 'eol '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
-		private static readonly System.String eol = System.Environment.NewLine;
 		/// <summary>Tag fields </summary>
 		//UPGRADE_NOTE: Final was removed from the declaration of 'type '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
-		new public int type;
+		public new int type;
 		/// <summary>Tag fields </summary>
 		//UPGRADE_NOTE: Final was removed from the declaration of 'reserved '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
 		public int reserved;
@@ -37,29 +34,30 @@ namespace CSJ2K.Icc.Tags
 		public int[] entry_Renamed_Field;
 		
 		/// <summary>Return the string rep of this tag. </summary>
-		public override System.String ToString()
+		public override string ToString()
 		{
-			System.Text.StringBuilder rep = new System.Text.StringBuilder("[").Append(base.ToString()).Append(" nentries = ").Append(System.Convert.ToString(nEntries)).Append(", length = " + System.Convert.ToString(entry_Renamed_Field.Length) + " ... ");
+			var rep = new System.Text.StringBuilder("[").Append(base.ToString()).Append(" nentries = ").Append(Convert.ToString(nEntries)).Append(
+				$", length = {Convert.ToString(entry_Renamed_Field.Length)} ... ");
 			return rep.Append("]").ToString();
 		}
 		
 		/// <summary>Normalization utility </summary>
 		public static double CurveToDouble(int entry)
 		{
-			return (double) entry / 65535.0;
+			return entry / 65535.0;
 		}
 		
 		/// <summary>Normalization utility </summary>
 		public static short DoubleToCurve(double entry)
 		{
 			//UPGRADE_WARNING: Data types in Visual C# might be different.  Verify the accuracy of narrowing conversions. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1042'"
-			return (short) System.Math.Floor(entry * 65535.0 + 0.5);
+			return (short) Math.Floor(entry * 65535.0 + 0.5);
 		}
 		
 		/// <summary>Normalization utility </summary>
 		public static double CurveGammaToDouble(int entry)
 		{
-			return (double) entry / 256.0;
+			return entry / 256.0;
 		}
 		
 		
@@ -78,7 +76,7 @@ namespace CSJ2K.Icc.Tags
             reserved = ICCProfile.getInt(data, offset + ICCProfile.int_size);
             nEntries = ICCProfile.getInt(data, offset + 2 * ICCProfile.int_size);
 			entry_Renamed_Field = new int[nEntries];
-			for (int i = 0; i < nEntries; ++i)
+			for (var i = 0; i < nEntries; ++i)
                 entry_Renamed_Field[i] = ICCProfile.getShort(data, offset + 3 * ICCProfile.int_size + i * ICCProfile.short_size) & 0xFFFF;
 		}
 		

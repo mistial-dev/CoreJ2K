@@ -3,7 +3,7 @@
 
 namespace CSJ2K.Util
 {
-    using CSJ2K.j2k.image;
+    using j2k.image;
 
     public interface IImageCreator : IDefaultable
     {

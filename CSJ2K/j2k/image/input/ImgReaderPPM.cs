@@ -9,10 +9,10 @@
 *
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -49,16 +49,16 @@ namespace CSJ2K.j2k.image.input
 	/// <summary> This class implements the ImgData interface for reading 8 bits unsigned
 	/// data from a binary PPM file
 	/// 
-	/// <P> After being read the coefficients are level shifted by subtracting
+	///  After being read the coefficients are level shifted by subtracting
 	/// 2^(nominal bit range - 1)
 	/// 
-	/// <P>The transfer type (see ImgData) of this class is TYPE_INT.
+	/// The transfer type (see ImgData) of this class is TYPE_INT.
 	/// 
-	/// <P>This class is <i>buffered</i>: the 3 input components(R,G,B) are read
+	/// This class is <i>buffered</i>: the 3 input components(R,G,B) are read
 	/// when the first one (R) is asked. The 2 others are stored until they are
 	/// needed.
 	/// 
-	/// <P>NOTE: This class is not thread safe, for reasons of internal buffering.
+	/// NOTE: This class is not thread safe, for reasons of internal buffering.
 	/// 
 	/// </summary>
 	/// <seealso cref="jj2000.j2k.image.ImgData">
@@ -119,7 +119,7 @@ namespace CSJ2K.j2k.image.input
 		/// <param name="IOException">If an error occurs while opening the file.
 		/// 
 		/// </param>
-		public ImgReaderPPM(System.String fname):this(SupportClass.RandomAccessFileSupport.CreateRandomAccessFile(fname, "r"))
+		public ImgReaderPPM(string fname):this(SupportClass.RandomAccessFileSupport.CreateRandomAccessFile(fname, "r"))
 		{
 		}
 		
@@ -159,7 +159,7 @@ namespace CSJ2K.j2k.image.input
 		/// <exception cref="IOException">If an I/O error occurs.
 		/// 
 		/// </exception>
-		public override void  close()
+		public override void  Close()
 		{
 			in_Renamed.Dispose();
 			in_Renamed = null;
@@ -176,7 +176,7 @@ namespace CSJ2K.j2k.image.input
 		/// was specified in the constructor, which normally is 8 for non bilevel
 		/// data, and 1 for bilevel data.
 		/// 
-		/// <P>If this number is <i>b</b> then the nominal range is between
+		/// If this number is <i>b</b> then the nominal range is between
 		/// -2^(b-1) and 2^(b-1)-1, since unsigned data is level shifted to have a
 		/// nominal avergae of 0.
 		/// 
@@ -193,7 +193,7 @@ namespace CSJ2K.j2k.image.input
 		{
 			// Check component index
 			if (c < 0 || c > 2)
-				throw new System.ArgumentException();
+				throw new ArgumentException();
 			
 			return rb;
 		}
@@ -210,11 +210,11 @@ namespace CSJ2K.j2k.image.input
 		/// bits). Always 0 for this ImgReader.
 		/// 
 		/// </returns>
-		public override int getFixedPoint(int c)
+		public override int GetFixedPoint(int c)
 		{
 			// Check component index
 			if (c < 0 || c > 2)
-				throw new System.ArgumentException();
+				throw new ArgumentException();
 			return 0;
 		}
 		
@@ -224,15 +224,15 @@ namespace CSJ2K.j2k.image.input
 		/// returned, as a reference to the internal data, if any, instead of as a
 		/// copy, therefore the returned data should not be modified.
 		/// 
-		/// <P> After being read the coefficients are level shifted by subtracting
+		///  After being read the coefficients are level shifted by subtracting
 		/// 2^(nominal bit range - 1)
 		/// 
-		/// <P>The rectangular area to return is specified by the 'ulx', 'uly', 'w'
+		/// The rectangular area to return is specified by the 'ulx', 'uly', 'w'
 		/// and 'h' members of the 'blk' argument, relative to the current
 		/// tile. These members are not modified by this method. The 'offset' and
 		/// 'scanw' of the returned data can be arbitrary. See the 'DataBlk' class.
 		/// 
-		/// <P>If the data array in <tt>blk</tt> is <tt>null</tt>, then a new one
+		/// If the data array in <tt>blk</tt> is <tt>null</tt>, then a new one
 		/// is created if necessary. The implementation of this interface may
 		/// choose to return the same array or a new one, depending on what is more
 		/// efficient. Therefore, the data array in <tt>blk</tt> prior to the
@@ -240,15 +240,15 @@ namespace CSJ2K.j2k.image.input
 		/// new array may have been created. Instead, get the array from
 		/// <tt>blk</tt> after the method has returned.
 		/// 
-		/// <P>The returned data always has its 'progressive' attribute unset
+		/// The returned data always has its 'progressive' attribute unset
 		/// (i.e. false).
 		/// 
-		/// <P>When an I/O exception is encountered the JJ2KExceptionHandler is
+		/// When an I/O exception is encountered the JJ2KExceptionHandler is
 		/// used. The exception is passed to its handleException method. The action
 		/// that is taken depends on the action that has been registered in
 		/// JJ2KExceptionHandler. See JJ2KExceptionHandler for details.
 		/// 
-		/// <P>This method implements buffering for the 3 components: When the
+		/// This method implements buffering for the 3 components: When the
 		/// first one is asked, all the 3 components are read and stored until they
 		/// are needed.
 		/// 
@@ -264,17 +264,17 @@ namespace CSJ2K.j2k.image.input
 		/// <returns> The requested DataBlk
 		/// 
 		/// </returns>
-		/// <seealso cref="getCompData">
+		/// <seealso cref="GetCompData">
 		/// 
 		/// </seealso>
 		/// <seealso cref="JJ2KExceptionHandler">
 		/// 
 		/// </seealso>
-		public override DataBlk getInternCompData(DataBlk blk, int c)
+		public override DataBlk GetInternCompData(DataBlk blk, int c)
 		{
 			// Check component index
 			if (c < 0 || c > 2)
-				throw new System.ArgumentException();
+				throw new ArgumentException();
 			
 			// Check type of block provided as an argument
 			if (blk.DataType != DataBlk.TYPE_INT)
@@ -346,9 +346,9 @@ namespace CSJ2K.j2k.image.input
 						for (k = (i - blk.uly) * blk.w + blk.w - 1, j = 3 * blk.w - 1; j >= 0; k--)
 						{
 							// Read every third sample
-							blue[k] = (((byte) buf[j--]) & 0xFF) - DC_OFFSET;
-							green[k] = (((byte) buf[j--]) & 0xFF) - DC_OFFSET;
-							red[k] = (((byte) buf[j--]) & 0xFF) - DC_OFFSET;
+							blue[k] = (buf[j--] & 0xFF) - DC_OFFSET;
+							green[k] = (buf[j--] & 0xFF) - DC_OFFSET;
+							red[k] = (buf[j--] & 0xFF) - DC_OFFSET;
 						}
 					}
 				}
@@ -383,24 +383,24 @@ namespace CSJ2K.j2k.image.input
 		/// returned, as a copy of the internal data, therefore the returned data
 		/// can be modified "in place".
 		/// 
-		/// <P> After being read the coefficients are level shifted by subtracting
+		///  After being read the coefficients are level shifted by subtracting
 		/// 2^(nominal bit range - 1)
 		/// 
-		/// <P>The rectangular area to return is specified by the 'ulx', 'uly', 'w'
+		/// The rectangular area to return is specified by the 'ulx', 'uly', 'w'
 		/// and 'h' members of the 'blk' argument, relative to the current
 		/// tile. These members are not modified by this method. The 'offset' of
 		/// the returned data is 0, and the 'scanw' is the same as the block's
 		/// width. See the 'DataBlk' class.
 		/// 
-		/// <P>If the data array in 'blk' is 'null', then a new one is created. If
+		/// If the data array in 'blk' is 'null', then a new one is created. If
 		/// the data array is not 'null' then it is reused, and it must be large
 		/// enough to contain the block's data. Otherwise an 'ArrayStoreException'
 		/// or an 'IndexOutOfBoundsException' is thrown by the Java system.
 		/// 
-		/// <P>The returned data has its 'progressive' attribute unset
+		/// The returned data has its 'progressive' attribute unset
 		/// (i.e. false).
 		/// 
-		/// <P>When an I/O exception is encountered the JJ2KExceptionHandler is
+		/// When an I/O exception is encountered the JJ2KExceptionHandler is
 		/// used. The exception is passed to its handleException method. The action
 		/// that is taken depends on the action that has been registered in
 		/// JJ2KExceptionHandler. See JJ2KExceptionHandler for details.
@@ -419,13 +419,13 @@ namespace CSJ2K.j2k.image.input
 		/// <returns> The requested DataBlk
 		/// 
 		/// </returns>
-		/// <seealso cref="getInternCompData">
+		/// <seealso cref="GetInternCompData">
 		/// 
 		/// </seealso>
 		/// <seealso cref="JJ2KExceptionHandler">
 		/// 
 		/// </seealso>
-		public override DataBlk getCompData(DataBlk blk, int c)
+		public override DataBlk GetCompData(DataBlk blk, int c)
 		{
 			// NOTE: can not directly call getInterCompData since that returns
 			// internally buffered data.
@@ -434,11 +434,11 @@ namespace CSJ2K.j2k.image.input
 			// Check type of block provided as an argument
 			if (blk.DataType != DataBlk.TYPE_INT)
 			{
-				DataBlkInt tmp = new DataBlkInt(blk.ulx, blk.uly, blk.w, blk.h);
+				var tmp = new DataBlkInt(blk.ulx, blk.uly, blk.w, blk.h);
 				blk = tmp;
 			}
 			
-			int[] bakarr = (int[]) blk.Data;
+			var bakarr = (int[]) blk.Data;
 			// Save requested block size
 			ulx = blk.ulx;
 			uly = blk.uly;
@@ -446,7 +446,7 @@ namespace CSJ2K.j2k.image.input
 			h = blk.h;
 			// Force internal data buffer to be different from external
 			blk.Data = null;
-			getInternCompData(blk, c);
+			GetInternCompData(blk, c);
 			// Copy the data
 			if (bakarr == null)
 			{
@@ -456,16 +456,16 @@ namespace CSJ2K.j2k.image.input
 			{
 				// Requested and returned block buffer are the same size
                 // CONVERSION PROBLEM?
-				Array.Copy((System.Array)blk.Data, 0, (System.Array)bakarr, 0, w * h);
+				Array.Copy((Array)blk.Data, 0, bakarr, 0, w * h);
 			}
 			else
 			{
 				// Requested and returned block are different
-				for (int i = h - 1; i >= 0; i--)
+				for (var i = h - 1; i >= 0; i--)
 				{
 					// copy line by line
                     // CONVERSION PROBLEM?
-					Array.Copy((System.Array)blk.Data, blk.offset + i * blk.scanw, (System.Array)bakarr, i * w, w);
+					Array.Copy((Array)blk.Data, blk.offset + i * blk.scanw, bakarr, i * w, w);
 				}
 			}
 			blk.Data = bakarr;
@@ -493,7 +493,7 @@ namespace CSJ2K.j2k.image.input
 		/// </summary>
 		private void  confirmFileType()
 		{
-			byte[] type = new byte[]{80, 54};
+			var type = new byte[]{80, 54};
 			int i;
 			byte b;
 			
@@ -505,11 +505,11 @@ namespace CSJ2K.j2k.image.input
 					if (i == 1 && b == 51)
 					{
 						// i.e 'P3'
-						throw new System.ArgumentException("JJ2000 does not support" + " ascii-PPM files. Use " + " raw-PPM file instead. ");
+						throw new ArgumentException("JJ2000 does not support" + " ascii-PPM files. Use " + " raw-PPM file instead. ");
 					}
 					else
 					{
-						throw new System.ArgumentException("Not a raw-PPM file");
+						throw new ArgumentException("Not a raw-PPM file");
 					}
 				}
 			}
@@ -522,7 +522,7 @@ namespace CSJ2K.j2k.image.input
 		private void  skipCommentAndWhiteSpace()
 		{
 			
-			bool done = false;
+			var done = false;
 			byte b;
 			
 			while (!done)
@@ -556,7 +556,7 @@ namespace CSJ2K.j2k.image.input
 		/// </returns>
 		private int readHeaderInt()
 		{
-			int res = 0;
+			var res = 0;
 			byte b = 0;
 			
 			b = countedByteRead();
@@ -580,11 +580,11 @@ namespace CSJ2K.j2k.image.input
 		/// <returns> always false, since PPM data is always unsigned.
 		/// 
 		/// </returns>
-		public override bool isOrigSigned(int c)
+		public override bool IsOrigSigned(int c)
 		{
 			// Check component index
 			if (c < 0 || c > 2)
-				throw new System.ArgumentException();
+				throw new ArgumentException();
 			return false;
 		}
 		
@@ -596,10 +596,10 @@ namespace CSJ2K.j2k.image.input
 		/// <returns> A string of information about the object.  
 		/// 
 		/// </returns>
-		public override System.String ToString()
+		public override string ToString()
 		{
 			//UPGRADE_TODO: The equivalent in .NET for method 'java.lang.Object.toString' may return a different value. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1043'"
-			return "ImgReaderPPM: WxH = " + w + "x" + h + ", Component = 0,1,2" + "\nUnderlying RandomAccessFile:\n" + in_Renamed.ToString();
+			return $"ImgReaderPPM: WxH = {w}x{h}, Component = 0,1,2\nUnderlying RandomAccessFile:\n{in_Renamed}";
 		}
 	}
 }

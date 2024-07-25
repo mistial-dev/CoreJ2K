@@ -12,10 +12,10 @@
 *
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -53,16 +53,16 @@ namespace CSJ2K.j2k.image.output
 	/// size of the component from which to get the data, not the size of the
 	/// source image (they differ if there is some sub-sampling).
 	/// 
-	/// <p>Before writing, all coefficients are inversly level shifted and then
+	/// Before writing, all coefficients are inversly level shifted and then
 	/// "saturated" (they are limited to the nominal dynamic range).<br> <u>Ex:</u>
 	/// if the nominal range is 0-255, the following algorithm is applied:<br>
 	/// <tt>if coeff<0, output=0<br> if coeff>255, output=255<br> else
 	/// output=coeff</tt></p>
 	/// 
-	/// <p>The write() methods of an object of this class may not be called
+	/// The write() methods of an object of this class may not be called
 	/// concurrently from different threads.</p>
 	/// 
-	/// <p>NOTE: This class is not thread safe, for reasons of internal
+	/// NOTE: This class is not thread safe, for reasons of internal
 	/// buffering.</p>
 	/// 
 	/// </summary>
@@ -98,7 +98,7 @@ namespace CSJ2K.j2k.image.output
 		/// <summary> Creates a new writer to the specified File object, to write data from
 		/// the specified component.
 		/// 
-		/// <p>The size of the image that is written to the file is the size of the
+		/// The size of the image that is written to the file is the size of the
 		/// component from which to get the data, specified by b, not the size of
 		/// the source image (they differ if there is some sub-sampling).</p>
 		/// 
@@ -118,13 +118,14 @@ namespace CSJ2K.j2k.image.output
 			// Check that the component index is valid
 			if (c < 0 || c >= imgSrc.NumComps)
 			{
-				throw new System.ArgumentException("Invalid number of components");
+				throw new ArgumentException("Invalid number of components");
 			}
 			
 			// Check that imgSrc is of the correct type
 			if (imgSrc.getNomRangeBits(c) > 8)
 			{
-				FacilityManager.getMsgLogger().println("Warning: Component " + c + " has nominal bitdepth " + imgSrc.getNomRangeBits(c) + ". Pixel values will be " + "down-shifted to fit bitdepth of 8 for PGM file", 8, 8);
+				FacilityManager.getMsgLogger().println(
+					$"Warning: Component {c} has nominal bitdepth {imgSrc.getNomRangeBits(c)}. Pixel values will be down-shifted to fit bitdepth of 8 for PGM file", 8, 8);
 			}
 			
 			// Initialize
@@ -137,7 +138,7 @@ namespace CSJ2K.j2k.image.output
 			this.c = c;
 			w = imgSrc.ImgWidth;
 			h = imgSrc.ImgHeight;
-			fb = imgSrc.getFixedPoint(c);
+			fb = imgSrc.GetFixedPoint(c);
 			levShift = 1 << (imgSrc.getNomRangeBits(c) - 1);
 			
 			writeHeaderInfo();
@@ -146,7 +147,7 @@ namespace CSJ2K.j2k.image.output
 		/// <summary> Creates a new writer to the specified file, to write data from the
 		/// specified component.
 		/// 
-		/// <P>The size of the image that is written to the file is the size of the
+		/// The size of the image that is written to the file is the size of the
 		/// component from which to get the data, specified by b, not the size of
 		/// the source image (they differ if there is some sub-sampling).
 		/// 
@@ -160,7 +161,7 @@ namespace CSJ2K.j2k.image.output
 		/// <param name="c">The index of the component from where to get the data.
 		/// 
 		/// </param>
-		public ImgWriterPGM(System.String fname, BlkImgDataSrc imgSrc, int c):this(FileInfoFactory.New(fname), imgSrc, c)
+		public ImgWriterPGM(string fname, BlkImgDataSrc imgSrc, int c):this(FileInfoFactory.New(fname), imgSrc, c)
 		{
 		}
 		
@@ -184,7 +185,7 @@ namespace CSJ2K.j2k.image.output
 				// Fill with 0s
 				for (i = offset + w * h - (int) out_Renamed.Length; i > 0; i--)
 				{
-					out_Renamed.WriteByte((System.Byte) 0);
+					out_Renamed.WriteByte(0);
 				}
 			}
 			out_Renamed.Dispose();
@@ -210,10 +211,10 @@ namespace CSJ2K.j2k.image.output
 		/// relative to the current tile of the source. Before writing, the
 		/// coefficients are limited to the nominal range.
 		/// 
-		/// <p>This method may not be called concurrently from different
+		/// This method may not be called concurrently from different
 		/// threads.</p>
 		/// 
-		/// <p>If the data returned from the BlkImgDataSrc source is progressive,
+		/// If the data returned from the BlkImgDataSrc source is progressive,
 		/// then it is requested over and over until it is not progressive
 		/// anymore.</p>
 		/// 
@@ -238,7 +239,7 @@ namespace CSJ2K.j2k.image.output
 		public override void  write(int ulx, int uly, int w, int h)
 		{
 			int k, i, j;
-			int fracbits = fb; // In local variable for faster access
+			var fracbits = fb; // In local variable for faster access
 			int tOffx, tOffy; // Active tile offset in the X and Y direction
 			
 			// Initialize db
@@ -248,9 +249,9 @@ namespace CSJ2K.j2k.image.output
 			db.h = h;
 			// Get the current active tile offset
 			//UPGRADE_WARNING: Data types in Visual C# might be different.  Verify the accuracy of narrowing conversions. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1042'"
-			tOffx = src.getCompULX(c) - (int) System.Math.Ceiling(src.ImgULX / (double) src.getCompSubsX(c));
+			tOffx = src.getCompULX(c) - (int) Math.Ceiling(src.ImgULX / (double) src.getCompSubsX(c));
 			//UPGRADE_WARNING: Data types in Visual C# might be different.  Verify the accuracy of narrowing conversions. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1042'"
-			tOffy = src.getCompULY(c) - (int) System.Math.Ceiling(src.ImgULY / (double) src.getCompSubsY(c));
+			tOffy = src.getCompULY(c) - (int) Math.Ceiling(src.ImgULY / (double) src.getCompSubsY(c));
 			// Check the array size
 			if (db.data_array != null && db.data_array.Length < w * h)
 			{
@@ -261,7 +262,7 @@ namespace CSJ2K.j2k.image.output
 			// progressive
 			do 
 			{
-				db = (DataBlkInt) src.getInternCompData(db, c);
+				db = (DataBlkInt) src.GetInternCompData(db, c);
 			}
 			while (db.progressive);
 			
@@ -269,7 +270,7 @@ namespace CSJ2K.j2k.image.output
 			int tmp, maxVal = (1 << src.getNomRangeBits(c)) - 1;
 			
 			// If nominal bitdepth greater than 8, calculate down shift
-			int downShift = src.getNomRangeBits(c) - 8;
+			var downShift = src.getNomRangeBits(c) - 8;
 			if (downShift < 0)
 			{
 				downShift = 0;
@@ -285,7 +286,7 @@ namespace CSJ2K.j2k.image.output
 			for (i = 0; i < h; i++)
 			{
 				// Skip to beggining of line in file
-				out_Renamed.Seek(this.offset + this.w * (uly + tOffy + i) + ulx + tOffx, System.IO.SeekOrigin.Begin);
+				out_Renamed.Seek(offset + this.w * (uly + tOffy + i) + ulx + tOffx, System.IO.SeekOrigin.Begin);
 				// Write all bytes in the line
 				if (fracbits == 0)
 				{
@@ -311,7 +312,7 @@ namespace CSJ2K.j2k.image.output
 		/// issued to the source BlkImgDataSrc object are done by strips, in order
 		/// to reduce memory usage.
 		/// 
-		/// <p>If the data returned from the BlkImgDataSrc source is progressive,
+		/// If the data returned from the BlkImgDataSrc source is progressive,
 		/// then it is requested over and over until it is not progressive
 		/// anymore.</p>
 		/// 
@@ -325,9 +326,9 @@ namespace CSJ2K.j2k.image.output
 		public override void  write()
 		{
 			int i;
-			int tIdx = src.TileIdx;
-			int tw = src.getTileCompWidth(tIdx, c); // Tile width
-			int th = src.getTileCompHeight(tIdx, c); // Tile height
+			var tIdx = src.TileIdx;
+			var tw = src.getTileCompWidth(tIdx, c); // Tile width
+			var th = src.getTileCompHeight(tIdx, c); // Tile height
 			// Write in strips
 			for (i = 0; i < th; i += DEF_STRIP_HEIGHT)
 			{
@@ -349,37 +350,37 @@ namespace CSJ2K.j2k.image.output
 		{
 			byte[] byteVals;
 			int i;
-			System.String val;
+			string val;
 			
 			// write 'P5' to file
-			out_Renamed.WriteByte((System.Byte) 'P'); // 'P'
-			out_Renamed.WriteByte((System.Byte) '5'); // '5'
-			out_Renamed.WriteByte((System.Byte) '\n'); // newline
+			out_Renamed.WriteByte((byte) 'P'); // 'P'
+			out_Renamed.WriteByte((byte) '5'); // '5'
+			out_Renamed.WriteByte((byte) '\n'); // newline
 			offset = 3;
 			// Write width in ASCII
-			val = System.Convert.ToString(w);
+			val = Convert.ToString(w);
 			byteVals = System.Text.Encoding.UTF8.GetBytes(val);
 			for (i = 0; i < byteVals.Length; i++)
 			{
-				out_Renamed.WriteByte((byte) byteVals[i]);
+				out_Renamed.WriteByte(byteVals[i]);
 				offset++;
 			}
-			out_Renamed.WriteByte((System.Byte) ' '); // blank
+			out_Renamed.WriteByte((byte) ' '); // blank
 			offset++;
 			// Write height in ASCII
-			val = System.Convert.ToString(h);
+			val = Convert.ToString(h);
 			byteVals = System.Text.Encoding.UTF8.GetBytes(val);
 			for (i = 0; i < byteVals.Length; i++)
 			{
-				out_Renamed.WriteByte((byte) byteVals[i]);
+				out_Renamed.WriteByte(byteVals[i]);
 				offset++;
 			}
 			// Write maxval
-			out_Renamed.WriteByte((System.Byte) '\n'); // newline
-			out_Renamed.WriteByte((System.Byte) '2'); // '2'
-			out_Renamed.WriteByte((System.Byte) '5'); // '5'
-			out_Renamed.WriteByte((System.Byte) '5'); // '5'
-			out_Renamed.WriteByte((System.Byte) '\n'); // newline
+			out_Renamed.WriteByte((byte) '\n'); // newline
+			out_Renamed.WriteByte((byte) '2'); // '2'
+			out_Renamed.WriteByte((byte) '5'); // '5'
+			out_Renamed.WriteByte((byte) '5'); // '5'
+			out_Renamed.WriteByte((byte) '\n'); // newline
 			offset += 5;
 		}
 		
@@ -391,10 +392,10 @@ namespace CSJ2K.j2k.image.output
 		/// <returns> A string of information about the object.
 		/// 
 		/// </returns>
-		public override System.String ToString()
+		public override string ToString()
 		{
 			//UPGRADE_TODO: The equivalent in .NET for method 'java.lang.Object.toString' may return a different value. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1043'"
-			return "ImgWriterPGM: WxH = " + w + "x" + h + ", Component=" + c + "\nUnderlying RandomAccessFile:\n" + out_Renamed.ToString();
+			return $"ImgWriterPGM: WxH = {w}x{h}, Component={c}\nUnderlying RandomAccessFile:\n{out_Renamed}";
 		}
 	}
 }

@@ -10,9 +10,9 @@ namespace CSJ2K.Util
     {
         #region FIELDS
 
-        private const int SizeOfArgb = 4;
+        private const int SIZE_OF_ARGB = 4;
 
-        private readonly double[] _byteScaling;
+        private readonly double[] byteScaling;
 
         #endregion
 
@@ -23,7 +23,7 @@ namespace CSJ2K.Util
             Width = width;
             Height = height;
             NumberOfComponents = numberOfComponents;
-            _byteScaling = bitsUsed.Select(b => 255.0 / (1 << b)).ToArray();
+            byteScaling = bitsUsed.Select(b => 255.0 / (1 << b)).ToArray();
 
             Data = new int[numberOfComponents * width * height];
         }
@@ -46,7 +46,7 @@ namespace CSJ2K.Util
 
         public T As<T>()
         {
-            var image = ImageFactory.New(Width, Height, ToBytes(Width, Height, NumberOfComponents, _byteScaling, Data));
+            var image = ImageFactory.New(Width, Height, ToBytes(Width, Height, NumberOfComponents, byteScaling, Data));
             return image.As<T>();
         }
 
@@ -81,7 +81,7 @@ namespace CSJ2K.Util
         private static byte[] ToBytes(int width, int height, int numberOfComponents, double[] byteScaling, int[] data)
         {
             var count = numberOfComponents * width * height;
-            var bytes = new byte[SizeOfArgb * width * height];
+            var bytes = new byte[SIZE_OF_ARGB * width * height];
 
             switch (numberOfComponents)
             {

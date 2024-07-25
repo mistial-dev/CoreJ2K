@@ -40,11 +40,7 @@ namespace CSJ2K.Util
 
         public virtual T As<T>()
         {
-#if NETFX_CORE || NETSTANDARD
             if (!typeof(TBase).GetTypeInfo().IsAssignableFrom(typeof(T).GetTypeInfo()))
-#else
-            if (!typeof(TBase).IsAssignableFrom(typeof(T)))
-#endif
             {
                 throw new InvalidCastException(
                     $"Cannot cast to '{typeof(T).Name}'; type must be assignable from '{typeof(TBase).Name}'");

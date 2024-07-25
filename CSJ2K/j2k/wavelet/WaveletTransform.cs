@@ -13,10 +13,10 @@
 *
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -52,7 +52,7 @@ namespace CSJ2K.j2k.wavelet
 	/// class inherits, all operations are confined to the current tile, and all
 	/// coordinates are relative to it.
 	/// 
-	/// <p>The definition of the methods in this interface allows for different
+	/// The definition of the methods in this interface allows for different
 	/// types of implementation, reversibility and levels of decompositions for
 	/// each component and each tile. An implementation of this interface does not
 	/// need to support all this flexibility (e.g., it may provide the same
@@ -64,13 +64,14 @@ namespace CSJ2K.j2k.wavelet
 		/// <summary> ID for line based implementations of wavelet transforms.
 		/// 
 		/// </summary>
-		public readonly static int WT_IMPL_LINE = 0;
+		public static readonly int WT_IMPL_LINE = 0;
+
 		/// <summary> ID for full-page based implementations of wavelet transforms. Full-page
 		/// based implementations should be avoided since they require large
 		/// amounts of memory.
 		/// 
 		/// </summary>
-		public readonly static int WT_IMPL_FULL = 2;
+		public const int WT_IMPL_FULL = 2;
 	}
 	public interface WaveletTransform:ImgData
 	{

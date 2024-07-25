@@ -11,10 +11,10 @@
 *
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -53,7 +53,7 @@ namespace CSJ2K.j2k
 	/// is not known how to handle the exception, and the exception can not
 	/// be thrown higher in the stack.
 	/// 
-	/// <P>Different options can be registered for each Thread and
+	/// Different options can be registered for each Thread and
 	/// ThreadGroup. <i>This feature is not implemented yet</i>
 	/// 
 	/// </summary>
@@ -65,7 +65,7 @@ namespace CSJ2K.j2k
 		/// descriptive message are printed to standard error and the
 		/// current thread is stopped.
 		/// 
-		/// <P><i>Registration of special actions is not implemented yet.</i>
+		/// <i>Registration of special actions is not implemented yet.</i>
 		/// 
 		/// </summary>
 		/// <param name="e">The exception to handle
@@ -74,7 +74,7 @@ namespace CSJ2K.j2k
 		/// 
 		/// </param>
 		//UPGRADE_NOTE: Exception 'java.lang.Throwable' was converted to 'System.Exception' which has different behavior. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1100'"
-		public static void  handleException(System.Exception e)
+		public static void  handleException(Exception e)
 		{
 			// Test if there is an special action (not implemented yet)
 			
@@ -90,7 +90,7 @@ namespace CSJ2K.j2k
 			// Stop the thread (do not use stop, since it's deprecated in
 			// Java 1.2)
 			//UPGRADE_NOTE: Exception 'java.lang.ThreadDeath' was converted to 'System.InvalidOperationException' which has different behavior. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1100'"
-			throw new System.InvalidOperationException();
+			throw new InvalidOperationException();
 		}
 	}
 }

@@ -13,10 +13,10 @@
 *
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -54,12 +54,12 @@ namespace CSJ2K.j2k.entropy.encoder
 	/// state can be specified for each context, which may be adapted to the
 	/// probability distribution that is expected for that context.
 	/// 
-	/// <p>The type of length calculation and termination can be chosen at
+	/// The type of length calculation and termination can be chosen at
 	/// construction time.
 	/// 
 	/// ---- Tricks that have been tried to improve speed ----
 	/// 
-	/// <p>1) Merging Qe and mPS and doubling the lookup tables<br>
+	/// 1) Merging Qe and mPS and doubling the lookup tables<br>
 	/// 
 	/// Merge the mPS into Qe, as the sign bit (if Qe>=0 the sense of MPS is 0, if
 	/// Qe<0 the sense is 1), and double the lookup tables. The first half of the
@@ -76,7 +76,7 @@ namespace CSJ2K.j2k.entropy.encoder
 	/// simpler braches of the type "if (bit==0)" and "if (q<0)" may contribute to
 	/// that.</p>
 	/// 
-	/// <p>2) Removing cT<br>
+	/// 2) Removing cT<br>
 	/// 
 	/// It is possible to remove the cT counter by setting a flag bit in the high
 	/// bits of the C register. This bit will be automatically shifted left
@@ -92,7 +92,7 @@ namespace CSJ2K.j2k.entropy.encoder
 	/// decreased. Maybe it is due to the number of extra operations in the
 	/// byteOut(), terminate() and getNumCodedBytes() procedures.</p>
 	/// 
-	/// <p>3) Change the convention of MPS and LPS.<br>
+	/// 3) Change the convention of MPS and LPS.<br>
 	/// 
 	/// Making the LPS interval be above the MPS interval (MQ coder convention is
 	/// the opposite) can reduce the number of operations along the MPS path. In
@@ -104,14 +104,14 @@ namespace CSJ2K.j2k.entropy.encoder
 	/// 
 	/// This has not been tested yet.<br>
 	/// 
-	/// <p>4) Removing normalization while loop on MPS path<br>
+	/// 4) Removing normalization while loop on MPS path<br>
 	/// 
 	/// Since in the MPS path Q is guaranteed to be always greater than 0x4000
 	/// (decimal 0.375) it is never necessary to do more than 1 renormalization
 	/// shift. Therefore the test of the while loop, and the loop itself, can be
 	/// removed.</p>
 	/// 
-	/// <p>5) Simplifying test on A register<br>
+	/// 5) Simplifying test on A register<br>
 	/// 
 	/// Since A is always less than or equal to 0xFFFF, the test "(a & 0x8000)==0"
 	/// can be replaced by the simplete test "a < 0x8000". This test is simpler in
@@ -120,7 +120,7 @@ namespace CSJ2K.j2k.entropy.encoder
 	/// 
 	/// This change has been integrated in the decoding procedures.</p>
 	/// 
-	/// <p>6) Speedup mode<br>
+	/// 6) Speedup mode<br>
 	/// 
 	/// Implemented a method that uses the speedup mode of the MQ-coder if
 	/// possible. This should greately improve performance when coding long runs of 
@@ -130,7 +130,7 @@ namespace CSJ2K.j2k.entropy.encoder
 	/// 
 	/// Implemented but performance not tested yet.</p>
 	/// 
-	/// <p>7) Multiple-symbol coding<br>
+	/// 7) Multiple-symbol coding<br>
 	/// 
 	/// Since the time spent in a method call is non-negligable, coding several
 	/// symbols with one method call reduces the overhead per coded symbol. The
@@ -149,14 +149,14 @@ namespace CSJ2K.j2k.entropy.encoder
 		/// 'LENGTH_LAZY', 'LENGTH_LAZY_GOOD' or 'LENGTH_NEAR_OPT'.
 		/// 
 		/// </param>
-		virtual public int LenCalcType
+		public virtual int LenCalcType
 		{
 			set
 			{
 				// Verify the ttype and ltype
 				if (value != LENGTH_LAZY && value != LENGTH_LAZY_GOOD && value != LENGTH_NEAR_OPT)
 				{
-					throw new System.ArgumentException("Unrecognized length " + "calculation type code: " + value);
+					throw new ArgumentException($"Unrecognized length calculation type code: {value}");
 				}
 				
 				if (value == LENGTH_NEAR_OPT)
@@ -172,7 +172,7 @@ namespace CSJ2K.j2k.entropy.encoder
 					if (savedDelFF == null)
 						savedDelFF = new bool[SAVED_LEN];
 				}
-				this.ltype = value;
+				ltype = value;
 			}
 			
 		}
@@ -183,15 +183,15 @@ namespace CSJ2K.j2k.entropy.encoder
 		/// 'TERM_NEAR_OPT', 'TERM_EASY' or 'TERM_PRED_ER'.
 		/// 
 		/// </param>
-		virtual public int TermType
+		public virtual int TermType
 		{
 			set
 			{
 				if (value != TERM_FULL && value != TERM_NEAR_OPT && value != TERM_EASY && value != TERM_PRED_ER)
 				{
-					throw new System.ArgumentException("Unrecognized termination " + "type code: " + value);
+					throw new ArgumentException($"Unrecognized termination type code: {value}");
 				}
-				this.ttype = value;
+				ttype = value;
 			}
 			
 		}
@@ -201,29 +201,23 @@ namespace CSJ2K.j2k.entropy.encoder
 		/// <returns> The number of contexts
 		/// 
 		/// </returns>
-		virtual public int NumCtxts
-		{
-			get
-			{
-				return I.Length;
-			}
-			
-		}
+		public virtual int NumCtxts => I.Length;
+
 		/// <summary> Returns the number of bytes that are necessary from the compressed
 		/// output stream to decode all the symbols that have been coded this
 		/// far. The number of returned bytes does not include anything coded
 		/// previous to the last time the 'terminate()' or 'reset()' methods where
 		/// called.
 		/// 
-		/// <p>The values returned by this method are then to be used in finishing
+		/// The values returned by this method are then to be used in finishing
 		/// the length calculation with the 'finishLengthCalculation()' method,
 		/// after compensation of the offset in the number of bytes due to previous
 		/// terminated segments.</p>
 		/// 
-		/// <p>This method should not be called if the current coding pass is to be
+		/// This method should not be called if the current coding pass is to be
 		/// terminated. The 'terminate()' method should be called instead.</p>
 		/// 
-		/// <p>The calculation is done based on the type of length calculation
+		/// The calculation is done based on the type of length calculation
 		/// specified at the constructor.</p>
 		/// 
 		/// </summary>
@@ -231,7 +225,7 @@ namespace CSJ2K.j2k.entropy.encoder
 		/// to decode all the information coded this far.
 		/// 
 		/// </returns>
-		virtual public int NumCodedBytes
+		public virtual int NumCodedBytes
 		{
 			get
 			{
@@ -247,19 +241,13 @@ namespace CSJ2K.j2k.entropy.encoder
 						// This one is a bit better than LENGTH_LAZY.
 						int bitsInN3Bytes; // The minimum amount of bits that can be
 						// stored in the 3 bytes following the current byte buffer 'b'.
-						
-						if (b >= 0xFE)
-						{
-							// The byte after b can have a bit stuffed so ther could be
-							// one less bit available
-							bitsInN3Bytes = 22; // 7 + 8 + 7
-						}
-						else
-						{
+
+						// The byte after b can have a bit stuffed so ther could be
+						// one less bit available
+						bitsInN3Bytes = b >= 0xFE ? 22 : // 7 + 8 + 7
 							// We are sure that next byte after current byte buffer has no
 							// bit stuffing
-							bitsInN3Bytes = 23; // 8 + 7 + 8
-						}
+							23; // 8 + 7 + 8
 						if ((11 - cT + 16) <= bitsInN3Bytes)
 						{
 							return nrOfWrittenBytes + (delFF?1:0) + 1 + 3;
@@ -295,7 +283,7 @@ namespace CSJ2K.j2k.entropy.encoder
 						return nrOfWrittenBytes;
 					
 					default: 
-						throw new System.InvalidOperationException("Illegal length calculation type code");
+						throw new InvalidOperationException("Illegal length calculation type code");
 					
 				}
 			}
@@ -432,15 +420,13 @@ namespace CSJ2K.j2k.entropy.encoder
 		/// calculation. 
 		/// </summary>
 		internal int nSaved;
-		
+
 		/// <summary>The initial length of the arrays to save sates </summary>
-		//UPGRADE_NOTE: Final was removed from the declaration of 'SAVED_LEN '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
-		internal static readonly int SAVED_LEN = 32 * CSJ2K.j2k.entropy.StdEntropyCoderOptions.NUM_PASSES;
-		
+		internal const int SAVED_LEN = 32 * StdEntropyCoderOptions.NUM_PASSES;
+
 		/// <summary>The increase in length for the arrays to save states </summary>
-		//UPGRADE_NOTE: Final was removed from the declaration of 'SAVED_INC '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
-		internal static readonly int SAVED_INC = 4 * CSJ2K.j2k.entropy.StdEntropyCoderOptions.NUM_PASSES;
-		
+		internal const int SAVED_INC = 4 * StdEntropyCoderOptions.NUM_PASSES;
+
 		/// <summary> Instantiates a new MQ-coder, with the specified number of contexts and
 		/// initial states. The compressed bytestream is written to the 'oStream'
 		/// object.
@@ -471,14 +457,7 @@ namespace CSJ2K.j2k.entropy.encoder
 			
 			a = 0x8000;
 			c = 0;
-			if (b == 0xFF)
-			{
-				cT = 13;
-			}
-			else
-			{
-				cT = 12;
-			}
+			cT = b == 0xFF ? 13 : 12;
 			
 			resetCtxts();
 			
@@ -489,7 +468,7 @@ namespace CSJ2K.j2k.entropy.encoder
 		/// <summary> This method performs the coding of the symbol 'bit', using context
 		/// 'ctxt', 'n' times, using the MQ-coder speedup mode if possible.
 		/// 
-		/// <p>If the symbol 'bit' is the current more probable symbol (MPS) and
+		/// If the symbol 'bit' is the current more probable symbol (MPS) and
 		/// qe[ctxt]<=0x4000, and (A-0x8000)>=qe[ctxt], speedup mode will be
 		/// used. Otherwise the normal mode will be used. The speedup mode can
 		/// significantly improve the speed of arithmetic coding when several MPS
@@ -497,7 +476,7 @@ namespace CSJ2K.j2k.entropy.encoder
 		/// same context. The generated bit stream is the same as if the normal mode
 		/// was used.</p>
 		/// 
-		/// <p>This method is also faster than the 'codeSymbols()' and
+		/// This method is also faster than the 'codeSymbols()' and
 		/// 'codeSymbol()' ones, for coding the same symbols with the same context
 		/// several times, when speedup mode can not be used, although not
 		/// significantly.</p>
@@ -691,10 +670,10 @@ namespace CSJ2K.j2k.entropy.encoder
 		/// together. The function receives an array of symbols that are to be
 		/// encoded and an array containing the contexts with which to encode them.
 		/// 
-		/// <p>The advantage of using this function is that the cost of the method
+		/// The advantage of using this function is that the cost of the method
 		/// call is amortized by the number of coded symbols per method call.</p>
 		/// 
-		/// <p>Each context has a current MPS and an index describing what the 
+		/// Each context has a current MPS and an index describing what the 
 		/// current probability is for the LPS. Each bit is encoded and if the
 		/// probability of the LPS exceeds .5, the MPS and LPS are switched.</p>
 		/// 
@@ -832,7 +811,7 @@ namespace CSJ2K.j2k.entropy.encoder
 		/// function receives a bit that is to be encoded and a context with which
 		/// to encode it.
 		/// 
-		/// <p>Each context has a current MPS and an index describing what the 
+		/// Each context has a current MPS and an index describing what the 
 		/// current probability is for the LPS. Each bit is encoded and if the
 		/// probability of the LPS exceeds .5, the MPS and LPS are switched.</p>
 		/// 
@@ -1031,12 +1010,12 @@ namespace CSJ2K.j2k.entropy.encoder
 		/// decoding, and then it reinitializes the internal state of the MQ coder
 		/// but without modifying the context states.
 		/// 
-		/// <p>After calling this method the 'finishLengthCalculation()' method
+		/// After calling this method the 'finishLengthCalculation()' method
 		/// should be called, after compensating the returned length for the length
 		/// of previous coded segments, so that the length calculation is
 		/// finalized.</p>
 		/// 
-		/// <p>The type of termination used depends on the one specified at the
+		/// The type of termination used depends on the one specified at the
 		/// constructor.</p>
 		/// 
 		/// </summary>
@@ -1051,14 +1030,14 @@ namespace CSJ2K.j2k.entropy.encoder
 				
 				case TERM_FULL: 
 					//sets the remaining bits of the last byte of the coded bits.
-					int tempc = c + a;
+					var tempc = c + a;
 					c = c | 0xFFFF;
 					if (c >= tempc)
 					{
 						c = c - 0x8000;
 					}
 					
-					int remainingBits = 27 - cT;
+					var remainingBits = 27 - cT;
 					
 					// Flushes remainingBits
 					do 
@@ -1285,7 +1264,7 @@ namespace CSJ2K.j2k.entropy.encoder
 					break;
 				
 				default: 
-					throw new System.InvalidOperationException("Illegal termination type code");
+					throw new InvalidOperationException("Illegal termination type code");
 				
 			}
 			
@@ -1343,10 +1322,7 @@ namespace CSJ2K.j2k.entropy.encoder
 			a = 0x8000;
 			c = 0;
 			b = 0;
-			if (b == 0xFF)
-				cT = 13;
-			else
-				cT = 12;
+			cT = b == 0xFF ? 13 : 12;
 			resetCtxts();
 			nrOfWrittenBytes = - 1;
 			delFF = false;
@@ -1364,23 +1340,23 @@ namespace CSJ2K.j2k.entropy.encoder
 			// Increase capacity if necessary
 			if (nSaved == savedC.Length)
 			{
-				System.Object tmp;
+				object tmp;
 				tmp = savedC;
 				savedC = new int[nSaved + SAVED_INC];
                 // CONVERSION PROBLEM?
-				Array.Copy((System.Array)tmp, 0, savedC, 0, nSaved);
+				Array.Copy((Array)tmp, 0, savedC, 0, nSaved);
 				tmp = savedCT;
 				savedCT = new int[nSaved + SAVED_INC];
-                Array.Copy((System.Array)tmp, 0, savedCT, 0, nSaved);
+                Array.Copy((Array)tmp, 0, savedCT, 0, nSaved);
 				tmp = savedA;
 				savedA = new int[nSaved + SAVED_INC];
-                Array.Copy((System.Array)tmp, 0, savedA, 0, nSaved);
+                Array.Copy((Array)tmp, 0, savedA, 0, nSaved);
 				tmp = savedB;
 				savedB = new int[nSaved + SAVED_INC];
-                Array.Copy((System.Array)tmp, 0, savedB, 0, nSaved);
+                Array.Copy((Array)tmp, 0, savedB, 0, nSaved);
 				tmp = savedDelFF;
 				savedDelFF = new bool[nSaved + SAVED_INC];
-                Array.Copy((System.Array)tmp, 0, savedDelFF, 0, nSaved);
+                Array.Copy((Array)tmp, 0, savedDelFF, 0, nSaved);
 			}
 			// Save the current sate
 			savedC[nSaved] = c;
@@ -1395,7 +1371,7 @@ namespace CSJ2K.j2k.entropy.encoder
 		/// pass. This method must be called just after the 'terminate()' one has
 		/// been called for each terminated MQ segment.
 		/// 
-		/// <p>The values in 'rates' must have been compensated for any offset due
+		/// The values in 'rates' must have been compensated for any offset due
 		/// to previous terminated segments, so that the correct index to the
 		/// stored coded data is used.</p>
 		/// 
@@ -1417,7 +1393,7 @@ namespace CSJ2K.j2k.entropy.encoder
 				if (n > 0 && rates[n - 1] > rates[n])
 				{
 					// We need correction
-					int tl = rates[n]; // The terminated length
+					var tl = rates[n]; // The terminated length
 					n--;
 					do 
 					{

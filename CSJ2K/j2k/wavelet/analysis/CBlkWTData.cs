@@ -11,10 +11,10 @@
 * 
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -51,23 +51,23 @@ namespace CSJ2K.j2k.wavelet.analysis
 	/// component. Subclasses should implement the different types of storage
 	/// (<tt>int</tt>, <tt>float</tt>, etc.).
 	/// 
-	/// <p>The data is always stored in one array, of the type matching the data
+	/// The data is always stored in one array, of the type matching the data
 	/// type (i.e. for 'int' it's an 'int[]'). The data should be stored in the
 	/// array in standard scan-line order. That is the samples go from the top-left
 	/// corner of the code-block to the lower-right corner by line and then
 	/// column.</p>
 	/// 
-	/// <p>The member variable 'offset' gives the index in the array of the first
+	/// The member variable 'offset' gives the index in the array of the first
 	/// data element (i.e. the top-left coefficient). The member variable 'scanw'
 	/// gives the width of the scan that is used to store the data, that can be
 	/// different from the width of the block. Element '(x,y)' of the code-block
 	/// (i.e. '(0,0)' is the top-left coefficient), will appear at position
 	/// 'offset+y*scanw+x' in the array of data.</p>
 	/// 
-	/// <p>The classes <tt>CBlkWTDataInt</tt> and <tt>CBlkWTDataFloat</tt> provide
+	/// The classes <tt>CBlkWTDataInt</tt> and <tt>CBlkWTDataFloat</tt> provide
 	/// implementations for <tt>int</tt> and <tt>float</tt> types respectively.</p>
 	/// 
-	/// <p>The types of data are the same as those defined by the 'DataBlk'
+	/// The types of data are the same as those defined by the 'DataBlk'
 	/// class.</p>
 	/// 
 	/// </summary>
@@ -100,7 +100,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// returned array is of the type returned by <tt>getDataType()</tt> (e.g.,
 		/// for <tt>TYPE_INT</tt>, it is a <tt>int[]</tt>).
 		/// 
-		/// <p>Each implementing class should provide a type specific equivalent
+		/// Each implementing class should provide a type specific equivalent
 		/// method (e.g., <tt>getDataInt()</tt> in <tt>DataBlkInt</tt>) which
 		/// returns an array of the correct type explicitely and not through an
 		/// <tt>Object</tt>.</p>
@@ -118,10 +118,10 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// for <tt>TYPE_INT</tt>, it should be a <tt>int[]</tt>). If the wrong
 		/// type of array is given a <tt>ClassCastException</tt> will be thrown.
 		/// 
-		/// <p>The size of the array is not necessarily checked for consistency
+		/// The size of the array is not necessarily checked for consistency
 		/// with <tt>w</tt> and <tt>h</tt> or any other fields.</p>
 		/// 
-		/// <p>Each implementing class should provide a type specific equivalent
+		/// Each implementing class should provide a type specific equivalent
 		/// method (e.g., <tt>setDataInt()</tt> in <tt>DataBlkInt</tt>) which takes
 		/// an array of the correct type explicetely and not through an
 		/// <tt>Object</tt>.</p>
@@ -133,7 +133,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// <seealso cref="getDataType">
 		/// 
 		/// </seealso>
-		public abstract System.Object Data{get;set;}
+		public abstract object Data{get;set;}
 		
 		/// <summary>The horizontal coordinate of the upper-left corner of the code-block </summary>
 		public int ulx;
@@ -196,9 +196,9 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// <returns> Block dimensions and progressiveness in a string
 		/// 
 		/// </returns>
-		public override System.String ToString()
+		public override string ToString()
 		{
-			System.String typeString = "";
+			var typeString = "";
 			switch (DataType)
 			{
 				
@@ -219,7 +219,8 @@ namespace CSJ2K.j2k.wavelet.analysis
 					break;
 				}
 			
-			return "ulx=" + ulx + ", uly=" + uly + ", idx=(" + m + "," + n + "), w=" + w + ", h=" + h + ", off=" + offset + ", scanw=" + scanw + ", wmseScaling=" + wmseScaling + ", convertFactor=" + convertFactor + ", stepSize=" + stepSize + ", type=" + typeString + ", magbits=" + magbits + ", nROIcoeff=" + nROIcoeff + ", nROIbp=" + nROIbp;
+			return
+				$"ulx={ulx}, uly={uly}, idx=({m},{n}), w={w}, h={h}, off={offset}, scanw={scanw}, wmseScaling={wmseScaling}, convertFactor={convertFactor}, stepSize={stepSize}, type={typeString}, magbits={magbits}, nROIcoeff={nROIcoeff}, nROIbp={nROIbp}";
 		}
 	}
 }

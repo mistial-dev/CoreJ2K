@@ -12,10 +12,10 @@
 * 
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -53,7 +53,7 @@ namespace CSJ2K.j2k.entropy.encoder
 	/// of a trailing 0xFF, since they are synthetized be the decoder.
 	/// 
 	/// </summary>
-	class BitToByteOutput
+	internal class BitToByteOutput
 	{
 		/// <summary> Set the flag according to whether or not the predictable termination is
 		/// requested.
@@ -62,13 +62,9 @@ namespace CSJ2K.j2k.entropy.encoder
 		/// <param name="isPredTerm">Whether or not predictable termination is requested.
 		/// 
 		/// </param>
-		virtual internal bool PredTerm
+		internal virtual bool PredTerm
 		{
-			set
-			{
-				this.isPredTerm = value;
-			}
-			
+			set => isPredTerm = value;
 		}
 		
 		/// <summary>Whether or not predictable termination is requested. This value is
@@ -261,7 +257,7 @@ namespace CSJ2K.j2k.entropy.encoder
 		public virtual int terminate()
 		{
 			flush();
-			int savedNb = nb;
+			var savedNb = nb;
 			reset();
 			return savedNb;
 		}

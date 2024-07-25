@@ -13,10 +13,10 @@
 * 
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -50,12 +50,12 @@ namespace CSJ2K.j2k.image
 	/// 'ImgData' interface. The default implementation is just to return the value
 	/// of the source, where the source is another 'ImgData' object.
 	/// 
-	/// <p>This abstract class can be used to facilitate the development of other
+	/// This abstract class can be used to facilitate the development of other
 	/// classes that implement 'ImgData'. For example a YCbCr color transform can
 	/// inherit from this class and all the trivial methods do not have to be
 	/// re-implemented.</p>
 	/// 
-	/// <p>If the default implementation of a method provided in this class does
+	/// If the default implementation of a method provided in this class does
 	/// not suit a particular implementation of the 'ImgData' interface, the method
 	/// can be overridden to implement the proper behavior.</p>
 	/// 
@@ -69,178 +69,105 @@ namespace CSJ2K.j2k.image
 		/// tile's width without accounting for any component subsampling. This is
 		/// also referred as the reference grid width in the current tile.
 		/// 
-		/// <p>This default implementation returns the value of the source.</p>
+		/// This default implementation returns the value of the source.</p>
 		/// 
 		/// </summary>
 		/// <returns> The total current tile's width in pixels.
 		/// 
 		/// </returns>
-		virtual public int TileWidth
-		{
-			get
-			{
-				return imgdatasrc.TileWidth;
-			}
-			
-		}
+		public virtual int TileWidth => imgdatasrc.TileWidth;
+
 		/// <summary> Returns the overall height of the current tile in pixels. This is the
 		/// tile's height without accounting for any component subsampling. This is
 		/// also referred as the reference grid height in the current tile.
 		/// 
-		/// <p>This default implementation returns the value of the source.</p>
+		/// This default implementation returns the value of the source.</p>
 		/// 
 		/// </summary>
 		/// <returns> The total current tile's height in pixels.
 		/// 
 		/// </returns>
-		virtual public int TileHeight
-		{
-			get
-			{
-				return imgdatasrc.TileHeight;
-			}
-			
-		}
+		public virtual int TileHeight => imgdatasrc.TileHeight;
+
 		/// <summary>Returns the nominal tiles width </summary>
-		virtual public int NomTileWidth
-		{
-			get
-			{
-				return imgdatasrc.NomTileWidth;
-			}
-			
-		}
+		public virtual int NomTileWidth => imgdatasrc.NomTileWidth;
+
 		/// <summary>Returns the nominal tiles height </summary>
-		virtual public int NomTileHeight
-		{
-			get
-			{
-				return imgdatasrc.NomTileHeight;
-			}
-			
-		}
+		public virtual int NomTileHeight => imgdatasrc.NomTileHeight;
+
 		/// <summary> Returns the overall width of the image in pixels. This is the image's
 		/// width without accounting for any component subsampling or tiling.
 		/// 
-		/// <p>This default implementation returns the value of the source.</p>
+		/// This default implementation returns the value of the source.</p>
 		/// 
 		/// </summary>
 		/// <returns> The total image's width in pixels.
 		/// 
 		/// </returns>
-		virtual public int ImgWidth
-		{
-			get
-			{
-				return imgdatasrc.ImgWidth;
-			}
-			
-		}
+		public virtual int ImgWidth => imgdatasrc.ImgWidth;
+
 		/// <summary> Returns the overall height of the image in pixels. This is the image's
 		/// height without accounting for any component subsampling or tiling.
 		/// 
-		/// <p>This default implementation returns the value of the source.</p>
+		/// This default implementation returns the value of the source.</p>
 		/// 
 		/// </summary>
 		/// <returns> The total image's height in pixels.
 		/// 
 		/// </returns>
-		virtual public int ImgHeight
-		{
-			get
-			{
-				return imgdatasrc.ImgHeight;
-			}
-			
-		}
+		public virtual int ImgHeight => imgdatasrc.ImgHeight;
+
 		/// <summary> Returns the number of components in the image.
 		/// 
-		/// <p>This default implementation returns the value of the source.</p>
+		/// This default implementation returns the value of the source.</p>
 		/// 
 		/// </summary>
 		/// <returns> The number of components in the image.
 		/// 
 		/// </returns>
-		virtual public int NumComps
-		{
-			get
-			{
-				return imgdatasrc.NumComps;
-			}
-			
-		}
+		public virtual int NumComps => imgdatasrc.NumComps;
+
 		/// <summary> Returns the index of the current tile, relative to a standard scan-line
 		/// order.
 		/// 
-		/// <p>This default implementation returns the value of the source.</p>
+		/// This default implementation returns the value of the source.</p>
 		/// 
 		/// </summary>
 		/// <returns> The current tile's index (starts at 0).
 		/// 
 		/// </returns>
-		virtual public int TileIdx
-		{
-			get
-			{
-				return imgdatasrc.TileIdx;
-			}
-			
-		}
+		public virtual int TileIdx => imgdatasrc.TileIdx;
+
 		/// <summary>Returns the horizontal tile partition offset in the reference grid </summary>
-		virtual public int TilePartULX
-		{
-			get
-			{
-				return imgdatasrc.TilePartULX;
-			}
-			
-		}
+		public virtual int TilePartULX => imgdatasrc.TilePartULX;
+
 		/// <summary>Returns the vertical tile offset in the reference grid </summary>
-		virtual public int TilePartULY
-		{
-			get
-			{
-				return imgdatasrc.TilePartULY;
-			}
-			
-		}
+		public virtual int TilePartULY => imgdatasrc.TilePartULY;
+
 		/// <summary> Returns the horizontal coordinate of the image origin, the top-left
 		/// corner, in the canvas system, on the reference grid.
 		/// 
-		/// <p>This default implementation returns the value of the source.</p>
+		/// This default implementation returns the value of the source.</p>
 		/// 
 		/// </summary>
 		/// <returns> The horizontal coordinate of the image origin in the canvas
 		/// system, on the reference grid.
 		/// 
 		/// </returns>
-		virtual public int ImgULX
-		{
-			get
-			{
-				return imgdatasrc.ImgULX;
-			}
-			
-		}
+		public virtual int ImgULX => imgdatasrc.ImgULX;
+
 		/// <summary> Returns the vertical coordinate of the image origin, the top-left
 		/// corner, in the canvas system, on the reference grid.
 		/// 
-		/// <p>This default implementation returns the value of the source.</p>
+		/// This default implementation returns the value of the source.</p>
 		/// 
 		/// </summary>
 		/// <returns> The vertical coordinate of the image origin in the canvas
 		/// system, on the reference grid.
 		/// 
 		/// </returns>
-		virtual public int ImgULY
-		{
-			get
-			{
-				return imgdatasrc.ImgULY;
-			}
-			
-		}
-		
+		public virtual int ImgULY => imgdatasrc.ImgULY;
+
 		/// <summary>Index of the current tile </summary>
 		protected internal int tIdx = 0;
 		
@@ -263,7 +190,7 @@ namespace CSJ2K.j2k.image
 		/// dimensions between the reference grid and the component itself, see the
 		/// 'ImgData' interface desription for details.
 		/// 
-		/// <p>This default implementation returns the value of the source.</p>
+		/// This default implementation returns the value of the source.</p>
 		/// 
 		/// </summary>
 		/// <param name="c">The index of the component (between 0 and N-1)
@@ -285,7 +212,7 @@ namespace CSJ2K.j2k.image
 		/// dimensions between the reference grid and the component itself, see the
 		/// 'ImgData' interface desription for details.
 		/// 
-		/// <p>This default implementation returns the value of the source.</p>
+		/// This default implementation returns the value of the source.</p>
 		/// 
 		/// </summary>
 		/// <param name="c">The index of the component (between 0 and N-1)
@@ -305,7 +232,7 @@ namespace CSJ2K.j2k.image
 		/// <summary> Returns the width in pixels of the specified tile-component
 		/// tile.
 		/// 
-		/// <p>This default implementation returns the value of the source.</p>
+		/// This default implementation returns the value of the source.</p>
 		/// 
 		/// </summary>
 		/// <param name="t">Tile index
@@ -324,7 +251,7 @@ namespace CSJ2K.j2k.image
 		
 		/// <summary> Returns the height in pixels of the specified tile-component.
 		/// 
-		/// <p>This default implementation returns the value of the source.</p>
+		/// This default implementation returns the value of the source.</p>
 		/// 
 		/// </summary>
 		/// <param name="t">The tile index.
@@ -345,7 +272,7 @@ namespace CSJ2K.j2k.image
 		/// <summary> Returns the width in pixels of the specified component in the overall
 		/// image.
 		/// 
-		/// <p>This default implementation returns the value of the source.</p>
+		/// This default implementation returns the value of the source.</p>
 		/// 
 		/// </summary>
 		/// <param name="c">The index of the component, from 0 to N-1.
@@ -363,7 +290,7 @@ namespace CSJ2K.j2k.image
 		/// <summary> Returns the height in pixels of the specified component in the overall
 		/// image.
 		/// 
-		/// <p>This default implementation returns the value of the source.</p>
+		/// This default implementation returns the value of the source.</p>
 		/// 
 		/// </summary>
 		/// <param name="c">The index of the component, from 0 to N-1.
@@ -386,7 +313,7 @@ namespace CSJ2K.j2k.image
 		/// the image domain (e.g., wavelet coefficients), this method returns the
 		/// "range bits" of the image data that generated the coefficients.
 		/// 
-		/// <p>This default implementation returns the value of the source.</p>
+		/// This default implementation returns the value of the source.</p>
 		/// 
 		/// </summary>
 		/// <param name="c">The index of the component.
@@ -405,7 +332,7 @@ namespace CSJ2K.j2k.image
 		/// IllegalArgumentException is thrown if the indexes do not correspond to
 		/// a valid tile.
 		/// 
-		/// <p>This default implementation just changes the tile in the source.</p>
+		/// This default implementation just changes the tile in the source.</p>
 		/// 
 		/// </summary>
 		/// <param name="x">The horizontal index of the tile.
@@ -424,7 +351,7 @@ namespace CSJ2K.j2k.image
 		/// columns). An NoNextElementException is thrown if the current tile is
 		/// the last one (i.e. there is no next tile).
 		/// 
-		/// <p>This default implementation just advances to the next tile in the
+		/// This default implementation just advances to the next tile in the
 		/// source.</p>
 		/// 
 		/// </summary>
@@ -437,7 +364,7 @@ namespace CSJ2K.j2k.image
 		/// <summary> Returns the indexes of the current tile. These are the horizontal and
 		/// vertical indexes of the current tile.
 		/// 
-		/// <p>This default implementation returns the value of the source.</p>
+		/// This default implementation returns the value of the source.</p>
 		/// 
 		/// </summary>
 		/// <param name="co">If not null this object is used to return the information. If
@@ -455,7 +382,7 @@ namespace CSJ2K.j2k.image
 		/// <summary> Returns the horizontal coordinate of the upper-left corner of the
 		/// specified component in the current tile.
 		/// 
-		/// <p>This default implementation returns the value of the source.</p>
+		/// This default implementation returns the value of the source.</p>
 		/// 
 		/// </summary>
 		/// <param name="c">The component index.
@@ -469,7 +396,7 @@ namespace CSJ2K.j2k.image
 		/// <summary> Returns the vertical coordinate of the upper-left corner of the
 		/// specified component in the current tile.
 		/// 
-		/// <p>This default implementation returns the value of the source.</p>
+		/// This default implementation returns the value of the source.</p>
 		/// 
 		/// </summary>
 		/// <param name="c">The component index.
@@ -482,7 +409,7 @@ namespace CSJ2K.j2k.image
 		
 		/// <summary> Returns the number of tiles in the horizontal and vertical directions.
 		/// 
-		/// <p>This default implementation returns the value of the source.</p>
+		/// This default implementation returns the value of the source.</p>
 		/// 
 		/// </summary>
 		/// <param name="co">If not null this object is used to return the information. If
@@ -500,7 +427,7 @@ namespace CSJ2K.j2k.image
 		
 		/// <summary> Returns the total number of tiles in the image.
 		/// 
-		/// <p>This default implementation returns the value of the source.</p>
+		/// This default implementation returns the value of the source.</p>
 		/// 
 		/// </summary>
 		/// <returns> The total number of tiles in the image.

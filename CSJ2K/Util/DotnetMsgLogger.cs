@@ -5,7 +5,7 @@ namespace CSJ2K.Util
 {
     using System;
 
-    using CSJ2K.j2k.util;
+    using j2k.util;
 
     public class DotnetMsgLogger : StreamMsgLogger
     {

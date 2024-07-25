@@ -48,18 +48,18 @@ namespace CSJ2K.Color.Boxes
 		}
 		
 		/// <summary>Return a suitable String representation of the class instance. </summary>
-		public override System.String ToString()
+		public override string ToString()
 		{
-			System.Text.StringBuilder rep = new System.Text.StringBuilder("[ImageHeaderBox ").Append(eol).Append("  ");
-			rep.Append("height= ").Append(System.Convert.ToString(height)).Append(", ");
-			rep.Append("width= ").Append(System.Convert.ToString(width)).Append(eol).Append("  ");
+			var rep = new System.Text.StringBuilder("[ImageHeaderBox ").Append(Environment.NewLine).Append("  ");
+			rep.Append("height= ").Append(Convert.ToString(height)).Append(", ");
+			rep.Append("width= ").Append(Convert.ToString(width)).Append(Environment.NewLine).Append("  ");
 			
-			rep.Append("nc= ").Append(System.Convert.ToString(nc)).Append(", ");
-			rep.Append("bpc= ").Append(System.Convert.ToString(bpc)).Append(", ");
-			rep.Append("c= ").Append(System.Convert.ToString(c)).Append(eol).Append("  ");
+			rep.Append("nc= ").Append(Convert.ToString(nc)).Append(", ");
+			rep.Append("bpc= ").Append(Convert.ToString(bpc)).Append(", ");
+			rep.Append("c= ").Append(Convert.ToString(c)).Append(Environment.NewLine).Append("  ");
 			
-			rep.Append("image colorspace is ").Append(new System.Text.StringBuilder(unk == true?"known":"unknown").ToString());
-			rep.Append(", the image ").Append(new System.Text.StringBuilder(ipr == true?"contains ":"does not contain ").ToString()).Append("intellectual property").Append("]");
+			rep.Append("image colorspace is ").Append(new System.Text.StringBuilder(unk?"known":"unknown"));
+			rep.Append(", the image ").Append(new System.Text.StringBuilder(ipr?"contains ":"does not contain ")).Append("intellectual property").Append("]");
 			
 			return rep.ToString();
 		}
@@ -67,7 +67,7 @@ namespace CSJ2K.Color.Boxes
 		/// <summary>Analyze the box content. </summary>
 		internal void  readBox()
 		{
-			byte[] bfr = new byte[14];
+			var bfr = new byte[14];
 			in_Renamed.seek(dataStart);
 			in_Renamed.readFully(bfr, 0, 14);
 
@@ -76,8 +76,8 @@ namespace CSJ2K.Color.Boxes
             nc = ICCProfile.getShort(bfr, 8);
 			bpc = (short) (bfr[10] & 0x00ff);
 			c = (short) (bfr[11] & 0x00ff);
-			unk = bfr[12] == 0?true:false;
-			ipr = bfr[13] == 1?true:false;
+			unk = bfr[12] == 0;
+			ipr = bfr[13] == 1;
 		}
 		
 		/* end class ImageHeaderBox */

@@ -55,29 +55,30 @@ namespace CSJ2K.Icc.Types
 		{
 			System.IO.BinaryWriter temp_BinaryWriter;
 			temp_BinaryWriter = new System.IO.BinaryWriter(raf);
-			temp_BinaryWriter.Write((System.Int16) wYear);
+			temp_BinaryWriter.Write(wYear);
 			System.IO.BinaryWriter temp_BinaryWriter2;
 			temp_BinaryWriter2 = new System.IO.BinaryWriter(raf);
-			temp_BinaryWriter2.Write((System.Int16) wMonth);
+			temp_BinaryWriter2.Write(wMonth);
 			System.IO.BinaryWriter temp_BinaryWriter3;
 			temp_BinaryWriter3 = new System.IO.BinaryWriter(raf);
-			temp_BinaryWriter3.Write((System.Int16) wDay);
+			temp_BinaryWriter3.Write(wDay);
 			System.IO.BinaryWriter temp_BinaryWriter4;
 			temp_BinaryWriter4 = new System.IO.BinaryWriter(raf);
-			temp_BinaryWriter4.Write((System.Int16) wHours);
+			temp_BinaryWriter4.Write(wHours);
 			System.IO.BinaryWriter temp_BinaryWriter5;
 			temp_BinaryWriter5 = new System.IO.BinaryWriter(raf);
-			temp_BinaryWriter5.Write((System.Int16) wMinutes);
+			temp_BinaryWriter5.Write(wMinutes);
 			System.IO.BinaryWriter temp_BinaryWriter6;
 			temp_BinaryWriter6 = new System.IO.BinaryWriter(raf);
-			temp_BinaryWriter6.Write((System.Int16) wSeconds);
+			temp_BinaryWriter6.Write(wSeconds);
 		}
 		
 		/// <summary>Return a ICCDateTime representation. </summary>
-		public override System.String ToString()
+		public override string ToString()
 		{
 			//System.String rep = "";
-			return System.Convert.ToString(wYear) + "/" + System.Convert.ToString(wMonth) + "/" + System.Convert.ToString(wDay) + " " + System.Convert.ToString(wHours) + ":" + System.Convert.ToString(wMinutes) + ":" + System.Convert.ToString(wSeconds);
+			return
+				$"{Convert.ToString(wYear)}/{Convert.ToString(wMonth)}/{Convert.ToString(wDay)} {Convert.ToString(wHours)}:{Convert.ToString(wMinutes)}:{Convert.ToString(wSeconds)}";
 		}
 		
 		/* end class ICCDateTime*/

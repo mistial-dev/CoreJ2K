@@ -12,10 +12,10 @@
 *
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -52,7 +52,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 	/// data. It implements the inverse wavelet transform specifically for the 5x3
 	/// filter. The implementation is based on the lifting scheme.
 	/// 
-	/// <p>See the SynWTFilter class for details such as normalization, how to
+	/// See the SynWTFilter class for details such as normalization, how to
 	/// split odd-length signals, etc. In particular, this method assumes that the
 	/// low-pass coefficient is computed first.</p>
 	/// 
@@ -71,14 +71,8 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// <returns> 2
 		/// 
 		/// </returns>
-		override public int AnLowNegSupport
-		{
-			get
-			{
-				return 2;
-			}
-			
-		}
+		public override int AnLowNegSupport => 2;
+
 		/// <summary> Returns the positive support of the low-pass analysis filter. That is
 		/// the number of taps of the filter in the negative direction.
 		/// 
@@ -87,14 +81,8 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// positive direction
 		/// 
 		/// </returns>
-		override public int AnLowPosSupport
-		{
-			get
-			{
-				return 2;
-			}
-			
-		}
+		public override int AnLowPosSupport => 2;
+
 		/// <summary> Returns the negative support of the high-pass analysis filter. That is
 		/// the number of taps of the filter in the negative direction.
 		/// 
@@ -103,14 +91,8 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// negative direction
 		/// 
 		/// </returns>
-		override public int AnHighNegSupport
-		{
-			get
-			{
-				return 1;
-			}
-			
-		}
+		public override int AnHighNegSupport => 1;
+
 		/// <summary> Returns the positive support of the high-pass analysis filter. That is
 		/// the number of taps of the filter in the negative direction.
 		/// 
@@ -119,14 +101,8 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// positive direction
 		/// 
 		/// </returns>
-		override public int AnHighPosSupport
-		{
-			get
-			{
-				return 1;
-			}
-			
-		}
+		public override int AnHighPosSupport => 1;
+
 		/// <summary> Returns the negative support of the low-pass synthesis filter. That is
 		/// the number of taps of the filter in the negative direction.
 		/// 
@@ -135,14 +111,8 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// negative direction
 		/// 
 		/// </returns>
-		override public int SynLowNegSupport
-		{
-			get
-			{
-				return 1;
-			}
-			
-		}
+		public override int SynLowNegSupport => 1;
+
 		/// <summary> Returns the positive support of the low-pass synthesis filter. That is
 		/// the number of taps of the filter in the negative direction.
 		/// 
@@ -151,14 +121,8 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// positive direction
 		/// 
 		/// </returns>
-		override public int SynLowPosSupport
-		{
-			get
-			{
-				return 1;
-			}
-			
-		}
+		public override int SynLowPosSupport => 1;
+
 		/// <summary> Returns the negative support of the high-pass synthesis filter. That is
 		/// the number of taps of the filter in the negative direction.
 		/// 
@@ -167,14 +131,8 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// negative direction
 		/// 
 		/// </returns>
-		override public int SynHighNegSupport
-		{
-			get
-			{
-				return 2;
-			}
-			
-		}
+		public override int SynHighNegSupport => 2;
+
 		/// <summary> Returns the positive support of the high-pass synthesis filter. That is
 		/// the number of taps of the filter in the negative direction.
 		/// 
@@ -183,14 +141,8 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// positive direction
 		/// 
 		/// </returns>
-		override public int SynHighPosSupport
-		{
-			get
-			{
-				return 2;
-			}
-			
-		}
+		public override int SynHighPosSupport => 2;
+
 		/// <summary> Returns the implementation type of this filter, as defined in this
 		/// class, such as WT_FILTER_INT_LIFT, WT_FILTER_FLOAT_LIFT,
 		/// WT_FILTER_FLOAT_CONVOL.
@@ -199,14 +151,8 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// <returns> WT_FILTER_INT_LIFT.
 		/// 
 		/// </returns>
-		override public int ImplType
-		{
-			get
-			{
-				return CSJ2K.j2k.wavelet.WaveletFilter_Fields.WT_FILTER_INT_LIFT;
-			}
-			
-		}
+		public override int ImplType => WaveletFilter_Fields.WT_FILTER_INT_LIFT;
+
 		/// <summary> Returns the reversibility of the filter. A filter is considered
 		/// reversible if it is suitable for lossless coding.
 		/// 
@@ -215,23 +161,16 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// rounding is performed.
 		/// 
 		/// </returns>
-		override public bool Reversible
-		{
-			get
-			{
-				return true;
-			}
-			
-		}
-		
+		public override bool Reversible => true;
+
 		/// <summary> An implementation of the synthetize_lpf() method that works on int
 		/// data, for the inverse 5x3 wavelet transform using the lifting
 		/// scheme. See the general description of the synthetize_lpf() method in
 		/// the SynWTFilter class for more details.
 		/// 
-		/// <p>The coefficients of the first lifting step are [-1/4 1 -1/4].</p>
+		/// The coefficients of the first lifting step are [-1/4 1 -1/4].</p>
 		/// 
-		/// <p>The coefficients of the second lifting step are [1/2 1 1/2].</p>
+		/// The coefficients of the second lifting step are [1/2 1 1/2].</p>
 		/// 
 		/// </summary>
 		/// <param name="lowSig">This is the array that contains the low-pass input
@@ -285,8 +224,8 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		{
 			
 			int i;
-			int outLen = lowLen + highLen; //Length of the output signal
-			int iStep = 2 * outStep; //Upsampling in outSig
+			var outLen = lowLen + highLen; //Length of the output signal
+			var iStep = 2 * outStep; //Upsampling in outSig
 			int ik; //Indexing outSig
 			int lk; //Indexing lowSig
 			int hk; //Indexing highSig  
@@ -357,9 +296,9 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// scheme. See the general description of the synthetize_hpf() method in
 		/// the SynWTFilter class for more details.
 		/// 
-		/// <p>The coefficients of the first lifting step are [-1/4 1 -1/4].</p>
+		/// The coefficients of the first lifting step are [-1/4 1 -1/4].</p>
 		/// 
-		/// <p>The coefficients of the second lifting step are [1/2 1 1/2].</p>
+		/// The coefficients of the second lifting step are [1/2 1 1/2].</p>
 		/// 
 		/// </summary>
 		/// <param name="lowSig">This is the array that contains the low-pass input
@@ -413,8 +352,8 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		{
 			
 			int i;
-			int outLen = lowLen + highLen; //Length of the output signal
-			int iStep = 2 * outStep; //Upsampling in outSig
+			var outLen = lowLen + highLen; //Length of the output signal
+			var iStep = 2 * outStep; //Upsampling in outSig
 			int ik; //Indexing outSig
 			int lk; //Indexing lowSig
 			int hk; //Indexing highSig
@@ -485,7 +424,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// affected by image boundaries processings such as symmetric extension,
 		/// since there is not reference method for this.
 		/// 
-		/// <p>The result depends on the length of the allowed overlap when
+		/// The result depends on the length of the allowed overlap when
 		/// compared to the overlap required by the wavelet filter. It also depends
 		/// on how overlap processing is implemented in the wavelet filter.</p>
 		/// 
@@ -513,18 +452,12 @@ namespace CSJ2K.j2k.wavelet.synthesis
 			//If the input signal has even length.
 			if (inLen % 2 == 0)
 			{
-				if (tailOvrlp >= 2 && headOvrlp >= 1)
-					return true;
-				else
-					return false;
+				return tailOvrlp >= 2 && headOvrlp >= 1;
 			}
 			//Else if the input signal has odd length.
 			else
 			{
-				if (tailOvrlp >= 2 && headOvrlp >= 2)
-					return true;
-				else
-					return false;
+				return tailOvrlp >= 2 && headOvrlp >= 2;
 			}
 		}
 		
@@ -534,7 +467,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// <returns> wavelet filter type.
 		/// 
 		/// </returns>
-		public override System.String ToString()
+		public override string ToString()
 		{
 			return "w5x3 (lifting)";
 		}

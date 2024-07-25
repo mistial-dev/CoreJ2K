@@ -12,10 +12,10 @@
 *
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -53,14 +53,14 @@ namespace CSJ2K.j2k.image.output
 	/// use of VM3A with images of different bit-depths in the range 1 to 31 bits
 	/// per pixel.
 	/// 
-	/// <p>The file consists of a one line text header followed by the data.</p>
+	/// The file consists of a one line text header followed by the data.</p>
 	/// 
-	/// <p>
+	/// 
 	/// <u>Header:</u> "PG"+ <i>ws</i> +&lt;<i>endianess</i>&gt;+ <i>ws</i>
 	/// +[<i>sign</i>]+<i>ws</i> + &lt;<i>bit-depth</i>&gt;+"
 	/// "+&lt;<i>width</i>&gt;+" "+&lt;<i>height</i>&gt;+'\n'</p> 
 	/// 
-	/// <p>where:<br>
+	/// where:<br>
 	/// <ul>
 	/// <li><i>ws</i> (white-spaces) is any combination of characters ' ' and
 	/// '\t'.</li> 
@@ -79,10 +79,10 @@ namespace CSJ2K.j2k.image.output
 	/// upon the bit-depth value).
 	/// </p>
 	/// 
-	/// <p> If the data is unsigned, level shifting is applied adding 2^(bit depth
+	///  If the data is unsigned, level shifting is applied adding 2^(bit depth
 	/// - 1)</p>
 	/// 
-	/// <p><u>NOTE</u>: This class is not thread safe, for reasons of internal
+	/// <u>NOTE</u>: This class is not thread safe, for reasons of internal
 	/// buffering.</p>
 	/// 
 	/// </summary>
@@ -145,11 +145,11 @@ namespace CSJ2K.j2k.image.output
 		/// <summary> Creates a new writer to the specified File object, to write data from
 		/// the specified component.
 		/// 
-		/// <p>The size of the image that is written to the file is the size of the
+		/// The size of the image that is written to the file is the size of the
 		/// component from which to get the data, specified by b, not the size of
 		/// the source image (they differ if there is some sub-sampling).</p>
 		/// 
-		/// <p>All the header informations are given by the BlkImgDataSrc source
+		/// All the header informations are given by the BlkImgDataSrc source
 		/// (component width, component height, bit-depth) and sign flag, which are
 		/// provided to the constructor. The endianness is always big-endian (MSB
 		/// first).</p>
@@ -184,7 +184,7 @@ namespace CSJ2K.j2k.image.output
 			src = imgSrc;
 			w = src.ImgWidth;
 			h = src.ImgHeight;
-			fb = imgSrc.getFixedPoint(c);
+			fb = imgSrc.GetFixedPoint(c);
 			
 			bitDepth = src.getNomRangeBits(this.c);
 			if ((bitDepth <= 0) || (bitDepth > 31))
@@ -206,12 +206,12 @@ namespace CSJ2K.j2k.image.output
 			}
 			
 			// Writes PGX header
-			System.String tmpString = "PG " + "ML " + ((this.isSigned)?"- ":"+ ") + bitDepth + " " + w + " " + h + "\n"; // component height
+			var tmpString = $"PG ML {((this.isSigned) ? "- " : "+ ")}{bitDepth} {w} {h}\n"; // component height
 			
-			byte[] tmpByte = System.Text.Encoding.UTF8.GetBytes(tmpString);
-			for (int i = 0; i < tmpByte.Length; i++)
+			var tmpByte = System.Text.Encoding.UTF8.GetBytes(tmpString);
+			foreach (var t in tmpByte)
 			{
-				this.out_Renamed.WriteByte((byte) tmpByte[i]);
+				this.out_Renamed.WriteByte(t);
 			}
 			
 			offset = tmpByte.Length;
@@ -224,11 +224,11 @@ namespace CSJ2K.j2k.image.output
 		/// <summary> Creates a new writer to the specified file, to write data from the
 		/// specified component.
 		/// 
-		/// <p>The size of the image that is written to the file is the size of the
+		/// The size of the image that is written to the file is the size of the
 		/// component from which to get the data, specified by b, not the size of
 		/// the source image (they differ if there is some sub-sampling).</p>
 		/// 
-		/// <p>All header information is given by the BlkImgDataSrc source
+		/// All header information is given by the BlkImgDataSrc source
 		/// (component width, component height, bit-depth) and sign flag, which are
 		/// provided to the constructor. The endianness is always big-endian (MSB
 		/// first).
@@ -250,7 +250,7 @@ namespace CSJ2K.j2k.image.output
 		/// <seealso cref="DataBlk">
 		/// 
 		/// </seealso>
-		public ImgWriterPGX(System.String fname, BlkImgDataSrc imgSrc, int c, bool isSigned):this(FileInfoFactory.New(fname), imgSrc, c, isSigned)
+		public ImgWriterPGX(string fname, BlkImgDataSrc imgSrc, int c, bool isSigned):this(FileInfoFactory.New(fname), imgSrc, c, isSigned)
 		{
 		}
 		
@@ -274,7 +274,7 @@ namespace CSJ2K.j2k.image.output
 				// Fill with 0s
 				for (i = offset + w * h * packBytes - (int) out_Renamed.Length; i > 0; i--)
 				{
-					out_Renamed.WriteByte((System.Byte) 0);
+					out_Renamed.WriteByte(0);
 				}
 			}
 			out_Renamed.Dispose();
@@ -301,13 +301,13 @@ namespace CSJ2K.j2k.image.output
 		/// coefficients are limited to the nominal range and packed into 1,2 or 4
 		/// bytes (according to the bit-depth).
 		/// 
-		/// <p>If the data is unisigned, level shifting is applied adding 2^(bit
+		/// If the data is unisigned, level shifting is applied adding 2^(bit
 		/// depth - 1)</p>
 		/// 
-		/// <p>This method may not be called concurrently from different
+		/// This method may not be called concurrently from different
 		/// threads.</p> 
 		/// 
-		/// <p>If the data returned from the BlkImgDataSrc source is progressive,
+		/// If the data returned from the BlkImgDataSrc source is progressive,
 		/// then it is requested over and over until it is not progressive
 		/// anymore.</p>
 		/// 
@@ -332,7 +332,7 @@ namespace CSJ2K.j2k.image.output
 		public override void  write(int ulx, int uly, int w, int h)
 		{
 			int k, i, j;
-			int fracbits = fb; // In local variable for faster access
+			var fracbits = fb; // In local variable for faster access
 			int tOffx, tOffy; // Active tile offset in the X and Y direction
 			
 			// Initialize db
@@ -342,9 +342,9 @@ namespace CSJ2K.j2k.image.output
 			db.h = h;
 			// Get the current active tile offset
 			//UPGRADE_WARNING: Data types in Visual C# might be different.  Verify the accuracy of narrowing conversions. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1042'"
-			tOffx = src.getCompULX(c) - (int) System.Math.Ceiling(src.ImgULX / (double) src.getCompSubsX(c));
+			tOffx = src.getCompULX(c) - (int) Math.Ceiling(src.ImgULX / (double) src.getCompSubsX(c));
 			//UPGRADE_WARNING: Data types in Visual C# might be different.  Verify the accuracy of narrowing conversions. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1042'"
-			tOffy = src.getCompULY(c) - (int) System.Math.Ceiling(src.ImgULY / (double) src.getCompSubsY(c));
+			tOffy = src.getCompULY(c) - (int) Math.Ceiling(src.ImgULY / (double) src.getCompSubsY(c));
 			// Check the array size
 			if (db.data_array != null && db.data_array.Length < w * h)
 			{
@@ -355,7 +355,7 @@ namespace CSJ2K.j2k.image.output
 			// progressive
 			do 
 			{
-				db = (DataBlkInt) src.getInternCompData(db, c);
+				db = (DataBlkInt) src.GetInternCompData(db, c);
 			}
 			while (db.progressive);
 			
@@ -481,7 +481,7 @@ namespace CSJ2K.j2k.image.output
 		/// issued to the source BlkImgDataSrc object are done by strips, in order
 		/// to reduce memory usage.
 		/// 
-		/// <p>If the data returned from the BlkImgDataSrc source is progressive,
+		/// If the data returned from the BlkImgDataSrc source is progressive,
 		/// then it is requested over and over until it is not progressive
 		/// anymore.</p>
 		/// 
@@ -495,9 +495,9 @@ namespace CSJ2K.j2k.image.output
 		public override void  write()
 		{
 			int i;
-			int tIdx = src.TileIdx;
-			int tw = src.getTileCompWidth(tIdx, c); // Tile width
-			int th = src.getTileCompHeight(tIdx, c); // Tile height
+			var tIdx = src.TileIdx;
+			var tw = src.getTileCompWidth(tIdx, c); // Tile width
+			var th = src.getTileCompHeight(tIdx, c); // Tile height
 			// Write in strips
 			for (i = 0; i < th; i += DEF_STRIP_HEIGHT)
 			{
@@ -513,10 +513,11 @@ namespace CSJ2K.j2k.image.output
 		/// <returns> A string of information about the object.
 		/// 
 		/// </returns>
-		public override System.String ToString()
+		public override string ToString()
 		{
 			//UPGRADE_TODO: The equivalent in .NET for method 'java.lang.Object.toString' may return a different value. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1043'"
-			return "ImgWriterPGX: WxH = " + w + "x" + h + ", Component = " + c + ", Bit-depth = " + bitDepth + ", signed = " + isSigned + "\nUnderlying RandomAccessFile:\n" + out_Renamed.ToString();
+			return
+				$"ImgWriterPGX: WxH = {w}x{h}, Component = {c}, Bit-depth = {bitDepth}, signed = {isSigned}\nUnderlying RandomAccessFile:\n{out_Renamed}";
 		}
 	}
 }

@@ -19,7 +19,7 @@ namespace CSJ2K.Icc.Lut
 	/// <author> 	Bruce A. Kern
 	/// </author>
 	//UPGRADE_NOTE: The access modifier for this class or class field has been changed in order to prevent compilation errors due to the visibility level. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1296'"
-	abstract public class LookUpTable32:LookUpTable
+	public abstract class LookUpTable32:LookUpTable
 	{
 		
 		/// <summary>Maximum output value of the LUT </summary>
@@ -32,37 +32,37 @@ namespace CSJ2K.Icc.Lut
 		/// <summary> Create an abbreviated string representation of a 16 bit lut.</summary>
 		/// <returns> the lut as a String
 		/// </returns>
-		public override System.String ToString()
+		public override string ToString()
 		{
-			System.Text.StringBuilder rep = new System.Text.StringBuilder("[LookUpTable32 ");
+			var rep = new System.Text.StringBuilder("[LookUpTable32 ");
 			//int row, col;
-			rep.Append("max= " + dwMaxOutput);
-			rep.Append(", nentries= " + dwNumInput);
+			rep.Append($"max= {dwMaxOutput}");
+			rep.Append($", nentries= {dwNumInput}");
 			return rep.Append("]").ToString();
 		}
 		
 		/// <summary> Create the string representation of a 32 bit lut.</summary>
 		/// <returns> the lut as a String
 		/// </returns>
-		public virtual System.String toStringWholeLut()
+		public virtual string toStringWholeLut()
 		{
-			System.Text.StringBuilder rep = new System.Text.StringBuilder("[LookUpTable32" + eol);
+			var rep = new System.Text.StringBuilder($"[LookUpTable32{Environment.NewLine}");
 			int row, col;
-			rep.Append("max output = " + dwMaxOutput + eol);
+			rep.Append($"max output = {dwMaxOutput}{Environment.NewLine}");
 			for (row = 0; row < dwNumInput / 10; ++row)
 			{
-				rep.Append("lut[" + 10 * row + "] : ");
+				rep.Append($"lut[{10 * row}] : ");
 				for (col = 0; col < 10; ++col)
 				{
-					rep.Append(lut[10 * row + col] + " ");
+					rep.Append($"{lut[10 * row + col]} ");
 				}
-				rep.Append(eol);
+				rep.Append(Environment.NewLine);
 			}
 			// Partial row.
-			rep.Append("lut[" + 10 * row + "] : ");
+			rep.Append($"lut[{10 * row}] : ");
 			for (col = 0; col < dwNumInput % 10; ++col)
-				rep.Append(lut[10 * row + col] + " ");
-			rep.Append(eol + eol);
+				rep.Append($"{lut[10 * row + col]} ");
+			rep.Append(Environment.NewLine + Environment.NewLine);
 			return rep.ToString();
 		}
 		

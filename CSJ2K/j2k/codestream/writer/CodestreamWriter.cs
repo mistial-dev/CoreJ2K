@@ -11,10 +11,10 @@
 *
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -53,12 +53,12 @@ namespace CSJ2K.j2k.codestream.writer
 	/// bytes is unlimited a ridicoulosly large value, such as Integer.MAX_VALUE,
 	/// is equivalent.
 	/// 
-	/// <p>Data writting to the codestream can be simulated. In this case, no byto
+	/// Data writting to the codestream can be simulated. In this case, no byto
 	/// is effectively written to the codestream but the resulting number of bytes
 	/// is calculated and returned (although it is not accounted in the bit
 	/// stream). This can be used in rate control loops.</p>
 	/// 
-	/// <p>Implementing classes should write the header of the bit stream before
+	/// Implementing classes should write the header of the bit stream before
 	/// writing any packets. The bit stream header can be written with the help of
 	/// the HeaderEncoder class.</p>
 	/// 
@@ -117,14 +117,14 @@ namespace CSJ2K.j2k.codestream.writer
 		/// effectively written to the codestream but the number of bytes is
 		/// calculated. This can be used for iterative rate allocation.
 		/// 
-		/// <p>If the number of bytes that has to be written to the codestream is
+		/// If the number of bytes that has to be written to the codestream is
 		/// more than the space left (as returned by getMaxAvailableBytes()), only
 		/// the data that does not exceed the allowed length is effectively written
 		/// and the rest is discarded. However the value returned by the method is
 		/// the total length of the packet, as if all of it was written to the bit
 		/// stream.</p>
 		/// 
-		/// <p>If the codestream header has not been commited yet and if 'sim' is
+		/// If the codestream header has not been commited yet and if 'sim' is
 		/// false, then the bit stream header is automatically commited (see
 		/// commitBitstreamHeader() method) before writting the packet.
 		/// 
@@ -166,7 +166,7 @@ namespace CSJ2K.j2k.codestream.writer
 		/// bit stream but the number of bytes is calculated. This can be used for
 		/// iterative rate allocation.
 		/// 
-		/// <p>If the number of bytes that has to be written to the codestream is
+		/// If the number of bytes that has to be written to the codestream is
 		/// more than the space left (as returned by getMaxAvailableBytes()), only
 		/// the data that does not exceed the allowed length is effectively written
 		/// and the rest is discarded. However the value returned by the method is

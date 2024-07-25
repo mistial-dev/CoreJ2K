@@ -20,13 +20,13 @@ namespace CSJ2K.Icc.Lut
 	/// <author> 	Bruce A. Kern
 	/// </author>
 	
-	public class MonochromeTransformException:System.Exception
+	public class MonochromeTransformException:Exception
 	{
 		
 		/// <summary> Contruct with message</summary>
 		/// <param name="msg">returned by getMessage()
 		/// </param>
-		internal MonochromeTransformException(System.String msg):base(msg)
+		internal MonochromeTransformException(string msg):base(msg)
 		{
 		}
 		

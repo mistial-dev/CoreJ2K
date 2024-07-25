@@ -31,14 +31,8 @@ namespace CSJ2K.Color
 		/// </summary>
 		/// <returns> The number of components in the image.
 		/// </returns>
-		override public int NumComps
-		{
-			get
-			{
-				return pbox == null?src.NumComps:pbox.NumColumns;
-			}
-			
-		}
+		public override int NumComps => pbox == null?src.NumComps:pbox.NumColumns;
+
 		internal int[] outShiftValueArray;
 		internal int srcChannel = 0;
 		
@@ -52,7 +46,7 @@ namespace CSJ2K.Color
 		/// </param>
 		/// <returns> PalettizedColorSpaceMapper instance
 		/// </returns>
-		public static new BlkImgDataSrc createInstance(BlkImgDataSrc src, ColorSpace csMap)
+		public new static BlkImgDataSrc createInstance(BlkImgDataSrc src, ColorSpace csMap)
 		{
 			return new PalettizedColorSpaceMapper(src, csMap);
 		}
@@ -75,12 +69,12 @@ namespace CSJ2K.Color
 		private void  initialize()
 		{
 			if (ncomps != 1 && ncomps != 3)
-				throw new ColorSpaceException("wrong number of components (" + ncomps + ") for palettized image");
+				throw new ColorSpaceException($"wrong number of components ({ncomps}) for palettized image");
 			
-			int outComps = NumComps;
+			var outComps = NumComps;
 			outShiftValueArray = new int[outComps];
 			
-			for (int i = 0; i < outComps; i++)
+			for (var i = 0; i < outComps; i++)
 			{
 				outShiftValueArray[i] = 1 << (getNomRangeBits(i) - 1);
 			}
@@ -92,18 +86,18 @@ namespace CSJ2K.Color
 		/// returned, as a copy of the internal data, therefore the returned data
 		/// can be modified "in place".
 		/// 
-		/// <P>The rectangular area to return is specified by the 'ulx', 'uly', 'w'
+		/// The rectangular area to return is specified by the 'ulx', 'uly', 'w'
 		/// and 'h' members of the 'blk' argument, relative to the current
 		/// tile. These members are not modified by this method. The 'offset' of
 		/// the returned data is 0, and the 'scanw' is the same as the block's
 		/// width. See the 'DataBlk' class.
 		/// 
-		/// <P>If the data array in 'blk' is 'null', then a new one is created. If
+		/// If the data array in 'blk' is 'null', then a new one is created. If
 		/// the data array is not 'null' then it is reused, and it must be large
 		/// enough to contain the block's data. Otherwise an 'ArrayStoreException'
 		/// or an 'IndexOutOfBoundsException' is thrown by the Java system.
 		/// 
-		/// <P>The returned data has its 'progressive' attribute set to that of the
+		/// The returned data has its 'progressive' attribute set to that of the
 		/// input data.
 		/// 
 		/// </summary>
@@ -120,31 +114,32 @@ namespace CSJ2K.Color
 		/// <returns> The requested DataBlk
 		/// 
 		/// </returns>
-		/// <seealso cref="getInternCompData">
+		/// <seealso cref="GetInternCompData">
 		/// 
 		/// </seealso>
-		public override DataBlk getCompData(DataBlk out_Renamed, int c)
+		public override DataBlk GetCompData(DataBlk out_Renamed, int c)
 		{
 			
 			if (pbox == null)
-				return src.getCompData(out_Renamed, c);
+				return src.GetCompData(out_Renamed, c);
 			
 			if (ncomps != 1)
 			{
-				System.String msg = "PalettizedColorSpaceMapper: color palette " + "_not_ applied, incorrect number (" + System.Convert.ToString(ncomps) + ") of components";
-				FacilityManager.getMsgLogger().printmsg(CSJ2K.j2k.util.MsgLogger_Fields.WARNING, msg);
-				return src.getCompData(out_Renamed, c);
+				var msg =
+					$"PalettizedColorSpaceMapper: color palette _not_ applied, incorrect number ({Convert.ToString(ncomps)}) of components";
+				FacilityManager.getMsgLogger().printmsg(MsgLogger_Fields.WARNING, msg);
+				return src.GetCompData(out_Renamed, c);
 			}
 			
 			// Initialize general input and output indexes
-			int leftedgeOut = - 1; // offset to the start of the output scanline
-			int rightedgeOut = - 1; // offset to the end of the output
+			var leftedgeOut = - 1; // offset to the start of the output scanline
+			var rightedgeOut = - 1; // offset to the end of the output
 			// scanline + 1
-			int leftedgeIn = - 1; // offset to the start of the input scanline  
-			int rightedgeIn = - 1; // offset to the end of the input
+			var leftedgeIn = - 1; // offset to the start of the input scanline  
+			var rightedgeIn = - 1; // offset to the end of the input
 			// scanline + 1
-			int kOut = - 1;
-			int kIn = - 1;
+			var kOut = - 1;
+			var kIn = - 1;
 			
 			// Assure a properly sized data buffer for output.
 			InternalBuffer = out_Renamed;
@@ -158,13 +153,13 @@ namespace CSJ2K.Color
 					copyGeometry(inInt[0], out_Renamed);
 					
 					// Request data from the source.        
-					inInt[0] = (DataBlkInt) src.getInternCompData(inInt[0], 0);
+					inInt[0] = (DataBlkInt) src.GetInternCompData(inInt[0], 0);
 					dataInt[0] = (int[]) inInt[0].Data;
-					int[] outdataInt = ((DataBlkInt) out_Renamed).DataInt;
+					var outdataInt = ((DataBlkInt) out_Renamed).DataInt;
 					
 					// The nitty-gritty.
 					
-					for (int row = 0; row < out_Renamed.h; ++row)
+					for (var row = 0; row < out_Renamed.h; ++row)
 					{
 						leftedgeIn = inInt[0].offset + row * inInt[0].scanw;
 						rightedgeIn = leftedgeIn + inInt[0].w;
@@ -185,13 +180,13 @@ namespace CSJ2K.Color
 					copyGeometry(inFloat[0], out_Renamed);
 					
 					// Request data from the source.        
-					inFloat[0] = (DataBlkFloat) src.getInternCompData(inFloat[0], 0);
+					inFloat[0] = (DataBlkFloat) src.GetInternCompData(inFloat[0], 0);
 					dataFloat[0] = (float[]) inFloat[0].Data;
-					float[] outdataFloat = ((DataBlkFloat) out_Renamed).DataFloat;
+					var outdataFloat = ((DataBlkFloat) out_Renamed).DataFloat;
 					
 					// The nitty-gritty.
 					
-					for (int row = 0; row < out_Renamed.h; ++row)
+					for (var row = 0; row < out_Renamed.h; ++row)
 					{
 						leftedgeIn = inFloat[0].offset + row * inFloat[0].scanw;
 						rightedgeIn = leftedgeIn + inFloat[0].w;
@@ -212,7 +207,7 @@ namespace CSJ2K.Color
 				case DataBlk.TYPE_BYTE: 
 				default: 
 					// Unsupported output type. 
-					throw new System.ArgumentException("invalid source datablock" + " type");
+					throw new ArgumentException("invalid source datablock" + " type");
 				}
 			
 			// Initialize the output block geometry and set the profiled
@@ -224,28 +219,28 @@ namespace CSJ2K.Color
 		
 		
 		/// <summary>Return a suitable String representation of the class instance, e.g.
-		/// <p>
+		/// 
 		/// [PalettizedColorSpaceMapper 
 		/// ncomps= 3, scomp= 1, nentries= 1024
 		/// column=0, 7 bit signed entry
 		/// column=1, 7 bit unsigned entry
 		/// column=2, 7 bit signed entry]
-		/// <p>
+		/// 
 		/// 
 		/// </summary>
-		public override System.String ToString()
+		public override string ToString()
 		{
 			
 			int c;
-			System.Text.StringBuilder rep = new System.Text.StringBuilder("[PalettizedColorSpaceMapper ");
-			System.Text.StringBuilder body = new System.Text.StringBuilder("  " + eol);
+			var rep = new System.Text.StringBuilder("[PalettizedColorSpaceMapper ");
+			var body = new System.Text.StringBuilder($"  {Environment.NewLine}");
 			
 			if (pbox != null)
 			{
 				body.Append("ncomps= ").Append(NumComps).Append(", scomp= ").Append(srcChannel);
 				for (c = 0; c < NumComps; ++c)
 				{
-					body.Append(eol).Append("column= ").Append(c).Append(", ").Append(pbox.getBitDepth(c)).Append(" bit ").Append(pbox.isSigned(c)?"signed entry":"unsigned entry");
+					body.Append(Environment.NewLine).Append("column= ").Append(c).Append(", ").Append(pbox.getBitDepth(c)).Append(" bit ").Append(pbox.isSigned(c)?"signed entry":"unsigned entry");
 				}
 			}
 			else
@@ -263,23 +258,23 @@ namespace CSJ2K.Color
 		/// returned, as a reference to the internal data, if any, instead of as a
 		/// copy, therefore the returned data should not be modified.
 		/// 
-		/// <P>The rectangular area to return is specified by the 'ulx', 'uly', 'w'
+		/// The rectangular area to return is specified by the 'ulx', 'uly', 'w'
 		/// and 'h' members of the 'blk' argument, relative to the current
 		/// tile. These members are not modified by this method. The 'offset' and
 		/// 'scanw' of the returned data can be arbitrary. See the 'DataBlk' class.
 		/// 
-		/// <P>This method, in general, is more efficient than the 'getCompData()'
+		/// This method, in general, is more efficient than the 'getCompData()'
 		/// method since it may not copy the data. However if the array of returned
 		/// data is to be modified by the caller then the other method is probably
 		/// preferable.
 		/// 
-		/// <P>If possible, the data in the returned 'DataBlk' should be the
+		/// If possible, the data in the returned 'DataBlk' should be the
 		/// internal data itself, instead of a copy, in order to increase the data
 		/// transfer efficiency. However, this depends on the particular
 		/// implementation (it may be more convenient to just return a copy of the
 		/// data). This is the reason why the returned data should not be modified.
 		/// 
-		/// <P>If the data array in <tt>blk</tt> is <tt>null</tt>, then a new one
+		/// If the data array in <tt>blk</tt> is <tt>null</tt>, then a new one
 		/// is created if necessary. The implementation of this interface may
 		/// choose to return the same array or a new one, depending on what is more
 		/// efficient. Therefore, the data array in <tt>blk</tt> prior to the
@@ -287,7 +282,7 @@ namespace CSJ2K.Color
 		/// new array may have been created. Instead, get the array from
 		/// <tt>blk</tt> after the method has returned.
 		/// 
-		/// <P>The returned data may have its 'progressive' attribute set. In this
+		/// The returned data may have its 'progressive' attribute set. In this
 		/// case the returned data is only an approximation of the "final" data.
 		/// 
 		/// </summary>
@@ -302,11 +297,11 @@ namespace CSJ2K.Color
 		/// <returns> The requested DataBlk
 		/// 
 		/// </returns>
-		/// <seealso cref="getCompData">
+		/// <seealso cref="GetCompData">
 		/// </seealso>
-		public override DataBlk getInternCompData(DataBlk out_Renamed, int c)
+		public override DataBlk GetInternCompData(DataBlk out_Renamed, int c)
 		{
-			return getCompData(out_Renamed, c);
+			return GetCompData(out_Renamed, c);
 		}
 		
 		/// <summary> Returns the number of bits, referred to as the "range bits",

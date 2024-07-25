@@ -6,7 +6,7 @@ namespace CSJ2K.Icc.Tags
 {
     public class ICCViewType : ICCTag
     {
-        new public int type;
+        public new int type;
         public int reserved;
         public XYZNumber CIEilluminant;
         public XYZNumber CIEsurround;

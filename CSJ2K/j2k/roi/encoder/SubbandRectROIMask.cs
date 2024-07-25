@@ -11,10 +11,10 @@
 *
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -111,31 +111,31 @@ namespace CSJ2K.j2k.roi.encoder
 			{
 				isNode = true;
 				// determine odd/even - high/low filters
-				int horEvenLow = sb.ulcx % 2;
-				int verEvenLow = sb.ulcy % 2;
+				var horEvenLow = sb.ulcx % 2;
+				var verEvenLow = sb.ulcy % 2;
 				
 				// Get filter support lengths
-				WaveletFilter hFilter = sb.HorWFilter;
-				WaveletFilter vFilter = sb.VerWFilter;
-				int hlnSup = hFilter.SynLowNegSupport;
-				int hhnSup = hFilter.SynHighNegSupport;
-				int hlpSup = hFilter.SynLowPosSupport;
-				int hhpSup = hFilter.SynHighPosSupport;
-				int vlnSup = vFilter.SynLowNegSupport;
-				int vhnSup = vFilter.SynHighNegSupport;
-				int vlpSup = vFilter.SynLowPosSupport;
-				int vhpSup = vFilter.SynHighPosSupport;
+				var hFilter = sb.HorWFilter;
+				var vFilter = sb.VerWFilter;
+				var hlnSup = hFilter.SynLowNegSupport;
+				var hhnSup = hFilter.SynHighNegSupport;
+				var hlpSup = hFilter.SynLowPosSupport;
+				var hhpSup = hFilter.SynHighPosSupport;
+				var vlnSup = vFilter.SynLowNegSupport;
+				var vhnSup = vFilter.SynHighNegSupport;
+				var vlpSup = vFilter.SynLowPosSupport;
+				var vhpSup = vFilter.SynHighPosSupport;
 				
 				// Generate arrays for children
 				int x, y;
-				int[] lulxs = new int[nr];
-				int[] lulys = new int[nr];
-				int[] llrxs = new int[nr];
-				int[] llrys = new int[nr];
-				int[] hulxs = new int[nr];
-				int[] hulys = new int[nr];
-				int[] hlrxs = new int[nr];
-				int[] hlrys = new int[nr];
+				var lulxs = new int[nr];
+				var lulys = new int[nr];
+				var llrxs = new int[nr];
+				var llrys = new int[nr];
+				var hulxs = new int[nr];
+				var hulys = new int[nr];
+				var hlrxs = new int[nr];
+				var hlrys = new int[nr];
 				for (r = nr - 1; r >= 0; r--)
 				{
 					// For all ROI calculate ...

@@ -31,38 +31,38 @@ namespace CSJ2K.Icc.Lut
 		/// <summary> Create an abbreviated string representation of a 16 bit lut.</summary>
 		/// <returns> the lut as a String
 		/// </returns>
-		public override System.String ToString()
+		public override string ToString()
 		{
-			System.Text.StringBuilder rep = new System.Text.StringBuilder("[LookUpTable16 ");
+			var rep = new System.Text.StringBuilder("[LookUpTable16 ");
 			//int row, col;
-			rep.Append("max= " + dwMaxOutput);
-			rep.Append(", nentries= " + dwMaxOutput);
+			rep.Append($"max= {dwMaxOutput}");
+			rep.Append($", nentries= {dwMaxOutput}");
 			return rep.Append("]").ToString();
 		}
 		
 		/// <summary> Create a full string representation of a 16 bit lut.</summary>
 		/// <returns> the lut as a String
 		/// </returns>
-		public virtual System.String toStringWholeLut()
+		public virtual string toStringWholeLut()
 		{
-			System.Text.StringBuilder rep = new System.Text.StringBuilder("[LookUpTable16" + eol);
+			var rep = new System.Text.StringBuilder($"[LookUpTable16{Environment.NewLine}");
 			int row, col;
 			
-			rep.Append("max output = " + dwMaxOutput + eol);
+			rep.Append($"max output = {dwMaxOutput}{Environment.NewLine}");
 			for (row = 0; row < dwNumInput / 10; ++row)
 			{
-				rep.Append("lut[" + 10 * row + "] : ");
+				rep.Append($"lut[{10 * row}] : ");
 				for (col = 0; col < 10; ++col)
 				{
 					rep.Append(lut[10 * row + col]).Append(" ");
 				}
-				rep.Append(eol);
+				rep.Append(Environment.NewLine);
 			}
 			// Partial row.
-			rep.Append("lut[" + 10 * row + "] : ");
+			rep.Append($"lut[{10 * row}] : ");
 			for (col = 0; col < dwNumInput % 10; ++col)
-				rep.Append(lut[10 * row + col] + " ");
-			rep.Append(eol + eol);
+				rep.Append($"{lut[10 * row + col]} ");
+			rep.Append(Environment.NewLine + Environment.NewLine);
 			return rep.ToString();
 		}
 		

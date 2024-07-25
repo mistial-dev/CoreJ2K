@@ -11,10 +11,10 @@
 *
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -67,7 +67,7 @@ namespace CSJ2K.j2k.util
 			// No log of 0 or negative
 			if (x <= 0)
 			{
-				throw new System.ArgumentException("" + x + " <= 0");
+				throw new ArgumentException($"{x} <= 0");
 			}
 			// Calculate log2 (it's actually floor log2)
 			v = x;
@@ -94,7 +94,7 @@ namespace CSJ2K.j2k.util
 		{
 			if (x1 <= 0 || x2 <= 0)
 			{
-				throw new System.ArgumentException("Cannot compute the least " + "common multiple of two " + "numbers if one, at least," + "is negative.");
+				throw new ArgumentException("Cannot compute the least " + "common multiple of two " + "numbers if one, at least," + "is negative.");
 			}
 			int max, min;
 			if (x1 > x2)
@@ -107,14 +107,14 @@ namespace CSJ2K.j2k.util
 				max = x2;
 				min = x1;
 			}
-			for (int i = 1; i <= min; i++)
+			for (var i = 1; i <= min; i++)
 			{
 				if ((max * i) % min == 0)
 				{
 					return i * max;
 				}
 			}
-			throw new System.InvalidOperationException("Cannot find the least common multiple of numbers " + x1 + " and " + x2);
+			throw new InvalidOperationException($"Cannot find the least common multiple of numbers {x1} and {x2}");
 		}
 		
 		/// <summary> Method that calculates the Least Common Multiple (LCM) of several
@@ -128,14 +128,14 @@ namespace CSJ2K.j2k.util
 		{
 			if (x.Length < 2)
 			{
-				throw new System.InvalidOperationException("Do not use this method if there are less than" + " two numbers.");
+				throw new InvalidOperationException("Do not use this method if there are less than" + " two numbers.");
 			}
-			int tmp = lcm(x[x.Length - 1], x[x.Length - 2]);
-			for (int i = x.Length - 3; i >= 0; i--)
+			var tmp = lcm(x[x.Length - 1], x[x.Length - 2]);
+			for (var i = x.Length - 3; i >= 0; i--)
 			{
 				if (x[i] <= 0)
 				{
-					throw new System.ArgumentException("Cannot compute the least " + "common multiple of " + "several numbers where " + "one, at least," + "is negative.");
+					throw new ArgumentException("Cannot compute the least " + "common multiple of " + "several numbers where " + "one, at least," + "is negative.");
 				}
 				tmp = lcm(tmp, x[i]);
 			}
@@ -150,7 +150,7 @@ namespace CSJ2K.j2k.util
 		{
 			if (x1 < 0 || x2 < 0)
 			{
-				throw new System.ArgumentException("Cannot compute the GCD " + "if one integer is negative.");
+				throw new ArgumentException("Cannot compute the GCD " + "if one integer is negative.");
 			}
 			int a, b, g, z;
 			
@@ -190,14 +190,14 @@ namespace CSJ2K.j2k.util
 		{
 			if (x.Length < 2)
 			{
-				throw new System.InvalidOperationException("Do not use this method if there are less than" + " two numbers.");
+				throw new InvalidOperationException("Do not use this method if there are less than" + " two numbers.");
 			}
-			int tmp = gcd(x[x.Length - 1], x[x.Length - 2]);
-			for (int i = x.Length - 3; i >= 0; i--)
+			var tmp = gcd(x[x.Length - 1], x[x.Length - 2]);
+			for (var i = x.Length - 3; i >= 0; i--)
 			{
 				if (x[i] < 0)
 				{
-					throw new System.ArgumentException("Cannot compute the least " + "common multiple of " + "several numbers where " + "one, at least," + "is negative.");
+					throw new ArgumentException("Cannot compute the least " + "common multiple of " + "several numbers where " + "one, at least," + "is negative.");
 				}
 				tmp = gcd(tmp, x[i]);
 			}

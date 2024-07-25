@@ -11,10 +11,10 @@
 * 
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -48,7 +48,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 	/// <summary> This is an implementation of the 'CBlkWTData' abstract class for 32 bit
 	/// floating point data (float).
 	/// 
-	/// <p>The methods in this class are declared final, so that they can be
+	/// The methods in this class are declared final, so that they can be
 	/// inlined by inlining compilers.</p>
 	/// 
 	/// </summary>
@@ -67,14 +67,8 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// <seealso cref="DataBlk.TYPE_FLOAT">
 		/// 
 		/// </seealso>
-		override public int DataType
-		{
-			get
-			{
-				return DataBlk.TYPE_FLOAT;
-			}
-			
-		}
+		public override int DataType => DataBlk.TYPE_FLOAT;
+
 		//UPGRADE_NOTE: Respective javadoc comments were merged.  It should be changed in order to comply with .NET documentation conventions. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1199'"
 		/// <summary> Returns the array containing the data, or null if there is no data
 		/// array. The returned array is a float array.
@@ -91,18 +85,11 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// <param name="arr">The data array to use. Must be a float array.
 		/// 
 		/// </param>
-		override public System.Object Data
+		public override object Data
 		{
-			get
-			{
-				return data;
-			}
-			
-			set
-			{
-				data = (float[]) value;
-			}
-			
+			get => data;
+
+			set => data = (float[]) value;
 		}
 		//UPGRADE_NOTE: Respective javadoc comments were merged.  It should be changed in order to comply with .NET documentation conventions. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1199'"
 		/// <summary> Returns the array containing the data, or null if there is no data
@@ -120,18 +107,11 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// <param name="arr">The data array to use.
 		/// 
 		/// </param>
-		virtual public float[] DataFloat
+		public virtual float[] DataFloat
 		{
-			get
-			{
-				return data;
-			}
-			
-			set
-			{
-				data = value;
-			}
-			
+			get => data;
+
+			set => data = value;
 		}
 		
 		/// <summary>The array where the data is stored </summary>

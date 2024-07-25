@@ -12,10 +12,10 @@
 *
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -55,10 +55,10 @@ namespace CSJ2K.j2k.wavelet.analysis
 	/// specifically. Implementations that work on int data should inherit
 	/// from this class.
 	/// 
-	/// <P>See the AnWTFilter class for details such as
+	/// See the AnWTFilter class for details such as
 	/// normalization, how to split odd-length signals, etc.
 	/// 
-	/// <P>The advantage of using the specialized method is that no casts
+	/// The advantage of using the specialized method is that no casts
 	/// are performed.
 	/// 
 	/// </summary>
@@ -80,15 +80,8 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// 
 		/// 
 		/// </seealso>
-		override public int DataType
-		{
-			get
-			{
-				return DataBlk.TYPE_INT;
-			}
-			
-		}
-		
+		public override int DataType => DataBlk.TYPE_INT;
+
 		/// <summary> A specific version of the analyze_lpf() method that works on int
 		/// data. See the general description of the analyze_lpf() method in
 		/// the AnWTFilter class for more details.
@@ -196,7 +189,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// 
 		/// </seealso>
 		
-		public override void  analyze_lpf(System.Object inSig, int inOff, int inLen, int inStep, System.Object lowSig, int lowOff, int lowStep, System.Object highSig, int highOff, int highStep)
+		public override void  analyze_lpf(object inSig, int inOff, int inLen, int inStep, object lowSig, int lowOff, int lowStep, object highSig, int highOff, int highStep)
 		{
 			
 			analyze_lpf((int[]) inSig, inOff, inLen, inStep, (int[]) lowSig, lowOff, lowStep, (int[]) highSig, highOff, highStep);
@@ -308,7 +301,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// 
 		/// </seealso>
 		
-		public override void  analyze_hpf(System.Object inSig, int inOff, int inLen, int inStep, System.Object lowSig, int lowOff, int lowStep, System.Object highSig, int highOff, int highStep)
+		public override void  analyze_hpf(object inSig, int inOff, int inLen, int inStep, object lowSig, int lowOff, int lowStep, object highSig, int highOff, int highStep)
 		{
 			
 			analyze_hpf((int[]) inSig, inOff, inLen, inStep, (int[]) lowSig, lowOff, lowStep, (int[]) highSig, highOff, highStep);

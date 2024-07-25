@@ -40,7 +40,7 @@ namespace CSJ2K.Icc.Tags
 		public static long DoubleToXYZ(double x)
 		{
 			//UPGRADE_WARNING: Data types in Visual C# might be different.  Verify the accuracy of narrowing conversions. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1042'"
-			return (long) System.Math.Floor(x * 65536.0 + 0.5);
+			return (long) Math.Floor(x * 65536.0 + 0.5);
 		}
 		
 		/// <summary>Normalization utility </summary>
@@ -67,9 +67,9 @@ namespace CSJ2K.Icc.Tags
 		
 		
 		/// <summary>Return the string rep of this tag. </summary>
-		public override System.String ToString()
+		public override string ToString()
 		{
-			return "[" + base.ToString() + "(" + x + ", " + y + ", " + z + ")]";
+			return $"[{base.ToString()}({x}, {y}, {z})]";
 		}
 		
 		
@@ -77,9 +77,9 @@ namespace CSJ2K.Icc.Tags
 		//UPGRADE_TODO: Class 'java.io.RandomAccessFile' was converted to 'System.IO.FileStream' which has a different behavior. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1073_javaioRandomAccessFile'"
 		public virtual void  write(System.IO.Stream raf)
 		{
-            byte[] xb = ICCProfile.setLong(x);
-            byte[] yb = ICCProfile.setLong(y);
-            byte[] zb = ICCProfile.setLong(z);
+            var xb = ICCProfile.setLong(x);
+            var yb = ICCProfile.setLong(y);
+            var zb = ICCProfile.setLong(z);
 			
             // CONVERSION PROBLEM?
 			raf.Write(xb, ICCProfile.int_size, 0);

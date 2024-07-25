@@ -11,10 +11,10 @@
 *
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -51,7 +51,7 @@ namespace CSJ2K.j2k.codestream.writer
 	/// as a OutputStream. See the CodestreamWriter abstract class for more details
 	/// on the implementation of the CodestreamWriter abstract class.
 	/// 
-	/// <p>Before any packet data is written to the bit stream (even in simulation
+	/// Before any packet data is written to the bit stream (even in simulation
 	/// mode) the complete header should be written otherwise incorrect estimates
 	/// are given by getMaxAvailableBytes() for rate allocation.
 	/// 
@@ -71,50 +71,24 @@ namespace CSJ2K.j2k.codestream.writer
 		/// <returns> The number of bytes remaining available in the bit stream.
 		/// 
 		/// </returns>
-		override public int MaxAvailableBytes
-		{
-			get
-			{
-				return maxBytes - ndata;
-			}
-			
-		}
+		public override int MaxAvailableBytes => maxBytes - ndata;
+
 		/// <summary> Returns the current length of the entire bit stream.
 		/// 
 		/// </summary>
 		/// <returns> the current length of the bit stream
 		/// 
 		/// </returns>
-		override public int Length
-		{
-			get
-			{
-				if (MaxAvailableBytes >= 0)
-				{
-					return ndata;
-				}
-				else
-				{
-					return maxBytes;
-				}
-			}
-			
-		}
+		public override int Length => MaxAvailableBytes >= 0 ? ndata : maxBytes;
+
 		/// <summary> Gives the offset of the end of last packet containing ROI information 
 		/// 
 		/// </summary>
 		/// <returns> End of last ROI packet 
 		/// 
 		/// </returns>
-		override public int OffLastROIPkt
-		{
-			get
-			{
-				return offLastROIPkt;
-			}
-			
-		}
-		
+		public override int OffLastROIPkt => offLastROIPkt;
+
 		/// <summary>The upper limit for the value of the Nsop field of the SOP marker </summary>
 		private const int SOP_MARKER_LIMIT = 65535;
 		
@@ -127,7 +101,7 @@ namespace CSJ2K.j2k.codestream.writer
 		/// <summary>The number of bytes already written to the codestream, excluding the
 		/// header length, magic number and header length info. 
 		/// </summary>
-		new internal int ndata = 0;
+		internal new int ndata = 0;
 		
 		/// <summary>The default buffer length, 1024 bytes </summary>
 		public static int DEF_BUF_LEN = 1024;
@@ -148,34 +122,6 @@ namespace CSJ2K.j2k.codestream.writer
 		
 		/// <summary>Length of last packets containing no ROI information </summary>
 		private int lenLastNoROI = 0;
-
-#if DOTNET
-		/// <summary> Opens the file 'file' for writing the codestream. The magic number is
-		/// written to the bit stream. Normally, the header encoder must be empty
-		/// (i.e. no data has been written to it yet). A BufferedOutputStream is
-		/// used on top of the file to increase throughput, the length of the
-		/// buffer is DEF_BUF_LEN.
-		/// 
-		/// </summary>
-		/// <param name="file">The file where to write the bit stream
-		/// 
-		/// </param>
-		/// <param name="mb">The maximum number of bytes that can be written to the bit
-		/// stream.
-		/// 
-		/// </param>
-		/// <exception cref="IOException">If an error occurs while trying to open the file
-		/// for writing or while writing the magic number.
-		/// 
-		/// </exception>
-		public FileCodestreamWriter(System.IO.FileInfo file, int mb)
-			: base(mb)
-		{
-			//UPGRADE_TODO: Constructor 'java.io.FileOutputStream.FileOutputStream' was converted to 'System.IO.FileStream.FileStream' which has a different behavior. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1073_javaioFileOutputStreamFileOutputStream_javaioFile'"
-			out_Renamed = new System.IO.BufferedStream(new System.IO.FileStream(file.FullName, System.IO.FileMode.Create), DEF_BUF_LEN);
-			initSOP_EPHArrays();
-		}		
-#endif
 	
 		/// <summary> Uses the output stream 'os' for writing the bit stream, using the 'he'
 		/// header encoder. The magic number is written to the bit
@@ -207,13 +153,13 @@ namespace CSJ2K.j2k.codestream.writer
 		/// is written to the bit stream but the number of bytes is
 		/// calculated. This can be used for iterative rate allocation.
 		/// 
-		/// <P>If the length of the data that is to be written to the bit stream is
+		/// If the length of the data that is to be written to the bit stream is
 		/// more than the space left (as returned by getMaxAvailableBytes()) only
 		/// the data that does not exceed the allowed length is written, the rest
 		/// is discarded. However the value returned by the method is the total
 		/// length of the packet, as if all of it was written to the bit stream.
 		/// 
-		/// <P>If the bit stream header has not been commited yet and 'sim' is
+		/// If the bit stream header has not been commited yet and 'sim' is
 		/// false, then the bit stream header is automatically commited (see
 		/// commitBitstreamHeader() method) before writting the packet.
 		/// 
@@ -251,7 +197,7 @@ namespace CSJ2K.j2k.codestream.writer
 		public override int writePacketHead(byte[] head, int hlen, bool sim, bool sop, bool eph)
 		{
             // CONVERSION PROBLEM?
-			int len = hlen + (sop ? (int)CSJ2K.j2k.codestream.Markers.SOP_LENGTH : 0) + (eph ? (int)CSJ2K.j2k.codestream.Markers.EPH_LENGTH : 0);
+			var len = hlen + (sop ? Markers.SOP_LENGTH : 0) + (eph ? Markers.EPH_LENGTH : 0);
 			
 			// If not in simulation mode write the data 
 			if (!sim)
@@ -271,7 +217,7 @@ namespace CSJ2K.j2k.codestream.writer
 						// classe's constructor. 
 						sopMarker[4] = (byte) (packetIdx >> 8);
 						sopMarker[5] = (byte) (packetIdx);
-						out_Renamed.Write(sopMarker, 0, CSJ2K.j2k.codestream.Markers.SOP_LENGTH);
+						out_Renamed.Write(sopMarker, 0, Markers.SOP_LENGTH);
 						packetIdx++;
 						if (packetIdx > SOP_MARKER_LIMIT)
 						{
@@ -286,7 +232,7 @@ namespace CSJ2K.j2k.codestream.writer
 					// Write End of Packet Header markers if necessary 
 					if (eph)
 					{
-						out_Renamed.Write(ephMarker, 0, CSJ2K.j2k.codestream.Markers.EPH_LENGTH);
+						out_Renamed.Write(ephMarker, 0, Markers.EPH_LENGTH);
 					}
 					
 					// Deal with ROI Information
@@ -301,7 +247,7 @@ namespace CSJ2K.j2k.codestream.writer
 		/// bit stream but the number of bytes is calculated. This can be used for
 		/// iterative rate allocation.
 		/// 
-		/// <P>If the length of the data that is to be written to the bit stream is
+		/// If the length of the data that is to be written to the bit stream is
 		/// more than the space left (as returned by getMaxAvailableBytes()) only
 		/// the data that does not exceed the allowed length is written, the rest
 		/// is discarded. However the value returned by the method is the total
@@ -339,7 +285,7 @@ namespace CSJ2K.j2k.codestream.writer
 		public override int writePacketBody(byte[] body, int blen, bool sim, bool roiInPkt, int roiLen)
 		{
 			
-			int len = blen;
+			var len = blen;
 			
 			// If not in simulation mode write the data 
 			if (!sim)
@@ -383,8 +329,8 @@ namespace CSJ2K.j2k.codestream.writer
 			
 			// Write the EOC marker and close the codestream.
             // CONVERSION PROBLEM?
-			out_Renamed.WriteByte((byte) SupportClass.URShift(CSJ2K.j2k.codestream.Markers.EOC, 8));
-			out_Renamed.WriteByte((byte) (CSJ2K.j2k.codestream.Markers.EOC & 0x00FF));
+			out_Renamed.WriteByte((byte) SupportClass.URShift(Markers.EOC, 8));
+			out_Renamed.WriteByte(Markers.EOC & 0x00FF);
 			
 			ndata += 2; // Add two to length of codestream for EOC marker
 		}
@@ -421,17 +367,17 @@ namespace CSJ2K.j2k.codestream.writer
 			
 			// Allocate and set first values of SOP marker as they will not be
 			// modified
-			sopMarker = new byte[CSJ2K.j2k.codestream.Markers.SOP_LENGTH];
-			sopMarker[0] = unchecked((byte) (CSJ2K.j2k.codestream.Markers.SOP >> 8));
-			sopMarker[1] = (byte) SupportClass.Identity(CSJ2K.j2k.codestream.Markers.SOP);
-			sopMarker[2] = (byte) 0x00;
-			sopMarker[3] = (byte) 0x04;
+			sopMarker = new byte[Markers.SOP_LENGTH];
+			sopMarker[0] = unchecked((byte) (Markers.SOP >> 8));
+			sopMarker[1] = (byte) SupportClass.Identity(Markers.SOP);
+			sopMarker[2] = 0x00;
+			sopMarker[3] = 0x04;
 			
 			// Allocate and set values of EPH marker as they will not be
 			// modified
-			ephMarker = new byte[CSJ2K.j2k.codestream.Markers.EPH_LENGTH];
-			ephMarker[0] = unchecked((byte) (CSJ2K.j2k.codestream.Markers.EPH >> 8));
-			ephMarker[1] = (byte) SupportClass.Identity(CSJ2K.j2k.codestream.Markers.EPH);
+			ephMarker = new byte[Markers.EPH_LENGTH];
+			ephMarker[0] = unchecked((byte) (Markers.EPH >> 8));
+			ephMarker[1] = (byte) SupportClass.Identity(Markers.EPH);
 		}
 	}
 }

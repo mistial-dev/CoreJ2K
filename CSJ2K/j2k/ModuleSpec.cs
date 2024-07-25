@@ -11,10 +11,10 @@
 * 
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -53,7 +53,7 @@ namespace CSJ2K.j2k
 	/// This class might be used for values that are only tile specific or
 	/// component specific but not both.
 	/// 
-	/// <p>The attributes to use are defined by a hierarchy. The hierarchy is:
+	/// The attributes to use are defined by a hierarchy. The hierarchy is:
 	/// 
 	/// <ul>
 	/// <li> Tile and component specific attribute</li>
@@ -65,15 +65,8 @@ namespace CSJ2K.j2k
 	/// </summary>
 	public class ModuleSpec
 	{
-		virtual public ModuleSpec Copy
-		{
-			get
-			{
-				return (ModuleSpec) this.Clone();
-			}
-			
-		}
-		
+		public virtual ModuleSpec Copy => (ModuleSpec) Clone();
+
 		/// <summary>The identifier for a specification module that applies only to
 		/// components 
 		/// </summary>
@@ -114,45 +107,45 @@ namespace CSJ2K.j2k
 		protected internal byte[][] specValType;
 		
 		/// <summary>Default value for each tile-component </summary>
-		protected internal System.Object def = null;
+		protected internal object def = null;
 		
 		/// <summary>The default value for each component. Null if no component
 		/// specific value is defined 
 		/// </summary>
-		protected internal System.Object[] compDef = null;
+		protected internal object[] compDef = null;
 		
 		/// <summary>The default value for each tile. Null if no tile specific value is
 		/// defined 
 		/// </summary>
-		protected internal System.Object[] tileDef = null;
+		protected internal object[] tileDef = null;
 		
 		/// <summary>The specific value for each tile-component. Value of tile 16 component
 		/// 3 is accessible through the hash value "t16c3". Null if no
 		/// tile-component specific value is defined 
 		/// </summary>
-		protected internal System.Collections.Generic.Dictionary<System.String, System.Object> tileCompVal;
+		protected internal Dictionary<string, object> tileCompVal;
 		
-		public virtual System.Object Clone()
+		public virtual object Clone()
 		{
 			ModuleSpec ms;
 			try
 			{
-				ms = (ModuleSpec) base.MemberwiseClone();
+				ms = (ModuleSpec) MemberwiseClone();
 			}
 			//UPGRADE_NOTE: Exception 'java.lang.CloneNotSupportedException' was converted to 'System.Exception' which has different behavior. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1100'"
-			catch (System.Exception e)
+			catch (Exception)
 			{
-				throw new System.InvalidOperationException("Error when cloning ModuleSpec instance");
+				throw new InvalidOperationException("Error when cloning ModuleSpec instance");
 			}
 			// Create a copy of the specValType array
 			ms.specValType = new byte[nTiles][];
-			for (int i = 0; i < nTiles; i++)
+			for (var i = 0; i < nTiles; i++)
 			{
 				ms.specValType[i] = new byte[nComp];
 			}
-			for (int t = 0; t < nTiles; t++)
+			for (var t = 0; t < nTiles; t++)
 			{
-				for (int c = 0; c < nComp; c++)
+				for (var c = 0; c < nComp; c++)
 				{
 					ms.specValType[t][c] = specValType[t][c];
 				}
@@ -160,8 +153,8 @@ namespace CSJ2K.j2k
 			// Create a copy of tileDef
 			if (tileDef != null)
 			{
-				ms.tileDef = new System.Object[nTiles];
-				for (int t = 0; t < nTiles; t++)
+				ms.tileDef = new object[nTiles];
+				for (var t = 0; t < nTiles; t++)
 				{
 					ms.tileDef[t] = tileDef[t];
 				}
@@ -171,7 +164,7 @@ namespace CSJ2K.j2k
 			{
 				ms.tileCompVal = new Dictionary<string, object>();
 				//UPGRADE_TODO: Method 'java.util.Enumeration.hasMoreElements' was converted to 'System.Collections.IEnumerator.MoveNext' which has a different behavior. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1073_javautilEnumerationhasMoreElements'"
-				for (System.Collections.Generic.IEnumerator<System.String> e = tileCompVal.Keys.GetEnumerator(); e.MoveNext(); )
+				for (IEnumerator<string> e = tileCompVal.Keys.GetEnumerator(); e.MoveNext(); )
 				{
 					//UPGRADE_TODO: Method 'java.util.Enumeration.nextElement' was converted to 'System.Collections.IEnumerator.Current' which has a different behavior. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1073_javautilEnumerationnextElement'"
 					ms.tileCompVal[e.Current] = tileCompVal[e.Current];
@@ -191,12 +184,12 @@ namespace CSJ2K.j2k
 		public virtual void  rotate90(Coord anT)
 		{
 			// Rotate specValType
-			byte[][] tmpsvt = new byte[nTiles][];
+			var tmpsvt = new byte[nTiles][];
 			int ax, ay;
-			Coord bnT = new Coord(anT.y, anT.x);
-			for (int by = 0; by < bnT.y; by++)
+			var bnT = new Coord(anT.y, anT.x);
+			for (var by = 0; by < bnT.y; by++)
 			{
-				for (int bx = 0; bx < bnT.x; bx++)
+				for (var bx = 0; bx < bnT.x; bx++)
 				{
 					ay = bx;
 					ax = bnT.y - by - 1;
@@ -208,10 +201,10 @@ namespace CSJ2K.j2k
 			// Rotate tileDef
 			if (tileDef != null)
 			{
-				System.Object[] tmptd = new System.Object[nTiles];
-				for (int by = 0; by < bnT.y; by++)
+				var tmptd = new object[nTiles];
+				for (var by = 0; by < bnT.y; by++)
 				{
-					for (int bx = 0; bx < bnT.x; bx++)
+					for (var bx = 0; bx < bnT.x; bx++)
 					{
 						ay = bx;
 						ax = bnT.y - by - 1;
@@ -224,9 +217,9 @@ namespace CSJ2K.j2k
 			// Rotate tileCompVal
 			if (tileCompVal != null && tileCompVal.Count > 0)
 			{
-				System.Collections.Generic.Dictionary<System.String, System.Object> tmptcv = new Dictionary<string, object>();
-				System.String tmpKey;
-				System.Object tmpVal;
+				var tmptcv = new Dictionary<string, object>();
+				string tmpKey;
+				object tmpVal;
 				int btIdx, atIdx;
 				int i1, i2;
 				int bx, by;
@@ -234,17 +227,17 @@ namespace CSJ2K.j2k
 				for (System.Collections.IEnumerator e = tileCompVal.Keys.GetEnumerator(); e.MoveNext(); )
 				{
 					//UPGRADE_TODO: Method 'java.util.Enumeration.nextElement' was converted to 'System.Collections.IEnumerator.Current' which has a different behavior. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1073_javautilEnumerationnextElement'"
-					tmpKey = ((System.String) e.Current);
+					tmpKey = ((string) e.Current);
 					tmpVal = tileCompVal[tmpKey];
 					i1 = tmpKey.IndexOf('t');
 					i2 = tmpKey.IndexOf('c');
-					btIdx = (System.Int32.Parse(tmpKey.Substring(i1 + 1, (i2) - (i1 + 1))));
+					btIdx = (int.Parse(tmpKey.Substring(i1 + 1, (i2) - (i1 + 1))));
 					bx = btIdx % bnT.x;
 					by = btIdx / bnT.x;
 					ay = bx;
 					ax = bnT.y - by - 1;
 					atIdx = ax + ay * anT.x;
-					tmptcv["t" + atIdx + tmpKey.Substring(i2)] = tmpVal;
+					tmptcv[$"t{atIdx}{tmpKey.Substring(i2)}"] = tmpVal;
 				}
 				tileCompVal = tmptcv;
 			}
@@ -270,7 +263,7 @@ namespace CSJ2K.j2k
 			nTiles = nt;
 			nComp = nc;
 			specValType = new byte[nt][];
-			for (int i = 0; i < nt; i++)
+			for (var i = 0; i < nt; i++)
 			{
 				specValType[i] = new byte[nc];
 			}
@@ -294,7 +287,7 @@ namespace CSJ2K.j2k
 		/// <summary> Sets default value for this module 
 		/// 
 		/// </summary>
-		public virtual void  setDefault(System.Object value_Renamed)
+		public virtual void  setDefault(object value_Renamed)
 		{
 			def = value_Renamed;
 		}
@@ -305,7 +298,7 @@ namespace CSJ2K.j2k
 		/// <returns> The default value (Must be casted before use)
 		/// 
 		/// </returns>
-		public virtual System.Object getDefault()
+		public virtual object getDefault()
 		{
 			return def;
 		}
@@ -317,19 +310,20 @@ namespace CSJ2K.j2k
 		/// <param name="c">Component index 
 		/// 
 		/// </param>
-		public virtual void  setCompDef(int c, System.Object value_Renamed)
+		public virtual void  setCompDef(int c, object value_Renamed)
 		{
 			if (specType == SPEC_TYPE_TILE)
 			{
 				//UPGRADE_TODO: The equivalent in .NET for method 'java.lang.Object.toString' may return a different value. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1043'"
-				System.String errMsg = "Option whose value is '" + value_Renamed + "' cannot be " + "specified for components as it is a 'tile only' specific " + "option";
-				throw new System.InvalidOperationException(errMsg);
+				var errMsg =
+					$"Option whose value is '{value_Renamed}' cannot be specified for components as it is a 'tile only' specific option";
+				throw new InvalidOperationException(errMsg);
 			}
 			if (compDef == null)
 			{
-				compDef = new System.Object[nComp];
+				compDef = new object[nComp];
 			}
-			for (int i = 0; i < nTiles; i++)
+			for (var i = 0; i < nTiles; i++)
 			{
 				if (specValType[i][c] < SPEC_COMP_DEF)
 				{
@@ -353,11 +347,11 @@ namespace CSJ2K.j2k
 		/// <seealso cref="setCompDef">
 		/// 
 		/// </seealso>
-		public virtual System.Object getCompDef(int c)
+		public virtual object getCompDef(int c)
 		{
 			if (specType == SPEC_TYPE_TILE)
 			{
-				throw new System.InvalidOperationException("Illegal use of ModuleSpec class");
+				throw new InvalidOperationException("Illegal use of ModuleSpec class");
 			}
 			if (compDef == null || compDef[c] == null)
 			{
@@ -376,19 +370,20 @@ namespace CSJ2K.j2k
 		/// <param name="c">Tile index.
 		/// 
 		/// </param>
-		public virtual void  setTileDef(int t, System.Object value_Renamed)
+		public virtual void  setTileDef(int t, object value_Renamed)
 		{
 			if (specType == SPEC_TYPE_COMP)
 			{
 				//UPGRADE_TODO: The equivalent in .NET for method 'java.lang.Object.toString' may return a different value. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1043'"
-				System.String errMsg = "Option whose value is '" + value_Renamed + "' cannot be " + "specified for tiles as it is a 'component only' specific " + "option";
-				throw new System.InvalidOperationException(errMsg);
+				var errMsg =
+					$"Option whose value is '{value_Renamed}' cannot be specified for tiles as it is a 'component only' specific option";
+				throw new InvalidOperationException(errMsg);
 			}
 			if (tileDef == null)
 			{
-				tileDef = new System.Object[nTiles];
+				tileDef = new object[nTiles];
 			}
-			for (int i = 0; i < nComp; i++)
+			for (var i = 0; i < nComp; i++)
 			{
 				if (specValType[t][i] < SPEC_TILE_DEF)
 				{
@@ -411,11 +406,11 @@ namespace CSJ2K.j2k
 		/// <seealso cref="setTileDef">
 		/// 
 		/// </seealso>
-		public virtual System.Object getTileDef(int t)
+		public virtual object getTileDef(int t)
 		{
 			if (specType == SPEC_TYPE_COMP)
 			{
-				throw new System.InvalidOperationException("Illegal use of ModuleSpec class");
+				throw new InvalidOperationException("Illegal use of ModuleSpec class");
 			}
 			if (tileDef == null || tileDef[t] == null)
 			{
@@ -436,12 +431,12 @@ namespace CSJ2K.j2k
 		/// <param name="c">Component index 
 		/// 
 		/// </param>
-		public virtual void  setTileCompVal(int t, int c, System.Object value_Renamed)
+		public virtual void  setTileCompVal(int t, int c, object value_Renamed)
 		{
 			if (specType != SPEC_TYPE_TILE_COMP)
 			{
 				//UPGRADE_TODO: The equivalent in .NET for method 'java.lang.Object.toString' may return a different value. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1043'"
-				System.String errMsg = "Option whose value is '" + value_Renamed + "' cannot be " + "specified for ";
+				var errMsg = $"Option whose value is '{value_Renamed}' cannot be specified for ";
 				switch (specType)
 				{
 					
@@ -453,12 +448,12 @@ namespace CSJ2K.j2k
 						errMsg += "tiles as it is a 'component only' specific option";
 						break;
 					}
-				throw new System.InvalidOperationException(errMsg);
+				throw new InvalidOperationException(errMsg);
 			}
 			if (tileCompVal == null)
 				tileCompVal = new Dictionary<string, object>();
 			specValType[t][c] = SPEC_TILE_COMP;
-			tileCompVal["t" + t + "c" + c] = value_Renamed;
+			tileCompVal[$"t{t}c{c}"] = value_Renamed;
 		}
 		
 		/// <summary> Gets value of specified tile-component. This method calls getSpec but
@@ -480,11 +475,11 @@ namespace CSJ2K.j2k
 		/// <seealso cref="getSpec">
 		/// 
 		/// </seealso>
-		public virtual System.Object getTileCompVal(int t, int c)
+		public virtual object getTileCompVal(int t, int c)
 		{
 			if (specType != SPEC_TYPE_TILE_COMP)
 			{
-				throw new System.InvalidOperationException("Illegal use of ModuleSpec class");
+				throw new InvalidOperationException("Illegal use of ModuleSpec class");
 			}
 			return getSpec(t, c);
 		}
@@ -505,7 +500,7 @@ namespace CSJ2K.j2k
 		/// <returns> Value for this tile component.
 		/// 
 		/// </returns>
-		protected internal virtual System.Object getSpec(int t, int c)
+		protected internal virtual object getSpec(int t, int c)
 		{
 			switch (specValType[t][c])
 			{
@@ -520,10 +515,10 @@ namespace CSJ2K.j2k
 					return getTileDef(t);
 				
 				case SPEC_TILE_COMP: 
-					return tileCompVal["t" + t + "c" + c];
+					return tileCompVal[$"t{t}c{c}"];
 				
 				default: 
-					throw new System.ArgumentException("Not recognized spec type");
+					throw new ArgumentException("Not recognized spec type");
 				
 			}
 		}
@@ -554,14 +549,7 @@ namespace CSJ2K.j2k
 		/// </returns>
 		public virtual bool isCompSpecified(int c)
 		{
-			if (compDef == null || compDef[c] == null)
-			{
-				return false;
-			}
-			else
-			{
-				return true;
-			}
+			return compDef != null && compDef[c] != null;
 		}
 		
 		/// <summary> Whether or not specifications have been entered for the given tile.
@@ -575,14 +563,7 @@ namespace CSJ2K.j2k
 		/// </returns>
 		public virtual bool isTileSpecified(int t)
 		{
-			if (tileDef == null || tileDef[t] == null)
-			{
-				return false;
-			}
-			else
-			{
-				return true;
-			}
+			return tileDef != null && tileDef[t] != null;
 		}
 		
 		/// <summary> Whether or not a tile-component specification has been defined
@@ -599,30 +580,20 @@ namespace CSJ2K.j2k
 		/// </returns>
 		public virtual bool isTileCompSpecified(int t, int c)
 		{
-			if (tileCompVal == null || tileCompVal["t" + t + "c" + c] == null)
-			{
-				return false;
-			}
-			else
-			{
-				return true;
-			}
+			return tileCompVal != null && tileCompVal[$"t{t}c{c}"] != null;
 		}
-		
-		/// <summary> This method is responsible of parsing tile indexes set and component
+
+		/// <summary> This method is responsible for parsing tile indexes set and component
 		/// indexes set for an option. Such an argument must follow the following
-		/// policy:<br>
-		/// 
+		/// policy:
 		/// <tt>t&lt;indexes set&gt;</tt> or <tt>c&lt;indexes set&gt;</tt> where
 		/// tile or component indexes are separated by commas or a dashes.
 		/// 
-		/// <p><u>Example:</u><br>
-		/// <li> <tt>t0,3,4</tt> means tiles with indexes 0, 3 and 4.<br>
-		/// <li> <tt>t2-4</tt> means tiles with indexes 2,3 and 4.<br>
-		/// 
-		/// It returns a boolean array skteching which tile or component are
-		/// concerned by the next parameters.
-		/// 
+		/// <u>Example:</u>
+		///     <tt>t0,3,4</tt> means tiles with indexes 0, 3 and 4.
+		///         <tt>t2-4</tt> means tiles with indexes 2,3 and 4.
+		///             It returns a boolean array skteching which tile or component are
+		///             concerned by the next parameters.
 		/// </summary>
 		/// <param name="word">The word to parse.
 		/// 
@@ -633,21 +604,21 @@ namespace CSJ2K.j2k
 		/// <returns> Indexes concerned by this parameter.
 		/// 
 		/// </returns>
-		public static bool[] parseIdx(System.String word, int maxIdx)
+		public static bool[] parseIdx(string word, int maxIdx)
 		{
-			int nChar = word.Length; // Number of characters
-			char c = word[0]; // current character
-			int idx = - 1; // Current (tile or component) index
-			int lastIdx = - 1; // Last (tile or component) index
-			bool isDash = false; // Whether or not last separator was a dash
+			var nChar = word.Length; // Number of characters
+			var c = word[0]; // current character
+			var idx = - 1; // Current (tile or component) index
+			var lastIdx = - 1; // Last (tile or component) index
+			var isDash = false; // Whether or not last separator was a dash
 			
-			bool[] idxSet = new bool[maxIdx];
-			int i = 1; // index of the current character
+			var idxSet = new bool[maxIdx];
+			var i = 1; // index of the current character
 			
 			while (i < nChar)
 			{
 				c = word[i];
-				if (System.Char.IsDigit(c))
+				if (char.IsDigit(c))
 				{
 					if (idx == - 1)
 					{
@@ -659,11 +630,11 @@ namespace CSJ2K.j2k
 				{
 					if (idx == - 1 || (c != ',' && c != '-'))
 					{
-						throw new System.ArgumentException("Bad construction for " + "parameter: " + word);
+						throw new ArgumentException($"Bad construction for parameter: {word}");
 					}
 					if (idx < 0 || idx >= maxIdx)
 					{
-						throw new System.ArgumentException("Out of range index " + "in " + "parameter `" + word + "' : " + idx);
+						throw new ArgumentException($"Out of range index in parameter `{word}' : {idx}");
 					}
 					
 					// Found a comma
@@ -672,7 +643,7 @@ namespace CSJ2K.j2k
 						if (isDash)
 						{
 							// Previously found a dash, fill idxSet
-							for (int j = lastIdx + 1; j < idx; j++)
+							for (var j = lastIdx + 1; j < idx; j++)
 							{
 								idxSet[j] = true;
 							}
@@ -696,11 +667,11 @@ namespace CSJ2K.j2k
 			// Process last found index
 			if (idx < 0 || idx >= maxIdx)
 			{
-				throw new System.ArgumentException("Out of range index in " + "parameter `" + word + "' : " + idx);
+				throw new ArgumentException($"Out of range index in parameter `{word}' : {idx}");
 			}
 			if (isDash)
 			{
-				for (int j = lastIdx + 1; j < idx; j++)
+				for (var j = lastIdx + 1; j < idx; j++)
 				{
 					idxSet[j] = true;
 				}

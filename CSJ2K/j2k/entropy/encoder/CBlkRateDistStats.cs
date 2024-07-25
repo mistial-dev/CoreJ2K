@@ -12,10 +12,10 @@
 *
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -53,40 +53,40 @@ namespace CSJ2K.j2k.entropy.encoder
 	/// only. Some data of the coded-block is stored in the super class, see
 	/// CodedCBlk.
 	/// 
-	/// <p>The rate-distortion statistics (i.e. R-D slope) is stored for valid
+	/// The rate-distortion statistics (i.e. R-D slope) is stored for valid
 	/// points only. The set of valid points is determined by the entropy coder
 	/// engine itself. Normally they are selected so as to lye in a convex hull,
 	/// which can be achived by using the 'selectConvexHull' method of this class,
 	/// but some other strategies might be employed.</p>
 	/// 
-	/// <p>The rate (in bytes) for each truncation point (valid or not) is stored
+	/// The rate (in bytes) for each truncation point (valid or not) is stored
 	/// in the 'truncRates' array. The rate of a truncation point is the total
 	/// number of bytes in 'data' (see super class) that have to be decoded to
 	/// reach the truncation point.</p>
 	/// 
-	/// <p>The slope (reduction of distortion divided by the increase in rate) at
+	/// The slope (reduction of distortion divided by the increase in rate) at
 	/// each of the valid truncation points is stored in 'truncSlopes'.</p>
 	/// 
-	/// <p>The index of each valid truncation point is stored in 'truncIdxs'. The
+	/// The index of each valid truncation point is stored in 'truncIdxs'. The
 	/// index should be interpreted in the following way: a valid truncation point
 	/// at position 'n' has the index 'truncIdxs[n]', the rate
 	/// 'truncRates[truncIdxs[n]]' and the slope 'truncSlopes[n]'. The arrays
 	/// 'truncIdxs' and 'truncRates' have at least 'nVldTrunc' elements. The
 	/// 'truncRates' array has at least 'nTotTrunc' elements.</p>
 	/// 
-	/// <p>In addition the 'isTermPass' array contains a flag for each truncation
+	/// In addition the 'isTermPass' array contains a flag for each truncation
 	/// point (valid and non-valid ones) that tells if the pass is terminated or
 	/// not. If this variable is null then it means that no pass is terminated,
 	/// except the last one which always is.</p>
 	/// 
-	/// <p>The compressed data is stored in the 'data' member variable of the super
+	/// The compressed data is stored in the 'data' member variable of the super
 	/// class.</p>
 	/// 
 	/// </summary>
 	/// <seealso cref="CodedCBlk">
 	/// 
 	/// </seealso>
-	public class CBlkRateDistStats:CodedCBlk
+	public sealed class CBlkRateDistStats:CodedCBlk
 	{
 		
 		/// <summary>The subband to which the code-block belongs </summary>
@@ -140,11 +140,11 @@ namespace CSJ2K.j2k.entropy.encoder
 		/// the flag indicating if termination is used, respectively, for each
 		/// truncation point.
 		/// 
-		/// <p>The valid truncation points are selected by taking them as lying on
+		/// The valid truncation points are selected by taking them as lying on
 		/// a convex hull. This is done by calling the method
 		/// selectConvexHull().</p>
 		/// 
-		/// <p>Note that the arrays 'rates' and 'termp' are copied, not referenced,
+		/// Note that the arrays 'rates' and 'termp' are copied, not referenced,
 		/// so they can be modified after a call to this constructor.</p>
 		/// 
 		/// </summary>
@@ -199,7 +199,7 @@ namespace CSJ2K.j2k.entropy.encoder
 		/// initialize 'truncRates' and 'isTermPass' arrays, as well as
 		/// 'nTotTrunc', with all the truncation points (selected or not).
 		/// 
-		/// <p> Note that the arrays 'rates' and 'termp' are copied, not
+		///  Note that the arrays 'rates' and 'termp' are copied, not
 		/// referenced, so they can be modified after a call to this method.</p>
 		/// 
 		/// </summary>
@@ -227,7 +227,7 @@ namespace CSJ2K.j2k.entropy.encoder
 		/// point is always included).
 		/// 
 		/// </param>
-		public virtual void  selectConvexHull(int[] rates, double[] dists, bool[] termp, int n, bool inclast)
+		public void  selectConvexHull(int[] rates, double[] dists, bool[] termp, int n, bool inclast)
 		{
 			int first_pnt; // The first point containing some coded data
 			int p; // last selected point
@@ -377,9 +377,10 @@ ploop: ;
 		/// <returns> A string with the contents of the object
 		/// 
 		/// </returns>
-		public override System.String ToString()
+		public override string ToString()
 		{
-			System.String str = base.ToString() + "\n nVldTrunc=" + nVldTrunc + ", nTotTrunc=" + nTotTrunc + ", num. ROI" + " coeff=" + nROIcoeff + ", num. ROI coding passes=" + nROIcp + ", sb=" + sb.sbandIdx;
+			var str =
+				$"{base.ToString()}\n nVldTrunc={nVldTrunc}, nTotTrunc={nTotTrunc}, num. ROI coeff={nROIcoeff}, num. ROI coding passes={nROIcp}, sb={sb.sbandIdx}";
 			//          str += "\n\ttruncRates:\n";
 			//          for(int i=0; i<truncRates.length; i++) {
 			//              str += "\t "+i+": "+truncRates[i]+"\n";

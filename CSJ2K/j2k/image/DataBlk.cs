@@ -11,10 +11,10 @@
 *
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -50,25 +50,25 @@ namespace CSJ2K.j2k.image
 	/// implement the different types of storage (<tt>int</tt>, <tt>float</tt>,
 	/// etc.).
 	/// 
-	/// <p>The data is always stored in one array, of the type matching the data
+	/// The data is always stored in one array, of the type matching the data
 	/// type (i.e. for 'int' it's an 'int[]'). The data should be stored in the
 	/// array in standard scan-line order. That is the samples go from the top-left
 	/// corner of the code-block to the lower-right corner by line and then
 	/// column.</p>
 	/// 
-	/// <p>The member variable 'offset' gives the index in the array of the first
+	/// The member variable 'offset' gives the index in the array of the first
 	/// data element (i.e. the top-left coefficient (ulx,uly)). The member variable
 	/// 'scanw' gives the width of the scan that is used to store the data, that
 	/// can be different from the width of the block. Element '(x,y)' of the
 	/// code-block (i.e. '(ulx,uly)' is the top-left coefficient), will appear at
 	/// position 'offset+(y-uly)*scanw+(x-ulx)' in the array of data.</p>
 	/// 
-	/// <p>A block of data can have the <i>progressive</i> attribute set. Data is
+	/// A block of data can have the <i>progressive</i> attribute set. Data is
 	/// progressive when it is obtained by successive refinement and the values in
 	/// this block are approximations of the "final" values. When the final values
 	/// are returned the progressive attribute must be turned off.</p>
 	/// 
-	/// <p>The classes <tt>DataBlkInt</tt> and <tt>DataBlkFloat</tt> provide
+	/// The classes <tt>DataBlkInt</tt> and <tt>DataBlkFloat</tt> provide
 	/// implementations for <tt>int</tt> and <tt>float</tt> types respectively.</p>
 	/// 
 	/// </summary>
@@ -93,7 +93,7 @@ namespace CSJ2K.j2k.image
 		/// returned array is of the type returned by <tt>getDataType()</tt> (e.g.,
 		/// for <tt>TYPE_INT</tt>, it is a <tt>int[]</tt>).
 		/// 
-		/// <p>Each implementing class should provide a type specific equivalent
+		/// Each implementing class should provide a type specific equivalent
 		/// method (e.g., <tt>getDataInt()</tt> in <tt>DataBlkInt</tt>) which
 		/// returns an array of the correct type explicetely and not through an
 		/// <tt>Object</tt>.</p>
@@ -111,10 +111,10 @@ namespace CSJ2K.j2k.image
 		/// for <tt>TYPE_INT</tt>, it should be a <tt>int[]</tt>). If the wrong
 		/// type of array is given a <tt>ClassCastException</tt> will be thrown.
 		/// 
-		/// <p>The size of the array is not necessarily checked for consistency
+		/// The size of the array is not necessarily checked for consistency
 		/// with <tt>w</tt> and <tt>h</tt> or any other fields.</p>
 		/// 
-		/// <p>Each implementing class should provide a type specific equivalent
+		/// Each implementing class should provide a type specific equivalent
 		/// method (e.g., <tt>setDataInt()</tt> in <tt>DataBlkInt</tt>) which takes
 		/// an array of the correct type explicetely and not through an
 		/// <tt>Object</tt>.</p>
@@ -126,7 +126,7 @@ namespace CSJ2K.j2k.image
 		/// <seealso cref="getDataType">
 		/// 
 		/// </seealso>
-		public abstract System.Object Data{get;set;}
+		public abstract object Data{get;set;}
 		
 		/// <summary>The identifier for the <tt>byte</tt> data type, as signed 8 bits. </summary>
 		public const int TYPE_BYTE = 0;
@@ -194,7 +194,7 @@ namespace CSJ2K.j2k.image
 					return 32;
 				
 				default: 
-					throw new System.ArgumentException();
+					throw new ArgumentException();
 				
 			}
 		}
@@ -205,9 +205,9 @@ namespace CSJ2K.j2k.image
 		/// <returns> Block dimensions and progressiveness in a string
 		/// 
 		/// </returns>
-		public override System.String ToString()
+		public override string ToString()
 		{
-			System.String typeString = "";
+			var typeString = "";
 			switch (DataType)
 			{
 				
@@ -228,7 +228,8 @@ namespace CSJ2K.j2k.image
 					break;
 				}
 			
-			return "DataBlk: " + "upper-left(" + ulx + "," + uly + "), width=" + w + ", height=" + h + ", progressive=" + progressive + ", offset=" + offset + ", scanw=" + scanw + ", type=" + typeString;
+			return
+				$"DataBlk: upper-left({ulx},{uly}), width={w}, height={h}, progressive={progressive}, offset={offset}, scanw={scanw}, type={typeString}";
 		}
 	}
 }

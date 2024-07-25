@@ -23,21 +23,14 @@ namespace CSJ2K.Icc
 		/// <summary> Get the type of RestrictedICCProfile for this object</summary>
 		/// <returns> kMonochromeInput
 		/// </returns>
-		override public int Type
-		{
-			get
-			{
-				return kMonochromeInput;
-			}
-			
-		}
-		
+		public override int Type => kMonochromeInput;
+
 		/// <summary> Factory method which returns a 1 component RestrictedICCProfile</summary>
 		/// <param name="c">Gray TRC curve
 		/// </param>
 		/// <returns> the RestrictedICCProfile
 		/// </returns>
-		public static new RestrictedICCProfile createInstance(ICCCurveType c)
+		public new static RestrictedICCProfile createInstance(ICCCurveType c)
 		{
 			return new MonochromeInputRestrictedProfile(c);
 		}
@@ -51,11 +44,12 @@ namespace CSJ2K.Icc
 		
 		/// <returns> String representation of a MonochromeInputRestrictedProfile
 		/// </returns>
-		public override System.String ToString()
+		public override string ToString()
 		{
-			System.Text.StringBuilder rep = new System.Text.StringBuilder("Monochrome Input Restricted ICC profile" + eol);
+			var rep = new System.Text.StringBuilder(
+				$"Monochrome Input Restricted ICC profile{Environment.NewLine}");
 			
-			rep.Append("trc[GRAY]:" + eol).Append(trc[GRAY]).Append(eol);
+			rep.Append($"trc[GRAY]:{Environment.NewLine}").Append(trc[GRAY]).Append(Environment.NewLine);
 			
 			return rep.ToString();
 		}

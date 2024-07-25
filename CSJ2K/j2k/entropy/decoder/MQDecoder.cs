@@ -12,10 +12,10 @@
 *
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -71,14 +71,8 @@ namespace CSJ2K.j2k.entropy.decoder
 		/// <returns> The number of contexts
 		/// 
 		/// </returns>
-		virtual public int NumCtxts
-		{
-			get
-			{
-				return I.Length;
-			}
-			
-		}
+		public virtual int NumCtxts => I.Length;
+
 		/// <summary> Returns the underlying 'ByteInputBuffer' from where the MQ coded input
 		/// bytes are read.
 		/// 
@@ -86,15 +80,8 @@ namespace CSJ2K.j2k.entropy.decoder
 		/// <returns> The underlying ByteInputBuffer.
 		/// 
 		/// </returns>
-		virtual public ByteInputBuffer ByteInputBuffer
-		{
-			get
-			{
-				return in_Renamed;
-			}
-			
-		}
-		
+		public virtual ByteInputBuffer ByteInputBuffer => in_Renamed;
+
 		/// <summary>The data structures containing the probabilities for the LPS </summary>
 		//UPGRADE_NOTE: Final was removed from the declaration of 'qe'. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
 		internal static readonly uint[] qe = new uint[]{0x5601, 0x3401, 0x1801, 0x0ac1, 0x0521, 0x0221, 0x5601, 0x5401, 0x4801, 0x3801, 0x3001, 0x2401, 0x1c01, 0x1601, 0x5601, 0x5401, 0x5101, 0x4801, 0x3801, 0x3401, 0x3001, 0x2801, 0x2401, 0x2201, 0x1c01, 0x1801, 0x1601, 0x1401, 0x1201, 0x1101, 0x0ac1, 0x09c1, 0x08a1, 0x0521, 0x0441, 0x02a1, 0x0221, 0x0141, 0x0111, 0x0085, 0x0049, 0x0025, 0x0015, 0x0009, 0x0005, 0x0001, 0x5601};
@@ -179,10 +166,10 @@ namespace CSJ2K.j2k.entropy.decoder
 		/// is low enough) and the A and C registers permit decoding several MPS
 		/// symbols without renormalization.
 		/// 
-		/// <P>Speedup mode should be used when decoding long runs of MPS with high
+		/// Speedup mode should be used when decoding long runs of MPS with high
 		/// probability with the same context.
 		/// 
-		/// <P>This methiod will return the decoded symbols differently if speedup 
+		/// This methiod will return the decoded symbols differently if speedup 
 		/// mode was used or not. If true is returned, then speedup mode was used
 		/// and the 'n' decoded symbols are all the same and it is returned ain
 		/// bits[0] only. If false is returned then speedup mode was not used, the
@@ -351,7 +338,7 @@ namespace CSJ2K.j2k.entropy.decoder
 		/// an array in which to put the decoded symbols and an array of contexts 
 		/// with which to decode them. 
 		/// 
-		/// <P>Each context has a current MPS and an index describing what the
+		/// Each context has a current MPS and an index describing what the
 		/// current probability is for the LPS. Each bit is decoded and if the
 		/// probability of the LPS exceeds .5, the MPS and LPS are switched.
 		/// 
@@ -482,7 +469,7 @@ namespace CSJ2K.j2k.entropy.decoder
 		/// <summary> Arithmetically decodes one symbol from the bit stream with the given
 		/// context and returns its decoded value.
 		/// 
-		/// <P>Each context has a current MPS and an index describing what the
+		/// Each context has a current MPS and an index describing what the
 		/// current probability is for the LPS. Each bit is encoded and if the
 		/// probability of the LPS exceeds .5, the MPS and LPS are switched.
 		/// 
@@ -789,7 +776,7 @@ namespace CSJ2K.j2k.entropy.decoder
 		/// context states. It sets the registers (A,C,B) and the "marker found"
 		/// state to the initial state, to start the decoding of a new segment.
 		/// 
-		/// <P>To have a complete reset of the MQ (as if a new MQDecoder object was
+		/// To have a complete reset of the MQ (as if a new MQDecoder object was
 		/// created) 'resetCtxts()' should be called after this method.
 		/// 
 		/// </summary>

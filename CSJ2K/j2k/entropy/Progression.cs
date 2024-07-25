@@ -12,10 +12,10 @@
 *
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -115,34 +115,34 @@ namespace CSJ2K.j2k.entropy
 			this.lye = lye;
 		}
 		
-		public override System.String ToString()
+		public override string ToString()
 		{
-			System.String str = "type= ";
+			var str = "type= ";
 			switch (type)
 			{
 				
-				case CSJ2K.j2k.codestream.ProgressionType.LY_RES_COMP_POS_PROG: 
+				case ProgressionType.LY_RES_COMP_POS_PROG: 
 					str += "layer, ";
 					break;
 				
-				case CSJ2K.j2k.codestream.ProgressionType.RES_LY_COMP_POS_PROG: 
+				case ProgressionType.RES_LY_COMP_POS_PROG: 
 					str += "res, ";
 					break;
 				
-				case CSJ2K.j2k.codestream.ProgressionType.RES_POS_COMP_LY_PROG: 
+				case ProgressionType.RES_POS_COMP_LY_PROG: 
 					str += "res-pos, ";
 					break;
 				
-				case CSJ2K.j2k.codestream.ProgressionType.POS_COMP_RES_LY_PROG: 
+				case ProgressionType.POS_COMP_RES_LY_PROG: 
 					str += "pos-comp, ";
 					break;
 				
-				case CSJ2K.j2k.codestream.ProgressionType.COMP_POS_RES_LY_PROG: 
+				case ProgressionType.COMP_POS_RES_LY_PROG: 
 					str += "pos-comp, ";
 					break;
 				
 				default: 
-					throw new System.InvalidOperationException("Unknown progression type");
+					throw new InvalidOperationException("Unknown progression type");
 				
 			}
 			str += ("comp.: " + cs + "-" + ce + ", ");

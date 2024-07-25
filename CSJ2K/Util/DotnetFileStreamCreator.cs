@@ -25,7 +25,7 @@ namespace CSJ2K.Util
         {
             if (mode.Equals("rw", StringComparison.OrdinalIgnoreCase)) return new FileStream(path, FileMode.OpenOrCreate, FileAccess.ReadWrite);
             if (mode.Equals("r", StringComparison.OrdinalIgnoreCase)) return new FileStream(path, FileMode.Open, FileAccess.Read);
-            throw new ArgumentException(String.Format("File mode: {0} not supported.", mode), "mode");
+            throw new ArgumentException($"File mode: {mode} not supported.", nameof(mode));
         }
 
         #endregion

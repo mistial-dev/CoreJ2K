@@ -11,10 +11,10 @@
 *
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -52,7 +52,7 @@ namespace CSJ2K.j2k.entropy.encoder
 	/// between the optimized layers, with the difference that they are not
 	/// optimized (i.e. they have no precise target bitrate).
 	/// 
-	/// <p>The overall target bitrate for the bit stream is always added as the
+	/// The overall target bitrate for the bit stream is always added as the
 	/// last optimization point without any extra layers after it. If there are
 	/// some optimization points whose target bitrate is larger than the overall
 	/// target bitrate, the overall target bitrate will still appear as the last
@@ -61,11 +61,11 @@ namespace CSJ2K.j2k.entropy.encoder
 	/// responsible for eliminating layers that have target bitrates larger than
 	/// the overall target bitrate.</p>
 	/// 
-	/// <p>Optimization points can be added with the addOptPoint() method. It takes
+	/// Optimization points can be added with the addOptPoint() method. It takes
 	/// the target bitrate for the optimized layer and the number of extra layers
 	/// to add after it.</p>
 	/// 
-	/// <p>Information about the total number of layers, total number of
+	/// Information about the total number of layers, total number of
 	/// optimization points, target bitrates, etc. can be obtained with the other
 	/// methods.</p>
 	/// 
@@ -78,14 +78,8 @@ namespace CSJ2K.j2k.entropy.encoder
 		/// <returns> The overall target bitrate
 		/// 
 		/// </returns>
-		virtual public float TotBitrate
-		{
-			get
-			{
-				return totbrate;
-			}
-			
-		}
+		public virtual float TotBitrate => totbrate;
+
 		/// <summary> Returns the total number of layers, according to the layer
 		/// specification of this object and the overall target bitrate.
 		/// 
@@ -93,14 +87,8 @@ namespace CSJ2K.j2k.entropy.encoder
 		/// <returns> The total number of layers, according to the layer spec.
 		/// 
 		/// </returns>
-		virtual public int TotNumLayers
-		{
-			get
-			{
-				return totlyrs;
-			}
-			
-		}
+		public virtual int TotNumLayers => totlyrs;
+
 		/// <summary> Returns the number of layers to optimize, or optimization points, as
 		/// specified by this object.
 		/// 
@@ -108,16 +96,10 @@ namespace CSJ2K.j2k.entropy.encoder
 		/// <returns> The number of optimization points
 		/// 
 		/// </returns>
-		virtual public int NOptPoints
-		{
-			get
-			{
-				// overall target bitrate is counted as extra
-				return nopt + 1;
-			}
-			
-		}
-		
+		public virtual int NOptPoints =>
+			// overall target bitrate is counted as extra
+			nopt + 1;
+
 		/// <summary>The initial size for the arrays: 10 </summary>
 		private const int SZ_INIT = 10;
 		
@@ -160,7 +142,7 @@ namespace CSJ2K.j2k.entropy.encoder
 		{
 			if (brate <= 0)
 			{
-				throw new System.ArgumentException("Overall target bitrate must " + "be a positive number");
+				throw new ArgumentException("Overall target bitrate must " + "be a positive number");
 			}
 			totbrate = brate;
 		}
@@ -217,22 +199,22 @@ namespace CSJ2K.j2k.entropy.encoder
 			// Check validity of arguments
 			if (brate <= 0)
 			{
-				throw new System.ArgumentException("Target bitrate must be positive");
+				throw new ArgumentException("Target bitrate must be positive");
 			}
 			if (elyrs < 0)
 			{
-				throw new System.ArgumentException("The number of extra layers " + "must be 0 or more");
+				throw new ArgumentException("The number of extra layers " + "must be 0 or more");
 			}
 			if (nopt > 0 && optbrate[nopt - 1] >= brate)
 			{
-				throw new System.ArgumentException("New optimization point must have " + "a target bitrate higher than the " + "preceding one");
+				throw new ArgumentException("New optimization point must have " + "a target bitrate higher than the " + "preceding one");
 			}
 			// Check room for new optimization point
 			if (optbrate.Length == nopt)
 			{
 				// Need more room
-				float[] tbr = optbrate;
-				int[] tel = extralyrs;
+				var tbr = optbrate;
+				var tel = extralyrs;
 				// both arrays always have same size
 				optbrate = new float[optbrate.Length + SZ_INCR];
 				extralyrs = new int[extralyrs.Length + SZ_INCR];

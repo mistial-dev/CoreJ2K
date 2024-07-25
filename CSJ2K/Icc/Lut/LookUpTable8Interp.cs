@@ -36,15 +36,15 @@ namespace CSJ2K.Icc.Lut
 			double dfLow, dfHigh; // Interpolation values
 			double dfOut; // Output LUT value
 			
-			dfRatio = (double) (curve.count - 1) / (double) (dwNumInput - 1);
+			dfRatio = (curve.count - 1) / (double) (dwNumInput - 1);
 			
-			for (int i = 0; i < dwNumInput; i++)
+			for (var i = 0; i < dwNumInput; i++)
 			{
-				dfTargetIndex = (double) i * dfRatio;
-				dfLowIndex = System.Math.Floor(dfTargetIndex);
+				dfTargetIndex = i * dfRatio;
+				dfLowIndex = Math.Floor(dfTargetIndex);
 				//UPGRADE_WARNING: Data types in Visual C# might be different.  Verify the accuracy of narrowing conversions. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1042'"
 				dwLowIndex = (int) dfLowIndex;
-				dfHighIndex = System.Math.Ceiling(dfTargetIndex);
+				dfHighIndex = Math.Ceiling(dfTargetIndex);
 				//UPGRADE_WARNING: Data types in Visual C# might be different.  Verify the accuracy of narrowing conversions. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1042'"
 				dwHighIndex = (int) dfHighIndex;
 				
@@ -58,7 +58,7 @@ namespace CSJ2K.Icc.Lut
 				}
 				
 				//UPGRADE_WARNING: Data types in Visual C# might be different.  Verify the accuracy of narrowing conversions. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1042'"
-				lut[i] = (byte) System.Math.Floor(dfOut * dwMaxOutput + 0.5);
+				lut[i] = (byte) Math.Floor(dfOut * dwMaxOutput + 0.5);
 			}
 		}
 		

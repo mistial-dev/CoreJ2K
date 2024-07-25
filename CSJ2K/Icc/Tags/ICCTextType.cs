@@ -23,7 +23,7 @@ namespace CSJ2K.Icc.Tags
 		
 		/// <summary>Tag fields </summary>
 		//UPGRADE_NOTE: Final was removed from the declaration of 'type '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
-		new public int type;
+		public new int type;
 		/// <summary>Tag fields </summary>
 		//UPGRADE_NOTE: Final was removed from the declaration of 'reserved '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
 		public int reserved;
@@ -46,7 +46,7 @@ namespace CSJ2K.Icc.Tags
 			offset += ICCProfile.int_size;
             reserved = ICCProfile.getInt(data, offset);
 			offset += ICCProfile.int_size;
-			int size = 0;
+			var size = 0;
 			while (data[offset + size] != 0)
 				++size;
 			ascii = new byte[size];
@@ -54,9 +54,9 @@ namespace CSJ2K.Icc.Tags
 		}
 		
 		/// <summary>Return the string rep of this tag. </summary>
-		public override System.String ToString()
+		public override string ToString()
 		{
-			return "[" + base.ToString() + " \"" + System.Text.Encoding.UTF8.GetString(ascii, 0, ascii.Length) + "\"]";
+			return $"[{base.ToString()} \"{System.Text.Encoding.UTF8.GetString(ascii, 0, ascii.Length)}\"]";
 		}
 		
 		/* end class ICCTextType */

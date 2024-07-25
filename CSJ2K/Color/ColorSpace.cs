@@ -41,52 +41,19 @@ namespace CSJ2K.Color
 		/// </summary>
 		/// <returns> the ICC Profile as a byte [].
 		/// </returns>
-		virtual public byte[] ICCProfile
-		{
-			get
-			{
-				return csbox.ICCProfile;
-			}
-			
-		}
+		public virtual byte[] ICCProfile => csbox.ICCProfile;
+
 		/// <summary>Return the colorspace method (Profiled, enumerated, or palettized). </summary>
-		virtual public MethodEnum Method
-		{
-			get
-			{
-				return csbox.Method;
-			}
-			
-		}
+		public virtual MethodEnum Method => csbox.Method;
+
 		/// <summary>Return number of channels in the palette. </summary>
-		virtual public PaletteBox PaletteBox
-		{
-			get
-			{
-				return pbox;
-			}
-			
-		}
+		public virtual PaletteBox PaletteBox => pbox;
+
 		/// <summary>Return number of channels in the palette. </summary>
-		virtual public int PaletteChannels
-		{
-			get
-			{
-				return pbox == null?0:pbox.NumColumns;
-			}
-			
-		}
+		public virtual int PaletteChannels => pbox == null?0:pbox.NumColumns;
+
 		/// <summary>Is palettized predicate. </summary>
-		virtual public bool Palettized
-		{
-			get
-			{
-				return pbox != null;
-			}
-			
-		}
-		//UPGRADE_NOTE: Final was removed from the declaration of 'eol '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
-		public static readonly System.String eol = System.Environment.NewLine;
+		public virtual bool Palettized => pbox != null;
 		
 		// Renamed for convenience:
 		internal const int GRAY = 0;
@@ -111,23 +78,23 @@ namespace CSJ2K.Color
 		private RandomAccessIO in_Renamed = null;
 		
 		/// <summary>Indent a String that contains newlines. </summary>
-		public static System.String indent(System.String ident, System.Text.StringBuilder instr)
+		public static string indent(string ident, System.Text.StringBuilder instr)
 		{
 			return indent(ident, instr.ToString());
 		}
 		
 		/// <summary>Indent a String that contains newlines. </summary>
-		public static System.String indent(System.String ident, System.String instr)
+		public static string indent(string ident, string instr)
 		{
-			System.Text.StringBuilder tgt = new System.Text.StringBuilder(instr);
-			char eolChar = eol[0];
-			int i = tgt.Length;
+			var tgt = new System.Text.StringBuilder(instr);
+			var eolChar = Environment.NewLine[0];
+			var i = tgt.Length;
 			while (--i > 0)
 			{
 				if (tgt[i] == eolChar)
 					tgt.Insert(i + 1, ident);
 			}
-			return ident + tgt.ToString();
+			return ident + tgt;
 		}
 		
 		/// <summary> public constructor which takes in the image, parameterlist and the
@@ -157,9 +124,9 @@ namespace CSJ2K.Color
 			//byte[] data;
 			int type;
 			long len = 0;
-			int boxStart = 0;
-			byte[] boxHeader = new byte[16];
-			int i = 0;
+			var boxStart = 0;
+			var boxHeader = new byte[16];
+			var i = 0;
 			
 			// Search the toplevel boxes for the header box
 			while (true)
@@ -168,26 +135,26 @@ namespace CSJ2K.Color
 				in_Renamed.readFully(boxHeader, 0, 16);
                 // CONVERSION PROBLEM?
 
-                len = (long)CSJ2K.Icc.ICCProfile.getInt(boxHeader, 0);
+                len = CSJ2K.Icc.ICCProfile.getInt(boxHeader, 0);
 				if (len == 1)
                     len = CSJ2K.Icc.ICCProfile.getLong(boxHeader, 8); // Extended
 				// length
                 type = CSJ2K.Icc.ICCProfile.getInt(boxHeader, 4);
 				
 				// Verify the contents of the file so far.
-				if (i == 0 && type != CSJ2K.j2k.fileformat.FileFormatBoxes.JP2_SIGNATURE_BOX)
+				if (i == 0 && type != FileFormatBoxes.JP2_SIGNATURE_BOX)
 				{
 					throw new ColorSpaceException("first box in image not " + "signature");
 				}
-				else if (i == 1 && type != CSJ2K.j2k.fileformat.FileFormatBoxes.FILE_TYPE_BOX)
+				else if (i == 1 && type != FileFormatBoxes.FILE_TYPE_BOX)
 				{
 					throw new ColorSpaceException("second box in image not file");
 				}
-				else if (type == CSJ2K.j2k.fileformat.FileFormatBoxes.CONTIGUOUS_CODESTREAM_BOX)
+				else if (type == FileFormatBoxes.CONTIGUOUS_CODESTREAM_BOX)
 				{
 					throw new ColorSpaceException("header box not found in image");
 				}
-				else if (type == CSJ2K.j2k.fileformat.FileFormatBoxes.JP2_HEADER_BOX)
+				else if (type == FileFormatBoxes.JP2_HEADER_BOX)
 				{
 					break;
 				}
@@ -199,7 +166,7 @@ namespace CSJ2K.Color
 			
 			// boxStart indexes the start of the JP2_HEADER_BOX,
 			// make headerBoxEnd index the end of the box.
-			long headerBoxEnd = boxStart + len;
+			var headerBoxEnd = boxStart + len;
 			
 			if (len == 1)
 				boxStart += 8; // Extended length header
@@ -208,31 +175,31 @@ namespace CSJ2K.Color
 			{
 				in_Renamed.seek(boxStart);
 				in_Renamed.readFully(boxHeader, 0, 16);
-                len = (long)CSJ2K.Icc.ICCProfile.getInt(boxHeader, 0);
+                len = CSJ2K.Icc.ICCProfile.getInt(boxHeader, 0);
 				if (len == 1)
 					throw new ColorSpaceException("Extended length boxes " + "not supported");
-                type = (int)CSJ2K.Icc.ICCProfile.getInt(boxHeader, 4);
+                type = CSJ2K.Icc.ICCProfile.getInt(boxHeader, 4);
 				
 				switch (type)
 				{
 					
-					case CSJ2K.j2k.fileformat.FileFormatBoxes.IMAGE_HEADER_BOX: 
+					case FileFormatBoxes.IMAGE_HEADER_BOX: 
 						ihbox = new ImageHeaderBox(in_Renamed, boxStart);
 						break;
 					
-					case CSJ2K.j2k.fileformat.FileFormatBoxes.COLOUR_SPECIFICATION_BOX: 
+					case FileFormatBoxes.COLOUR_SPECIFICATION_BOX: 
 						csbox = new ColorSpecificationBox(in_Renamed, boxStart);
 						break;
 					
-					case CSJ2K.j2k.fileformat.FileFormatBoxes.CHANNEL_DEFINITION_BOX: 
+					case FileFormatBoxes.CHANNEL_DEFINITION_BOX: 
 						cdbox = new ChannelDefinitionBox(in_Renamed, boxStart);
 						break;
 					
-					case CSJ2K.j2k.fileformat.FileFormatBoxes.COMPONENT_MAPPING_BOX: 
+					case FileFormatBoxes.COMPONENT_MAPPING_BOX: 
 						cmbox = new ComponentMappingBox(in_Renamed, boxStart);
 						break;
 					
-					case CSJ2K.j2k.fileformat.FileFormatBoxes.PALETTE_BOX: 
+					case FileFormatBoxes.PALETTE_BOX: 
 						pbox = new PaletteBox(in_Renamed, boxStart);
 						break;
 					
@@ -253,10 +220,7 @@ namespace CSJ2K.Color
 		/// <summary>Return the channel definition of the input component. </summary>
 		public virtual int getChannelDefinition(int c)
 		{
-			if (cdbox == null)
-				return c;
-			else
-				return cdbox.getCn(c + 1);
+			return cdbox == null ? c : cdbox.getCn(c + 1);
 		}
 		
 		/// <summary>Return the colorspace (sYCC, sRGB, sGreyScale). </summary>
@@ -268,7 +232,7 @@ namespace CSJ2K.Color
 		/// <summary>Return bitdepth of the palette entries. </summary>
 		public virtual int getPaletteChannelBits(int c)
 		{
-			return pbox == null ? 0 : (int)pbox.getBitDepth(c);
+			return pbox == null ? 0 : pbox.getBitDepth(c);
 		}
 		
 		/// <summary> Return a palettized sample</summary>
@@ -290,28 +254,28 @@ namespace CSJ2K.Color
 		}
 		
 		/// <summary>Return a suitable String representation of the class instance. </summary>
-		public override System.String ToString()
+		public override string ToString()
 		{
-			System.Text.StringBuilder rep = new System.Text.StringBuilder("[ColorSpace is ").Append(csbox.MethodString).Append(Palettized?"  and palettized ":" ").Append(Method == MethodEnum.ENUMERATED?csbox.ColorSpaceString:"");
+			var rep = new System.Text.StringBuilder("[ColorSpace is ").Append(csbox.MethodString).Append(Palettized?"  and palettized ":" ").Append(Method == MethodEnum.ENUMERATED?csbox.ColorSpaceString:"");
 			if (ihbox != null)
 			{
-				rep.Append(eol).Append(indent("    ", ihbox.ToString()));
+				rep.Append(Environment.NewLine).Append(indent("    ", ihbox.ToString()));
 			}
 			if (cdbox != null)
 			{
-				rep.Append(eol).Append(indent("    ", cdbox.ToString()));
+				rep.Append(Environment.NewLine).Append(indent("    ", cdbox.ToString()));
 			}
 			if (csbox != null)
 			{
-				rep.Append(eol).Append(indent("    ", csbox.ToString()));
+				rep.Append(Environment.NewLine).Append(indent("    ", csbox.ToString()));
 			}
 			if (pbox != null)
 			{
-				rep.Append(eol).Append(indent("    ", pbox.ToString()));
+				rep.Append(Environment.NewLine).Append(indent("    ", pbox.ToString()));
 			}
 			if (cmbox != null)
 			{
-				rep.Append(eol).Append(indent("    ", cmbox.ToString()));
+				rep.Append(Environment.NewLine).Append(indent("    ", cmbox.ToString()));
 			}
 			return rep.Append("]").ToString();
 		}

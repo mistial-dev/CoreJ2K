@@ -29,9 +29,6 @@ namespace CSJ2K.Icc
 		/// <summary>Returns the appropriate input type enum. </summary>
 		public abstract int Type{get;}
 		
-		//UPGRADE_NOTE: Final was removed from the declaration of 'eol '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
-		protected internal static readonly System.String eol = System.Environment.NewLine;
-		
 		/// <summary> Factory method for creating a RestrictedICCProfile from 
 		/// 3 component curve and colorant data.
 		/// </summary>

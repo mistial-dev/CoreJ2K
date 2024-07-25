@@ -46,7 +46,7 @@ namespace CSJ2K.Color
 		/// </param>
 		/// <returns> Resampler instance
 		/// </returns>
-		public static new BlkImgDataSrc createInstance(BlkImgDataSrc src, ColorSpace csMap)
+		public new static BlkImgDataSrc createInstance(BlkImgDataSrc src, ColorSpace csMap)
 		{
 			return new Resampler(src, csMap);
 		}
@@ -70,17 +70,17 @@ namespace CSJ2K.Color
 			// Calculate the minimum and maximum subsampling factor
 			// across all channels.
 			
-			int minX = src.getCompSubsX(0);
-			int minY = src.getCompSubsY(0);
-			int maxX = minX;
-			int maxY = minY;
+			var minX = src.getCompSubsX(0);
+			var minY = src.getCompSubsY(0);
+			var maxX = minX;
+			var maxY = minY;
 			
 			for (c = 1; c < ncomps; ++c)
 			{
-				minX = System.Math.Min(minX, src.getCompSubsX(c));
-				minY = System.Math.Min(minY, src.getCompSubsY(c));
-				maxX = System.Math.Max(maxX, src.getCompSubsX(c));
-				maxY = System.Math.Max(maxY, src.getCompSubsY(c));
+				minX = Math.Min(minX, src.getCompSubsX(c));
+				minY = Math.Min(minY, src.getCompSubsY(c));
+				maxX = Math.Max(maxX, src.getCompSubsX(c));
+				maxY = Math.Max(maxY, src.getCompSubsY(c));
 			}
 			
 			// Throw an exception for other than 2:1 sampling.
@@ -106,18 +106,18 @@ namespace CSJ2K.Color
 		/// returned, as a copy of the internal data, therefore the returned data
 		/// can be modified "in place".
 		/// 
-		/// <P>The rectangular area to return is specified by the 'ulx', 'uly', 'w'
+		/// The rectangular area to return is specified by the 'ulx', 'uly', 'w'
 		/// and 'h' members of the 'blk' argument, relative to the current
 		/// tile. These members are not modified by this method. The 'offset' of
 		/// the returned data is 0, and the 'scanw' is the same as the block's
 		/// width. See the 'DataBlk' class.
 		/// 
-		/// <P>If the data array in 'blk' is 'null', then a new one is created. If
+		/// If the data array in 'blk' is 'null', then a new one is created. If
 		/// the data array is not 'null' then it is reused, and it must be large
 		/// enough to contain the block's data. Otherwise an 'ArrayStoreException'
 		/// or an 'IndexOutOfBoundsException' is thrown by the Java system.
 		/// 
-		/// <P>The returned data has its 'progressive' attribute set to that of the
+		/// The returned data has its 'progressive' attribute set to that of the
 		/// input data.
 		/// 
 		/// </summary>
@@ -134,27 +134,27 @@ namespace CSJ2K.Color
 		/// <returns> The requested DataBlk
 		/// 
 		/// </returns>
-		/// <seealso cref="getCompData">
+		/// <seealso cref="GetCompData">
 		/// </seealso>
-		public override DataBlk getInternCompData(DataBlk outblk, int c)
+		public override DataBlk GetInternCompData(DataBlk outblk, int c)
 		{
 			
 			// If the scaling factor of this channel is 1 in both
 			// directions, simply return the source DataBlk.
 			
 			if (src.getCompSubsX(c) == 1 && src.getCompSubsY(c) == 1)
-				return src.getInternCompData(outblk, c);
+				return src.GetInternCompData(outblk, c);
 			
-			int wfactor = src.getCompSubsX(c);
-			int hfactor = src.getCompSubsY(c);
+			var wfactor = src.getCompSubsX(c);
+			var hfactor = src.getCompSubsY(c);
 			if ((wfactor != 2 && wfactor != 1) || (hfactor != 2 && hfactor != 1))
-				throw new System.ArgumentException("Upsampling by other than 2:1" + " not supported");
+				throw new ArgumentException("Upsampling by other than 2:1" + " not supported");
 			
-			int leftedgeOut = - 1; // offset to the start of the output scanline
-			int rightedgeOut = - 1; // offset to the end of the output
+			var leftedgeOut = - 1; // offset to the start of the output scanline
+			var rightedgeOut = - 1; // offset to the end of the output
 			// scanline + 1
-			int leftedgeIn = - 1; // offset to the start of the input scanline  
-			int rightedgeIn = - 1; // offset to the end of the input scanline + 1
+			var leftedgeIn = - 1; // offset to the start of the input scanline  
+			var rightedgeIn = - 1; // offset to the end of the input scanline + 1
 			
 			
 			int y0In, y1In, y0Out, y1Out;
@@ -175,12 +175,12 @@ namespace CSJ2K.Color
 			
 			// Calculate the requested height and width, requesting an extra
 			// row and or for upsampled channels.
-			int reqW = x1In - x0In + 1;
-			int reqH = y1In - y0In + 1;
+			var reqW = x1In - x0In + 1;
+			var reqH = y1In - y0In + 1;
 			
 			// Initialize general input and output indexes
-			int kOut = - 1;
-			int kIn = - 1;
+			var kOut = - 1;
+			var kIn = - 1;
 			int yIn;
 			
 			switch (outblk.DataType)
@@ -189,12 +189,12 @@ namespace CSJ2K.Color
 				
 				case DataBlk.TYPE_INT: 
 					
-					DataBlkInt inblkInt = new DataBlkInt(x0In, y0In, reqW, reqH);
-					inblkInt = (DataBlkInt) src.getInternCompData(inblkInt, c);
+					var inblkInt = new DataBlkInt(x0In, y0In, reqW, reqH);
+					inblkInt = (DataBlkInt) src.GetInternCompData(inblkInt, c);
 					dataInt[c] = inblkInt.DataInt;
 					
 					// Reference the working array   
-					int[] outdataInt = (int[]) outblk.Data;
+					var outdataInt = (int[]) outblk.Data;
 					
 					// Create data array if necessary
 					if (outdataInt == null || outdataInt.Length != outblk.w * outblk.h)
@@ -205,7 +205,7 @@ namespace CSJ2K.Color
 					
 					// The nitty-gritty.
 					
-					for (int yOut = y0Out; yOut <= y1Out; ++yOut)
+					for (var yOut = y0Out; yOut <= y1Out; ++yOut)
 					{
 						
 						yIn = yOut / hfactor;
@@ -250,12 +250,12 @@ namespace CSJ2K.Color
 				
 				case DataBlk.TYPE_FLOAT: 
 					
-					DataBlkFloat inblkFloat = new DataBlkFloat(x0In, y0In, reqW, reqH);
-					inblkFloat = (DataBlkFloat) src.getInternCompData(inblkFloat, c);
+					var inblkFloat = new DataBlkFloat(x0In, y0In, reqW, reqH);
+					inblkFloat = (DataBlkFloat) src.GetInternCompData(inblkFloat, c);
 					dataFloat[c] = inblkFloat.DataFloat;
 					
 					// Reference the working array   
-					float[] outdataFloat = (float[]) outblk.Data;
+					var outdataFloat = (float[]) outblk.Data;
 					
 					// Create data array if necessary
 					if (outdataFloat == null || outdataFloat.Length != outblk.w * outblk.h)
@@ -266,7 +266,7 @@ namespace CSJ2K.Color
 					
 					// The nitty-gritty.
 					
-					for (int yOut = y0Out; yOut <= y1Out; ++yOut)
+					for (var yOut = y0Out; yOut <= y1Out; ++yOut)
 					{
 						
 						yIn = yOut / hfactor;
@@ -313,7 +313,7 @@ namespace CSJ2K.Color
 				case DataBlk.TYPE_BYTE: 
 				default: 
 					// Unsupported output type. 
-					throw new System.ArgumentException("invalid source datablock " + "type");
+					throw new ArgumentException("invalid source datablock " + "type");
 				}
 			
 			return outblk;
@@ -321,13 +321,13 @@ namespace CSJ2K.Color
 		
 		
 		/// <summary> Return an appropriate String representation of this Resampler instance.</summary>
-		public override System.String ToString()
+		public override string ToString()
 		{
-			System.Text.StringBuilder rep = new System.Text.StringBuilder("[Resampler: ncomps= " + ncomps);
-			System.Text.StringBuilder body = new System.Text.StringBuilder("  ");
-			for (int i = 0; i < ncomps; ++i)
+			var rep = new System.Text.StringBuilder($"[Resampler: ncomps= {ncomps}");
+			var body = new System.Text.StringBuilder("  ");
+			for (var i = 0; i < ncomps; ++i)
 			{
-				body.Append(eol);
+				body.Append(Environment.NewLine);
 				body.Append("comp[");
 				body.Append(i);
 				body.Append("] xscale= ");
@@ -347,18 +347,18 @@ namespace CSJ2K.Color
 		/// returned, as a copy of the internal data, therefore the returned data
 		/// can be modified "in place".
 		/// 
-		/// <P>The rectangular area to return is specified by the 'ulx', 'uly', 'w'
+		/// The rectangular area to return is specified by the 'ulx', 'uly', 'w'
 		/// and 'h' members of the 'blk' argument, relative to the current
 		/// tile. These members are not modified by this method. The 'offset' of
 		/// the returned data is 0, and the 'scanw' is the same as the block's
 		/// width. See the 'DataBlk' class.
 		/// 
-		/// <P>If the data array in 'blk' is 'null', then a new one is created. If
+		/// If the data array in 'blk' is 'null', then a new one is created. If
 		/// the data array is not 'null' then it is reused, and it must be large
 		/// enough to contain the block's data. Otherwise an 'ArrayStoreException'
 		/// or an 'IndexOutOfBoundsException' is thrown by the Java system.
 		/// 
-		/// <P>The returned data has its 'progressive' attribute set to that of the
+		/// The returned data has its 'progressive' attribute set to that of the
 		/// input data.
 		/// 
 		/// </summary>
@@ -375,12 +375,12 @@ namespace CSJ2K.Color
 		/// <returns> The requested DataBlk
 		/// 
 		/// </returns>
-		/// <seealso cref="getInternCompData">
+		/// <seealso cref="GetInternCompData">
 		/// 
 		/// </seealso>
-		public override DataBlk getCompData(DataBlk outblk, int c)
+		public override DataBlk GetCompData(DataBlk outblk, int c)
 		{
-			return getInternCompData(outblk, c);
+			return GetInternCompData(outblk, c);
 		}
 		
 		

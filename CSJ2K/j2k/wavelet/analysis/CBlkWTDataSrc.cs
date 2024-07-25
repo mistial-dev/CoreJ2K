@@ -12,10 +12,10 @@
 * 
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -52,10 +52,10 @@ namespace CSJ2K.j2k.wavelet.analysis
 	/// 'getNextInternCodeBlock()' a new code-block is returned. The code-blocks
 	/// are returned in no specific order.
 	/// 
-	/// <p>This class is the source of data for the quantizer. See the 'Quantizer'
+	/// This class is the source of data for the quantizer. See the 'Quantizer'
 	/// class.</p>
 	/// 
-	/// <p>Note that no more of one object may request data, otherwise one object
+	/// Note that no more of one object may request data, otherwise one object
 	/// would get some of the data and another one another part, in no defined
 	/// manner.</p>
 	/// 
@@ -116,18 +116,18 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// the code-blocks have been returned for the current tile calls to this
 		/// method will return 'null'.
 		/// 
-		/// <p>When changing the current tile (through 'setTile()' or 'nextTile()')
+		/// When changing the current tile (through 'setTile()' or 'nextTile()')
 		/// this method will always return the first code-block, as if this method
 		/// was never called before for the new current tile.</p>
 		/// 
-		/// <p>The data returned by this method is always a copy of the internal
+		/// The data returned by this method is always a copy of the internal
 		/// data of this object, if any, and it can be modified "in place" without
 		/// any problems after being returned. The 'offset' of the returned data is
 		/// 0, and the 'scanw' is the same as the code-block width.  The 'magbits'
 		/// of the returned data is not set by this method and should be
 		/// ignored. See the 'CBlkWTData' class.</p>
 		/// 
-		/// <p>The 'ulx' and 'uly' members of the returned 'CBlkWTData' object
+		/// The 'ulx' and 'uly' members of the returned 'CBlkWTData' object
 		/// contain the coordinates of the top-left corner of the block, with
 		/// respect to the tile, not the subband.</p>
 		/// 
@@ -158,17 +158,17 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// have been returned for the current tile calls to this method will
 		/// return 'null'.
 		/// 
-		/// <p>When changing the current tile (through 'setTile()' or 'nextTile()')
+		/// When changing the current tile (through 'setTile()' or 'nextTile()')
 		/// this method will always return the first code-block, as if this method
 		/// was never called before for the new current tile.</p>
 		/// 
-		/// <p>The data returned by this method can be the data in the internal
+		/// The data returned by this method can be the data in the internal
 		/// buffer of this object, if any, and thus can not be modified by the
 		/// caller. The 'offset' and 'scanw' of the returned data can be
 		/// arbitrary. The 'magbits' of the returned data is not set by this method
 		/// and should be ignored. See the 'CBlkWTData' class.</p>
 		/// 
-		/// <p>The 'ulx' and 'uly' members of the returned 'CBlkWTData' object
+		/// The 'ulx' and 'uly' members of the returned 'CBlkWTData' object
 		/// contain the coordinates of the top-left corner of the block, with
 		/// respect to the tile, not the subband.</p>
 		/// 

@@ -20,13 +20,13 @@ namespace CSJ2K.Icc
 	/// </version>
 	/// <author> 	Bruce A. Kern
 	/// </author>
-	public class ICCProfileException:System.Exception
+	public class ICCProfileException:Exception
 	{
 		
 		/// <summary>  Contruct with message</summary>
 		/// <param name="msg">returned by getMessage()
 		/// </param>
-		public ICCProfileException(System.String msg):base(msg)
+		public ICCProfileException(string msg):base(msg)
 		{
 		}
 		

@@ -11,10 +11,10 @@
 /// 
 /// COPYRIGHT:
 /// 
-/// This software module was originally developed by Raphaël Grosbois and
+/// This software module was originally developed by Raphaï¿½l Grosbois and
 /// Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-/// Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-/// Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+/// Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+/// Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 /// Centre France S.A) in the course of development of the JPEG2000
 /// standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 /// software module is an implementation of a part of the JPEG 2000
@@ -50,16 +50,16 @@ namespace CSJ2K.j2k.image.input
 	/// <summary> This is the generic interface to be implemented by all image file (or other
 	/// resource) readers for different image file formats.
 	/// 
-	/// <p>An ImgReader behaves as an ImgData object. Whenever image data is
+	/// An ImgReader behaves as an ImgData object. Whenever image data is
 	/// requested through the getInternCompData() or getCompData() methods, the
 	/// image data will be read (if it is not buffered) and returned. Implementing
 	/// classes should not buffer large amounts of data, so as to reduce memory
 	/// usage.</p>
 	/// 
-	/// <p>This class sets the image origin to (0,0). All default implementations
+	/// This class sets the image origin to (0,0). All default implementations
 	/// of the methods assume this.</p>
 	/// 
-	/// <p>This class provides default implementations of many methods. These
+	/// This class provides default implementations of many methods. These
 	/// default implementations assume that there is no tiling (i.e., the only tile
 	/// is the entire image), that the image origin is (0,0) in the canvas system
 	/// and that there is no component subsampling (all components are the same
@@ -77,14 +77,8 @@ namespace CSJ2K.j2k.image.input
 		/// <returns> The total image width in pixels.
 		/// 
 		/// </returns>
-		virtual public int TileWidth
-		{
-			get
-			{
-				return w;
-			}
-			
-		}
+		public virtual int TileWidth => w;
+
 		/// <summary> Returns the overall height of the current tile in pixels, assuming
 		/// there is no-tiling. Since no-tiling is assumed this is the same as the
 		/// width of the image. The value of <tt>h</tt> is returned.
@@ -92,32 +86,14 @@ namespace CSJ2K.j2k.image.input
 		/// </summary>
 		/// <returns> The total image height in pixels.  
 		/// </returns>
-		virtual public int TileHeight
-		{
-			get
-			{
-				return h;
-			}
-			
-		}
+		public virtual int TileHeight => h;
+
 		/// <summary>Returns the nominal tiles width </summary>
-		virtual public int NomTileWidth
-		{
-			get
-			{
-				return w;
-			}
-			
-		}
+		public virtual int NomTileWidth => w;
+
 		/// <summary>Returns the nominal tiles height </summary>
-		virtual public int NomTileHeight
-		{
-			get
-			{
-				return h;
-			}
-			
-		}
+		public virtual int NomTileHeight => h;
+
 		/// <summary> Returns the overall width of the image in pixels. This is the image's
 		/// width without accounting for any component subsampling or tiling. The
 		/// value of <tt>w</tt> is returned.
@@ -126,14 +102,8 @@ namespace CSJ2K.j2k.image.input
 		/// <returns> The total image's width in pixels.
 		/// 
 		/// </returns>
-		virtual public int ImgWidth
-		{
-			get
-			{
-				return w;
-			}
-			
-		}
+		public virtual int ImgWidth => w;
+
 		/// <summary> Returns the overall height of the image in pixels. This is the image's
 		/// height without accounting for any component subsampling or tiling. The
 		/// value of <tt>h</tt> is returned.
@@ -142,14 +112,8 @@ namespace CSJ2K.j2k.image.input
 		/// <returns> The total image's height in pixels.
 		/// 
 		/// </returns>
-		virtual public int ImgHeight
-		{
-			get
-			{
-				return h;
-			}
-			
-		}
+		public virtual int ImgHeight => h;
+
 		/// <summary> Returns the number of components in the image. The value of <tt>nc</tt>
 		/// is returned.
 		/// 
@@ -157,14 +121,8 @@ namespace CSJ2K.j2k.image.input
 		/// <returns> The number of components in the image.
 		/// 
 		/// </returns>
-		virtual public int NumComps
-		{
-			get
-			{
-				return nc;
-			}
-			
-		}
+		public virtual int NumComps => nc;
+
 		/// <summary> Returns the index of the current tile, relative to a standard scan-line
 		/// order. This default implementations assumes no tiling, so 0 is always
 		/// returned.
@@ -173,32 +131,14 @@ namespace CSJ2K.j2k.image.input
 		/// <returns> The current tile's index (starts at 0).
 		/// 
 		/// </returns>
-		virtual public int TileIdx
-		{
-			get
-			{
-				return 0;
-			}
-			
-		}
+		public virtual int TileIdx => 0;
+
 		/// <summary>Returns the horizontal tile partition offset in the reference grid </summary>
-		virtual public int TilePartULX
-		{
-			get
-			{
-				return 0;
-			}
-			
-		}
+		public virtual int TilePartULX => 0;
+
 		/// <summary>Returns the vertical tile partition offset in the reference grid </summary>
-		virtual public int TilePartULY
-		{
-			get
-			{
-				return 0;
-			}
-			
-		}
+		public virtual int TilePartULY => 0;
+
 		/// <summary> Returns the horizontal coordinate of the image origin, the top-left
 		/// corner, in the canvas system, on the reference grid.
 		/// 
@@ -207,14 +147,8 @@ namespace CSJ2K.j2k.image.input
 		/// system, on the reference grid.
 		/// 
 		/// </returns>
-		virtual public int ImgULX
-		{
-			get
-			{
-				return 0;
-			}
-			
-		}
+		public virtual int ImgULX => 0;
+
 		/// <summary> Returns the vertical coordinate of the image origin, the top-left
 		/// corner, in the canvas system, on the reference grid.
 		/// 
@@ -223,15 +157,8 @@ namespace CSJ2K.j2k.image.input
 		/// system, on the reference grid.
 		/// 
 		/// </returns>
-		virtual public int ImgULY
-		{
-			get
-			{
-				return 0;
-			}
-			
-		}
-		
+		public virtual int ImgULY => 0;
+
 		/// <summary>The width of the image </summary>
 		protected internal int w;
 		
@@ -247,7 +174,7 @@ namespace CSJ2K.j2k.image.input
 		/// </summary>
 		/// <exception cref="IOException">If an I/O error occurs.
 		/// </exception>
-		public abstract void  close();
+		public abstract void  Close();
 		
 		/// <summary> Returns the component subsampling factor in the horizontal direction,
 		/// for the specified component. This is, approximately, the ratio of
@@ -308,7 +235,7 @@ namespace CSJ2K.j2k.image.input
 		{
 			if (t != 0)
 			{
-				throw new System.InvalidOperationException("Asking a tile-component width for a tile index" + " greater than 0 whereas there is only one tile");
+				throw new InvalidOperationException("Asking a tile-component width for a tile index" + " greater than 0 whereas there is only one tile");
 			}
 			return w;
 		}
@@ -333,7 +260,7 @@ namespace CSJ2K.j2k.image.input
 		{
 			if (t != 0)
 			{
-				throw new System.InvalidOperationException("Asking a tile-component width for a tile index" + " greater than 0 whereas there is only one tile");
+				throw new InvalidOperationException("Asking a tile-component width for a tile index" + " greater than 0 whereas there is only one tile");
 			}
 			return h;
 		}
@@ -388,7 +315,7 @@ namespace CSJ2K.j2k.image.input
 		{
 			if (x != 0 || y != 0)
 			{
-				throw new System.ArgumentException();
+				throw new ArgumentException();
 			}
 		}
 		
@@ -501,10 +428,10 @@ namespace CSJ2K.j2k.image.input
 		/// <returns> true if the data was originally signed, false if not.
 		/// 
 		/// </returns>
-		public abstract bool isOrigSigned(int c);
-		public abstract int getFixedPoint(int c);
-		public abstract DataBlk getInternCompData(DataBlk blk, int c);
+		public abstract bool IsOrigSigned(int c);
+		public abstract int GetFixedPoint(int c);
+		public abstract DataBlk GetInternCompData(DataBlk blk, int c);
 		public abstract int getNomRangeBits(int c);
-		public abstract DataBlk getCompData(DataBlk blk, int c);
+		public abstract DataBlk GetCompData(DataBlk blk, int c);
 	}
 }

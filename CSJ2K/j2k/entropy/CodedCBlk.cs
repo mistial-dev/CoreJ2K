@@ -11,10 +11,10 @@
 *
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -47,7 +47,7 @@ namespace CSJ2K.j2k.entropy
 	/// <summary> This is the generic class to store coded (compressed) code-block. It stores
 	/// the compressed data as well as the necessary side-information.
 	/// 
-	/// <p>This class is normally not used. Instead the EncRDCBlk, EncLyrdCBlk and
+	/// This class is normally not used. Instead the EncRDCBlk, EncLyrdCBlk and
 	/// the DecLyrdCBlk subclasses are used.</p>
 	/// 
 	/// </summary>
@@ -112,9 +112,9 @@ namespace CSJ2K.j2k.entropy
 		/// <returns> A string with the contents of the object
 		/// 
 		/// </returns>
-		public override System.String ToString()
+		public override string ToString()
 		{
-			return "m=" + m + ", n=" + n + ", skipMSBP=" + skipMSBP + ", data.length=" + ((data != null)?"" + data.Length:"(null)");
+			return $"m={m}, n={n}, skipMSBP={skipMSBP}, data.length={((data != null) ? $"{data.Length}" : "(null)")}";
 		}
 	}
 }

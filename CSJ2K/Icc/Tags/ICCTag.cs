@@ -19,9 +19,9 @@ namespace CSJ2K.Icc.Tags
 	/// The tag data itself is found at the given offset in the file and 
 	/// consists of a tag type int, followed by a reserved int, followed by
 	/// a data block, the structure of which is unique to the tag type.
-	/// <p>
+	/// 
 	/// This class is the abstract super class of all tags. It models that 
-	/// part of the structure which is common among tags of all types.<p>
+	/// part of the structure which is common among tags of all types.
 	/// It also contains the definitions of the various tag types.
 	/// 
 	/// 
@@ -36,20 +36,20 @@ namespace CSJ2K.Icc.Tags
 	{
 		
 		// Tag Signature Strings
-		private const System.String sdwCprtSignature = "cprt";
-		private const System.String sdwDescSignature = "desc";
-		private const System.String sdwWtPtSignature = "wtpt";
-		private const System.String sdwBkPtSignature = "bkpt";
-		private const System.String sdwRXYZSignature = "rXYZ";
-		private const System.String sdwGXYZSignature = "gXYZ";
-		private const System.String sdwBXYZSignature = "bXYZ";
-		private const System.String sdwKXYZSignature = "kXYZ";
-		private const System.String sdwRTRCSignature = "rTRC";
-		private const System.String sdwGTRCSignature = "gTRC";
-		private const System.String sdwBTRCSignature = "bTRC";
-		private const System.String sdwKTRCSignature = "kTRC";
-		private const System.String sdwDmndSignature = "dmnd";
-		private const System.String sdwDmddSignature = "dmdd";
+		private const string sdwCprtSignature = "cprt";
+		private const string sdwDescSignature = "desc";
+		private const string sdwWtPtSignature = "wtpt";
+		private const string sdwBkPtSignature = "bkpt";
+		private const string sdwRXYZSignature = "rXYZ";
+		private const string sdwGXYZSignature = "gXYZ";
+		private const string sdwBXYZSignature = "bXYZ";
+		private const string sdwKXYZSignature = "kXYZ";
+		private const string sdwRTRCSignature = "rTRC";
+		private const string sdwGTRCSignature = "gTRC";
+		private const string sdwBTRCSignature = "bTRC";
+		private const string sdwKTRCSignature = "kTRC";
+		private const string sdwDmndSignature = "dmnd";
+		private const string sdwDmddSignature = "dmdd";
 		
 		// Tag Signatures
 		private static readonly int kdwCprtSignature;
@@ -109,7 +109,7 @@ namespace CSJ2K.Icc.Tags
 		/// </param>
 		/// <returns> String representation of the type
 		/// </returns>
-		public static System.String typeString(int type)
+		public static string typeString(int type)
 		{
             if (type == kdwTextDescType)
                 return sdwTextDescType;
@@ -141,7 +141,7 @@ namespace CSJ2K.Icc.Tags
 		/// </param>
 		/// <returns> String representation of the signature
 		/// </returns>
-		public static System.String signatureString(int signature)
+		public static string signatureString(int signature)
 		{
 
             if (signature == kdwCprtSignature)
@@ -189,7 +189,7 @@ namespace CSJ2K.Icc.Tags
 		public static ICCTag createInstance(int signature, byte[] data, int offset, int count)
 		{
 
-            int type = ICCProfile.getInt(data, offset);
+            var type = ICCProfile.getInt(data, offset);
 
             if (type == kdwTextDescType)
                 return new ICCTextDescriptionType(signature, data, offset, count);
@@ -214,8 +214,7 @@ namespace CSJ2K.Icc.Tags
 			else
 			{
 				var bytes = BitConverter.GetBytes(type);
-				throw new System.ArgumentException("bad tag type: " + System.Text.Encoding.UTF8.GetString(bytes, 0, bytes.Length) +
-				                                   "(" + type + ")");
+				throw new ArgumentException($"bad tag type: {Encoding.UTF8.GetString(bytes, 0, bytes.Length)}({type})");
 			}
 		}
 		
@@ -235,12 +234,12 @@ namespace CSJ2K.Icc.Tags
 			this.data = data;
 			this.offset = offset;
 			this.count = count;
-            this.type = ICCProfile.getInt(data, offset);
+            type = ICCProfile.getInt(data, offset);
 		}
 		
-		public override System.String ToString()
+		public override string ToString()
 		{
-			return signatureString(signature) + ":" + typeString(type);
+			return $"{signatureString(signature)}:{typeString(type)}";
 		}
 		
 		/* end class ICCTag */
@@ -271,9 +270,10 @@ namespace CSJ2K.Icc.Tags
             kdwViewType = GetTagInt(sdwViewType);
             kdwDataType = GetTagInt(sdwDataType);
 		}
-        static int GetTagInt(string tag)
+
+		private static int GetTagInt(string tag)
         {
-            byte[] tagBytes=Encoding.UTF8.GetBytes(tag);
+            var tagBytes=Encoding.UTF8.GetBytes(tag);
             Array.Reverse(tagBytes);
             return BitConverter.ToInt32(tagBytes, 0);
         }

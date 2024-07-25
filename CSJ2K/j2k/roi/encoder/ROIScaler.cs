@@ -12,10 +12,10 @@
 *
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -59,14 +59,14 @@ namespace CSJ2K.j2k.roi.encoder
 	
 	/// <summary> This class deals with the ROI functionality.
 	/// 
-	/// <p>The ROI method is the Maxshift method. The ROIScaler works by scaling
+	/// The ROI method is the Maxshift method. The ROIScaler works by scaling
 	/// the quantized wavelet coefficients that do not affect the ROI (i.e
 	/// background coefficients) so that these samples get a lower significance
 	/// than the ROI ones. By scaling the coefficients sufficiently, the ROI
 	/// coefficients can be recognized by their amplitude alone and no ROI mask
 	/// needs to be generated at the decoder side.
 	/// 
-	/// <p>The source module must be a quantizer and code-block's data is exchange
+	/// The source module must be a quantizer and code-block's data is exchange
 	/// with thanks to CBlkWTData instances.
 	/// 
 	/// </summary>
@@ -81,52 +81,28 @@ namespace CSJ2K.j2k.roi.encoder
 		/// values are 0 and 1, nothing else.
 		/// 
 		/// </summary>
-		virtual public int CbULX
-		{
-			get
-			{
-				return src.CbULX;
-			}
-			
-		}
+		public virtual int CbULX => src.CbULX;
+
 		/// <summary> Returns the vertical offset of the code-block partition. Allowable
 		/// values are 0 and 1, nothing else.
 		/// 
 		/// </summary>
-		virtual public int CbULY
-		{
-			get
-			{
-				return src.CbULY;
-			}
-			
-		}
+		public virtual int CbULY => src.CbULY;
+
 		/// <summary> This function returns the ROI mask generator.
 		/// 
 		/// </summary>
 		/// <returns> The roi mask generator
 		/// </returns>
-		virtual public ROIMaskGenerator ROIMaskGenerator
-		{
-			get
-			{
-				return mg;
-			}
-			
-		}
+		public virtual ROIMaskGenerator ROIMaskGenerator => mg;
+
 		/// <summary> This function returns the blockAligned flag
 		/// 
 		/// </summary>
 		/// <returns> Flag indicating whether the ROIs were block aligned
 		/// </returns>
-		virtual public bool BlockAligned
-		{
-			get
-			{
-				return blockAligned;
-			}
-			
-		}
+		public virtual bool BlockAligned => blockAligned;
+
 		/// <summary> Returns the parameters that are used in this class and
 		/// implementing classes. It returns a 2D String array. Each of the
 		/// 1D arrays is for a different option, and they have 3
@@ -142,15 +118,8 @@ namespace CSJ2K.j2k.roi.encoder
 		/// or null if no options are supported.
 		/// 
 		/// </returns>
-		public static System.String[][] ParameterInfo
-		{
-			get
-			{
-				return pinfo;
-			}
-			
-		}
-		
+		public static string[][] ParameterInfo => pinfo;
+
 		/// <summary>The prefix for ROI Scaler options: 'R' </summary>
 		public const char OPT_PREFIX = 'R';
 		
@@ -158,7 +127,7 @@ namespace CSJ2K.j2k.roi.encoder
 		/// for ROI Scaler start with 'R'. 
 		/// </summary>
 		//UPGRADE_NOTE: Final was removed from the declaration of 'pinfo'. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
-		private static readonly System.String[][] pinfo = new System.String[][]{new System.String[]{"Rroi", "[<component idx>] R <left> <top> <width> <height>" + " or [<component idx>] C <centre column> <centre row> " + "<radius> or [<component idx>] A <filename>", "Specifies ROIs shape and location. The shape can be either " + "rectangular 'R', or circular 'C' or arbitrary 'A'. " + "Each new occurrence of an 'R', a 'C' or an 'A' is a new ROI. " + "For circular and rectangular ROIs, all values are " + "given as their pixel values relative to the canvas origin. " + "Arbitrary shapes must be included in a PGM file where non 0 " + "values correspond to ROI coefficients. The PGM file must have " + "the size as the image. " + "The component idx specifies which components " + "contain the ROI. The component index is specified as described " + "by points 3 and 4 in the general comment on tile-component idx. " + "If this option is used, the codestream is layer progressive by " + "default unless it is overridden by the 'Aptype' option.", null}, new System.String[]{"Ralign", "[on|off]", "By specifying this argument, the ROI mask will be " + "limited to covering only entire code-blocks. The ROI coding can " + "then be performed without any actual scaling of the coefficients " + "but by instead scaling the distortion estimates.", "off"}, new System.String[]{"Rstart_level", "<level>", "This argument forces the lowest <level> resolution levels to " + "belong to the ROI. By doing this, it is possible to avoid only " + "getting information for the ROI at an early stage of " + "transmission.<level> = 0 means the lowest resolution level " + "belongs to the ROI, 1 means the two lowest etc. (-1 deactivates" + " the option)", "-1"}, new System.String[]{"Rno_rect", "[on|off]", "This argument makes sure that the ROI mask generation is not done " + "using the fast ROI mask generation for rectangular ROIs " + "regardless of whether the specified ROIs are rectangular or not", "off"}};
+		private static readonly string[][] pinfo = new string[][]{new string[]{"Rroi", "[<component idx>] R <left> <top> <width> <height>" + " or [<component idx>] C <centre column> <centre row> " + "<radius> or [<component idx>] A <filename>", "Specifies ROIs shape and location. The shape can be either " + "rectangular 'R', or circular 'C' or arbitrary 'A'. " + "Each new occurrence of an 'R', a 'C' or an 'A' is a new ROI. " + "For circular and rectangular ROIs, all values are " + "given as their pixel values relative to the canvas origin. " + "Arbitrary shapes must be included in a PGM file where non 0 " + "values correspond to ROI coefficients. The PGM file must have " + "the size as the image. " + "The component idx specifies which components " + "contain the ROI. The component index is specified as described " + "by points 3 and 4 in the general comment on tile-component idx. " + "If this option is used, the codestream is layer progressive by " + "default unless it is overridden by the 'Aptype' option.", null}, new string[]{"Ralign", "[on|off]", "By specifying this argument, the ROI mask will be " + "limited to covering only entire code-blocks. The ROI coding can " + "then be performed without any actual scaling of the coefficients " + "but by instead scaling the distortion estimates.", "off"}, new string[]{"Rstart_level", "<level>", "This argument forces the lowest <level> resolution levels to " + "belong to the ROI. By doing this, it is possible to avoid only " + "getting information for the ROI at an early stage of " + "transmission.<level> = 0 means the lowest resolution level " + "belongs to the ROI, 1 means the two lowest etc. (-1 deactivates" + " the option)", "-1"}, new string[]{"Rno_rect", "[on|off]", "This argument makes sure that the ROI mask generation is not done " + "using the fast ROI mask generation for rectangular ROIs " + "regardless of whether the specified ROIs are rectangular or not", "off"}};
 		
 		/// <summary>The maximum number of magnitude bit-planes in any subband. One value
 		/// for each tile-component 
@@ -209,7 +178,7 @@ namespace CSJ2K.j2k.roi.encoder
 		{
 			this.src = src;
 			this.roi = roi;
-			this.useStartLevel = sLev;
+			useStartLevel = sLev;
 			if (roi)
 			{
 				// If there is no ROI, no need to do this
@@ -265,7 +234,7 @@ namespace CSJ2K.j2k.roi.encoder
 		/// <summary> Creates a ROIScaler object. The Quantizer is the source of data to
 		/// scale.
 		/// 
-		/// <p>The ROI Scaler creates a ROIMaskGenerator depending on what ROI
+		/// The ROI Scaler creates a ROIMaskGenerator depending on what ROI
 		/// information is in the ParameterList. If only rectangular ROI are used,
 		/// the fast mask generator for rectangular ROI can be used.</p>
 		/// 
@@ -285,14 +254,14 @@ namespace CSJ2K.j2k.roi.encoder
 		/// </exception>
 		public static ROIScaler createInstance(Quantizer src, ParameterList pl, EncoderSpecs encSpec)
 		{
-			System.Collections.Generic.List<ROI> roiVector = new List<ROI>(10);
+			var roiVector = new List<ROI>(10);
 			ROIMaskGenerator maskGen = null;
 			
 			// Check parameters
-			pl.checkList(OPT_PREFIX, CSJ2K.j2k.util.ParameterList.toNameArray(pinfo));
+			pl.checkList(OPT_PREFIX, ParameterList.toNameArray(pinfo));
 			
 			// Get parameters and check if there are and ROIs specified 
-			System.String roiopt = pl.getParameter("Rroi");
+			var roiopt = pl.getParameter("Rroi");
 			if (roiopt == null)
 			{
 				// No ROIs specified! Create ROIScaler with no mask generator
@@ -300,17 +269,17 @@ namespace CSJ2K.j2k.roi.encoder
 			}
 			
 			// Check if the lowest resolution levels should belong to the ROI 
-			int sLev = pl.getIntParameter("Rstart_level");
+			var sLev = pl.getIntParameter("Rstart_level");
 			
 			// Check if the ROIs are block-aligned
-			bool useBlockAligned = pl.getBooleanParameter("Ralign");
+			var useBlockAligned = pl.getBooleanParameter("Ralign");
 			
 			// Check if generic mask generation is specified 
-			bool onlyRect = !pl.getBooleanParameter("Rno_rect");
+			var onlyRect = !pl.getBooleanParameter("Rno_rect");
 			
 			// Parse the ROIs
 			parseROIs(roiopt, src.NumComps, roiVector);
-			ROI[] roiArray = new ROI[roiVector.Count];
+			var roiArray = new ROI[roiVector.Count];
 			roiVector.CopyTo(roiArray);
 			
 			// If onlyRect has been forced, check if there are any non-rectangular
@@ -318,7 +287,7 @@ namespace CSJ2K.j2k.roi.encoder
 			// make this false
 			if (onlyRect)
 			{
-				for (int i = roiArray.Length - 1; i >= 0; i--)
+				for (var i = roiArray.Length - 1; i >= 0; i--)
 					if (!roiArray[i].rect)
 					{
 						onlyRect = false;
@@ -343,13 +312,13 @@ namespace CSJ2K.j2k.roi.encoder
 		/// <summary> This function parses the values given for the ROIs with the argument
 		/// -Rroi. Currently only circular and rectangular ROIs are supported.
 		/// 
-		/// <p>A rectangular ROI is indicated by a 'R' followed the coordinates for
+		/// A rectangular ROI is indicated by a 'R' followed the coordinates for
 		/// the upper left corner of the ROI and then its width and height.</p>
 		/// 
-		/// <p>A circular ROI is indicated by a 'C' followed by the coordinates of
+		/// A circular ROI is indicated by a 'C' followed by the coordinates of
 		/// the circle center and then the radius.</p>
 		/// 
-		/// <p>Before the R and C values, the component that are affected by the
+		/// Before the R and C values, the component that are affected by the
 		/// ROI are indicated.</p>
 		/// 
 		/// </summary>
@@ -365,20 +334,20 @@ namespace CSJ2K.j2k.roi.encoder
 		/// <returns> The ROIs specified in roiopt
 		/// 
 		/// </returns>
-		protected internal static System.Collections.Generic.List<ROI> parseROIs(System.String roiopt, int nc, System.Collections.Generic.List<ROI> roiVector)
+		protected internal static List<ROI> parseROIs(string roiopt, int nc, List<ROI> roiVector)
 		{
 			//ROI[] ROIs;
 			ROI roi;
 			SupportClass.Tokenizer stok;
 			//char tok;
-			int nrOfROIs = 0;
+			var nrOfROIs = 0;
 			//char c;
 			int ulx, uly, w, h, x, y, rad; // comp removed
 			bool[] roiInComp = null;
 			
 			stok = new SupportClass.Tokenizer(roiopt);
 			
-			System.String word;
+			string word;
 			while (stok.HasMoreTokens())
 			{
 				word = stok.NextToken();
@@ -395,26 +364,26 @@ namespace CSJ2K.j2k.roi.encoder
 						try
 						{
 							word = stok.NextToken();
-							ulx = (System.Int32.Parse(word));
+							ulx = (int.Parse(word));
 							word = stok.NextToken();
-							uly = (System.Int32.Parse(word));
+							uly = (int.Parse(word));
 							word = stok.NextToken();
-							w = (System.Int32.Parse(word));
+							w = (int.Parse(word));
 							word = stok.NextToken();
-							h = (System.Int32.Parse(word));
+							h = (int.Parse(word));
 						}
-						catch (System.FormatException e)
+						catch (FormatException)
 						{
-							throw new System.ArgumentException("Bad parameter for " + "'-Rroi R' option : " + word);
+							throw new ArgumentException($"Bad parameter for '-Rroi R' option : {word}");
 						}
-						catch (System.ArgumentOutOfRangeException f)
+						catch (ArgumentOutOfRangeException)
 						{
-							throw new System.ArgumentException("Wrong number of " + "parameters for  " + "h'-Rroi R' option.");
+							throw new ArgumentException("Wrong number of " + "parameters for  " + "h'-Rroi R' option.");
 						}
 						
 						// If the ROI is component-specific, check which comps.
 						if (roiInComp != null)
-							for (int i = 0; i < nc; i++)
+							for (var i = 0; i < nc; i++)
 							{
 								if (roiInComp[i])
 								{
@@ -425,7 +394,7 @@ namespace CSJ2K.j2k.roi.encoder
 						else
 						{
 							// Otherwise add ROI for all components
-							for (int i = 0; i < nc; i++)
+							for (var i = 0; i < nc; i++)
 							{
 								roi = new ROI(i, ulx, uly, w, h);
 								roiVector.Add(roi);
@@ -439,24 +408,24 @@ namespace CSJ2K.j2k.roi.encoder
 						try
 						{
 							word = stok.NextToken();
-							x = (System.Int32.Parse(word));
+							x = (int.Parse(word));
 							word = stok.NextToken();
-							y = (System.Int32.Parse(word));
+							y = (int.Parse(word));
 							word = stok.NextToken();
-							rad = (System.Int32.Parse(word));
+							rad = (int.Parse(word));
 						}
-						catch (System.FormatException e)
+						catch (FormatException)
 						{
-							throw new System.ArgumentException("Bad parameter for " + "'-Rroi C' option : " + word);
+							throw new ArgumentException($"Bad parameter for '-Rroi C' option : {word}");
 						}
-						catch (System.ArgumentOutOfRangeException f)
+						catch (ArgumentOutOfRangeException)
 						{
-							throw new System.ArgumentException("Wrong number of " + "parameters for " + "'-Rroi C' option.");
+							throw new ArgumentException("Wrong number of " + "parameters for " + "'-Rroi C' option.");
 						}
 						
 						// If the ROI is component-specific, check which comps.
 						if (roiInComp != null)
-							for (int i = 0; i < nc; i++)
+							for (var i = 0; i < nc; i++)
 							{
 								if (roiInComp[i])
 								{
@@ -467,7 +436,7 @@ namespace CSJ2K.j2k.roi.encoder
 						else
 						{
 							// Otherwise add ROI for all components
-							for (int i = 0; i < nc; i++)
+							for (var i = 0; i < nc; i++)
 							{
 								roi = new ROI(i, x, y, rad);
 								roiVector.Add(roi);
@@ -478,29 +447,29 @@ namespace CSJ2K.j2k.roi.encoder
 					case 'A':  // ROI wth arbitrary shape
 						nrOfROIs++;
 						
-						System.String filename;
+						string filename;
 						ImgReaderPGM maskPGM = null;
 						
 						try
 						{
 							filename = stok.NextToken();
 						}
-						catch (System.ArgumentOutOfRangeException e)
+						catch (ArgumentOutOfRangeException)
 						{
-							throw new System.ArgumentException("Wrong number of " + "parameters for " + "'-Rroi A' option.");
+							throw new ArgumentException("Wrong number of " + "parameters for " + "'-Rroi A' option.");
 						}
 						try
 						{
 							maskPGM = new ImgReaderPGM(filename);
 						}
-						catch (System.IO.IOException e)
+						catch (System.IO.IOException)
 						{
-							throw new System.InvalidOperationException("Cannot read PGM file with ROI");
+							throw new InvalidOperationException("Cannot read PGM file with ROI");
 						}
 						
 						// If the ROI is component-specific, check which comps.
 						if (roiInComp != null)
-							for (int i = 0; i < nc; i++)
+							for (var i = 0; i < nc; i++)
 							{
 								if (roiInComp[i])
 								{
@@ -511,7 +480,7 @@ namespace CSJ2K.j2k.roi.encoder
 						else
 						{
 							// Otherwise add ROI for all components
-							for (int i = 0; i < nc; i++)
+							for (var i = 0; i < nc; i++)
 							{
 								roi = new ROI(i, maskPGM);
 								roiVector.Add(roi);
@@ -520,7 +489,7 @@ namespace CSJ2K.j2k.roi.encoder
 						break;
 					
 					default: 
-						throw new System.InvalidOperationException("Bad parameters for ROI nr " + roiVector.Count);
+						throw new InvalidOperationException($"Bad parameters for ROI nr {roiVector.Count}");
 					
 				}
 			}
@@ -532,10 +501,10 @@ namespace CSJ2K.j2k.roi.encoder
 		/// block, which consists of  the quantized coefficients from the quantizer,
 		/// are scaled by the values given for any ROIs specified.
 		/// 
-		/// <p>The function calls on a ROIMaskGenerator to get the mask for scaling
+		/// The function calls on a ROIMaskGenerator to get the mask for scaling
 		/// the coefficients in the current block.</p>
 		/// 
-		/// <p>The data returned by this method is a copy of the orignal
+		/// The data returned by this method is a copy of the orignal
 		/// data. Therfore it can be modified "in place" without any problems after
 		/// being returned. The 'offset' of the returned data is 0, and the 'scanw'
 		/// is the same as the code-block width. See the 'CBlkWTData' class.</p>
@@ -566,7 +535,7 @@ namespace CSJ2K.j2k.roi.encoder
 		/// block, which consists of  the quantized coefficients from the quantizer,
 		/// are scaled by the values given for any ROIs specified.
 		/// 
-		/// <p>The function calls on a ROIMaskGenerator to get the mask for scaling
+		/// The function calls on a ROIMaskGenerator to get the mask for scaling
 		/// the coefficients in the current block.</p>
 		/// 
 		/// </summary>
@@ -590,16 +559,16 @@ namespace CSJ2K.j2k.roi.encoder
 		{
 			int mi, i, j, k, wrap;
 			int ulx, uly, w, h;
-			DataBlkInt mask = roiMask; // local copy of mask
+			var mask = roiMask; // local copy of mask
 			int[] maskData; // local copy of mask data
 			int[] data; // local copy of quantized data
 			int tmp;
-			int bitMask = 0x7FFFFFFF;
+			var bitMask = 0x7FFFFFFF;
 			SubbandAn root, sb;
-			int maxBits = 0; // local copy
+			var maxBits = 0; // local copy
 			bool roiInTile;
 			bool sbInMask;
-			int nROIcoeff = 0;
+			var nROIcoeff = 0;
 			
 			// Get codeblock's data from quantizer
 			cblk = src.getNextCodeBlock(c, cblk);
@@ -658,7 +627,7 @@ namespace CSJ2K.j2k.roi.encoder
 				// Scale the wmse so that instead of scaling the coefficients, the
 				// wmse is scaled.
 				//UPGRADE_WARNING: Data types in Visual C# might be different.  Verify the accuracy of narrowing conversions. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1042'"
-				cblk.wmseScaling *= (float) (1 << (maxBits << 1));
+				cblk.wmseScaling *= 1 << (maxBits << 1);
 				cblk.nROIcoeff = w * h;
 				return cblk;
 			}
@@ -671,7 +640,7 @@ namespace CSJ2K.j2k.roi.encoder
 				wrap = cblk.scanw - w;
 				mi = h * w - 1;
 				i = cblk.offset + cblk.scanw * (h - 1) + w - 1;
-				int nroicoeff = 0;
+				var nroicoeff = 0;
 				for (j = h; j > 0; j--)
 				{
 					for (k = w - 1; k >= 0; k--, i--, mi--)
@@ -687,7 +656,7 @@ namespace CSJ2K.j2k.roi.encoder
 				{
 					// Include the subband
 					//UPGRADE_WARNING: Data types in Visual C# might be different.  Verify the accuracy of narrowing conversions. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1042'"
-					cblk.wmseScaling *= (float) (1 << (maxBits << 1));
+					cblk.wmseScaling *= 1 << (maxBits << 1);
 					cblk.nROIcoeff = w * h;
 				}
 				return cblk;
@@ -785,25 +754,25 @@ namespace CSJ2K.j2k.roi.encoder
 		private void  calcMaxMagBits(EncoderSpecs encSpec)
 		{
 			int tmp;
-			MaxShiftSpec rois = encSpec.rois;
+			var rois = encSpec.rois;
 			
-			int nt = src.getNumTiles();
-			int nc = src.NumComps;
+			var nt = src.getNumTiles();
+			var nc = src.NumComps;
 			
 			maxMagBits = new int[nt][];
-			for (int i = 0; i < nt; i++)
+			for (var i = 0; i < nt; i++)
 			{
 				maxMagBits[i] = new int[nc];
 			}
 			
 			src.setTile(0, 0);
-			for (int t = 0; t < nt; t++)
+			for (var t = 0; t < nt; t++)
 			{
-				for (int c = nc - 1; c >= 0; c--)
+				for (var c = nc - 1; c >= 0; c--)
 				{
 					tmp = src.getMaxMagBits(c);
 					maxMagBits[t][c] = tmp;
-					rois.setTileCompVal(t, c, (System.Object) tmp);
+					rois.setTileCompVal(t, c, tmp);
 				}
 				if (t < nt - 1)
 					src.nextTile();

@@ -11,10 +11,10 @@
 * 
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -53,7 +53,7 @@ namespace CSJ2K.j2k.quantization
 	/// <seealso cref="ModuleSpec">
 	/// 
 	/// </seealso>
-	public class QuantStepSizeSpec:ModuleSpec
+	public sealed class QuantStepSizeSpec:ModuleSpec
 	{
 		
 		/// <summary> Constructs an empty 'QuantStepSizeSpec' with specified number of
@@ -94,20 +94,20 @@ namespace CSJ2K.j2k.quantization
 		public QuantStepSizeSpec(int nt, int nc, byte type, ParameterList pl):base(nt, nc, type)
 		{
 			
-			System.String param = pl.getParameter("Qstep");
+			var param = pl.getParameter("Qstep");
 			if (param == null)
 			{
-				throw new System.ArgumentException("Qstep option not specified");
+				throw new ArgumentException("Qstep option not specified");
 			}
 			
 			// Parse argument
-			SupportClass.Tokenizer stk = new SupportClass.Tokenizer(param);
-			System.String word; // current word
-			byte curSpecType = SPEC_DEF; // Specification type of the
+			var stk = new SupportClass.Tokenizer(param);
+			string word; // current word
+			var curSpecType = SPEC_DEF; // Specification type of the
 			// current parameter
 			bool[] tileSpec = null; // Tiles concerned by the specification
 			bool[] compSpec = null; // Components concerned by the specification
-			System.Single value_Renamed; // value of the current step size
+			float value_Renamed; // value of the current step size
 			
 			while (stk.HasMoreTokens())
 			{
@@ -118,68 +118,62 @@ namespace CSJ2K.j2k.quantization
 					
 					case 't':  // Tiles specification
 						tileSpec = parseIdx(word, nTiles);
-						if (curSpecType == SPEC_COMP_DEF)
-							curSpecType = SPEC_TILE_COMP;
-						else
-							curSpecType = SPEC_TILE_DEF;
+						curSpecType = curSpecType == SPEC_COMP_DEF ? SPEC_TILE_COMP : SPEC_TILE_DEF;
 						break;
 					
 					case 'c':  // Components specification
 						compSpec = parseIdx(word, nComp);
-						if (curSpecType == SPEC_TILE_DEF)
-							curSpecType = SPEC_TILE_COMP;
-						else
-							curSpecType = SPEC_COMP_DEF;
+						curSpecType = curSpecType == SPEC_TILE_DEF ? SPEC_TILE_COMP : SPEC_COMP_DEF;
 						break;
 					
 					default:  // Step size value
 						try
 						{
 							//UPGRADE_WARNING: Data types in Visual C# might be different.  Verify the accuracy of narrowing conversions. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1042'"
-							value_Renamed = System.Single.Parse(word);
+							value_Renamed = float.Parse(word);
 						}
-						catch (System.FormatException e)
+						catch (FormatException)
 						{
-							throw new System.ArgumentException("Bad parameter for " + "-Qstep option : " + word);
+							throw new ArgumentException($"Bad parameter for -Qstep option : {word}");
 						}
 						
 						//UPGRADE_TODO: The equivalent in .NET for method 'java.lang.Float.floatValue' may return a different value. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1043'"
-						if ((float) value_Renamed <= 0.0f)
+						if (value_Renamed <= 0.0f)
 						{
 							//UPGRADE_TODO: The equivalent in .NET for method 'java.lang.Float.toString' may return a different value. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1043'"
-							throw new System.ArgumentException("Normalized base step " + "must be positive : " + value_Renamed);
+							throw new ArgumentException($"Normalized base step must be positive : {value_Renamed}");
 						}
 						
 						
 						if (curSpecType == SPEC_DEF)
 						{
-							setDefault((System.Object) value_Renamed);
+							setDefault(value_Renamed);
 						}
 						else if (curSpecType == SPEC_TILE_DEF)
 						{
-							for (int i = tileSpec.Length - 1; i >= 0; i--)
+							for (var i = tileSpec.Length - 1; i >= 0; i--)
 								if (tileSpec[i])
 								{
-									setTileDef(i, (System.Object) value_Renamed);
+									setTileDef(i, value_Renamed);
 								}
 						}
 						else if (curSpecType == SPEC_COMP_DEF)
 						{
-							for (int i = compSpec.Length - 1; i >= 0; i--)
+							for (var i = compSpec.Length - 1; i >= 0; i--)
 								if (compSpec[i])
 								{
-									setCompDef(i, (System.Object) value_Renamed);
+									setCompDef(i, value_Renamed);
 								}
 						}
 						else
 						{
-							for (int i = tileSpec.Length - 1; i >= 0; i--)
+							for (var i = tileSpec.Length - 1; i >= 0; i--)
 							{
-								for (int j = compSpec.Length - 1; j >= 0; j--)
+								for (var j = compSpec.Length - 1; j >= 0; j--)
 								{
 									if (tileSpec[i] && compSpec[j])
 									{
-										setTileCompVal(i, j, (System.Object) value_Renamed);
+										setTileCompVal(i, j, value_Renamed);
 									}
 								}
 							}
@@ -197,10 +191,10 @@ namespace CSJ2K.j2k.quantization
 			// Check that default value has been specified
 			if (getDefault() == null)
 			{
-				int ndefspec = 0;
-				for (int t = nt - 1; t >= 0; t--)
+				var ndefspec = 0;
+				for (var t = nt - 1; t >= 0; t--)
 				{
-					for (int c = nc - 1; c >= 0; c--)
+					for (var c = nc - 1; c >= 0; c--)
 					{
 						if (specValType[t][c] == SPEC_DEF)
 						{
@@ -214,7 +208,7 @@ namespace CSJ2K.j2k.quantization
 				if (ndefspec != 0)
 				{
 					//UPGRADE_WARNING: Data types in Visual C# might be different.  Verify the accuracy of narrowing conversions. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1042'"
-					setDefault((System.Object) System.Single.Parse(pl.DefaultParameterList.getParameter("Qstep")));
+					setDefault(float.Parse(pl.DefaultParameterList.getParameter("Qstep")));
 				}
 				else
 				{
@@ -225,7 +219,7 @@ namespace CSJ2K.j2k.quantization
 					{
 						
 						case SPEC_TILE_DEF: 
-							for (int c = nc - 1; c >= 0; c--)
+							for (var c = nc - 1; c >= 0; c--)
 							{
 								if (specValType[0][c] == SPEC_TILE_DEF)
 									specValType[0][c] = SPEC_DEF;
@@ -234,7 +228,7 @@ namespace CSJ2K.j2k.quantization
 							break;
 						
 						case SPEC_COMP_DEF: 
-							for (int t = nt - 1; t >= 0; t--)
+							for (var t = nt - 1; t >= 0; t--)
 							{
 								if (specValType[t][0] == SPEC_COMP_DEF)
 									specValType[t][0] = SPEC_DEF;

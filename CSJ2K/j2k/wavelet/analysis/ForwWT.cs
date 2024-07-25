@@ -12,10 +12,10 @@
 * 
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -50,7 +50,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 	/// wavelet transforms. Classes that implement forward wavelet transfoms should
 	/// implement this interface.
 	/// 
-	/// <p>This class does not define the methods to transfer data, just the
+	/// This class does not define the methods to transfer data, just the
 	/// specifics to forward wavelet transform. Different data transfer methods are 
 	/// evisageable for different transforms.</p>
 	/// 
@@ -66,10 +66,10 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// there are less elements in the array than the number of resolution
 		/// levels, then the last one is assumed to repeat itself.
 		/// 
-		/// <p>The returned filters are applicable only to the specified component
+		/// The returned filters are applicable only to the specified component
 		/// and in the current tile.</p>
 		/// 
-		/// <p>The resolution level of a subband is the resolution level to which a
+		/// The resolution level of a subband is the resolution level to which a
 		/// subband contributes, which is different from its decomposition
 		/// level.</p>
 		/// 
@@ -93,10 +93,10 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// there are less elements in the array than the number of resolution
 		/// levels, then the last one is assumed to repeat itself.
 		/// 
-		/// <p>The returned filters are applicable only to the specified component
+		/// The returned filters are applicable only to the specified component
 		/// and in the current tile.</p>
 		/// 
-		/// <p>The resolution level of a subband is the resolution level to which a
+		/// The resolution level of a subband is the resolution level to which a
 		/// subband contributes, which is different from its decomposition
 		/// level.</p>
 		/// 

@@ -11,10 +11,10 @@
 *
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -52,23 +52,23 @@ namespace CSJ2K.j2k.codestream.writer
 	/// procedure encodes the sufficient information to identify whether or not the
 	/// value is greater than or equal to the threshold.
 	/// 
-	/// <p>The tag tree saves encoded information to a BitOutputBuffer.</p>
+	/// The tag tree saves encoded information to a BitOutputBuffer.</p>
 	/// 
-	/// <p>A particular and useful property of tag trees is that it is possible to
+	/// A particular and useful property of tag trees is that it is possible to
 	/// change a value of the matrix, provided both new and old values of the
 	/// element are both greater than or equal to the largest threshold which has
 	/// yet been supplied to the coding procedure 'encode()'. This property can be
 	/// exploited through the 'setValue()' method.</p>
 	/// 
-	/// <p>This class allows saving the state of the tree at any point and
+	/// This class allows saving the state of the tree at any point and
 	/// restoring it at a later time, by calling save() and restore().</p>
 	/// 
-	/// <p>A tag tree can also be reused, or restarted, if one of the reset()
+	/// A tag tree can also be reused, or restarted, if one of the reset()
 	/// methods is called.</p>
 	/// 
-	/// <p>The TagTreeDecoder class implements the tag tree decoder.</p>
+	/// The TagTreeDecoder class implements the tag tree decoder.</p>
 	/// 
-	/// <p>Tag trees that have one dimension, or both, as 0 are allowed for
+	/// Tag trees that have one dimension, or both, as 0 are allowed for
 	/// convenience. Of course no values can be set or coded in such cases.</p>
 	/// 
 	/// </summary>
@@ -86,35 +86,23 @@ namespace CSJ2K.j2k.codestream.writer
 		/// <returns> The number of leafs along the horizontal direction.
 		/// 
 		/// </returns>
-		virtual public int Width
-		{
-			get
-			{
-				return w;
-			}
-			
-		}
+		public virtual int Width => w;
+
 		/// <summary> Returns the number of leafs along the vertical direction.
 		/// 
 		/// </summary>
 		/// <returns> The number of leafs along the vertical direction.
 		/// 
 		/// </returns>
-		virtual public int Height
-		{
-			get
-			{
-				return h;
-			}
-			
-		}
+		public virtual int Height => h;
+
 		/// <summary> Sets the values of the leafs to the new set of values and updates the
 		/// tag tree accordingly. No leaf can change its value if either the new or
 		/// old value is smaller than largest threshold which has yet been supplied
 		/// to 'encode()'. However such a leaf can keep its old value (i.e. new and
 		/// old value must be identical.
 		/// 
-		/// <p>This method is more efficient than the setValue() method if a large
+		/// This method is more efficient than the setValue() method if a large
 		/// proportion of the leafs change their value. Note that for leafs which
 		/// don't have their value defined yet the value should be
 		/// Integer.MAX_VALUE (which is the default initialization value).</p>
@@ -126,7 +114,7 @@ namespace CSJ2K.j2k.codestream.writer
 		/// <seealso cref="setValue">
 		/// 
 		/// </seealso>
-		virtual public int[] Values
+		public virtual int[] Values
 		{
 			set
 			{
@@ -134,7 +122,7 @@ namespace CSJ2K.j2k.codestream.writer
 				if (lvls == 0)
 				{
 					// Can't set values on empty tree
-					throw new System.ArgumentException();
+					throw new ArgumentException();
 				}
 				// Check the values
 				maxt = treeS[lvls - 1][0];
@@ -142,7 +130,7 @@ namespace CSJ2K.j2k.codestream.writer
 				{
 					if ((treeV[0][i] < maxt || value[i] < maxt) && treeV[0][i] != value[i])
 					{
-						throw new System.ArgumentException();
+						throw new ArgumentException();
 					}
 					// Update leaf value
 					treeV[0][i] = value[i];
@@ -195,7 +183,7 @@ namespace CSJ2K.j2k.codestream.writer
 		/// dimension and 'h' elements along the vertical direction. The total
 		/// number of elements is thus 'vdim' x 'hdim'.
 		/// 
-		/// <p>The values of all elements are initialized to Integer.MAX_VALUE.</p>
+		/// The values of all elements are initialized to Integer.MAX_VALUE.</p>
 		/// 
 		/// </summary>
 		/// <param name="h">The number of elements along the horizontal direction.
@@ -210,14 +198,14 @@ namespace CSJ2K.j2k.codestream.writer
 			// Check arguments
 			if (w < 0 || h < 0)
 			{
-				throw new System.ArgumentException();
+				throw new ArgumentException();
 			}
 			// Initialize elements
 			init(w, h);
 			// Set values to max
 			for (k = treeV.Length - 1; k >= 0; k--)
 			{
-				ArrayUtil.intArraySet(treeV[k], System.Int32.MaxValue);
+				ArrayUtil.intArraySet(treeV[k], int.MaxValue);
 			}
 		}
 		
@@ -226,7 +214,7 @@ namespace CSJ2K.j2k.codestream.writer
 		/// number of elements is thus 'vdim' x 'hdim'. The values of the leafs in
 		/// the tag tree are initialized to the values of the 'val' array.
 		/// 
-		/// <p>The values in the 'val' array are supposed to appear in
+		/// The values in the 'val' array are supposed to appear in
 		/// lexicographical order, starting at index 0.</p>
 		/// 
 		/// </summary>
@@ -245,7 +233,7 @@ namespace CSJ2K.j2k.codestream.writer
 			// Check arguments
 			if (w < 0 || h < 0 || val.Length < w * h)
 			{
-				throw new System.ArgumentException();
+				throw new ArgumentException();
 			}
 			// Initialize elements
 			init(w, h);
@@ -386,7 +374,7 @@ namespace CSJ2K.j2k.codestream.writer
 			// Check arguments
 			if (lvls == 0 || n < 0 || n >= w || v < treeS[lvls - 1][0] || treeV[0][m * w + n] < treeS[lvls - 1][0])
 			{
-				throw new System.ArgumentException();
+				throw new ArgumentException();
 			}
 			// Update the leaf value
 			treeV[0][m * w + n] = v;
@@ -434,7 +422,7 @@ namespace CSJ2K.j2k.codestream.writer
 			// Check arguments
 			if (m >= h || n >= w || t < 0)
 			{
-				throw new System.ArgumentException();
+				throw new ArgumentException();
 			}
 			
 			// Initialize
@@ -538,7 +526,7 @@ namespace CSJ2K.j2k.codestream.writer
 			if (!saved)
 			{
 				// Nothing saved yet
-				throw new System.ArgumentException();
+				throw new ArgumentException();
 			}
 			
 			// Copy the arrays
@@ -560,7 +548,7 @@ namespace CSJ2K.j2k.codestream.writer
 			// and states to 0
 			for (k = lvls - 1; k >= 0; k--)
 			{
-				ArrayUtil.intArraySet(treeV[k], System.Int32.MaxValue);
+				ArrayUtil.intArraySet(treeV[k], int.MaxValue);
 				ArrayUtil.intArraySet(treeS[k], 0);
 			}
 			// Invalidate saved tree

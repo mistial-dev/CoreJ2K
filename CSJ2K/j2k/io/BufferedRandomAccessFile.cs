@@ -11,10 +11,10 @@
 *
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -45,7 +45,7 @@ namespace CSJ2K.j2k.io
 	using System;
 	using System.IO;
 
-	using CSJ2K.Util;
+	using Util;
 
 	/// <summary> This class defines a Buffered Random Access File.  It implements the
 	/// <tt>BinaryDataInput</tt> and <tt>BinaryDataOutput</tt> interfaces so that
@@ -54,7 +54,7 @@ namespace CSJ2K.j2k.io
 	/// Endian). So subclasses will have to implement methods like
 	/// <tt>readShort()</tt>, <tt>writeShort()</tt>, <tt>readFloat()</tt>, ...
 	/// 
-	/// <P><tt>BufferedRandomAccessFile</tt> (BRAF for short) is a
+	/// <tt>BufferedRandomAccessFile</tt> (BRAF for short) is a
 	/// <tt>RandomAccessFile</tt> containing an extra buffer. When the BRAF is
 	/// accessed, it checks if the requested part of the file is in the buffer or
 	/// not. If that is the case, the read/write is done on the buffer. If not, the
@@ -76,14 +76,8 @@ namespace CSJ2K.j2k.io
 		/// <summary> Returns the current offset in the file
 		/// 
 		/// </summary>
-		virtual public int Pos
-		{
-			get
-			{
-				return (offset + position);
-			}
-			
-		}
+		public virtual int Pos => (offset + position);
+
 		/// <summary> Returns the endianess (i.e., byte ordering) of the implementing
 		/// class. Note that an implementing class may implement only one
 		/// type of endianness or both, which would be decided at creation
@@ -97,17 +91,10 @@ namespace CSJ2K.j2k.io
 		/// <seealso cref="EndianType">
 		/// 
 		/// </seealso>
-		virtual public int ByteOrdering
-		{
-			get
-			{
-				return byte_Ordering;
-			}
-			
-		}
-		
+		public virtual int ByteOrdering => byte_Ordering;
+
 		/// <summary>The name of the current file </summary>
-		private System.String fileName;
+		private string fileName;
 		
 		/// <summary> Whether the opened file is read only or not (defined by the constructor
 		/// arguments)
@@ -119,7 +106,7 @@ namespace CSJ2K.j2k.io
 		/// 
 		/// </summary>
 		//UPGRADE_TODO: Class 'java.io.RandomAccessFile' was converted to 'System.IO.FileStream' which has a different behavior. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1073_javaioRandomAccessFile'"
-		private System.IO.Stream theFile;
+		private Stream theFile;
 		
 		/// <summary> Buffer of bytes containing the part of the file that is currently being
 		/// accessed
@@ -172,7 +159,7 @@ namespace CSJ2K.j2k.io
 		/// </exception>
 		protected internal BufferedRandomAccessFile(Stream stream, bool isReadOnly, int bufferSize)
 		{
-			fileName = String.Empty;
+			fileName = string.Empty;
 			theFile = stream;
 			this.isReadOnly = isReadOnly;
 			byteBuffer = new byte[bufferSize];
@@ -213,7 +200,7 @@ namespace CSJ2K.j2k.io
 		/// <exception cref="IOException">If an I/O error ocurred.
 		/// 
 		/// </exception>
-		protected internal BufferedRandomAccessFile(IFileInfo file, System.String mode, int bufferSize)
+		protected internal BufferedRandomAccessFile(IFileInfo file, string mode, int bufferSize)
 		{
 			
 			fileName = file.Name;
@@ -225,7 +212,7 @@ namespace CSJ2K.j2k.io
 				{
 					if (file.Exists && !file.Delete())
 					{
-						throw new System.IO.IOException("Could not delete existing file");
+						throw new IOException("Could not delete existing file");
 					}
 				}
 				mode = "rw";
@@ -251,7 +238,7 @@ namespace CSJ2K.j2k.io
 		/// <exception cref="IOException">If an I/O error ocurred.
 		/// 
 		/// </exception>
-		protected internal BufferedRandomAccessFile(IFileInfo file, System.String mode):this(file, mode, 512)
+		protected internal BufferedRandomAccessFile(IFileInfo file, string mode):this(file, mode, 512)
 		{
 		}
 		
@@ -273,7 +260,7 @@ namespace CSJ2K.j2k.io
 		/// <exception cref="IOException">If an I/O error ocurred.
 		/// 
 		/// </exception>
-		protected internal BufferedRandomAccessFile(System.String name, System.String mode, int bufferSize):this(FileInfoFactory.New(name), mode, bufferSize)
+		protected internal BufferedRandomAccessFile(string name, string mode, int bufferSize):this(FileInfoFactory.New(name), mode, bufferSize)
 		{
 		}
 		
@@ -293,7 +280,7 @@ namespace CSJ2K.j2k.io
 		/// <exception cref="IOException">If an I/O error ocurred.
 		/// 
 		/// </exception>
-		protected internal BufferedRandomAccessFile(System.String name, System.String mode):this(name, mode, 512)
+		protected internal BufferedRandomAccessFile(string name, string mode):this(name, mode, 512)
 		{
 		}
 		
@@ -321,12 +308,12 @@ namespace CSJ2K.j2k.io
 			// Don't allow to seek beyond end of file if reading only
 			if (isReadOnly && off >= theFile.Length)
 			{
-				throw new System.IO.EndOfStreamException();
+				throw new EndOfStreamException();
 			}
 			// Set new offset
 			offset = off;
 			
-			theFile.Seek(offset, System.IO.SeekOrigin.Begin);
+			theFile.Seek(offset, SeekOrigin.Begin);
 			
 			maxByte = theFile.Read(byteBuffer, 0, byteBuffer.Length);
 			position = 0;
@@ -413,7 +400,7 @@ namespace CSJ2K.j2k.io
 				if (isReadOnly && isEOFInBuffer && off > offset + maxByte)
 				{
 					// We are seeking beyond EOF in read-only mode!
-					throw new System.IO.EndOfStreamException();
+					throw new EndOfStreamException();
 				}
 				position = off - offset;
 			}
@@ -450,7 +437,7 @@ namespace CSJ2K.j2k.io
 			{
 				// EOF is reached
 				position = maxByte + 1; // Set position to EOF
-				throw new System.IO.EndOfStreamException();
+				throw new EndOfStreamException();
 			}
 			else
 			{
@@ -503,7 +490,7 @@ namespace CSJ2K.j2k.io
 				else if (isEOFInBuffer)
 				{
 					position = maxByte + 1; // Set position to EOF
-					throw new System.IO.EndOfStreamException();
+					throw new EndOfStreamException();
 				}
 				else
 				{
@@ -532,7 +519,7 @@ namespace CSJ2K.j2k.io
 			if (position < byteBuffer.Length)
 			{
 				if (isReadOnly)
-					throw new System.IO.IOException("File is read only");
+					throw new IOException("File is read only");
 				byteBuffer[position] = (byte) b;
 				if (position >= maxByte)
 				{
@@ -566,7 +553,7 @@ namespace CSJ2K.j2k.io
 			if (position < byteBuffer.Length)
 			{
 				if (isReadOnly)
-					throw new System.IO.IOException("File is read only");
+					throw new IOException("File is read only");
 				byteBuffer[position] = b;
 				if (position >= maxByte)
 				{
@@ -603,7 +590,7 @@ namespace CSJ2K.j2k.io
 			int i, stop;
 			stop = offset + length;
 			if (stop > b.Length)
-				throw new System. IndexOutOfRangeException("Index of bound " + b.Length);
+				throw new IndexOutOfRangeException($"Index of bound {b.Length}");
 			for (i = offset; i < stop; i++)
 			{
 				write(b[i]);
@@ -614,7 +601,7 @@ namespace CSJ2K.j2k.io
 		/// significant bits) to the output. Prior to writing, the output
 		/// should be realigned at the byte level.
 		/// 
-		/// <P>Signed or unsigned data can be written. To write a signed
+		/// Signed or unsigned data can be written. To write a signed
 		/// value just pass the <tt>byte</tt> value as an argument. To
 		/// write unsigned data pass the <tt>int</tt> value as an argument
 		/// (it will be automatically casted, and only the 8 least
@@ -644,7 +631,7 @@ namespace CSJ2K.j2k.io
 		{
 			if (byteBufferChanged)
 			{
-				theFile.Seek(offset, System.IO.SeekOrigin.Begin);
+				theFile.Seek(offset, SeekOrigin.Begin);
 				theFile.Write(byteBuffer, 0, maxByte);
 				byteBufferChanged = false;
 			}
@@ -726,7 +713,7 @@ namespace CSJ2K.j2k.io
 		public virtual int skipBytes(int n)
 		{
 			if (n < 0)
-				throw new System.ArgumentException("Can not skip negative number " + "of bytes");
+				throw new ArgumentException("Can not skip negative number " + "of bytes");
 			if (n <= (maxByte - position))
 			{
 				position += n;
@@ -742,9 +729,9 @@ namespace CSJ2K.j2k.io
 		/// <summary> Returns a string of information about the file
 		/// 
 		/// </summary>
-		public override System.String ToString()
+		public override string ToString()
 		{
-			return "BufferedRandomAccessFile: " + fileName + " (" + ((isReadOnly)?"read only":"read/write") + ")";
+			return $"BufferedRandomAccessFile: {fileName} ({((isReadOnly) ? "read only" : "read/write")})";
 		}
 		public abstract int readUnsignedShort();
 		public abstract void  writeLong(long param1);

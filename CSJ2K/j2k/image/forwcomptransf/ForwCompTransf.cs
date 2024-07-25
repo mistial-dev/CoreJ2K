@@ -11,10 +11,10 @@
 *
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -77,14 +77,8 @@ namespace CSJ2K.j2k.image.forwcomptransf
 		/// if no options are supported.
 		/// 
 		/// </returns>
-		public static System.String[][] ParameterInfo
-		{
-			get
-			{
-				return pinfo;
-			}
-			
-		}
+		public static string[][] ParameterInfo => pinfo;
+
 		/// <summary> Returns true if this transform is reversible in current
 		/// tile. Reversible component transformations are those which operation
 		/// can be completely reversed without any loss of information (not even
@@ -94,7 +88,7 @@ namespace CSJ2K.j2k.image.forwcomptransf
 		/// <returns> Reversibility of component transformation in current tile
 		/// 
 		/// </returns>
-		virtual public bool Reversible
+		public virtual bool Reversible
 		{
 			get
 			{
@@ -109,7 +103,7 @@ namespace CSJ2K.j2k.image.forwcomptransf
 						return false;
 					
 					default: 
-						throw new System.ArgumentException("Non JPEG 2000 part I" + " component transformation");
+						throw new ArgumentException("Non JPEG 2000 part I" + " component transformation");
 					
 				}
 			}
@@ -174,8 +168,8 @@ namespace CSJ2K.j2k.image.forwcomptransf
 		/// </seealso>
 		public ForwCompTransf(BlkImgDataSrc imgSrc, EncoderSpecs encSpec):base(imgSrc)
 		{
-			this.cts = encSpec.cts;
-			this.wfs = encSpec.wfs;
+			cts = encSpec.cts;
+			wfs = encSpec.wfs;
 			src = imgSrc;
 		}
 		
@@ -186,7 +180,7 @@ namespace CSJ2K.j2k.image.forwcomptransf
 		/// transformation module. Options start with an 'M'. 
 		/// </summary>
 		//UPGRADE_NOTE: Final was removed from the declaration of 'pinfo'. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
-		private static readonly System.String[][] pinfo = new System.String[][]{new System.String[]{"Mct", "[<tile index>] [on|off] ...", "Specifies in which tiles to use a multiple component transform. " + "Note that this multiple component transform can only be applied " + "in tiles that contain at least three components and whose " + "components are processed with the same wavelet filters and " + "quantization type. " + "If the wavelet transform is reversible (w5x3 filter), the " + "Reversible Component Transformation (RCT) is applied. If not " + "(w9x7 filter), the Irreversible Component Transformation (ICT)" + " is used.", null}};
+		private static readonly string[][] pinfo = new string[][]{new string[]{"Mct", "[<tile index>] [on|off] ...", "Specifies in which tiles to use a multiple component transform. " + "Note that this multiple component transform can only be applied " + "in tiles that contain at least three components and whose " + "components are processed with the same wavelet filters and " + "quantization type. " + "If the wavelet transform is reversible (w5x3 filter), the " + "Reversible Component Transformation (RCT) is applied. If not " + "(w9x7 filter), the Irreversible Component Transformation (ICT)" + " is used.", null}};
 		
 		/// <summary> Returns the position of the fixed point in the specified
 		/// component. This is the position of the least significant integral
@@ -196,7 +190,7 @@ namespace CSJ2K.j2k.image.forwcomptransf
 		/// and 0 should be returned. Position 0 is the position of the least
 		/// significant bit in the data.
 		/// 
-		/// <p>This default implementation assumes that the number of fractional
+		/// This default implementation assumes that the number of fractional
 		/// bits is not modified by the component mixer.</p>
 		/// 
 		/// </summary>
@@ -207,9 +201,9 @@ namespace CSJ2K.j2k.image.forwcomptransf
 		/// color transform does not affect it.
 		/// 
 		/// </returns>
-		public virtual int getFixedPoint(int c)
+		public virtual int GetFixedPoint(int c)
 		{
-			return src.getFixedPoint(c);
+			return src.GetFixedPoint(c);
 		}
 		
 		/// <summary> Calculates the bitdepths of the transformed components, given the
@@ -235,7 +229,7 @@ namespace CSJ2K.j2k.image.forwcomptransf
 			
 			if (ntdepth.Length < 3 && ttype != NONE)
 			{
-				throw new System.ArgumentException();
+				throw new ArgumentException();
 			}
 			
 			if (tdepth == null)
@@ -277,11 +271,11 @@ namespace CSJ2K.j2k.image.forwcomptransf
 					// use 'MathUtil.log2(2*x-1)+1', which calculates ceil(log2(x))
 					// for any x>=1, x integer.
 					//UPGRADE_WARNING: Data types in Visual C# might be different.  Verify the accuracy of narrowing conversions. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1042'"
-					tdepth[0] = MathUtil.log2((int) System.Math.Floor((1 << ntdepth[0]) * 0.299072 + (1 << ntdepth[1]) * 0.586914 + (1 << ntdepth[2]) * 0.114014) - 1) + 1;
+					tdepth[0] = MathUtil.log2((int) Math.Floor((1 << ntdepth[0]) * 0.299072 + (1 << ntdepth[1]) * 0.586914 + (1 << ntdepth[2]) * 0.114014) - 1) + 1;
 					//UPGRADE_WARNING: Data types in Visual C# might be different.  Verify the accuracy of narrowing conversions. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1042'"
-					tdepth[1] = MathUtil.log2((int) System.Math.Floor((1 << ntdepth[0]) * 0.168701 + (1 << ntdepth[1]) * 0.331299 + (1 << ntdepth[2]) * 0.5) - 1) + 1;
+					tdepth[1] = MathUtil.log2((int) Math.Floor((1 << ntdepth[0]) * 0.168701 + (1 << ntdepth[1]) * 0.331299 + (1 << ntdepth[2]) * 0.5) - 1) + 1;
 					//UPGRADE_WARNING: Data types in Visual C# might be different.  Verify the accuracy of narrowing conversions. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1042'"
-					tdepth[2] = MathUtil.log2((int) System.Math.Floor((1 << ntdepth[0]) * 0.5 + (1 << ntdepth[1]) * 0.418701 + (1 << ntdepth[2]) * 0.081299) - 1) + 1;
+					tdepth[2] = MathUtil.log2((int) Math.Floor((1 << ntdepth[0]) * 0.5 + (1 << ntdepth[1]) * 0.418701 + (1 << ntdepth[2]) * 0.081299) - 1) + 1;
 					break;
 				}
 			
@@ -295,16 +289,16 @@ namespace CSJ2K.j2k.image.forwcomptransf
 		private void  initForwRCT()
 		{
 			int i;
-			int tIdx = TileIdx;
+			var tIdx = TileIdx;
 			
 			if (src.NumComps < 3)
 			{
-				throw new System.ArgumentException();
+				throw new ArgumentException();
 			}
 			// Check that the 3 components have the same dimensions
 			if (src.getTileCompWidth(tIdx, 0) != src.getTileCompWidth(tIdx, 1) || src.getTileCompWidth(tIdx, 0) != src.getTileCompWidth(tIdx, 2) || src.getTileCompHeight(tIdx, 0) != src.getTileCompHeight(tIdx, 1) || src.getTileCompHeight(tIdx, 0) != src.getTileCompHeight(tIdx, 2))
 			{
-				throw new System.ArgumentException("Can not use RCT " + "on components with different " + "dimensions");
+				throw new ArgumentException("Can not use RCT " + "on components with different " + "dimensions");
 			}
 			// Initialize bitdepths
 			int[] utd; // Premix bitdepths
@@ -323,16 +317,16 @@ namespace CSJ2K.j2k.image.forwcomptransf
 		private void  initForwICT()
 		{
 			int i;
-			int tIdx = TileIdx;
+			var tIdx = TileIdx;
 			
 			if (src.NumComps < 3)
 			{
-				throw new System.ArgumentException();
+				throw new ArgumentException();
 			}
 			// Check that the 3 components have the same dimensions
 			if (src.getTileCompWidth(tIdx, 0) != src.getTileCompWidth(tIdx, 1) || src.getTileCompWidth(tIdx, 0) != src.getTileCompWidth(tIdx, 2) || src.getTileCompHeight(tIdx, 0) != src.getTileCompHeight(tIdx, 1) || src.getTileCompHeight(tIdx, 0) != src.getTileCompHeight(tIdx, 2))
 			{
-				throw new System.ArgumentException("Can not use ICT " + "on components with different " + "dimensions");
+				throw new ArgumentException("Can not use ICT " + "on components with different " + "dimensions");
 			}
 			// Initialize bitdepths
 			int[] utd; // Premix bitdepths
@@ -352,7 +346,7 @@ namespace CSJ2K.j2k.image.forwcomptransf
 		/// <returns> A descriptive string
 		/// 
 		/// </returns>
-		public override System.String ToString()
+		public override string ToString()
 		{
 			switch (transfType)
 			{
@@ -367,7 +361,7 @@ namespace CSJ2K.j2k.image.forwcomptransf
 					return "No component transformation";
 				
 				default: 
-					throw new System.ArgumentException("Non JPEG 2000 part I" + " component transformation");
+					throw new ArgumentException("Non JPEG 2000 part I" + " component transformation");
 				
 			}
 		}
@@ -399,7 +393,7 @@ namespace CSJ2K.j2k.image.forwcomptransf
 					return src.getNomRangeBits(c);
 				
 				default: 
-					throw new System.ArgumentException("Non JPEG 2000 part I" + " component transformation");
+					throw new ArgumentException("Non JPEG 2000 part I" + " component transformation");
 				
 			}
 		}
@@ -408,7 +402,7 @@ namespace CSJ2K.j2k.image.forwcomptransf
 		/// tile. If no component transformation has been requested by the user,
 		/// data are not modified.
 		/// 
-		/// <p>This method calls the getInternCompData() method, but respects the
+		/// This method calls the getInternCompData() method, but respects the
 		/// definitions of the getCompData() method defined in the BlkImgDataSrc
 		/// interface.</p>
 		/// 
@@ -423,22 +417,22 @@ namespace CSJ2K.j2k.image.forwcomptransf
 		/// <returns> The requested DataBlk
 		/// 
 		/// </returns>
-		/// <seealso cref="BlkImgDataSrc.getCompData">
+		/// <seealso cref="BlkImgDataSrc.GetCompData">
 		/// 
 		/// </seealso>
-		public virtual DataBlk getCompData(DataBlk blk, int c)
+		public virtual DataBlk GetCompData(DataBlk blk, int c)
 		{
 			// If requesting a component whose index is greater than 3 or there is
 			// no transform return a copy of data (getInternCompData returns the
 			// actual data in those cases)
 			if (c >= 3 || transfType == NONE)
 			{
-				return src.getCompData(blk, c);
+				return src.GetCompData(blk, c);
 			}
 			else
 			{
 				// We can use getInternCompData (since data is a copy anyways)
-				return getInternCompData(blk, c);
+				return GetInternCompData(blk, c);
 			}
 		}
 
@@ -448,7 +442,7 @@ namespace CSJ2K.j2k.image.forwcomptransf
 	    /// </summary>
 	    /// <exception cref="IOException">If an I/O error occurs.
 	    /// </exception>
-	    public void close()
+	    public void Close()
 	    {
 	        // Do nothing.
 	    }
@@ -463,7 +457,7 @@ namespace CSJ2K.j2k.image.forwcomptransf
 	    /// <returns> true if the data was originally signed, false if not.
 	    /// 
 	    /// </returns>
-	    public bool isOrigSigned(int c)
+	    public bool IsOrigSigned(int c)
 	    {
 	        return false;
 	    }
@@ -488,13 +482,13 @@ namespace CSJ2K.j2k.image.forwcomptransf
 		/// <returns> The requested DataBlk
 		/// 
 		/// </returns>
-		public virtual DataBlk getInternCompData(DataBlk blk, int c)
+		public virtual DataBlk GetInternCompData(DataBlk blk, int c)
 		{
 			switch (transfType)
 			{
 				
 				case NONE: 
-					return src.getInternCompData(blk, c);
+					return src.GetInternCompData(blk, c);
 				
 				case FORW_RCT: 
 					return forwRCT(blk, c);
@@ -503,7 +497,7 @@ namespace CSJ2K.j2k.image.forwcomptransf
 					return forwICT(blk, c);
 				
 				default: 
-					throw new System.ArgumentException("Non JPEG 2000 part 1 " + "component" + " transformation for tile: " + tIdx);
+					throw new ArgumentException($"Non JPEG 2000 part 1 component transformation for tile: {tIdx}");
 				
 			}
 		}
@@ -525,8 +519,8 @@ namespace CSJ2K.j2k.image.forwcomptransf
 		private DataBlk forwRCT(DataBlk blk, int c)
 		{
 			int k, k0, k1, k2, mink, i;
-			int w = blk.w; //width of output block
-			int h = blk.h; //height of ouput block
+			var w = blk.w; //width of output block
+			var h = blk.h; //height of ouput block
 			int[] outdata; //array of output data
 			
 			//If asking for Yr, Ur or Vr do transform
@@ -572,11 +566,11 @@ namespace CSJ2K.j2k.image.forwcomptransf
 				
 				//Fill in buffer blocks (to be read only)
 				// Returned blocks may have different size and position
-				block0 = (DataBlkInt) src.getInternCompData(block0, 0);
+				block0 = (DataBlkInt) src.GetInternCompData(block0, 0);
 				data0 = (int[]) block0.Data;
-				block1 = (DataBlkInt) src.getInternCompData(block1, 1);
+				block1 = (DataBlkInt) src.GetInternCompData(block1, 1);
 				data1 = (int[]) block1.Data;
-				block2 = (DataBlkInt) src.getInternCompData(block2, 2);
+				block2 = (DataBlkInt) src.GetInternCompData(block2, 2);
 				bdata = (int[]) block2.Data;
 				
 				// Set the progressiveness of the output data
@@ -648,12 +642,12 @@ namespace CSJ2K.j2k.image.forwcomptransf
 			{
 				// Requesting a component which is not Y, Ur or Vr =>
 				// just pass the data            
-				return src.getInternCompData(blk, c);
+				return src.GetInternCompData(blk, c);
 			}
 			else
 			{
 				// Requesting a non valid component index
-				throw new System.ArgumentException();
+				throw new ArgumentException();
 			}
 			return blk;
 		}
@@ -675,8 +669,8 @@ namespace CSJ2K.j2k.image.forwcomptransf
 		private DataBlk forwICT(DataBlk blk, int c)
 		{
 			int k, k0, k1, k2, mink, i;
-			int w = blk.w; //width of output block
-			int h = blk.h; //height of ouput block
+			var w = blk.w; //width of output block
+			var h = blk.h; //height of ouput block
 			float[] outdata; //array of output data
 			
 			if (blk.DataType != DataBlk.TYPE_FLOAT)
@@ -726,11 +720,11 @@ namespace CSJ2K.j2k.image.forwcomptransf
 				block0.uly = block1.uly = block2.uly = blk.uly;
 				
 				// Returned blocks may have different size and position
-				block0 = (DataBlkInt) src.getInternCompData(block0, 0);
+				block0 = (DataBlkInt) src.GetInternCompData(block0, 0);
 				data0 = (int[]) block0.Data;
-				block1 = (DataBlkInt) src.getInternCompData(block1, 1);
+				block1 = (DataBlkInt) src.GetInternCompData(block1, 1);
 				data1 = (int[]) block1.Data;
-				block2 = (DataBlkInt) src.getInternCompData(block2, 2);
+				block2 = (DataBlkInt) src.GetInternCompData(block2, 2);
 				data2 = (int[]) block2.Data;
 				
 				// Set the progressiveness of the output data
@@ -803,12 +797,12 @@ namespace CSJ2K.j2k.image.forwcomptransf
 				// just pass the data
 				
 				// Variables
-				DataBlkInt indb = new DataBlkInt(blk.ulx, blk.uly, w, h);
+				var indb = new DataBlkInt(blk.ulx, blk.uly, w, h);
 				int[] indata; // input data array
 				
 				// Get the input data
 				// (returned block may be larger than requested one)
-				src.getInternCompData(indb, c);
+				src.GetInternCompData(indb, c);
 				indata = (int[]) indb.Data;
 				
 				// Copy the data converting from int to float
@@ -819,7 +813,7 @@ namespace CSJ2K.j2k.image.forwcomptransf
 					for (mink = k - w; k > mink; k--, k0--)
 					{
 						//UPGRADE_WARNING: Data types in Visual C# might be different.  Verify the accuracy of narrowing conversions. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1042'"
-						outdata[k] = (float) indata[k0];
+						outdata[k] = indata[k0];
 					}
 					// Jump to beggining of next line in input
 					k0 += indb.w - w;
@@ -834,7 +828,7 @@ namespace CSJ2K.j2k.image.forwcomptransf
 			else
 			{
 				// Requesting a non valid component index
-				throw new System.ArgumentException();
+				throw new ArgumentException();
 			}
 			return blk;
 		}
@@ -843,7 +837,7 @@ namespace CSJ2K.j2k.image.forwcomptransf
 		/// IllegalArgumentException is thrown if the indexes do not correspond to
 		/// a valid tile.
 		/// 
-		/// <p>This default implementation changes the tile in the source and
+		/// This default implementation changes the tile in the source and
 		/// re-initializes properly component transformation variables..</p>
 		/// 
 		/// </summary>
@@ -859,7 +853,7 @@ namespace CSJ2K.j2k.image.forwcomptransf
 			tIdx = TileIdx; // index of the current tile
 			
 			// initializations
-			System.String str = (System.String) cts.getTileDef(tIdx);
+			var str = (string) cts.getTileDef(tIdx);
 			if (str.Equals("none"))
 			{
 				transfType = NONE;
@@ -876,7 +870,7 @@ namespace CSJ2K.j2k.image.forwcomptransf
 			}
 			else
 			{
-				throw new System.ArgumentException("Component transformation" + " not recognized");
+				throw new ArgumentException("Component transformation" + " not recognized");
 			}
 		}
 		
@@ -884,7 +878,7 @@ namespace CSJ2K.j2k.image.forwcomptransf
 		/// columns). An NoNextElementException is thrown if the current tile is
 		/// the last one (i.e. there is no next tile).
 		/// 
-		/// <p>This default implementation just advances to the next tile in the
+		/// This default implementation just advances to the next tile in the
 		/// source and re-initializes properly component transformation
 		/// variables.</p>
 		/// 
@@ -895,7 +889,7 @@ namespace CSJ2K.j2k.image.forwcomptransf
 			tIdx = TileIdx; // index of the current tile
 			
 			// initializations
-			System.String str = (System.String) cts.getTileDef(tIdx);
+			var str = (string) cts.getTileDef(tIdx);
 			if (str.Equals("none"))
 			{
 				transfType = NONE;
@@ -912,7 +906,7 @@ namespace CSJ2K.j2k.image.forwcomptransf
 			}
 			else
 			{
-				throw new System.ArgumentException("Component transformation" + " not recognized");
+				throw new ArgumentException("Component transformation" + " not recognized");
 			}
 		}
 	}

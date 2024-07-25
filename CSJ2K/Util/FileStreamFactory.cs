@@ -33,8 +33,8 @@ namespace CSJ2K.Util
         internal static Stream New(string path, string mode)
         {
             if (_creator == null) throw new InvalidOperationException("No file stream creator is registered.");
-            if (path == null) throw new ArgumentNullException("path");
-            if (mode == null) throw new ArgumentNullException("mode");
+            if (path == null) throw new ArgumentNullException(nameof(path));
+            if (mode == null) throw new ArgumentNullException(nameof(mode));
 
             return _creator.Create(path, mode);
         }

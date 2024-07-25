@@ -11,10 +11,10 @@
 *
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -131,8 +131,8 @@ namespace CSJ2K.j2k.fileformat.writer
 			this.clength = clength;
 			
 			bpcVaries = false;
-			int fixbpc = bpc[0];
-			for (int i = nc - 1; i > 0; i--)
+			var fixbpc = bpc[0];
+			for (var i = nc - 1; i > 0; i--)
 			{
 				if (bpc[i] != fixbpc)
 					bpcVaries = true;
@@ -165,7 +165,7 @@ namespace CSJ2K.j2k.fileformat.writer
 				// Write the JP2_SINATURE_BOX
 				fi.seek(0);
 				fi.writeInt(0x0000000c);
-				fi.writeInt(CSJ2K.j2k.fileformat.FileFormatBoxes.JP2_SIGNATURE_BOX);
+				fi.writeInt(FileFormatBoxes.JP2_SIGNATURE_BOX);
 				fi.writeInt(0x0d0a870a);
 				
 				// Write File Type box
@@ -179,9 +179,10 @@ namespace CSJ2K.j2k.fileformat.writer
 				
 				fi.close();
 			}
-			catch (System.Exception e)
+			catch (Exception e)
 			{
-				throw new System.InvalidOperationException("Error while writing JP2 file format(2): " + e.Message + "\n" + e.StackTrace);
+				throw new InvalidOperationException(
+					$"Error while writing JP2 file format(2): {e.Message}\n{e.StackTrace}");
 			}
 			if (bpcVaries)
 				return 12 + FTB_LENGTH + 8 + IHB_LENGTH + CSB_LENGTH + BPC_LENGTH + nc + 8;
@@ -202,17 +203,17 @@ namespace CSJ2K.j2k.fileformat.writer
 			fi.writeInt(FTB_LENGTH);
 			
 			// Write File Type box (TBox)
-			fi.writeInt(CSJ2K.j2k.fileformat.FileFormatBoxes.FILE_TYPE_BOX);
+			fi.writeInt(FileFormatBoxes.FILE_TYPE_BOX);
 			
 			// Write File Type data (DBox)
 			// Write Brand box (BR)
-			fi.writeInt(CSJ2K.j2k.fileformat.FileFormatBoxes.FT_BR);
+			fi.writeInt(FileFormatBoxes.FT_BR);
 			
 			// Write Minor Version
 			fi.writeInt(0);
 			
 			// Write Compatibility list
-			fi.writeInt(CSJ2K.j2k.fileformat.FileFormatBoxes.FT_BR);
+			fi.writeInt(FileFormatBoxes.FT_BR);
 		}
 		
 		/// <summary> This method writes the JP2Header box
@@ -232,7 +233,7 @@ namespace CSJ2K.j2k.fileformat.writer
 				fi.writeInt(8 + IHB_LENGTH + CSB_LENGTH);
 			
 			// Write a JP2Header (TBox)
-			fi.writeInt(CSJ2K.j2k.fileformat.FileFormatBoxes.JP2_HEADER_BOX);
+			fi.writeInt(FileFormatBoxes.JP2_HEADER_BOX);
 			
 			// Write image header box 
 			writeImageHeaderBox();
@@ -258,10 +259,10 @@ namespace CSJ2K.j2k.fileformat.writer
 			fi.writeInt(BPC_LENGTH + nc);
 			
 			// Write a Bits Per Component box (TBox)
-			fi.writeInt(CSJ2K.j2k.fileformat.FileFormatBoxes.BITS_PER_COMPONENT_BOX);
+			fi.writeInt(FileFormatBoxes.BITS_PER_COMPONENT_BOX);
 			
 			// Write bpc fields
-			for (int i = 0; i < nc; i++)
+			for (var i = 0; i < nc; i++)
 			{
 				fi.writeByte(bpc[i] - 1);
 			}
@@ -280,22 +281,19 @@ namespace CSJ2K.j2k.fileformat.writer
 			fi.writeInt(CSB_LENGTH);
 			
 			// Write a Bits Per Component box (TBox)
-			fi.writeInt(CSJ2K.j2k.fileformat.FileFormatBoxes.COLOUR_SPECIFICATION_BOX);
+			fi.writeInt(FileFormatBoxes.COLOUR_SPECIFICATION_BOX);
 			
 			// Write METH field
-			fi.writeByte(CSJ2K.j2k.fileformat.FileFormatBoxes.CSB_METH);
+			fi.writeByte(FileFormatBoxes.CSB_METH);
 			
 			// Write PREC field
-			fi.writeByte(CSJ2K.j2k.fileformat.FileFormatBoxes.CSB_PREC);
+			fi.writeByte(FileFormatBoxes.CSB_PREC);
 			
 			// Write APPROX field
-			fi.writeByte(CSJ2K.j2k.fileformat.FileFormatBoxes.CSB_APPROX);
+			fi.writeByte(FileFormatBoxes.CSB_APPROX);
 			
 			// Write EnumCS field
-			if (nc > 1)
-				fi.writeInt(CSJ2K.j2k.fileformat.FileFormatBoxes.CSB_ENUM_SRGB);
-			else
-				fi.writeInt(CSJ2K.j2k.fileformat.FileFormatBoxes.CSB_ENUM_GREY);
+			fi.writeInt(nc > 1 ? FileFormatBoxes.CSB_ENUM_SRGB : FileFormatBoxes.CSB_ENUM_GREY);
 		}
 		
 		/// <summary> This method writes the Image Header box
@@ -311,7 +309,7 @@ namespace CSJ2K.j2k.fileformat.writer
 			fi.writeInt(IHB_LENGTH);
 			
 			// Write ihdr box name
-			fi.writeInt(CSJ2K.j2k.fileformat.FileFormatBoxes.IMAGE_HEADER_BOX);
+			fi.writeInt(FileFormatBoxes.IMAGE_HEADER_BOX);
 			
 			// Write HEIGHT field
 			fi.writeInt(height);
@@ -331,13 +329,13 @@ namespace CSJ2K.j2k.fileformat.writer
 				fi.writeByte(bpc[0] - 1);
 			
 			// Write C field
-			fi.writeByte(CSJ2K.j2k.fileformat.FileFormatBoxes.IMB_C);
+			fi.writeByte(FileFormatBoxes.IMB_C);
 			
 			// Write UnkC field
-			fi.writeByte(CSJ2K.j2k.fileformat.FileFormatBoxes.IMB_UnkC);
+			fi.writeByte(FileFormatBoxes.IMB_UnkC);
 			
 			// Write IPR field
-			fi.writeByte(CSJ2K.j2k.fileformat.FileFormatBoxes.IMB_IPR);
+			fi.writeByte(FileFormatBoxes.IMB_IPR);
 		}
 		
 		/// <summary> This method writes the Contiguous codestream box
@@ -358,10 +356,10 @@ namespace CSJ2K.j2k.fileformat.writer
 			fi.writeInt(clength + 8);
 			
 			// Write contiguous codestream box name (TBox)
-			fi.writeInt(CSJ2K.j2k.fileformat.FileFormatBoxes.CONTIGUOUS_CODESTREAM_BOX);
+			fi.writeInt(FileFormatBoxes.CONTIGUOUS_CODESTREAM_BOX);
 			
 			// Write codestream
-			for (int i = 0; i < clength; i++)
+			for (var i = 0; i < clength; i++)
 				fi.writeByte(cs[i]);
 		}
 	}

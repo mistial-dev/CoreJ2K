@@ -13,10 +13,10 @@
 * 
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -52,12 +52,12 @@ namespace CSJ2K.j2k.wavelet.synthesis
 	/// returning the value of the source, where the source is another
 	/// 'MultiResImgData' object.
 	/// 
-	/// <p>This abstract class can be used to facilitate the development of other
+	/// This abstract class can be used to facilitate the development of other
 	/// classes that implement 'MultiResImgData'. For example a dequantizer can
 	/// inherit from this class and all the trivial methods do not have to be
 	/// reimplemented.</p>
 	/// 
-	/// <p>If the default implementation of a method provided in this class does
+	/// If the default implementation of a method provided in this class does
 	/// not suit a particular implementation of the 'MultiResImgData' interface,
 	/// the method can be overriden to implement the proper behaviour.</p>
 	/// 
@@ -68,75 +68,38 @@ namespace CSJ2K.j2k.wavelet.synthesis
 	public abstract class MultiResImgDataAdapter : MultiResImgData
 	{
 		/// <summary>Returns the nominal tiles width </summary>
-		virtual public int NomTileWidth
-		{
-			get
-			{
-				return mressrc.NomTileWidth;
-			}
-			
-		}
+		public virtual int NomTileWidth => mressrc.NomTileWidth;
+
 		/// <summary>Returns the nominal tiles height </summary>
-		virtual public int NomTileHeight
-		{
-			get
-			{
-				return mressrc.NomTileHeight;
-			}
-			
-		}
+		public virtual int NomTileHeight => mressrc.NomTileHeight;
+
 		/// <summary> Returns the number of components in the image.
 		/// 
-		/// <p>This default implementation returns the value of the source.</p>
+		/// This default implementation returns the value of the source.</p>
 		/// 
 		/// </summary>
 		/// <returns> The number of components in the image.
 		/// 
 		/// </returns>
-		virtual public int NumComps
-		{
-			get
-			{
-				return mressrc.NumComps;
-			}
-			
-		}
+		public virtual int NumComps => mressrc.NumComps;
+
 		/// <summary> Returns the index of the current tile, relative to a standard scan-line
 		/// order.
 		/// 
-		/// <p>This default implementation returns the value of the source.</p>
+		/// This default implementation returns the value of the source.</p>
 		/// 
 		/// </summary>
 		/// <returns> The current tile's index (starts at 0).
 		/// 
 		/// </returns>
-		virtual public int TileIdx
-		{
-			get
-			{
-				return mressrc.TileIdx;
-			}
-			
-		}
+		public virtual int TileIdx => mressrc.TileIdx;
+
 		/// <summary>Returns the horizontal tile partition offset in the reference grid </summary>
-		virtual public int TilePartULX
-		{
-			get
-			{
-				return mressrc.TilePartULX;
-			}
-			
-		}
+		public virtual int TilePartULX => mressrc.TilePartULX;
+
 		/// <summary>Returns the vertical tile partition offset in the reference grid </summary>
-		virtual public int TilePartULY
-		{
-			get
-			{
-				return mressrc.TilePartULY;
-			}
-			
-		}
-		
+		public virtual int TilePartULY => mressrc.TilePartULY;
+
 		/// <summary>Index of the current tile </summary>
 		protected internal int tIdx = 0;
 		
@@ -159,7 +122,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// resolution level. This is the tile's width without accounting for any
 		/// component subsampling.
 		/// 
-		/// <p>This default implementation returns the value of the source.</p>
+		/// This default implementation returns the value of the source.</p>
 		/// 
 		/// </summary>
 		/// <param name="rl">The resolution level, from 0 to L.
@@ -177,7 +140,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// resolution level. This is the tile's height without accounting for any
 		/// component subsampling.
 		/// 
-		/// <p>This default implementation returns the value of the source.</p>
+		/// This default implementation returns the value of the source.</p>
 		/// 
 		/// </summary>
 		/// <param name="rl">The resolution level, from 0 to L.
@@ -195,7 +158,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// resolution level. This is the image's width without accounting for any
 		/// component subsampling or tiling.
 		/// 
-		/// <p>This default implementation returns the value of the source.</p>
+		/// This default implementation returns the value of the source.</p>
 		/// 
 		/// </summary>
 		/// <param name="rl">The resolution level, from 0 to L.
@@ -213,7 +176,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// resolution level. This is the image's height without accounting for any
 		/// component subsampling or tiling.
 		/// 
-		/// <p>This default implementation returns the value of the source.</p>
+		/// This default implementation returns the value of the source.</p>
 		/// 
 		/// </summary>
 		/// <param name="rl">The resolution level, from 0 to L.
@@ -232,7 +195,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// dimensions between the reference grid and the component itself, see the
 		/// 'ImgData' interface desription for details.
 		/// 
-		/// <p>This default implementation returns the value of the source.</p>
+		/// This default implementation returns the value of the source.</p>
 		/// 
 		/// </summary>
 		/// <param name="c">The index of the component (between 0 and N-1)
@@ -254,7 +217,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// dimensions between the reference grid and the component itself, see the
 		/// 'ImgData' interface desription for details.
 		/// 
-		/// <p>This default implementation returns the value of the source.</p>
+		/// This default implementation returns the value of the source.</p>
 		/// 
 		/// </summary>
 		/// <param name="c">The index of the component (between 0 and N-1)
@@ -274,7 +237,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// <summary> Returns the width in pixels of the specified tile-component for the
 		/// given resolution level.
 		/// 
-		/// <p>This default implementation returns the value of the source.</p>
+		/// This default implementation returns the value of the source.</p>
 		/// 
 		/// </summary>
 		/// <param name="t">Tile index.
@@ -298,7 +261,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// <summary> Returns the height in pixels of the specified tile-component for the
 		/// given resolution level.
 		/// 
-		/// <p>This default implementation returns the value of the source.</p>
+		/// This default implementation returns the value of the source.</p>
 		/// 
 		/// </summary>
 		/// <param name="t">The tile index.
@@ -322,7 +285,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// <summary> Returns the width in pixels of the specified component in the overall
 		/// image, for the given resolution level.
 		/// 
-		/// <p>This default implementation returns the value of the source.</p>
+		/// This default implementation returns the value of the source.</p>
 		/// 
 		/// </summary>
 		/// <param name="c">The index of the component, from 0 to N-1.
@@ -343,7 +306,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// <summary> Returns the height in pixels of the specified component in the overall
 		/// image, for the given resolution level.
 		/// 
-		/// <P>This default implementation returns the value of the source.
+		/// This default implementation returns the value of the source.
 		/// 
 		/// </summary>
 		/// <param name="c">The index of the component, from 0 to N-1.
@@ -365,7 +328,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// IllegalArgumentException is thrown if the indexes do not correspond to
 		/// a valid tile.
 		/// 
-		/// <p>This default implementation just changes the tile in the source.</p>
+		/// This default implementation just changes the tile in the source.</p>
 		/// 
 		/// </summary>
 		/// <param name="x">The horizontal indexes the tile.
@@ -384,7 +347,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// columns). An NoNextElementException is thrown if the current tile is
 		/// the last one (i.e. there is no next tile).
 		/// 
-		/// <p>This default implementation just changes the tile in the source.</p>
+		/// This default implementation just changes the tile in the source.</p>
 		/// 
 		/// </summary>
 		public virtual void  nextTile()
@@ -396,7 +359,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// <summary> Returns the indexes of the current tile. These are the horizontal and
 		/// vertical indexes of the current tile.
 		/// 
-		/// <p>This default implementation returns the value of the source.</p>
+		/// This default implementation returns the value of the source.</p>
 		/// 
 		/// </summary>
 		/// <param name="co">If not null this object is used to return the information. If
@@ -414,7 +377,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// <summary> Returns the horizontal coordinate of the upper-left corner of the
 		/// specified resolution level in the given component of the current tile. 
 		/// 
-		/// <p>This default implementation returns the value of the source.</p>
+		/// This default implementation returns the value of the source.</p>
 		/// 
 		/// </summary>
 		/// <param name="c">The component index.
@@ -431,7 +394,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// <summary> Returns the vertical coordinate of the upper-left corner of the
 		/// specified resolution in the given component of the current tile. 
 		/// 
-		/// <p>This default implementation returns the value of the source.</p>
+		/// This default implementation returns the value of the source.</p>
 		/// 
 		/// </summary>
 		/// <param name="c">The component index.
@@ -449,7 +412,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// corner, in the canvas system, on the reference grid at the specified
 		/// resolution level.
 		/// 
-		/// <p>This default implementation returns the value of the source.</p>
+		/// This default implementation returns the value of the source.</p>
 		/// 
 		/// </summary>
 		/// <param name="rl">The resolution level, from 0 to L.
@@ -468,7 +431,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// corner, in the canvas system, on the reference grid at the specified
 		/// resolution level.
 		/// 
-		/// <p>This default implementation returns the value of the source.</p>
+		/// This default implementation returns the value of the source.</p>
 		/// 
 		/// </summary>
 		/// <param name="rl">The resolution level, from 0 to L.
@@ -485,7 +448,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		
 		/// <summary> Returns the number of tiles in the horizontal and vertical directions.
 		/// 
-		/// <p>This default implementation returns the value of the source.</p>
+		/// This default implementation returns the value of the source.</p>
 		/// 
 		/// </summary>
 		/// <param name="co">If not null this object is used to return the information. If
@@ -503,7 +466,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		
 		/// <summary> Returns the total number of tiles in the image.
 		/// 
-		/// <p>This default implementation returns the value of the source.</p>
+		/// This default implementation returns the value of the source.</p>
 		/// 
 		/// </summary>
 		/// <returns> The total number of tiles in the image.
@@ -513,6 +476,6 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		{
 			return mressrc.getNumTiles();
 		}
-		public abstract CSJ2K.j2k.wavelet.synthesis.SubbandSyn getSynSubbandTree(int param1, int param2);
+		public abstract SubbandSyn getSynSubbandTree(int param1, int param2);
 	}
 }

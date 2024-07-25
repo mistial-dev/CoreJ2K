@@ -13,10 +13,10 @@
 *
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -66,27 +66,14 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// values are 0 and 1, nothing else.
 		/// 
 		/// </summary>
-		override public int CbULX
-		{
-			get
-			{
-				return cb0x;
-			}
-			
-		}
+		public override int CbULX => cb0x;
+
 		/// <summary> Returns the vertical offset of the code-block partition. Allowable
 		/// values are 0 and 1, nothing else.
 		/// 
 		/// </summary>
-		override public int CbULY
-		{
-			get
-			{
-				return cb0y;
-			}
-			
-		}
-		
+		public override int CbULY => cb0y;
+
 		/// <summary>Boolean to know if one are currently dealing with int or float data.</summary>
 		private bool intData;
 		
@@ -95,7 +82,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// when needed. The first index is the tile index (in lexicographical
 		/// order) and the second index is the component index.
 		/// 
-		/// <p>The subband tree for a component in the current tile is created on
+		/// The subband tree for a component in the current tile is created on
 		/// the first call to getAnSubbandTree() for that component, in the current
 		/// tile. Before that, the element in 'subbTrees' is null.</p>
 		/// 
@@ -176,18 +163,18 @@ namespace CSJ2K.j2k.wavelet.analysis
 			this.src = src;
 			this.cb0x = cb0x;
 			this.cb0y = cb0y;
-			this.dls = encSpec.dls;
-			this.filters = encSpec.wfs;
-			this.cblks = encSpec.cblks;
-			this.pss = encSpec.pss;
+			dls = encSpec.dls;
+			filters = encSpec.wfs;
+			cblks = encSpec.cblks;
+			pss = encSpec.pss;
 			
-			int ncomp = src.NumComps;
-			int ntiles = src.getNumTiles();
+			var ncomp = src.NumComps;
+			var ntiles = src.getNumTiles();
 			
 			currentSubband = new SubbandAn[ncomp];
 			decomposedComps = new DataBlk[ncomp];
 			subbTrees = new SubbandAn[ntiles][];
-			for (int i = 0; i < ntiles; i++)
+			for (var i = 0; i < ntiles; i++)
 			{
 				subbTrees[i] = new SubbandAn[ncomp];
 			}
@@ -207,7 +194,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// </returns>
 		public override int getImplementationType(int c)
 		{
-			return CSJ2K.j2k.wavelet.WaveletTransform_Fields.WT_IMPL_FULL;
+			return WaveletTransform_Fields.WT_IMPL_FULL;
 		}
 		
 		/// <summary> Returns the number of decomposition levels that are applied to the LL
@@ -227,7 +214,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// </returns>
 		public override int getDecompLevels(int t, int c)
 		{
-			return ((System.Int32) dls.getTileCompVal(t, c));
+			return ((int) dls.getTileCompVal(t, c));
 		}
 		
 		/// <summary> Returns the wavelet tree decomposition. Actually JPEG 2000 part 1 only
@@ -256,10 +243,10 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// there are less elements in the array than the number of resolution
 		/// levels, then the last one is assumed to repeat itself.
 		/// 
-		/// <p>The returned filters are applicable only to the specified component
+		/// The returned filters are applicable only to the specified component
 		/// and in the current tile.</p>
 		/// 
-		/// <p>The resolution level of a subband is the resolution level to which a
+		/// The resolution level of a subband is the resolution level to which a
 		/// subband contributes, which is different from its decomposition
 		/// level.</p>
 		/// 
@@ -286,10 +273,10 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// there are less elements in the array than the number of resolution
 		/// levels, then the last one is assumed to repeat itself.
 		/// 
-		/// <p>The returned filters are applicable only to the specified component
+		/// The returned filters are applicable only to the specified component
 		/// and in the current tile.</p>
 		/// 
-		/// <p>The resolution level of a subband is the resolution level to which a
+		/// The resolution level of a subband is the resolution level to which a
 		/// subband contributes, which is different from its decomposition
 		/// level.</p>
 		/// 
@@ -345,7 +332,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// </returns>
 		public override int getFixedPoint(int c)
 		{
-			return src.getFixedPoint(c);
+			return src.GetFixedPoint(c);
 		}
 		
 		/// <summary> Returns the next code-block in the current tile for the specified
@@ -356,17 +343,17 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// have been returned for the current tile calls to this method will
 		/// return 'null'.
 		/// 
-		/// <p>When changing the current tile (through 'setTile()' or 'nextTile()')
+		/// When changing the current tile (through 'setTile()' or 'nextTile()')
 		/// this method will always return the first code-block, as if this method
 		/// was never called before for the new current tile.</p>
 		/// 
-		/// <p>The data returned by this method is the data in the internal buffer
+		/// The data returned by this method is the data in the internal buffer
 		/// of this object, and thus can not be modified by the caller. The
 		/// 'offset' and 'scanw' of the returned data have, in general, some
 		/// non-zero value. The 'magbits' of the returned data is not set by this
 		/// method and should be ignored. See the 'CBlkWTData' class.</p>
 		/// 
-		/// <p>The 'ulx' and 'uly' members of the returned 'CBlkWTData' object
+		/// The 'ulx' and 'uly' members of the returned 'CBlkWTData' object
 		/// contain the coordinates of the top-left corner of the block, with
 		/// respect to the tile, not the subband.</p>
 		/// 
@@ -397,7 +384,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 			{
 				int k, w, h;
 				DataBlk bufblk;
-				System.Object dst_data;
+				object dst_data;
 				
 				w = getTileCompWidth(tIdx, c);
 				h = getTileCompHeight(tIdx, c);
@@ -417,18 +404,18 @@ namespace CSJ2K.j2k.wavelet.analysis
 				// Get data from source line by line (this diminishes the memory
 				// requirements on the data source)
 				dst_data = decomposedComps[c].Data;
-				int lstart = getCompULX(c);
+				var lstart = getCompULX(c);
 				bufblk.ulx = lstart;
 				bufblk.w = w;
 				bufblk.h = 1;
-				int kk = getCompULY(c);
+				var kk = getCompULY(c);
 				for (k = 0; k < h; k++, kk++)
 				{
 					bufblk.uly = kk;
 					bufblk.ulx = lstart;
-					bufblk = src.getInternCompData(bufblk, c);
+					bufblk = src.GetInternCompData(bufblk, c);
                     // CONVERSION PROBLEM?
-					Array.Copy((System.Array)bufblk.Data, bufblk.offset, (System.Array)dst_data, k * w, w);
+					Array.Copy((Array)bufblk.Data, bufblk.offset, (Array)dst_data, k * w, w);
 				}
 				
 				//Decompose source image
@@ -507,7 +494,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 					break;
 				
 				default: 
-					throw new System.InvalidOperationException("Internal JJ2000 error");
+					throw new InvalidOperationException("Internal JJ2000 error");
 				
 			}
 			
@@ -598,18 +585,18 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// the code-blocks have been returned for the current tile calls to this
 		/// method will return 'null'.
 		/// 
-		/// <p>When changing the current tile (through 'setTile()' or 'nextTile()')
+		/// When changing the current tile (through 'setTile()' or 'nextTile()')
 		/// this method will always return the first code-block, as if this method
 		/// was never called before for the new current tile.</p>
 		/// 
-		/// <p>The data returned by this method is always a copy of the internal
+		/// The data returned by this method is always a copy of the internal
 		/// data of this object, and it can be modified "in place" without
 		/// any problems after being returned. The 'offset' of the returned data is
 		/// 0, and the 'scanw' is the same as the code-block width.  The 'magbits'
 		/// of the returned data is not set by this method and should be
 		/// ignored. See the 'CBlkWTData' class.</p>
 		/// 
-		/// <p>The 'ulx' and 'uly' members of the returned 'CBlkWTData' object
+		/// The 'ulx' and 'uly' members of the returned 'CBlkWTData' object
 		/// contain the coordinates of the top-left corner of the block, with
 		/// respect to the tile, not the subband.</p>
 		/// 
@@ -637,10 +624,10 @@ namespace CSJ2K.j2k.wavelet.analysis
 			
 			int j, k;
 			int w;
-			System.Object dst_data; // a int[] or float[] object
+			object dst_data; // a int[] or float[] object
 			int[] dst_data_int;
 			float[] dst_data_float;
-			System.Object src_data; // a int[] or float[] object
+			object src_data; // a int[] or float[] object
 			
 			intData = (filters.getWTDataType(tIdx, c) == DataBlk.TYPE_INT);
 			
@@ -687,7 +674,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 			for (j = w * (cblk.h - 1), k = cblk.offset + (cblk.h - 1) * cblk.scanw; j >= 0; j -= w, k -= cblk.scanw)
 			{
                 // CONVERSION PROBLEM?
-				Array.Copy((System.Array)src_data, k, (System.Array)dst_data, j, w);
+				Array.Copy((Array)src_data, k, (Array)dst_data, j, w);
 			}
 			cblk.Data = dst_data;
 			cblk.offset = 0;
@@ -728,9 +715,9 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// </returns>
 		private SubbandAn getNextSubband(int c)
 		{
-			int down = 1;
-			int up = 0;
-			int direction = down;
+			const int down = 1;
+			const int up = 0;
+			var direction = down;
 			SubbandAn nextsb;
 			
 			nextsb = currentSubband[c];
@@ -857,7 +844,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 			else
 			{
 				//Perform the 2D wavelet decomposition of the current subband
-				wavelet2DDecomposition(band, (SubbandAn) subband, c);
+				wavelet2DDecomposition(band, subband, c);
 				
 				//Perform the decomposition of the four resulting subbands
 				waveletTreeDecomposition(band, (SubbandAn) subband.HH, c);
@@ -908,8 +895,8 @@ namespace CSJ2K.j2k.wavelet.analysis
 				//integer arithmetic.
 				int i, j;
 				int offset;
-				int[] tmpVector = new int[System.Math.Max(w, h)];
-				int[] data = ((DataBlkInt) band).DataInt;
+				var tmpVector = new int[Math.Max(w, h)];
+				var data = ((DataBlkInt) band).DataInt;
 				
 				//Perform the vertical decomposition
 				if (subband.ulcy % 2 == 0)
@@ -965,8 +952,8 @@ namespace CSJ2K.j2k.wavelet.analysis
 				//float arithmetic.
 				int i, j;
 				int offset;
-				float[] tmpVector = new float[System.Math.Max(w, h)];
-				float[] data = ((DataBlkFloat) band).DataFloat;
+				var tmpVector = new float[Math.Max(w, h)];
+				var data = ((DataBlkFloat) band).DataFloat;
 				
 				//Perform the vertical decomposition.
 				if (subband.ulcy % 2 == 0)
@@ -1019,7 +1006,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		
 		/// <summary> Changes the current tile, given the new coordinates. 
 		/// 
-		/// <p>This method resets the 'subbTrees' array, and recalculates the
+		/// This method resets the 'subbTrees' array, and recalculates the
 		/// values of the 'reversible' array. It also resets the decomposed
 		/// component buffers.</p>
 		/// 
@@ -1052,7 +1039,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// columns). An NoNextElementException is thrown if the current tile is
 		/// the last one (i.e. there is no next tile).
 		/// 
-		/// <p>This method resets the 'subbTrees' array, and recalculates the
+		/// This method resets the 'subbTrees' array, and recalculates the
 		/// values of the 'reversible' array. It also resets the decomposed
 		/// component buffers.</p>
 		/// 
@@ -1118,8 +1105,8 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// </param>
 		private void  initSubbandsFields(int t, int c, Subband sb)
 		{
-			int cbw = cblks.getCBlkWidth(ModuleSpec.SPEC_TILE_COMP, t, c);
-			int cbh = cblks.getCBlkHeight(ModuleSpec.SPEC_TILE_COMP, t, c);
+			var cbw = cblks.getCBlkWidth(ModuleSpec.SPEC_TILE_COMP, t, c);
+			var cbh = cblks.getCBlkHeight(ModuleSpec.SPEC_TILE_COMP, t, c);
 			
 			if (!sb.isNode)
 			{
@@ -1129,7 +1116,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 				ppx = pss.getPPX(t, c, sb.resLvl);
 				ppy = pss.getPPY(t, c, sb.resLvl);
 				
-				if (ppx != CSJ2K.j2k.codestream.Markers.PRECINCT_PARTITION_DEF_SIZE || ppy != CSJ2K.j2k.codestream.Markers.PRECINCT_PARTITION_DEF_SIZE)
+				if (ppx != Markers.PRECINCT_PARTITION_DEF_SIZE || ppy != Markers.PRECINCT_PARTITION_DEF_SIZE)
 				{
 					
 					ppxExp = MathUtil.log2(ppx);
@@ -1165,8 +1152,8 @@ namespace CSJ2K.j2k.wavelet.analysis
 					sb.numCb = new Coord();
 				if (sb.w != 0 && sb.h != 0)
 				{
-					int acb0x = cb0x;
-					int acb0y = cb0y;
+					var acb0x = cb0x;
+					var acb0y = cb0y;
 					int tmp;
 					
 					// Project code-block partition origin to subband. Since the
@@ -1195,12 +1182,12 @@ namespace CSJ2K.j2k.wavelet.analysis
 							break;
 						
 						default: 
-							throw new System.InvalidOperationException("Internal JJ2000 error");
+							throw new InvalidOperationException("Internal JJ2000 error");
 						
 					}
 					if (sb.ulcx - acb0x < 0 || sb.ulcy - acb0y < 0)
 					{
-						throw new System.ArgumentException("Invalid code-blocks " + "partition origin or " + "image offset in the " + "reference grid.");
+						throw new ArgumentException("Invalid code-blocks " + "partition origin or " + "image offset in the " + "reference grid.");
 					}
 					// NOTE: when calculating "floor()" by integer division the
 					// dividend and divisor must be positive, we ensure that by

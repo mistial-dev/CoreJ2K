@@ -12,10 +12,10 @@
 *
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -59,10 +59,10 @@ namespace CSJ2K.j2k.roi
 	/// works on a tile basis and any mask that is generated is for the current
 	/// mask only
 	/// 
-	/// <p>Default implementations of the methods in 'MultiResImgData' are provided
+	/// Default implementations of the methods in 'MultiResImgData' are provided
 	/// through the 'MultiResImgDataAdapter' abstract class.</p>
 	/// 
-	/// <p>Sign-magnitude representation is used (instead of two's complement) for
+	/// Sign-magnitude representation is used (instead of two's complement) for
 	/// the output data. The most significant bit is used for the sign (0 if
 	/// positive, 1 if negative). Then the magnitude of the quantized coefficient
 	/// is stored in the next most significat bits. The most significant magnitude
@@ -75,26 +75,14 @@ namespace CSJ2K.j2k.roi
 		/// are 0 and 1, nothing else.
 		/// 
 		/// </summary>
-		virtual public int CbULX
-		{
-			get
-			{
-				return src.CbULX;
-			}
-			
-		}
+		public virtual int CbULX => src.CbULX;
+
 		/// <summary> Returns the vertical code-block partition origin. Allowable values are
 		/// 0 and 1, nothing else.
 		/// 
 		/// </summary>
-		virtual public int CbULY
-		{
-			get
-			{
-				return src.CbULY;
-			}
-			
-		}
+		public virtual int CbULY => src.CbULY;
+
 		/// <summary> Returns the parameters that are used in this class and implementing
 		/// classes. It returns a 2D String array. Each of the 1D arrays is for a
 		/// different option, and they have 3 elements. The first element is the
@@ -109,15 +97,8 @@ namespace CSJ2K.j2k.roi
 		/// if no options are supported.
 		/// 
 		/// </returns>
-		public static System.String[][] ParameterInfo
-		{
-			get
-			{
-				return pinfo;
-			}
-			
-		}
-		
+		public static string[][] ParameterInfo => pinfo;
+
 		/// <summary>The MaxShiftSpec containing the scaling values for all tile-components
 		/// 
 		/// </summary>
@@ -130,7 +111,7 @@ namespace CSJ2K.j2k.roi
 		/// start with 'R'. 
 		/// </summary>
 		//UPGRADE_NOTE: Final was removed from the declaration of 'pinfo'. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
-		private static readonly System.String[][] pinfo = new System.String[][]{new System.String[]{"Rno_roi", null, "This argument makes sure that the no ROI de-scaling is performed. " + "Decompression is done like there is no ROI in the image", null}};
+		private static readonly string[][] pinfo = new string[][]{new string[]{"Rno_roi", null, "This argument makes sure that the no ROI de-scaling is performed. " + "Decompression is done like there is no ROI in the image", null}};
 		
 		/// <summary>The entropy decoder from where to get the compressed data (the source)
 		/// 
@@ -158,7 +139,7 @@ namespace CSJ2K.j2k.roi
 		/// returns the root element of the subband tree structure, see Subband and
 		/// SubbandSyn. The tree comprises all the available resolution levels.
 		/// 
-		/// <P>The number of magnitude bits ('magBits' member variable) for each
+		/// The number of magnitude bits ('magBits' member variable) for each
 		/// subband is not initialized.
 		/// 
 		/// </summary>
@@ -179,7 +160,7 @@ namespace CSJ2K.j2k.roi
 		/// <summary> Returns the specified code-block in the current tile for the specified
 		/// component, as a copy (see below).
 		/// 
-		/// <p>The returned code-block may be progressive, which is indicated by
+		/// The returned code-block may be progressive, which is indicated by
 		/// the 'progressive' variable of the returned 'DataBlk' object. If a
 		/// code-block is progressive it means that in a later request to this
 		/// method for the same code-block it is possible to retrieve data which is
@@ -188,13 +169,13 @@ namespace CSJ2K.j2k.roi
 		/// progressive then later calls to this method for the same code-block
 		/// will return the exact same data values.</p>
 		/// 
-		/// <p>The data returned by this method is always a copy of the internal
+		/// The data returned by this method is always a copy of the internal
 		/// data of this object, if any, and it can be modified "in place" without
 		/// any problems after being returned. The 'offset' of the returned data is
 		/// 0, and the 'scanw' is the same as the code-block width. See the
 		/// 'DataBlk' class.</p>
 		/// 
-		/// <p>The 'ulx' and 'uly' members of the returned 'DataBlk' object contain
+		/// The 'ulx' and 'uly' members of the returned 'DataBlk' object contain
 		/// the coordinates of the top-left corner of the block, with respect to
 		/// the tile, not the subband.</p>
 		/// 
@@ -234,7 +215,7 @@ namespace CSJ2K.j2k.roi
 		/// <summary> Returns the specified code-block in the current tile for the specified
 		/// component (as a reference or copy).
 		/// 
-		/// <p>The returned code-block may be progressive, which is indicated by
+		/// The returned code-block may be progressive, which is indicated by
 		/// the 'progressive' variable of the returned 'DataBlk' object. If a
 		/// code-block is progressive it means that in a later request to this
 		/// method for the same code-block it is possible to retrieve data which is
@@ -243,12 +224,12 @@ namespace CSJ2K.j2k.roi
 		/// progressive then later calls to this method for the same code-block
 		/// will return the exact same data values.</p>
 		/// 
-		/// <p>The data returned by this method can be the data in the internal
+		/// The data returned by this method can be the data in the internal
 		/// buffer of this object, if any, and thus can not be modified by the
 		/// caller. The 'offset' and 'scanw' of the returned data can be
 		/// arbitrary. See the 'DataBlk' class.</p>
 		/// 
-		/// <p>The 'ulx' and 'uly' members of the returned 'DataBlk' object contain
+		/// The 'ulx' and 'uly' members of the returned 'DataBlk' object contain
 		/// the coordinates of the top-left corner of the block, with respect to
 		/// the tile, not the subband.</p>
 		/// 
@@ -291,10 +272,8 @@ namespace CSJ2K.j2k.roi
 			cblk = src.getInternCodeBlock(c, m, n, sb, cblk);
 			
 			// If there are no ROIs in the tile, Or if we already got all blocks
-			bool noRoiInTile = false;
-			if (mss == null || mss.getTileCompVal(TileIdx, c) == null)
-				noRoiInTile = true;
-			
+			var noRoiInTile = false || (mss == null || mss.getTileCompVal(TileIdx, c) == null);
+
 			if (noRoiInTile || cblk == null)
 			{
 				return cblk;
@@ -308,9 +287,9 @@ namespace CSJ2K.j2k.roi
 			// Scale coefficients according to magnitude. If the magnitude of a
 			// coefficient is lower than 2 pow 31-magbits then it is a background
 			// coeff and should be up-scaled
-			int boost = ((System.Int32) mss.getTileCompVal(TileIdx, c));
-			int mask = ((1 << sb.magbits) - 1) << (31 - sb.magbits);
-			int mask2 = (~ mask) & 0x7FFFFFFF;
+			var boost = ((int) mss.getTileCompVal(TileIdx, c));
+			var mask = ((1 << sb.magbits) - 1) << (31 - sb.magbits);
+			var mask2 = (~ mask) & 0x7FFFFFFF;
 			
 			wrap = cblk.scanw - w;
 			i = cblk.offset + cblk.scanw * (h - 1) + w - 1;
@@ -360,11 +339,11 @@ namespace CSJ2K.j2k.roi
 		/// </exception>
 		public static ROIDeScaler createInstance(CBlkQuantDataSrcDec src, ParameterList pl, DecoderSpecs decSpec)
 		{
-			System.String noRoi;
+			string noRoi;
 			//int i;
 			
 			// Check parameters
-			pl.checkList(OPT_PREFIX, CSJ2K.j2k.util.ParameterList.toNameArray(pinfo));
+			pl.checkList(OPT_PREFIX, ParameterList.toNameArray(pinfo));
 			
 			// Check if no_roi specified in command line or no roi signalled
 			// in bit stream

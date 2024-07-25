@@ -11,10 +11,10 @@
 *
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -54,7 +54,7 @@ namespace CSJ2K.j2k.roi.encoder
 	/// <summary> This class generates the ROI masks for the ROIScaler.It gives the scaler
 	/// the ROI mask for the current code-block.
 	/// 
-	/// <P>The values are calculated from the scaling factors of the ROIs. The
+	/// The values are calculated from the scaling factors of the ROIs. The
 	/// values with which to scale are equal to u-umin where umin is the lowest
 	/// scaling factor within the block. The umin value is sent to the entropy
 	/// coder to be used for scaling the distortion values.
@@ -73,15 +73,8 @@ namespace CSJ2K.j2k.roi.encoder
 		/// </summary>
 		/// <returns> The ROIs in the image
 		/// </returns>
-		virtual public ROI[] ROIs
-		{
-			get
-			{
-				return roi_array;
-			}
-			
-		}
-		
+		public virtual ROI[] ROIs => roi_array;
+
 		/// <summary>Array containing the ROIs </summary>
 		protected internal ROI[] roi_array;
 		
@@ -104,7 +97,7 @@ namespace CSJ2K.j2k.roi.encoder
 		/// </param>
 		public ROIMaskGenerator(ROI[] rois, int nrc)
 		{
-			this.roi_array = rois;
+			roi_array = rois;
 			this.nrc = nrc;
 			tileMaskMade = new bool[nrc];
 		}
@@ -151,7 +144,7 @@ namespace CSJ2K.j2k.roi.encoder
 		/// </summary>
 		public virtual void  tileChanged()
 		{
-			for (int i = 0; i < nrc; i++)
+			for (var i = 0; i < nrc; i++)
 				tileMaskMade[i] = false;
 		}
 	}

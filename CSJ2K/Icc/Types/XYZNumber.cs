@@ -46,13 +46,13 @@ namespace CSJ2K.Icc.Types
 		public static int DoubleToXYZ(double x)
 		{
 			//UPGRADE_WARNING: Data types in Visual C# might be different.  Verify the accuracy of narrowing conversions. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1042'"
-			return (int) System.Math.Floor(x * 65536.0 + 0.5);
+			return (int) Math.Floor(x * 65536.0 + 0.5);
 		}
 		
 		/// <summary>Normalization utility </summary>
 		public static double XYZToDouble(int x)
 		{
-			return (double) x / 65536.0;
+			return x / 65536.0;
 		}
 		
 		/// <summary>Write to a file </summary>
@@ -61,19 +61,19 @@ namespace CSJ2K.Icc.Types
 		{
 			System.IO.BinaryWriter temp_BinaryWriter;
 			temp_BinaryWriter = new System.IO.BinaryWriter(raf);
-			temp_BinaryWriter.Write((System.Int32) dwX);
+			temp_BinaryWriter.Write(dwX);
 			System.IO.BinaryWriter temp_BinaryWriter2;
 			temp_BinaryWriter2 = new System.IO.BinaryWriter(raf);
-			temp_BinaryWriter2.Write((System.Int32) dwY);
+			temp_BinaryWriter2.Write(dwY);
 			System.IO.BinaryWriter temp_BinaryWriter3;
 			temp_BinaryWriter3 = new System.IO.BinaryWriter(raf);
-			temp_BinaryWriter3.Write((System.Int32) dwZ);
+			temp_BinaryWriter3.Write(dwZ);
 		}
 		
 		/// <summary>String representation of class instance. </summary>
-		public override System.String ToString()
+		public override string ToString()
 		{
-			return "[" + dwX + ", " + dwY + ", " + dwZ + "]";
+			return $"[{dwX}, {dwY}, {dwZ}]";
 		}
 		
 		

@@ -11,10 +11,10 @@
 * 
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -92,14 +92,14 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// </seealso>
 		public virtual int getWTDataType(int t, int c)
 		{
-			SynWTFilter[][] an = (SynWTFilter[][]) getSpec(t, c);
+			var an = (SynWTFilter[][]) getSpec(t, c);
 			return an[0][0].DataType;
 		}
 		
 		/// <summary> Returns the horizontal analysis filters to be used in component 'n' and
 		/// tile 't'.
 		/// 
-		/// <p>The horizontal analysis filters are returned in an array of
+		/// The horizontal analysis filters are returned in an array of
 		/// SynWTFilter. Each element contains the horizontal filter for each
 		/// resolution level starting with resolution level 1 (i.e. the analysis
 		/// filter to go from resolution level 1 to resolution level 0). If there
@@ -119,14 +119,14 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// </returns>
 		public virtual SynWTFilter[] getHFilters(int t, int c)
 		{
-			SynWTFilter[][] an = (SynWTFilter[][]) getSpec(t, c);
+			var an = (SynWTFilter[][]) getSpec(t, c);
 			return an[0];
 		}
 		
 		/// <summary> Returns the vertical analysis filters to be used in component 'n' and
 		/// tile 't'.
 		/// 
-		/// <p>The vertical analysis filters are returned in an array of
+		/// The vertical analysis filters are returned in an array of
 		/// SynWTFilter. Each element contains the vertical filter for each
 		/// resolution level starting with resolution level 1 (i.e. the analysis
 		/// filter to go from resolution level 1 to resolution level 0). If there
@@ -146,21 +146,21 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// </returns>
 		public virtual SynWTFilter[] getVFilters(int t, int c)
 		{
-			SynWTFilter[][] an = (SynWTFilter[][]) getSpec(t, c);
+			var an = (SynWTFilter[][]) getSpec(t, c);
 			return an[1];
 		}
 		
 		/// <summary>Debugging method </summary>
-		public override System.String ToString()
+		public override string ToString()
 		{
-			System.String str = "";
+			var str = "";
 			SynWTFilter[][] an;
 			
 			str += ("nTiles=" + nTiles + "\nnComp=" + nComp + "\n\n");
 			
-			for (int t = 0; t < nTiles; t++)
+			for (var t = 0; t < nTiles; t++)
 			{
-				for (int c = 0; c < nComp; c++)
+				for (var c = 0; c < nComp; c++)
 				{
 					an = (SynWTFilter[][]) getSpec(t, c);
 					
@@ -168,14 +168,14 @@ namespace CSJ2K.j2k.wavelet.synthesis
 					
 					// Horizontal filters
 					str += "\tH:";
-					for (int i = 0; i < an[0].Length; i++)
+					for (var i = 0; i < an[0].Length; i++)
 					{
 						//UPGRADE_TODO: The equivalent in .NET for method 'java.lang.Object.toString' may return a different value. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1043'"
 						str += (" " + an[0][i]);
 					}
 					// Horizontal filters
 					str += "\n\tV:";
-					for (int i = 0; i < an[1].Length; i++)
+					for (var i = 0; i < an[1].Length; i++)
 					{
 						//UPGRADE_TODO: The equivalent in .NET for method 'java.lang.Object.toString' may return a different value. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1043'"
 						str += (" " + an[1][i]);
@@ -204,7 +204,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 			SynWTFilter[] hfilter = getHFilters(t, c), vfilter = getVFilters(t, c);
 			
 			// As soon as a filter is not reversible, false can be returned
-			for (int i = hfilter.Length - 1; i >= 0; i--)
+			for (var i = hfilter.Length - 1; i >= 0; i--)
 				if (!hfilter[i].Reversible || !vfilter[i].Reversible)
 					return false;
 			return true;

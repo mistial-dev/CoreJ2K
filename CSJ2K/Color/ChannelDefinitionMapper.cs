@@ -33,7 +33,7 @@ namespace CSJ2K.Color
 		/// </returns>
 		/// <exception cref="ColorSpaceException">
 		/// </exception>
-		public static new BlkImgDataSrc createInstance(BlkImgDataSrc src, ColorSpace csMap)
+		public new static BlkImgDataSrc createInstance(BlkImgDataSrc src, ColorSpace csMap)
 		{
 			
 			return new ChannelDefinitionMapper(src, csMap);
@@ -58,18 +58,18 @@ namespace CSJ2K.Color
 		/// returned, as a copy of the internal data, therefore the returned data
 		/// can be modified "in place".
 		/// 
-		/// <P>The rectangular area to return is specified by the 'ulx', 'uly', 'w'
+		/// The rectangular area to return is specified by the 'ulx', 'uly', 'w'
 		/// and 'h' members of the 'blk' argument, relative to the current
 		/// tile. These members are not modified by this method. The 'offset' of
 		/// the returned data is 0, and the 'scanw' is the same as the block's
 		/// width. See the 'DataBlk' class.
 		/// 
-		/// <P>If the data array in 'blk' is 'null', then a new one is created. If
+		/// If the data array in 'blk' is 'null', then a new one is created. If
 		/// the data array is not 'null' then it is reused, and it must be large
 		/// enough to contain the block's data. Otherwise an 'ArrayStoreException'
 		/// or an 'IndexOutOfBoundsException' is thrown by the Java system.
 		/// 
-		/// <P>The returned data has its 'progressive' attribute set to that of the
+		/// The returned data has its 'progressive' attribute set to that of the
 		/// input data.
 		/// 
 		/// </summary>
@@ -86,12 +86,12 @@ namespace CSJ2K.Color
 		/// <returns> The requested DataBlk
 		/// 
 		/// </returns>
-		/// <seealso cref="getInternCompData">
+		/// <seealso cref="GetInternCompData">
 		/// 
 		/// </seealso>
-		public override DataBlk getCompData(DataBlk out_Renamed, int c)
+		public override DataBlk GetCompData(DataBlk out_Renamed, int c)
 		{
-			return src.getCompData(out_Renamed, csMap.getChannelDefinition(c));
+			return src.GetCompData(out_Renamed, csMap.getChannelDefinition(c));
 		}
 		
 		/// <summary> Returns, in the blk argument, a block of image data containing the
@@ -99,23 +99,23 @@ namespace CSJ2K.Color
 		/// returned, as a copy of the internal data, therefore the returned data
 		/// can be modified "in place".
 		/// 
-		/// <P>The rectangular area to return is specified by the 'ulx', 'uly', 'w'
+		/// The rectangular area to return is specified by the 'ulx', 'uly', 'w'
 		/// and 'h' members of the 'blk' argument, relative to the current
 		/// tile. These members are not modified by this method. The 'offset' of
 		/// the returned data is 0, and the 'scanw' is the same as the block's
 		/// width. See the 'DataBlk' class.
 		/// 
-		/// <P>This method, in general, is less efficient than the
+		/// This method, in general, is less efficient than the
 		/// 'getInternCompData()' method since, in general, it copies the
 		/// data. However if the array of returned data is to be modified by the
 		/// caller then this method is preferable.
 		/// 
-		/// <P>If the data array in 'blk' is 'null', then a new one is created. If
+		/// If the data array in 'blk' is 'null', then a new one is created. If
 		/// the data array is not 'null' then it is reused, and it must be large
 		/// enough to contain the block's data. Otherwise an 'ArrayStoreException'
 		/// or an 'IndexOutOfBoundsException' is thrown by the Java system.
 		/// 
-		/// <P>The returned data may have its 'progressive' attribute set. In this
+		/// The returned data may have its 'progressive' attribute set. In this
 		/// case the returned data is only an approximation of the "final" data.
 		/// 
 		/// </summary>
@@ -129,12 +129,12 @@ namespace CSJ2K.Color
 		/// <param name="c">The index of the component from which to get the data.
 		/// 
 		/// </param>
-		/// <seealso cref="getCompData">
+		/// <seealso cref="GetCompData">
 		/// 
 		/// </seealso>
-		public override DataBlk getInternCompData(DataBlk out_Renamed, int c)
+		public override DataBlk GetInternCompData(DataBlk out_Renamed, int c)
 		{
-			return src.getInternCompData(out_Renamed, csMap.getChannelDefinition(c));
+			return src.GetInternCompData(out_Renamed, csMap.getChannelDefinition(c));
 		}
 		
 		/// <summary> Returns the number of bits, referred to as the "range bits",
@@ -152,9 +152,9 @@ namespace CSJ2K.Color
 		/// data. Fro floating-point data this value is not applicable and the
 		/// return value is undefined.
 		/// </returns>
-		public override int getFixedPoint(int c)
+		public override int GetFixedPoint(int c)
 		{
-			return src.getFixedPoint(csMap.getChannelDefinition(c));
+			return src.GetFixedPoint(csMap.getChannelDefinition(c));
 		}
 		
 		public override int getNomRangeBits(int c)
@@ -202,14 +202,14 @@ namespace CSJ2K.Color
 			return src.getTileCompWidth(t, csMap.getChannelDefinition(c));
 		}
 		
-		public override System.String ToString()
+		public override string ToString()
 		{
 			int i;
-			System.Text.StringBuilder rep = new System.Text.StringBuilder("[ChannelDefinitionMapper nchannels= ").Append(ncomps);
+			var rep = new System.Text.StringBuilder("[ChannelDefinitionMapper nchannels= ").Append(ncomps);
 			
 			for (i = 0; i < ncomps; ++i)
 			{
-				rep.Append(eol).Append("  component[").Append(i).Append("] mapped to channel[").Append(csMap.getChannelDefinition(i)).Append("]");
+				rep.Append(Environment.NewLine).Append("  component[").Append(i).Append("] mapped to channel[").Append(csMap.getChannelDefinition(i)).Append("]");
 			}
 			
 			return rep.Append("]").ToString();

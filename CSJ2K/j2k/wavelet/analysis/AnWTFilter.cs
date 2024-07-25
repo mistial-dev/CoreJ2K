@@ -11,10 +11,10 @@
 *
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -48,7 +48,7 @@ using CSJ2K.j2k.util;
 namespace CSJ2K.j2k.wavelet.analysis
 {
 	
-	/// <summary> <p>This abstract class defines the methods of all analysis wavelet
+	/// <summary> This abstract class defines the methods of all analysis wavelet
 	/// filters. Specialized abstract classes that work on particular data types
 	/// (int, float) provide more specific method calls while retaining the
 	/// generality of this one. See the AnWTFilterInt and AnWTFilterFloat
@@ -115,14 +115,8 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// if no options are supported.
 		/// 
 		/// </returns>
-		public static System.String[][] ParameterInfo
-		{
-			get
-			{
-				return pinfo;
-			}
-			
-		}
+		public static string[][] ParameterInfo => pinfo;
+
 		public abstract int AnHighPosSupport{get;}
 		public abstract int AnLowNegSupport{get;}
 		public abstract int AnLowPosSupport{get;}
@@ -142,20 +136,20 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// for wavelet filters start with a 'F'. 
 		/// </summary>
 		//UPGRADE_NOTE: Final was removed from the declaration of 'pinfo'. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
-		private static readonly System.String[][] pinfo = new System.String[][]{new System.String[]{"Ffilters", "[<tile-component idx>] <id> " + "[ [<tile-component idx>] <id> ...]", "Specifies which filters to use for specified tile-component. " + "If this option is not used, the encoder choses the filters " + " of the tile-components according to their quantization  type." + " If this option is used, a component transformation is applied " + "to the three first components.\n" + "<tile-component idx>: see general note\n" + "<id>: ',' separates horizontal and vertical filters, ':' separates" + " decomposition levels filters. JPEG 2000 part 1 only supports w5x3" + " and w9x7 filters.", null}};
+		private static readonly string[][] pinfo = new string[][]{new string[]{"Ffilters", "[<tile-component idx>] <id> " + "[ [<tile-component idx>] <id> ...]", "Specifies which filters to use for specified tile-component. " + "If this option is not used, the encoder choses the filters " + " of the tile-components according to their quantization  type." + " If this option is used, a component transformation is applied " + "to the three first components.\n" + "<tile-component idx>: see general note\n" + "<id>: ',' separates horizontal and vertical filters, ':' separates" + " decomposition levels filters. JPEG 2000 part 1 only supports w5x3" + " and w9x7 filters.", null}};
 		
 		/// <summary> Filters the input signal by this analysis filter, decomposing it in a
 		/// low-pass and a high-pass signal. This method performs the filtering and
 		/// the subsampling with the low pass first filtering convention.
 		/// 
-		/// <p>The input signal resides in the inSig array. The index of the first
+		/// The input signal resides in the inSig array. The index of the first
 		/// sample to filter (i.e. that will generate the first low-pass output
 		/// sample) is given by inOff. The number of samples to filter is given by
 		/// inLen. This array must be of the same type as the one for which the
 		/// particular implementation works with (which is returned by the
 		/// getDataType() method).</p>
 		/// 
-		/// <p>The input signal can be interleaved with other signals in the same
+		/// The input signal can be interleaved with other signals in the same
 		/// inSig array, and this is determined by the inStep argument. This means
 		/// that the first sample of the input signal is inSig[inOff], the second
 		/// is inSig[inOff+inStep], the third is inSig[inOff+2*inStep], and so
@@ -164,7 +158,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// by line order in inSig, without having to copy the data, in this case
 		/// the inStep argument should be the line width.</p>
 		/// 
-		/// <p>This method also allows to apply the analysis wavelet filter by
+		/// This method also allows to apply the analysis wavelet filter by
 		/// parts in the input signal using an overlap and thus producing the same
 		/// coefficients at the output. The tailOvrlp argument specifies how many
 		/// samples in the input signal, before the first one to be filtered, can
@@ -180,12 +174,12 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// the columns) or for overlapping block-based wavelet transforms (in
 		/// which case it will be used when filtering lines and columns).</p>
 		/// 
-		/// <p>The low-pass output signal is placed in the lowSig array. The lowOff
+		/// The low-pass output signal is placed in the lowSig array. The lowOff
 		/// and lowStep arguments are analogous to the inOff and inStep ones, but
 		/// they apply to the lowSig array. The lowSig array must be long enough to
 		/// hold the low-pass output signal.</p>
 		/// 
-		/// <p>The high-pass output signal is placed in the highSig array. The
+		/// The high-pass output signal is placed in the highSig array. The
 		/// highOff and highStep arguments are analogous to the inOff and inStep
 		/// ones, but they apply to the highSig array. The highSig array must be
 		/// long enough to hold the high-pass output signal.</p>
@@ -246,20 +240,20 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// <seealso cref="WaveletFilter.getDataType">
 		/// 
 		/// </seealso>
-		public abstract void  analyze_lpf(System.Object inSig, int inOff, int inLen, int inStep, System.Object lowSig, int lowOff, int lowStep, System.Object highSig, int highOff, int highStep);
+		public abstract void  analyze_lpf(object inSig, int inOff, int inLen, int inStep, object lowSig, int lowOff, int lowStep, object highSig, int highOff, int highStep);
 		
 		/// <summary> Filters the input signal by this analysis filter, decomposing it in a
 		/// low-pass and a high-pass signal. This method performs the filtering and
 		/// the subsampling with the high pass first filtering convention.
 		/// 
-		/// <p>The input signal resides in the inSig array. The index of the first
+		/// The input signal resides in the inSig array. The index of the first
 		/// sample to filter (i.e. that will generate the first high-pass output
 		/// sample) is given by inOff. The number of samples to filter is given by
 		/// inLen. This array must be of the same type as the one for which the
 		/// particular implementation works with (which is returned by the
 		/// getDataType() method).</p>
 		/// 
-		/// <p>The input signal can be interleaved with other signals in the same
+		/// The input signal can be interleaved with other signals in the same
 		/// inSig array, and this is determined by the inStep argument. This means
 		/// that the first sample of the input signal is inSig[inOff], the second
 		/// is inSig[inOff+inStep], the third is inSig[inOff+2*inStep], and so
@@ -268,12 +262,12 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// by line order in inSig, without having to copy the data, in this case
 		/// the inStep argument should be the line width.</p>
 		/// 
-		/// <p>The low-pass output signal is placed in the lowSig array. The lowOff
+		/// The low-pass output signal is placed in the lowSig array. The lowOff
 		/// and lowStep arguments are analogous to the inOff and inStep ones, but
 		/// they apply to the lowSig array. The lowSig array must be long enough to
 		/// hold the low-pass output signal.</p>
 		/// 
-		/// <p>The high-pass output signal is placed in the highSig array. The
+		/// The high-pass output signal is placed in the highSig array. The
 		/// highOff and highStep arguments are analogous to the inOff and inStep
 		/// ones, but they apply to the highSig array. The highSig array must be
 		/// long enough to hold the high-pass output signal.</p>
@@ -324,7 +318,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// <seealso cref="WaveletFilter.getDataType">
 		/// 
 		/// </seealso>
-		public abstract void  analyze_hpf(System.Object inSig, int inOff, int inLen, int inStep, System.Object lowSig, int lowOff, int lowStep, System.Object highSig, int highOff, int highStep);
+		public abstract void  analyze_hpf(object inSig, int inOff, int inLen, int inStep, object lowSig, int lowOff, int lowStep, object highSig, int highOff, int highStep);
 		
 		/// <summary> Returns the time-reversed low-pass synthesis waveform of the filter,
 		/// which is the low-pass filter. This is the time-reversed impulse
@@ -332,7 +326,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// L2-norm of the synthesis basis functions for a particular subband (also
 		/// called energy weight).
 		/// 
-		/// <p>The returned array may not be modified (i.e. a reference to the
+		/// The returned array may not be modified (i.e. a reference to the
 		/// internal array may be returned by the implementation of this
 		/// method).</p>
 		/// 
@@ -348,7 +342,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// L2-norm of the synthesis basis functions for a particular subband (also
 		/// called energy weight).
 		/// 
-		/// <p>The returned array may not be modified (i.e. a reference to the
+		/// The returned array may not be modified (i.e. a reference to the
 		/// internal array may be returned by the implementation of this
 		/// method).</p>
 		/// 
@@ -365,7 +359,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// 2*in_l+lp_l-2, where in_l is the length of 'in' and 'lp_l' is the
 		/// lengthg of the low-pass synthesis filter.
 		/// 
-		/// <p>The length of the low-pass synthesis filter is
+		/// The length of the low-pass synthesis filter is
 		/// getSynLowNegSupport()+getSynLowPosSupport().</p>
 		/// 
 		/// </summary>
@@ -394,7 +388,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// signal is 2*in_l+hp_l-2, where in_l is the length of 'in' and 'hp_l' is
 		/// the lengthg of the high-pass synthesis filter.
 		/// 
-		/// <p>The length of the high-pass synthesis filter is
+		/// The length of the high-pass synthesis filter is
 		/// getSynHighNegSupport()+getSynHighPosSupport().</p>
 		/// 
 		/// </summary>
@@ -421,7 +415,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// signal is of length l_in*2+l_wf-2, where l_in is the length of 'in',
 		/// and l_wf is the length of 'wf'.
 		/// 
-		/// <p>The 'wf' signal has to be already time-reversed, therefore only a
+		/// The 'wf' signal has to be already time-reversed, therefore only a
 		/// dot-product is performed (instead of a convolution). This is equivalent
 		/// to convolving with the non-time-reversed 'wf' signal.</p>
 		/// 

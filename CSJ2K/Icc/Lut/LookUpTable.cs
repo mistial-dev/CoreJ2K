@@ -22,10 +22,6 @@ namespace CSJ2K.Icc.Lut
 	/// </author>
 	public abstract class LookUpTable
 	{
-		
-		/// <summary>End of line string.             </summary>
-		//UPGRADE_NOTE: Final was removed from the declaration of 'eol '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
-		protected internal static readonly System.String eol = System.Environment.NewLine;
 		/// <summary>The curve data                  </summary>
 		protected internal ICCCurveType curve = null;
 		/// <summary>Number of values in created lut </summary>

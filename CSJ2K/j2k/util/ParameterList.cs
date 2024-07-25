@@ -11,10 +11,10 @@
 *
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -48,17 +48,17 @@ namespace CSJ2K.j2k.util
 	/// encoder or the decoder. Each option and its associated parameters are
 	/// stored as strings.
 	/// 
-	/// <p>This class is built on the standard Java Properties class. Consequently,
+	/// This class is built on the standard Java Properties class. Consequently,
 	/// it offers facilities to load and write parameters from/to a file. In the
 	/// meantime, a ParameterList object can also handle default parameters for
 	/// each option.</p>
 	/// 
-	/// <p>Each parameter can be retrieved as a string or as an specific primitive
+	/// Each parameter can be retrieved as a string or as an specific primitive
 	/// type (int, float, etc).</p>
 	/// 
-	/// <p>For more details see the Properties class.</p>
+	/// For more details see the Properties class.</p>
 	/// 
-	/// <p>Note that this class does not support multiple occurrences of parameters
+	/// Note that this class does not support multiple occurrences of parameters
 	/// (for a parameter name, only one value is possible). Also there is no
 	/// particular order of the parameters.</p>
 	/// 
@@ -78,16 +78,10 @@ namespace CSJ2K.j2k.util
 		/// <returns> Default ParameterList
 		/// 
 		/// </returns>
-		virtual public ParameterList DefaultParameterList
-		{
-			get
-			{
-				//UPGRADE_ISSUE: Field 'java.util.Properties.defaults' was not converted. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1000_javautilPropertiesdefaults_f'"
-				return (ParameterList) defaults;
-			}
-			
-		}
-		
+		public virtual ParameterList DefaultParameterList =>
+			//UPGRADE_ISSUE: Field 'java.util.Properties.defaults' was not converted. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1000_javautilPropertiesdefaults_f'"
+			defaults;
+
 		/// <summary> Constructs an empty ParameterList object. It can be later completed by
 		/// adding elements one by one, by loading them from a file, or by
 		/// initializing them from an argument string.
@@ -95,7 +89,7 @@ namespace CSJ2K.j2k.util
 		/// </summary>
 		//UPGRADE_TODO: Format of property file may need to be changed. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1089'"
 		//UPGRADE_ISSUE: Class hierarchy differences between 'java.util.Properties' and 'System.Collections.Specialized.NameValueCollection' may cause compilation errors. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1186'"
-		public ParameterList():base()
+		public ParameterList()
 		{
 		}
 		
@@ -110,7 +104,7 @@ namespace CSJ2K.j2k.util
 		/// </param>
 		//UPGRADE_TODO: Format of property file may need to be changed. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1089'"
 		//UPGRADE_ISSUE: Class hierarchy differences between 'java.util.Properties' and 'System.Collections.Specialized.NameValueCollection' may cause compilation errors. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1186'"
-		public ParameterList(ParameterList def):base()
+		public ParameterList(ParameterList def)
 		{
             defaults=def;
 		}
@@ -118,7 +112,7 @@ namespace CSJ2K.j2k.util
 		/// <summary> Parses the parameters from an argument list, such as as the one in the
 		/// command line, and integrates them in this parameter list.
 		/// 
-		/// <p>All options must be preceded by '-' and then followed by one or more
+		/// All options must be preceded by '-' and then followed by one or more
 		/// words, which constitues the values. The name of the options constitute
 		/// the name of the parameters. The only exception is for boolean options,
 		/// in which case if they are preceded by '-' they will be turned on, and
@@ -129,14 +123,14 @@ namespace CSJ2K.j2k.util
 		/// option). Note also that the name of an option can not start with a
 		/// number.</p>
 		/// 
-		/// <p>No option can appear more than once. If so happens an exception is
+		/// No option can appear more than once. If so happens an exception is
 		/// thrown.</p>
 		/// 
-		/// <p>For instance the string:
+		/// For instance the string:
 		/// 
 		/// <quote> "-Ffilters w5x3 -Wlev 5 -Qtype reversible </quote>
 		/// 
-		/// <p>will create the following parameter list:
+		/// will create the following parameter list:
 		/// 
 		/// <pre>
 		/// Ffilers  w5x3
@@ -152,11 +146,11 @@ namespace CSJ2K.j2k.util
 		/// 'argv'
 		/// 
 		/// </exception>
-		public virtual void  parseArgs(System.String[] argv)
+		public virtual void  parseArgs(string[] argv)
 		{
 			int k;
 			char c, c2;
-			System.String pname;
+			string pname;
 			System.Text.StringBuilder pvalue;
 			
 			// Read options
@@ -178,11 +172,11 @@ namespace CSJ2K.j2k.util
 			if (c != '-' && c != '+')
 			{
 				// It's not an option
-				throw new StringFormatException("Argument list does not" + " start with an option: " + argv[k]);
+				throw new StringFormatException($"Argument list does not start with an option: {argv[k]}");
 			}
-			if (argv[k].Length >= 2 && System.Char.IsDigit(argv[k][1]))
+			if (argv[k].Length >= 2 && char.IsDigit(argv[k][1]))
 			{
-				throw new StringFormatException("Numeric option name: " + argv[k]);
+				throw new StringFormatException($"Numeric option name: {argv[k]}");
 			}
 			pvalue = new System.Text.StringBuilder();
 			while (k < argv.Length)
@@ -190,7 +184,7 @@ namespace CSJ2K.j2k.util
 				// Read parameter name
 				if (argv[k].Length <= 1)
 				{
-					throw new StringFormatException("Option \"" + argv[k] + "\" is too short.");
+					throw new StringFormatException($"Option \"{argv[k]}\" is too short.");
 				}
 				c = argv[k][0];
 				pname = argv[k++];
@@ -210,9 +204,9 @@ namespace CSJ2K.j2k.util
 						// Next word could be an option
 						if (argv[k].Length <= 1)
 						{
-							throw new StringFormatException("Option or argument \"" + argv[k] + "\" too short");
+							throw new StringFormatException($"Option or argument \"{argv[k]}\" too short");
 						}
-						if (!System.Char.IsDigit(argv[k][1]))
+						if (!char.IsDigit(argv[k][1]))
 						{
 							// Not a number => we have a boolean option in pname
 							pvalue.Append((c == '-')?"on":"off");
@@ -224,7 +218,7 @@ namespace CSJ2K.j2k.util
 						// It should not a boolean option, read the values
 						if (c == '+')
 						{
-							throw new StringFormatException("Boolean option \"" + pname + "\" has a value");
+							throw new StringFormatException($"Boolean option \"{pname}\" has a value");
 						}
 						// We have at least one value
 						pvalue.Append(argv[k++]);
@@ -242,9 +236,9 @@ namespace CSJ2K.j2k.util
 								// Next word could be an option
 								if (argv[k].Length <= 1)
 								{
-									throw new StringFormatException("Option or " + "argument \"" + argv[k] + "\" too short");
+									throw new StringFormatException($"Option or argument \"{argv[k]}\" too short");
 								}
-								if (!System.Char.IsDigit(argv[k][1]))
+								if (!char.IsDigit(argv[k][1]))
 								{
 									// It's an option => stop
 									break;
@@ -263,11 +257,11 @@ namespace CSJ2K.j2k.util
 					throw new StringFormatException("Option \"" + pname + "\" appears more than once");
 				}
                  */
-				System.Object tempObject;
+				object tempObject;
 				//UPGRADE_WARNING: At least one expression was used more than once in the target code. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1181'"
-				tempObject = this[(System.String) pname.Substring(1)];
-				this[(System.String) pname.Substring(1)] = (System.String) pvalue.ToString();
-				System.Object generatedAux4 = tempObject;
+				tempObject = this[pname.Substring(1)];
+				this[pname.Substring(1)] = pvalue.ToString();
+				var generatedAux4 = tempObject;
 			}
 		}
 		
@@ -282,9 +276,9 @@ namespace CSJ2K.j2k.util
 		/// parameter with the name 'pname'.
 		/// 
 		/// </returns>
-		public virtual System.String getParameter(System.String pname)
+		public virtual string getParameter(string pname)
 		{
-			System.String pval;
+			string pval;
 			
 			//UPGRADE_ISSUE: Field 'java.util.Properties.defaults' was not converted. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1000_javautilPropertiesdefaults_f'"
 			if (!TryGetValue(pname, out pval) && defaults != null)
@@ -321,13 +315,13 @@ namespace CSJ2K.j2k.util
 		/// name 'pname' in the parameter list.
 		/// 
 		/// </exception>
-		public virtual bool getBooleanParameter(System.String pname)
+		public virtual bool getBooleanParameter(string pname)
 		{
-			System.String s = (System.String) getParameter(pname);
+			var s = getParameter(pname);
 			
 			if (s == null)
 			{
-				throw new System.ArgumentException("No parameter with name " + pname);
+				throw new ArgumentException($"No parameter with name {pname}");
 			}
 			else if (s.Equals("on"))
 			{
@@ -339,7 +333,7 @@ namespace CSJ2K.j2k.util
 			}
 			else
 			{
-				throw new StringFormatException("Parameter \"" + pname + "\" is not boolean: " + s);
+				throw new StringFormatException($"Parameter \"{pname}\" is not boolean: {s}");
 			}
 		}
 		
@@ -364,24 +358,24 @@ namespace CSJ2K.j2k.util
 		/// name 'pname' in the parameter list.
 		/// 
 		/// </exception>
-		public virtual int getIntParameter(System.String pname)
+		public virtual int getIntParameter(string pname)
 		{
-			System.String s = (System.String) getParameter(pname);
+			var s = getParameter(pname);
 			
 			if (s == null)
 			{
-				throw new System.ArgumentException("No parameter with name " + pname);
+				throw new ArgumentException($"No parameter with name {pname}");
 			}
 			else
 			{
 				try
 				{
-					return System.Int32.Parse(s);
+					return int.Parse(s);
 				}
-				catch (System.FormatException e)
+				catch (FormatException e)
 				{
 					//UPGRADE_TODO: The equivalent in .NET for method 'java.lang.Throwable.getMessage' may return a different value. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1043'"
-					throw new System.FormatException("Parameter \"" + pname + "\" is not integer: " + e.Message);
+					throw new FormatException($"Parameter \"{pname}\" is not integer: {e.Message}");
 				}
 			}
 		}
@@ -407,13 +401,13 @@ namespace CSJ2K.j2k.util
 		/// <returns> the value of the parameter as a float.
 		/// 
 		/// </returns>
-		public virtual float getFloatParameter(System.String pname)
+		public virtual float getFloatParameter(string pname)
 		{
-			System.String s = (System.String) getParameter(pname);
+			var s = getParameter(pname);
 			
 			if (s == null)
 			{
-				throw new System.ArgumentException("No parameter with name " + pname);
+				throw new ArgumentException($"No parameter with name {pname}");
 			}
 			else
 			{
@@ -423,12 +417,12 @@ namespace CSJ2K.j2k.util
 					// directly to a float
 					//UPGRADE_TODO: The equivalent in .NET for method 'java.lang.Float.floatValue' may return a different value. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1043'"
 					//UPGRADE_WARNING: Data types in Visual C# might be different.  Verify the accuracy of narrowing conversions. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1042'"
-					return (float) (System.Single.Parse(s));
+					return float.Parse(s);
 				}
-				catch (System.FormatException e)
+				catch (FormatException e)
 				{
 					//UPGRADE_TODO: The equivalent in .NET for method 'java.lang.Throwable.getMessage' may return a different value. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1043'"
-					throw new System.FormatException("Parameter \"" + pname + "\" is not floating-point: " + e.Message);
+					throw new FormatException($"Parameter \"{pname}\" is not floating-point: {e.Message}");
 				}
 			}
 		}
@@ -451,10 +445,10 @@ namespace CSJ2K.j2k.util
 		/// starting with 'prfx' which is not in the valid list of parameter names.
 		/// 
 		/// </exception>
-		public virtual void  checkList(char prfx, System.String[] plist)
+		public virtual void  checkList(char prfx, string[] plist)
 		{
 			System.Collections.IEnumerator args;
-			System.String val;
+			string val;
 			int i;
 			bool isvalid;
 			
@@ -464,7 +458,7 @@ namespace CSJ2K.j2k.util
 			while (args.MoveNext())
 			{
 				//UPGRADE_TODO: Method 'java.util.Enumeration.nextElement' was converted to 'System.Collections.IEnumerator.Current' which has a different behavior. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1073_javautilEnumerationnextElement'"
-				val = ((System.String) args.Current);
+				val = ((string) args.Current);
 				if (val.Length > 0 && val[0] == prfx)
 				{
 					isvalid = false;
@@ -482,7 +476,7 @@ namespace CSJ2K.j2k.util
 					if (!isvalid)
 					{
 						// Did not find valid flag
-						throw new System.ArgumentException("Option '" + val + "' is " + "not a valid one.");
+						throw new ArgumentException($"Option '{val}' is not a valid one.");
 					}
 				}
 			}
@@ -506,22 +500,22 @@ namespace CSJ2K.j2k.util
 		/// starting with 'prfx' which is not in the valid list of parameter names.
 		/// 
 		/// </exception>
-		public virtual void  checkList(char[] prfxs, System.String[] plist)
+		public virtual void  checkList(char[] prfxs, string[] plist)
 		{
 			System.Collections.IEnumerator args;
-			System.String val, strprfxs;
+			string val, strprfxs;
 			int i;
 			bool isvalid;
 			
 			args = Keys.GetEnumerator();
-			strprfxs = new System.String(prfxs);
+			strprfxs = new string(prfxs);
 			
 			//UPGRADE_TODO: Method 'java.util.Enumeration.hasMoreElements' was converted to 'System.Collections.IEnumerator.MoveNext' which has a different behavior. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1073_javautilEnumerationhasMoreElements'"
 			while (args.MoveNext())
 			{
 				//UPGRADE_TODO: Method 'java.util.Enumeration.nextElement' was converted to 'System.Collections.IEnumerator.Current' which has a different behavior. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1073_javautilEnumerationnextElement'"
-				val = ((System.String) args.Current);
-				if (val.Length > 0 && strprfxs.IndexOf((System.Char) val[0]) == - 1)
+				val = ((string) args.Current);
+				if (val.Length > 0 && strprfxs.IndexOf(val[0]) == - 1)
 				{
 					isvalid = false;
 					if (plist != null)
@@ -537,7 +531,7 @@ namespace CSJ2K.j2k.util
 					}
 					if (!isvalid)
 					{
-						throw new System.ArgumentException("Option '" + val + "' is " + "not a valid one.");
+						throw new ArgumentException($"Option '{val}' is not a valid one.");
 					}
 				}
 			}
@@ -558,18 +552,18 @@ namespace CSJ2K.j2k.util
 		/// null, null is returned.
 		/// 
 		/// </returns>
-		public static System.String[] toNameArray(System.String[][] pinfo)
+		public static string[] toNameArray(string[][] pinfo)
 		{
-			System.String[] pnames;
+			string[] pnames;
 			
 			if (pinfo == null)
 			{
 				return null;
 			}
 			
-			pnames = new System.String[pinfo.Length];
+			pnames = new string[pinfo.Length];
 			
-			for (int i = pinfo.Length - 1; i >= 0; i--)
+			for (var i = pinfo.Length - 1; i >= 0; i--)
 			{
 				pnames[i] = pinfo[i][0];
 			}

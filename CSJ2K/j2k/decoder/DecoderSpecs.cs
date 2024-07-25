@@ -11,10 +11,10 @@
 *
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -67,19 +67,19 @@ namespace CSJ2K.j2k.decoder
 		/// <summary> Returns a copy of the current object.
 		/// 
 		/// </summary>
-		virtual public DecoderSpecs Copy
+		public virtual DecoderSpecs Copy
 		{
 			get
 			{
 				DecoderSpecs decSpec2;
 				try
 				{
-					decSpec2 = (DecoderSpecs) this.Clone();
+					decSpec2 = (DecoderSpecs) Clone();
 				}
 				//UPGRADE_NOTE: Exception 'java.lang.CloneNotSupportedException' was converted to 'System.Exception' which has different behavior. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1100'"
-				catch (System.Exception e)
+				catch (Exception)
 				{
-					throw new System.InvalidOperationException("Cannot clone the DecoderSpecs instance");
+					throw new InvalidOperationException("Cannot clone the DecoderSpecs instance");
 				}
 				// Quantization
 				decSpec2.qts = (QuantTypeSpec) qts.Copy;
@@ -195,10 +195,10 @@ namespace CSJ2K.j2k.decoder
 			ephs = new ModuleSpec(nt, nc, ModuleSpec.SPEC_TYPE_TILE);
 			pphs = new ModuleSpec(nt, nc, ModuleSpec.SPEC_TYPE_TILE);
 			iccs = new ModuleSpec(nt, nc, ModuleSpec.SPEC_TYPE_TILE);
-			pphs.setDefault((System.Object) false);
+			pphs.setDefault(false);
 		}
 		//UPGRADE_TODO: The following method was automatically generated and it must be implemented in order to preserve the class logic. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1232'"
-		virtual public System.Object Clone()
+		public virtual object Clone()
 		{
 			return null;
 		}

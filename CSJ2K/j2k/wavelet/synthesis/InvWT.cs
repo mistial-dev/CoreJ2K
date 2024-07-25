@@ -12,10 +12,10 @@
 * 
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -50,7 +50,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 	/// wavelet transforms. Classes that implement inverse wavelet transfoms should
 	/// implement this interface.
 	/// 
-	/// <p>This class does not define the methods to transfer data, just the
+	/// This class does not define the methods to transfer data, just the
 	/// specifics to inverse wavelet transform. Different data transfer methods are
 	/// envisageable for different transforms.</p>
 	/// 
@@ -61,11 +61,11 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// reconstruction of an image with the lowest resolution (dimension)
 		/// available.
 		/// 
-		/// <p>Note: Image resolution level indexes may differ from tile-component
+		/// Note: Image resolution level indexes may differ from tile-component
 		/// resolution index. They are indeed indexed starting from the lowest
 		/// number of decomposition levels of each component of each tile.</p>
 		/// 
-		/// <p>Example: For an image (1 tile) with 2 components (component 0 having
+		/// Example: For an image (1 tile) with 2 components (component 0 having
 		/// 2 decomposition levels and component 1 having 3 decomposition levels),
 		/// the first (tile-) component has 3 resolution levels and the second one
 		/// has 4 resolution levels, whereas the image has only 3 resolution levels

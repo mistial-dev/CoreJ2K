@@ -24,15 +24,8 @@ namespace CSJ2K.Icc
 		/// <summary> Get the type of RestrictedICCProfile for this object</summary>
 		/// <returns> kThreeCompInput
 		/// </returns>
-		override public int Type
-		{
-			get
-			{
-				return kThreeCompInput;
-			}
-			
-		}
-		
+		public override int Type => kThreeCompInput;
+
 		/// <summary> Factory method which returns a 3 component RestrictedICCProfile</summary>
 		/// <param name="rcurve">Red TRC curve
 		/// </param>
@@ -48,7 +41,7 @@ namespace CSJ2K.Icc
 		/// </param>
 		/// <returns> the RestrictedICCProfile
 		/// </returns>
-		public static new RestrictedICCProfile createInstance(ICCCurveType rcurve, ICCCurveType gcurve, ICCCurveType bcurve, ICCXYZType rcolorant, ICCXYZType gcolorant, ICCXYZType bcolorant)
+		public new static RestrictedICCProfile createInstance(ICCCurveType rcurve, ICCCurveType gcurve, ICCCurveType bcurve, ICCXYZType rcolorant, ICCXYZType gcolorant, ICCXYZType bcolorant)
 		{
 			return new MatrixBasedRestrictedProfile(rcurve, gcurve, bcurve, rcolorant, gcolorant, bcolorant);
 		}
@@ -72,17 +65,17 @@ namespace CSJ2K.Icc
 		
 		/// <returns> String representation of a MatrixBasedRestrictedProfile
 		/// </returns>
-		public override System.String ToString()
+		public override string ToString()
 		{
-			System.Text.StringBuilder rep = new System.Text.StringBuilder("[Matrix-Based Input Restricted ICC profile").Append(eol);
+			var rep = new System.Text.StringBuilder("[Matrix-Based Input Restricted ICC profile").Append(Environment.NewLine);
 			
-			rep.Append("trc[RED]:").Append(eol).Append(trc[RED]).Append(eol);
-			rep.Append("trc[RED]:").Append(eol).Append(trc[GREEN]).Append(eol);
-			rep.Append("trc[RED]:").Append(eol).Append(trc[BLUE]).Append(eol);
+			rep.Append("trc[RED]:").Append(Environment.NewLine).Append(trc[RED]).Append(Environment.NewLine);
+			rep.Append("trc[RED]:").Append(Environment.NewLine).Append(trc[GREEN]).Append(Environment.NewLine);
+			rep.Append("trc[RED]:").Append(Environment.NewLine).Append(trc[BLUE]).Append(Environment.NewLine);
 			
-			rep.Append("Red colorant:  ").Append(colorant[RED]).Append(eol);
-			rep.Append("Red colorant:  ").Append(colorant[GREEN]).Append(eol);
-			rep.Append("Red colorant:  ").Append(colorant[BLUE]).Append(eol);
+			rep.Append("Red colorant:  ").Append(colorant[RED]).Append(Environment.NewLine);
+			rep.Append("Red colorant:  ").Append(colorant[GREEN]).Append(Environment.NewLine);
+			rep.Append("Red colorant:  ").Append(colorant[BLUE]).Append(Environment.NewLine);
 			
 			return rep.Append("]").ToString();
 		}

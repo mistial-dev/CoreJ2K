@@ -8,7 +8,7 @@ namespace CSJ2K
     using System.Linq;
     using System.Reflection;
 
-    using CSJ2K.Util;
+    using Util;
 
     /// <summary>
     /// Setup helper methods for initializing library.
@@ -27,16 +27,11 @@ namespace CSJ2K
             try
             {
                 var assembly = GetCurrentAssembly();
-#if NETFX_CORE || NETSTANDARD
                 var type =
                     assembly.DefinedTypes.Single(
                         t => (t.IsSubclassOf(typeof(T)) || typeof(T).GetTypeInfo().IsAssignableFrom(t)) && !t.IsAbstract)
                         .AsType();
-#else
-                var type =
-                    assembly.GetTypes()
-                        .Single(t => (t.IsSubclassOf(typeof(T)) || typeof(T).IsAssignableFrom(t)) && !t.IsAbstract);
-#endif
+
                 var instance = (T)Activator.CreateInstance(type);
 
                 return instance;
@@ -71,40 +66,24 @@ namespace CSJ2K
 
         private static Assembly GetCurrentAssembly()
         {
-#if NETFX_CORE || NETSTANDARD
             return typeof(J2kSetup).GetTypeInfo().Assembly;
-#else
-            return typeof(J2kSetup).Assembly;
-#endif
         }
 
         private static IEnumerable<Type> GetConcreteTypes<T>(Assembly assembly)
         {
-#if NETFX_CORE || NETSTANDARD
             return assembly.DefinedTypes.Where(
-#else
-            return assembly.GetTypes().Where(
-#endif
                 t =>
                     {
                         try
                         {
-#if NETFX_CORE || NETSTANDARD
                             return (t.IsSubclassOf(typeof(T)) || typeof(T).GetTypeInfo().IsAssignableFrom(t))
                                    && !t.IsAbstract;
-#else
-                            return (t.IsSubclassOf(typeof(T)) || typeof(T).IsAssignableFrom(t)) && !t.IsAbstract;
-#endif
                         }
                         catch
                         {
                             return false;
                         }
-#if NETFX_CORE || NETSTANDARD
                     }).Select(t => t.AsType());
-#else
-                    });
-#endif
         }
 
         private static T GetDefaultOrSingleInstance<T>(IEnumerable<Type> types) where T : IDefaultable

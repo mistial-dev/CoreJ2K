@@ -49,13 +49,8 @@ namespace codectest
         /// Return the duration of the timer (in seconds)
         /// </summary>
         /// <returns>double - duration</returns>
-        public double Duration
-        {
-            get
-            {
-                return (double)(stopTime - startTime) / (double)freq;
-            }
-        }
+        public double Duration => (stopTime - startTime) / (double)freq;
+
         /// <summary>
         /// Frequency of timer (no counts in one second on this machine)
         /// </summary>

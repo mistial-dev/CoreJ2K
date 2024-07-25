@@ -14,10 +14,10 @@
 *
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -51,11 +51,11 @@ namespace CSJ2K.j2k.entropy.decoder
 	/// to the ByteArrayInputStream class, but adds the possibility to add data to
 	/// the stream after the creation of the object.
 	/// 
-	/// <p>Unlike the ByteArrayInputStream this class is not thread safe (i.e. no
+	/// Unlike the ByteArrayInputStream this class is not thread safe (i.e. no
 	/// two threads can use the same object at the same time, but different objects
 	/// may be used in different threads).</p>
 	/// 
-	/// <p>This class can modify the contents of the buffer given to the
+	/// This class can modify the contents of the buffer given to the
 	/// constructor, when the addByteArray() method is called.</p>
 	/// 
 	/// </summary>
@@ -95,7 +95,7 @@ namespace CSJ2K.j2k.entropy.decoder
 		/// specified byte array. Up to length characters are to be read from the
 		/// byte array, starting at the indicated offset.
 		/// 
-		/// <p>The byte array is not copied.</p>
+		/// The byte array is not copied.</p>
 		/// 
 		/// </summary>
 		/// <param name="buf">the input buffer.
@@ -120,7 +120,7 @@ namespace CSJ2K.j2k.entropy.decoder
 		/// 'off+len', where 'off' and 'len' are the offset and length of the
 		/// current byte buffer.
 		/// 
-		/// <p>The byte array is not copied.</p>
+		/// The byte array is not copied.</p>
 		/// 
 		/// </summary>
 		/// <param name="buf">the input buffer. If null it is the current input buffer.
@@ -141,7 +141,7 @@ namespace CSJ2K.j2k.entropy.decoder
 			{
 				if (length < 0 || count + length > this.buf.Length)
 				{
-					throw new System.ArgumentException();
+					throw new ArgumentException();
 				}
 				if (offset < 0)
 				{
@@ -159,7 +159,7 @@ namespace CSJ2K.j2k.entropy.decoder
 				// New input buffer
 				if (offset < 0 || length < 0 || offset + length > buf.Length)
 				{
-					throw new System.ArgumentException();
+					throw new ArgumentException();
 				}
 				this.buf = buf;
 				count = offset + length;
@@ -190,7 +190,7 @@ namespace CSJ2K.j2k.entropy.decoder
 				// Check integrity
 				if (len < 0 || off < 0 || len + off > buf.Length)
 				{
-					throw new System.ArgumentException();
+					throw new ArgumentException();
 				}
 				// Copy new data
 				if (count + len <= buf.Length)
@@ -210,7 +210,7 @@ namespace CSJ2K.j2k.entropy.decoder
 					else
 					{
 						// Not enough place in 'buf', use new buffer
-						byte[] oldbuf = buf;
+						var oldbuf = buf;
 						buf = new byte[count - pos + len];
 						// Copy buffer
 						Array.Copy(oldbuf, count, buf, 0, count - pos);
@@ -229,7 +229,7 @@ namespace CSJ2K.j2k.entropy.decoder
 		/// because the end of the stream has been reached, the EOFException
 		/// exception is thrown.
 		/// 
-		/// <p>This method is not synchronized, so it is not thread safe.</p>
+		/// This method is not synchronized, so it is not thread safe.</p>
 		/// 
 		/// </summary>
 		/// <returns> The byte read in the range 0-255.
@@ -242,7 +242,7 @@ namespace CSJ2K.j2k.entropy.decoder
 		{
 			if (pos < count)
 			{
-				return (int) buf[pos++] & 0xFF;
+				return buf[pos++] & 0xFF;
 			}
 			else
 			{
@@ -254,7 +254,7 @@ namespace CSJ2K.j2k.entropy.decoder
 		/// returned as an int in the range 0 to 255. If no byte is available
 		/// because the end of the stream has been reached, -1 is returned.
 		/// 
-		/// <p>This method is not synchronized, so it is not thread safe.</p>
+		/// This method is not synchronized, so it is not thread safe.</p>
 		/// 
 		/// </summary>
 		/// <returns> The byte read in the range 0-255, or -1 if the end of stream
@@ -265,7 +265,7 @@ namespace CSJ2K.j2k.entropy.decoder
 		{
 			if (pos < count)
 			{
-				return (int) buf[pos++] & 0xFF;
+				return buf[pos++] & 0xFF;
 			}
 			else
 			{

@@ -6,7 +6,7 @@ namespace CSJ2K.Icc.Tags
 {
     public class ICCMeasurementType : ICCTag
     {
-        new public int type;
+        public new int type;
         public int reserved;
         public int observer;
         public XYZNumber backing;

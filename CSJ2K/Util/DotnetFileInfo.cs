@@ -25,29 +25,11 @@ namespace CSJ2K.Util
 
         #region PROPERTIES
 
-        public string Name
-        {
-            get
-            {
-                return _fileInfo.Name;
-            }
-        }
+        public string Name => _fileInfo.Name;
 
-        public string FullName
-        {
-            get
-            {
-                return _fileInfo.FullName;
-            }
-        }
+        public string FullName => _fileInfo.FullName;
 
-        public bool Exists
-        {
-            get
-            {
-                return _fileInfo.Exists;
-            }
-        }
+        public bool Exists => _fileInfo.Exists;
 
         #endregion
 

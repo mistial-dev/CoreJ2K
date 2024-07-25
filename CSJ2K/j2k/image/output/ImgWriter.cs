@@ -12,10 +12,10 @@
 *
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -51,12 +51,12 @@ namespace CSJ2K.j2k.image.output
 	/// <summary> This is the generic interface to be implemented by all image file (or other
 	/// resource) writers for different formats.
 	/// 
-	/// <p>Each object inheriting from this class should have a source ImgData
+	/// Each object inheriting from this class should have a source ImgData
 	/// object associated with it. The image data to write to the file is obtained
 	/// from the associated ImgData object. In general this object would be
 	/// specified at construction time.</p>
 	/// 
-	/// <p>Depending on the actual type of file that is written a call to any
+	/// Depending on the actual type of file that is written a call to any
 	/// write() or writeAll() method will write data from one component, several
 	/// components or all components. For example, a PGM writer will write data
 	/// from only one component (defined in the constructor) while a PPM writer
@@ -121,7 +121,7 @@ namespace CSJ2K.j2k.image.output
 		/// issued by the implementing class to the source ImgData object should be
 		/// done by blocks or strips, in order to reduce memory usage.
 		/// 
-		/// <p>The implementing class should only write data that is not
+		/// The implementing class should only write data that is not
 		/// "progressive" (in other words that it is final), see DataBlk for
 		/// details.</p>
 		/// 
@@ -149,13 +149,13 @@ namespace CSJ2K.j2k.image.output
 		public virtual void  writeAll()
 		{
 			// Find the list of tile to decode.
-			Coord nT = src.getNumTiles(null);
+			var nT = src.getNumTiles(null);
 			
 			// Loop on vertical tiles
-			for (int y = 0; y < nT.y; y++)
+			for (var y = 0; y < nT.y; y++)
 			{
 				// Loop on horizontal tiles
-				for (int x = 0; x < nT.x; x++)
+				for (var x = 0; x < nT.x; x++)
 				{
 					src.setTile(x, y);
 					write();
@@ -166,7 +166,7 @@ namespace CSJ2K.j2k.image.output
 		/// <summary> Writes the data of the specified area to the file, coordinates are
 		/// relative to the current tile of the source.
 		/// 
-		/// <p>The implementing class should only write data that is not
+		/// The implementing class should only write data that is not
 		/// "progressive" (in other words that is final), see DataBlk for
 		/// details.</p>
 		/// 

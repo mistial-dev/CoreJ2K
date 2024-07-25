@@ -12,10 +12,10 @@
 *
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -58,7 +58,7 @@ namespace CSJ2K.j2k.entropy.encoder
 	/// 'CodedCBlkDataSrcEnc' which delivers entropy coded blocks with
 	/// rate-distortion statistics.
 	/// 
-	/// <p>The post compression rate allocator implementation should create the
+	/// The post compression rate allocator implementation should create the
 	/// layers, according to a rate allocation policy, and send the packets to a
 	/// CodestreamWriter. Since the rate allocator sends the packets to the bit
 	/// stream then it should output the packets to the bit stream in the order
@@ -78,13 +78,9 @@ namespace CSJ2K.j2k.entropy.encoder
 		/// <param name="headEnc">The header encoder
 		/// 
 		/// </param>
-		virtual public HeaderEncoder HeaderEncoder
+		public virtual HeaderEncoder HeaderEncoder
 		{
-			set
-			{
-				this.headEnc = value;
-			}
-			
+			set => headEnc = value;
 		}
 		/// <summary> Returns the number of layers that are actually generated.
 		/// 
@@ -92,14 +88,8 @@ namespace CSJ2K.j2k.entropy.encoder
 		/// <returns> The number of layers generated.
 		/// 
 		/// </returns>
-		virtual public int NumLayers
-		{
-			get
-			{
-				return num_Layers;
-			}
-			
-		}
+		public virtual int NumLayers => num_Layers;
+
 		/// <summary> Returns the parameters that are used in this class and implementing
 		/// classes. It returns a 2D String array. Each of the 1D arrays is for a
 		/// different option, and they have 3 elements. The first element is the
@@ -114,15 +104,8 @@ namespace CSJ2K.j2k.entropy.encoder
 		/// or null if no options are supported.
 		/// 
 		/// </returns>
-		public static System.String[][] ParameterInfo
-		{
-			get
-			{
-				return pinfo;
-			}
-			
-		}
-		
+		public static string[][] ParameterInfo => pinfo;
+
 		/// <summary>The prefix for rate allocation options: 'A' </summary>
 		public const char OPT_PREFIX = 'A';
 		
@@ -130,7 +113,7 @@ namespace CSJ2K.j2k.entropy.encoder
 		/// for entropy coding start with 'R'. 
 		/// </summary>
 		//UPGRADE_NOTE: Final was removed from the declaration of 'pinfo'. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
-		private static readonly System.String[][] pinfo = new System.String[][]{new System.String[]{"Aptype", "[<tile idx>] res|layer|res-pos|" + "pos-comp|comp-pos [res_start comp_start layer_end res_end " + "comp_end " + "prog] [[res_start comp_start ly_end res_end comp_end prog] ...] [" + "[<tile-component idx>] ...]", "Specifies which type of progression should be used when " + "generating " + "the codestream. The 'res' value generates a resolution " + "progressive codestream with the number of layers specified by " + "'Alayers' option. The 'layer' value generates a layer progressive " + "codestream with multiple layers. In any case the rate-allocation " + "algorithm optimizes for best quality in each layer. The quality " + "measure is mean squared error (MSE) or a weighted version of it " + "(WMSE). If no progression type is specified or imposed by other " + "modules, the default value is 'layer'.\n" + "It is also possible to describe progression order changes. In " + "this case, 'res_start' is the index (from 0) of the first " + "resolution " + "level, 'comp_start' is the index (from 0) of the first component, " + "'ly_end' is the index (from 0) of the first layer not included, " + "'res_end' is the index (from 0) of the first resolution level not " + "included, 'comp_end' is index (from 0) of the first component not " + "included and 'prog' is the progression type to be used " + "for the rest of the tile/image. Several progression order changes " + "can be specified, one after the other.", null}, new System.String[]{"Alayers", "[<rate> [+<layers>] [<rate [+<layers>] [...]] | sl]", "Explicitly specifies the codestream layer formation parameters. " + "The <rate> parameter specifies the bitrate to which the first " + "layer should be optimized. The <layers> parameter, if present, " + "specifies the number of extra layers that should be added for " + "scalability. These extra layers are not optimized. " + "Any extra <rate> and <layers> parameters add more layers, in the " + 
+		private static readonly string[][] pinfo = new string[][]{new string[]{"Aptype", "[<tile idx>] res|layer|res-pos|" + "pos-comp|comp-pos [res_start comp_start layer_end res_end " + "comp_end " + "prog] [[res_start comp_start ly_end res_end comp_end prog] ...] [" + "[<tile-component idx>] ...]", "Specifies which type of progression should be used when " + "generating " + "the codestream. The 'res' value generates a resolution " + "progressive codestream with the number of layers specified by " + "'Alayers' option. The 'layer' value generates a layer progressive " + "codestream with multiple layers. In any case the rate-allocation " + "algorithm optimizes for best quality in each layer. The quality " + "measure is mean squared error (MSE) or a weighted version of it " + "(WMSE). If no progression type is specified or imposed by other " + "modules, the default value is 'layer'.\n" + "It is also possible to describe progression order changes. In " + "this case, 'res_start' is the index (from 0) of the first " + "resolution " + "level, 'comp_start' is the index (from 0) of the first component, " + "'ly_end' is the index (from 0) of the first layer not included, " + "'res_end' is the index (from 0) of the first resolution level not " + "included, 'comp_end' is index (from 0) of the first component not " + "included and 'prog' is the progression type to be used " + "for the rest of the tile/image. Several progression order changes " + "can be specified, one after the other.", null}, new string[]{"Alayers", "[<rate> [+<layers>] [<rate [+<layers>] [...]] | sl]", "Explicitly specifies the codestream layer formation parameters. " + "The <rate> parameter specifies the bitrate to which the first " + "layer should be optimized. The <layers> parameter, if present, " + "specifies the number of extra layers that should be added for " + "scalability. These extra layers are not optimized. " + "Any extra <rate> and <layers> parameters add more layers, in the " + 
 			"same way. An additional layer is always added at the end, which" + " is " + "optimized to the overall target bitrate of the bit stream. Any " + "layers (optimized or not) whose target bitrate is higher that the " + "overall target bitrate are silently ignored. The bitrates of the " + "extra layers that are added through the <layers> parameter are " + "approximately log-spaced between the other target bitrates. If " + "several <rate> [+<layers>] constructs appear the <rate>" + " parameters " + "must appear in increasing order. The rate allocation algorithm " + "ensures that all coded layers have a minimal reasonable size, if " + "not these layers are silently ignored.\n" + "If the 'sl' (i.e. 'single layer') argument is specified, the " + "generated codestream will" + " only contain one layer (with a bit rate specified thanks to the" + " '-rate' or 'nbytes' options).", "0.015 +20 2.0 +10"}};
 		
 		/// <summary>The source of entropy coded data </summary>
@@ -220,14 +203,14 @@ namespace CSJ2K.j2k.entropy.encoder
 		public static PostCompRateAllocator createInstance(CodedCBlkDataSrcEnc src, ParameterList pl, float rate, CodestreamWriter bw, EncoderSpecs encSpec)
 		{
 			// Check parameters
-			pl.checkList(OPT_PREFIX, CSJ2K.j2k.util.ParameterList.toNameArray(pinfo));
+			pl.checkList(OPT_PREFIX, ParameterList.toNameArray(pinfo));
 			
 			// Construct the layer specification from the 'Alayers' option
-			LayersInfo lyrs = parseAlayers(pl.getParameter("Alayers"), rate);
+			var lyrs = parseAlayers(pl.getParameter("Alayers"), rate);
 			
-			int nTiles = encSpec.nTiles;
-			int nComp = encSpec.nComp;
-			int numLayers = lyrs.TotNumLayers;
+			var nTiles = encSpec.nTiles;
+			var nComp = encSpec.nComp;
+			var numLayers = lyrs.TotNumLayers;
 			
 			// Parse the progressive type
 			encSpec.pocs = new ProgressionSpec(nTiles, nComp, numLayers, encSpec.dls, ModuleSpec.SPEC_TYPE_TILE_COMP, pl);
@@ -247,7 +230,7 @@ namespace CSJ2K.j2k.entropy.encoder
 		/// <returns> The layer specification.
 		/// 
 		/// </returns>
-		private static LayersInfo parseAlayers(System.String params_Renamed, float rate)
+		private static LayersInfo parseAlayers(string params_Renamed, float rate)
 		{
 			LayersInfo lyrs;
 			SupportClass.StreamTokenizerSupport stok;
@@ -262,9 +245,9 @@ namespace CSJ2K.j2k.entropy.encoder
 			{
 				stok.NextToken();
 			}
-			catch (System.IO.IOException e)
+			catch (System.IO.IOException)
 			{
-				throw new System.InvalidOperationException("An IOException has ocurred where it " + "should never occur");
+				throw new InvalidOperationException("An IOException has ocurred where it " + "should never occur");
 			}
 			ratepending = false;
 			islayer = false;
@@ -283,10 +266,10 @@ namespace CSJ2K.j2k.entropy.encoder
 								//UPGRADE_WARNING: Data types in Visual C# might be different.  Verify the accuracy of narrowing conversions. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1042'"
 								lyrs.addOptPoint(r, (int) stok.nval);
 							}
-							catch (System.ArgumentException e)
+							catch (ArgumentException e)
 							{
 								//UPGRADE_TODO: The equivalent in .NET for method 'java.lang.Throwable.getMessage' may return a different value. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1043'"
-								throw new System.ArgumentException("Error in 'Alayers' " + "option: " + e.Message);
+								throw new ArgumentException($"Error in 'Alayers' option: {e.Message}");
 							}
 							ratepending = false;
 							islayer = false;
@@ -301,10 +284,10 @@ namespace CSJ2K.j2k.entropy.encoder
 								{
 									lyrs.addOptPoint(r, 0);
 								}
-								catch (System.ArgumentException e)
+								catch (ArgumentException e)
 								{
 									//UPGRADE_TODO: The equivalent in .NET for method 'java.lang.Throwable.getMessage' may return a different value. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1043'"
-									throw new System.ArgumentException("Error in 'Alayers' " + "option: " + e.Message);
+									throw new ArgumentException($"Error in 'Alayers' option: {e.Message}");
 								}
 							}
 							// Now store new rate parameter
@@ -317,7 +300,7 @@ namespace CSJ2K.j2k.entropy.encoder
 					case '+': 
 						if (!ratepending || islayer)
 						{
-							throw new System.ArgumentException("Layer parameter without " + "previous rate parameter " + "in 'Alayers' option");
+							throw new ArgumentException("Layer parameter without " + "previous rate parameter " + "in 'Alayers' option");
 						}
 						islayer = true; // Next number is layer parameter
 						break;
@@ -327,32 +310,32 @@ namespace CSJ2K.j2k.entropy.encoder
 						{
 							stok.NextToken();
 						}
-						catch (System.IO.IOException e)
+						catch (System.IO.IOException)
 						{
-							throw new System.InvalidOperationException("An IOException has ocurred where it " + "should never occur");
+							throw new InvalidOperationException("An IOException has ocurred where it " + "should never occur");
 						}
 						if (stok.ttype != SupportClass.StreamTokenizerSupport.TT_EOF)
 						{
-							throw new System.ArgumentException("'sl' argument of " + "'-Alayers' option must be " + "used alone.");
+							throw new ArgumentException("'sl' argument of " + "'-Alayers' option must be " + "used alone.");
 						}
 						break;
 					
 					default: 
-						throw new System.ArgumentException("Error parsing 'Alayers' " + "option");
+						throw new ArgumentException("Error parsing 'Alayers' " + "option");
 					
 				}
 				try
 				{
 					stok.NextToken();
 				}
-				catch (System.IO.IOException e)
+				catch (System.IO.IOException)
 				{
-					throw new System.InvalidOperationException("An IOException has ocurred where it " + "should never occur");
+					throw new InvalidOperationException("An IOException has ocurred where it " + "should never occur");
 				}
 			}
 			if (islayer)
 			{
-				throw new System.ArgumentException("Error parsing 'Alayers' " + "option");
+				throw new ArgumentException("Error parsing 'Alayers' " + "option");
 			}
 			if (ratepending)
 			{
@@ -360,10 +343,10 @@ namespace CSJ2K.j2k.entropy.encoder
 				{
 					lyrs.addOptPoint(r, 0);
 				}
-				catch (System.ArgumentException e)
+				catch (ArgumentException e)
 				{
 					//UPGRADE_TODO: The equivalent in .NET for method 'java.lang.Throwable.getMessage' may return a different value. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1043'"
-					throw new System.ArgumentException("Error in 'Alayers' " + "option: " + e.Message);
+					throw new ArgumentException($"Error in 'Alayers' option: {e.Message}");
 				}
 			}
 			return lyrs;

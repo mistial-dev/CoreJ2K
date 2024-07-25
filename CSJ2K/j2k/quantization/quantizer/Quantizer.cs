@@ -11,10 +11,10 @@
 *
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -56,13 +56,13 @@ namespace CSJ2K.j2k.quantization.quantizer
 	/// the quantizer is the set of quantized wavelet coefficients represented in
 	/// sign-magnitude notation (see below).
 	/// 
-	/// <p>This class provides default implementation for most of the methods
+	/// This class provides default implementation for most of the methods
 	/// (wherever it makes sense), under the assumption that the image, component
 	/// dimensions, and the tiles, are not modifed by the quantizer. If it is not
 	/// the case for a particular implementation, then the methods should be
 	/// overriden.</p>
 	/// 
-	/// <p>Sign magnitude representation is used (instead of two's complement) for
+	/// Sign magnitude representation is used (instead of two's complement) for
 	/// the output data. The most significant bit is used for the sign (0 if
 	/// positive, 1 if negative). Then the magnitude of the quantized coefficient
 	/// is stored in the next M most significat bits. The rest of the bits (least
@@ -71,21 +71,21 @@ namespace CSJ2K.j2k.quantization.quantizer
 	/// coder. However, it can be used to compute rate-distortion measures with
 	/// greater precision.</p>
 	/// 
-	/// <p>The value of M is determined for each subband as the sum of the number
+	/// The value of M is determined for each subband as the sum of the number
 	/// of guard bits G and the nominal range of quantized wavelet coefficients in
 	/// the corresponding subband (Rq), minus 1:</p>
 	/// 
-	/// <p>M = G + Rq -1</p>
+	/// M = G + Rq -1</p>
 	/// 
-	/// <p>The value of G should be the same for all subbands. The value of Rq
+	/// The value of G should be the same for all subbands. The value of Rq
 	/// depends on the quantization step size, the nominal range of the component
 	/// before the wavelet transform and the analysis gain of the subband (see
 	/// Subband).</p>
 	/// 
-	/// <p>The blocks of data that are requested should not cross subband
+	/// The blocks of data that are requested should not cross subband
 	/// boundaries.</p>
 	/// 
-	/// <p>NOTE: At the moment only quantizers that implement the
+	/// NOTE: At the moment only quantizers that implement the
 	/// 'CBlkQuantDataSrcEnc' interface are supported.</p>
 	/// 
 	/// </summary>
@@ -98,26 +98,14 @@ namespace CSJ2K.j2k.quantization.quantizer
 		/// values are 0 and 1, nothing else.
 		/// 
 		/// </summary>
-		virtual public int CbULX
-		{
-			get
-			{
-				return src.CbULX;
-			}
-			
-		}
+		public virtual int CbULX => src.CbULX;
+
 		/// <summary> Returns the vertical offset of the code-block partition. Allowable
 		/// values are 0 and 1, nothing else.
 		/// 
 		/// </summary>
-		virtual public int CbULY
-		{
-			get
-			{
-				return src.CbULY;
-			}
-			
-		}
+		public virtual int CbULY => src.CbULY;
+
 		/// <summary> Returns the parameters that are used in this class and implementing
 		/// classes. It returns a 2D String array. Each of the 1D arrays is for a
 		/// different option, and they have 3 elements. The first element is the
@@ -132,15 +120,8 @@ namespace CSJ2K.j2k.quantization.quantizer
 		/// or null if no options are supported.
 		/// 
 		/// </returns>
-		public static System.String[][] ParameterInfo
-		{
-			get
-			{
-				return pinfo;
-			}
-			
-		}
-		
+		public static string[][] ParameterInfo => pinfo;
+
 		/// <summary>The prefix for quantizer options: 'Q' </summary>
 		public const char OPT_PREFIX = 'Q';
 		
@@ -148,7 +129,7 @@ namespace CSJ2K.j2k.quantization.quantizer
 		/// for quantization start with 'Q'. 
 		/// </summary>
 		//UPGRADE_NOTE: Final was removed from the declaration of 'pinfo'. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
-		private static readonly System.String[][] pinfo = new System.String[][]{new System.String[]{"Qtype", "[<tile-component idx>] <id> " + "[ [<tile-component idx>] <id> ...]", "Specifies which quantization type to use for specified " + "tile-component. The default type is either 'reversible' or " + "'expounded' depending on whether or not the '-lossless' option " + " is specified.\n" + "<tile-component idx> : see general note.\n" + "<id>: Supported quantization types specification are : " + "'reversible' " + "(no quantization), 'derived' (derived quantization step size) and " + "'expounded'.\n" + "Example: -Qtype reversible or -Qtype t2,4-8 c2 reversible t9 " + "derived.", null}, new System.String[]{"Qstep", "[<tile-component idx>] <bnss> " + "[ [<tile-component idx>] <bnss> ...]", "This option specifies the base normalized quantization step " + "size (bnss) for tile-components. It is normalized to a " + "dynamic range of 1 in the image domain. This parameter is " + "ignored in reversible coding. The default value is '1/128'" + " (i.e. 0.0078125).", "0.0078125"}, new System.String[]{"Qguard_bits", "[<tile-component idx>] <gb> " + "[ [<tile-component idx>] <gb> ...]", "The number of bits used for each tile-component in the quantizer" + " to avoid overflow (gb).", "2"}};
+		private static readonly string[][] pinfo = new string[][]{new string[]{"Qtype", "[<tile-component idx>] <id> " + "[ [<tile-component idx>] <id> ...]", "Specifies which quantization type to use for specified " + "tile-component. The default type is either 'reversible' or " + "'expounded' depending on whether or not the '-lossless' option " + " is specified.\n" + "<tile-component idx> : see general note.\n" + "<id>: Supported quantization types specification are : " + "'reversible' " + "(no quantization), 'derived' (derived quantization step size) and " + "'expounded'.\n" + "Example: -Qtype reversible or -Qtype t2,4-8 c2 reversible t9 " + "derived.", null}, new string[]{"Qstep", "[<tile-component idx>] <bnss> " + "[ [<tile-component idx>] <bnss> ...]", "This option specifies the base normalized quantization step " + "size (bnss) for tile-components. It is normalized to a " + "dynamic range of 1 in the image domain. This parameter is " + "ignored in reversible coding. The default value is '1/128'" + " (i.e. 0.0078125).", "0.0078125"}, new string[]{"Qguard_bits", "[<tile-component idx>] <gb> " + "[ [<tile-component idx>] <gb> ...]", "The number of bits used for each tile-component in the quantizer" + " to avoid overflow (gb).", "2"}};
 		
 		/// <summary>The source of wavelet transform coefficients </summary>
 		protected internal CBlkWTDataSrc src;
@@ -214,7 +195,7 @@ namespace CSJ2K.j2k.quantization.quantizer
 		/// <summary> Returns a reference to the subband tree structure representing the
 		/// subband decomposition for the specified tile-component.
 		/// 
-		/// <P>This method gets the subband tree from the source and then
+		/// This method gets the subband tree from the source and then
 		/// calculates the magnitude bits for each leaf using the method
 		/// calcSbParams().
 		/// 
@@ -285,8 +266,8 @@ namespace CSJ2K.j2k.quantization.quantizer
 		/// 
 		/// </returns>
 		public abstract int getMaxMagBits(int c);
-		public abstract CSJ2K.j2k.wavelet.analysis.CBlkWTData getNextInternCodeBlock(int param1, CSJ2K.j2k.wavelet.analysis.CBlkWTData param2);
-		public abstract CSJ2K.j2k.wavelet.analysis.CBlkWTData getNextCodeBlock(int param1, CSJ2K.j2k.wavelet.analysis.CBlkWTData param2);
+		public abstract CBlkWTData getNextInternCodeBlock(int param1, CBlkWTData param2);
+		public abstract CBlkWTData getNextCodeBlock(int param1, CBlkWTData param2);
 		public abstract bool isReversible(int param1, int param2);
 	}
 }

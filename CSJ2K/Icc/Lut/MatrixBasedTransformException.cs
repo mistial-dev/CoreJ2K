@@ -20,13 +20,13 @@ namespace CSJ2K.Icc.Lut
 	/// <author> 	Bruce A. Kern
 	/// </author>
 	
-	public class MatrixBasedTransformException:System.Exception
+	public class MatrixBasedTransformException:Exception
 	{
 		
 		/// <summary> Contruct with message</summary>
 		/// <param name="msg">returned by getMessage()
 		/// </param>
-		internal MatrixBasedTransformException(System.String msg):base(msg)
+		internal MatrixBasedTransformException(string msg):base(msg)
 		{
 		}
 		

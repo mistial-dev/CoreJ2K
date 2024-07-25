@@ -27,7 +27,7 @@ namespace CSJ2K.Icc
 		/// <summary> Contruct with message</summary>
 		/// <param name="msg">returned by getMessage()
 		/// </param>
-		internal ICCProfileNotFoundException(System.String msg):base(msg)
+		internal ICCProfileNotFoundException(string msg):base(msg)
 		{
 		}
 		

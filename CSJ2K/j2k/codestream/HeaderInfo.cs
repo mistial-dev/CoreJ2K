@@ -12,10 +12,10 @@
 *
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -43,6 +43,7 @@
 * */
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using CSJ2K.j2k.wavelet;
 namespace CSJ2K.j2k.codestream
 {
@@ -55,88 +56,34 @@ namespace CSJ2K.j2k.codestream
 	public class HeaderInfo : FilterTypes
 	{
 		/// <summary>Returns a new instance of SIZ </summary>
-		virtual public SIZ NewSIZ
-		{
-			get
-			{
-				return new SIZ(this);
-			}
-			
-		}
+		public virtual SIZ NewSIZ => new SIZ(this);
+
 		/// <summary>Returns a new instance of SOT </summary>
-		virtual public SOT NewSOT
-		{
-			get
-			{
-				return new SOT(this);
-			}
-			
-		}
+		public virtual SOT NewSOT => new SOT(this);
+
 		/// <summary>Returns a new instance of COD </summary>
-		virtual public COD NewCOD
-		{
-			get
-			{
-				return new COD(this);
-			}
-			
-		}
+		public virtual COD NewCOD => new COD(this);
+
 		/// <summary>Returns a new instance of COC </summary>
-		virtual public COC NewCOC
-		{
-			get
-			{
-				return new COC(this);
-			}
-			
-		}
+		public virtual COC NewCOC => new COC(this);
+
 		/// <summary>Returns a new instance of RGN </summary>
-		virtual public RGN NewRGN
-		{
-			get
-			{
-				return new RGN(this);
-			}
-			
-		}
+		public virtual RGN NewRGN => new RGN(this);
+
 		/// <summary>Returns a new instance of QCD </summary>
-		virtual public QCD NewQCD
-		{
-			get
-			{
-				return new QCD(this);
-			}
-			
-		}
+		public virtual QCD NewQCD => new QCD(this);
+
 		/// <summary>Returns a new instance of QCC </summary>
-		virtual public QCC NewQCC
-		{
-			get
-			{
-				return new QCC(this);
-			}
-			
-		}
+		public virtual QCC NewQCC => new QCC(this);
+
 		/// <summary>Returns a new instance of POC </summary>
-		virtual public POC NewPOC
-		{
-			get
-			{
-				return new POC(this);
-			}
-			
-		}
+		public virtual POC NewPOC => new POC(this);
+
 		/// <summary>Returns a new instance of CRG </summary>
-		virtual public CRG NewCRG
-		{
-			get
-			{
-				return new CRG(this);
-			}
-			
-		}
+		public virtual CRG NewCRG => new CRG(this);
+
 		/// <summary>Returns a new instance of COM </summary>
-		virtual public COM NewCOM
+		public virtual COM NewCOM
 		{
 			get
 			{
@@ -145,15 +92,8 @@ namespace CSJ2K.j2k.codestream
 			
 		}
 		/// <summary>Returns the number of found COM marker segments </summary>
-		virtual public int NumCOM
-		{
-			get
-			{
-				return ncom;
-			}
-			
-		}
-		
+		public virtual int NumCOM => ncom;
+
 		//UPGRADE_NOTE: Field 'EnclosingInstance' was added to class 'SIZ' to access its enclosing instance. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1019'"
 		/// <summary>Internal class holding information found in the SIZ marker segment </summary>
 		public class SIZ
@@ -167,22 +107,22 @@ namespace CSJ2K.j2k.codestream
 				this.enclosingInstance = enclosingInstance;
 			}
 			private HeaderInfo enclosingInstance;
-			virtual public int MaxCompWidth
+			public virtual int MaxCompWidth
 			{
 				get
 				{
 					if (compWidth == null)
 					{
 						compWidth = new int[csiz];
-						for (int cc = 0; cc < csiz; cc++)
+						for (var cc = 0; cc < csiz; cc++)
 						{
 							//UPGRADE_WARNING: Data types in Visual C# might be different.  Verify the accuracy of narrowing conversions. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1042'"
-							compWidth[cc] = (int) (System.Math.Ceiling((xsiz) / (double) xrsiz[cc]) - System.Math.Ceiling(x0siz / (double) xrsiz[cc]));
+							compWidth[cc] = (int) (Math.Ceiling((xsiz) / (double) xrsiz[cc]) - Math.Ceiling(x0siz / (double) xrsiz[cc]));
 						}
 					}
 					if (maxCompWidth == - 1)
 					{
-						for (int c = 0; c < csiz; c++)
+						for (var c = 0; c < csiz; c++)
 						{
 							if (compWidth[c] > maxCompWidth)
 							{
@@ -194,22 +134,22 @@ namespace CSJ2K.j2k.codestream
 				}
 				
 			}
-			virtual public int MaxCompHeight
+			public virtual int MaxCompHeight
 			{
 				get
 				{
 					if (compHeight == null)
 					{
 						compHeight = new int[csiz];
-						for (int cc = 0; cc < csiz; cc++)
+						for (var cc = 0; cc < csiz; cc++)
 						{
 							//UPGRADE_WARNING: Data types in Visual C# might be different.  Verify the accuracy of narrowing conversions. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1042'"
-							compHeight[cc] = (int) (System.Math.Ceiling((ysiz) / (double) yrsiz[cc]) - System.Math.Ceiling(y0siz / (double) yrsiz[cc]));
+							compHeight[cc] = (int) (Math.Ceiling((ysiz) / (double) yrsiz[cc]) - Math.Ceiling(y0siz / (double) yrsiz[cc]));
 						}
 					}
 					if (maxCompHeight == - 1)
 					{
-						for (int c = 0; c < csiz; c++)
+						for (var c = 0; c < csiz; c++)
 						{
 							if (compHeight[c] != maxCompHeight)
 							{
@@ -221,7 +161,7 @@ namespace CSJ2K.j2k.codestream
 				}
 				
 			}
-			virtual public int NumTiles
+			public virtual int NumTiles
 			{
 				get
 				{
@@ -233,32 +173,25 @@ namespace CSJ2K.j2k.codestream
 				}
 				
 			}
-			virtual public SIZ Copy
+			public virtual SIZ Copy
 			{
 				get
 				{
 					SIZ ms = null;
 					try
 					{
-						ms = (SIZ) this.Clone();
+						ms = (SIZ) Clone();
 					}
 					//UPGRADE_NOTE: Exception 'java.lang.CloneNotSupportedException' was converted to 'System.Exception' which has different behavior. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1100'"
-					catch (System.Exception e)
+					catch (Exception)
 					{
-						throw new System.InvalidOperationException("Cannot clone SIZ marker segment");
+						throw new InvalidOperationException("Cannot clone SIZ marker segment");
 					}
 					return ms;
 				}
 				
 			}
-			public HeaderInfo Enclosing_Instance
-			{
-				get
-				{
-					return enclosingInstance;
-				}
-				
-			}
+			public HeaderInfo Enclosing_Instance => enclosingInstance;
 			public int lsiz;
 			public int rsiz;
 			public int xsiz;
@@ -296,10 +229,10 @@ namespace CSJ2K.j2k.codestream
 				if (compWidth == null)
 				{
 					compWidth = new int[csiz];
-					for (int cc = 0; cc < csiz; cc++)
+					for (var cc = 0; cc < csiz; cc++)
 					{
 						//UPGRADE_WARNING: Data types in Visual C# might be different.  Verify the accuracy of narrowing conversions. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1042'"
-						compWidth[cc] = (int) (System.Math.Ceiling((xsiz) / (double) xrsiz[cc]) - System.Math.Ceiling(x0siz / (double) xrsiz[cc]));
+						compWidth[cc] = (int) (Math.Ceiling((xsiz) / (double) xrsiz[cc]) - Math.Ceiling(x0siz / (double) xrsiz[cc]));
 					}
 				}
 				return compWidth[c];
@@ -309,10 +242,10 @@ namespace CSJ2K.j2k.codestream
 				if (compHeight == null)
 				{
 					compHeight = new int[csiz];
-					for (int cc = 0; cc < csiz; cc++)
+					for (var cc = 0; cc < csiz; cc++)
 					{
 						//UPGRADE_WARNING: Data types in Visual C# might be different.  Verify the accuracy of narrowing conversions. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1042'"
-						compHeight[cc] = (int) (System.Math.Ceiling((ysiz) / (double) yrsiz[cc]) - System.Math.Ceiling(y0siz / (double) yrsiz[cc]));
+						compHeight[cc] = (int) (Math.Ceiling((ysiz) / (double) yrsiz[cc]) - Math.Ceiling(y0siz / (double) yrsiz[cc]));
 					}
 				}
 				return compHeight[c];
@@ -324,9 +257,9 @@ namespace CSJ2K.j2k.codestream
 				if (origSigned == null)
 				{
 					origSigned = new bool[csiz];
-					for (int cc = 0; cc < csiz; cc++)
+					for (var cc = 0; cc < csiz; cc++)
 					{
-						origSigned[cc] = ((SupportClass.URShift(ssiz[cc], CSJ2K.j2k.codestream.Markers.SSIZ_DEPTH_BITS)) == 1);
+						origSigned[cc] = ((SupportClass.URShift(ssiz[cc], Markers.SSIZ_DEPTH_BITS)) == 1);
 					}
 				}
 				return origSigned[c];
@@ -337,36 +270,36 @@ namespace CSJ2K.j2k.codestream
 				if (origBitDepth == null)
 				{
 					origBitDepth = new int[csiz];
-					for (int cc = 0; cc < csiz; cc++)
+					for (var cc = 0; cc < csiz; cc++)
 					{
-						origBitDepth[cc] = (ssiz[cc] & ((1 << CSJ2K.j2k.codestream.Markers.SSIZ_DEPTH_BITS) - 1)) + 1;
+						origBitDepth[cc] = (ssiz[cc] & ((1 << Markers.SSIZ_DEPTH_BITS) - 1)) + 1;
 					}
 				}
 				return origBitDepth[c];
 			}
 			
 			/// <summary>Display information found in SIZ marker segment </summary>
-			public override System.String ToString()
+			public override string ToString()
 			{
-				System.String str = "\n --- SIZ (" + lsiz + " bytes) ---\n";
+				var str = $"\n --- SIZ ({lsiz} bytes) ---\n";
 				str += (" Capabilities : " + rsiz + "\n");
 				str += (" Image dim.   : " + (xsiz - x0siz) + "x" + (ysiz - y0siz) + ", (off=" + x0siz + "," + y0siz + ")\n");
 				str += (" Tile dim.    : " + xtsiz + "x" + ytsiz + ", (off=" + xt0siz + "," + yt0siz + ")\n");
 				str += (" Component(s) : " + csiz + "\n");
 				str += " Orig. depth  : ";
-				for (int i = 0; i < csiz; i++)
+				for (var i = 0; i < csiz; i++)
 				{
 					str += (getOrigBitDepth(i) + " ");
 				}
 				str += "\n";
 				str += " Orig. signed : ";
-				for (int i = 0; i < csiz; i++)
+				for (var i = 0; i < csiz; i++)
 				{
 					str += (isOrigSigned(i) + " ");
 				}
 				str += "\n";
 				str += " Subs. factor : ";
-				for (int i = 0; i < csiz; i++)
+				for (var i = 0; i < csiz; i++)
 				{
 					str += (xrsiz[i] + "," + yrsiz[i] + " ");
 				}
@@ -374,7 +307,7 @@ namespace CSJ2K.j2k.codestream
 				return str;
 			}
 			//UPGRADE_TODO: The following method was automatically generated and it must be implemented in order to preserve the class logic. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1232'"
-			virtual public System.Object Clone()
+			public virtual object Clone()
 			{
 				return null;
 			}
@@ -393,14 +326,7 @@ namespace CSJ2K.j2k.codestream
 				this.enclosingInstance = enclosingInstance;
 			}
 			private HeaderInfo enclosingInstance;
-			public HeaderInfo Enclosing_Instance
-			{
-				get
-				{
-					return enclosingInstance;
-				}
-				
-			}
+			public HeaderInfo Enclosing_Instance => enclosingInstance;
 			public int lsot;
 			public int isot;
 			public int psot;
@@ -408,9 +334,9 @@ namespace CSJ2K.j2k.codestream
 			public int tnsot;
 			
 			/// <summary>Display information found in this SOT marker segment </summary>
-			public override System.String ToString()
+			public override string ToString()
 			{
-				System.String str = "\n --- SOT (" + lsot + " bytes) ---\n";
+				var str = $"\n --- SOT ({lsot} bytes) ---\n";
 				str += ("Tile index         : " + isot + "\n");
 				str += ("Tile-part length   : " + psot + " bytes\n");
 				str += ("Tile-part index    : " + tpsot + "\n");
@@ -433,32 +359,25 @@ namespace CSJ2K.j2k.codestream
 				this.enclosingInstance = enclosingInstance;
 			}
 			private HeaderInfo enclosingInstance;
-			virtual public COD Copy
+			public virtual COD Copy
 			{
 				get
 				{
 					COD ms = null;
 					try
 					{
-						ms = (COD) this.Clone();
+						ms = (COD) Clone();
 					}
 					//UPGRADE_NOTE: Exception 'java.lang.CloneNotSupportedException' was converted to 'System.Exception' which has different behavior. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1100'"
-					catch (System.Exception e)
+					catch (Exception)
 					{
-						throw new System.InvalidOperationException("Cannot clone SIZ marker segment");
+						throw new InvalidOperationException("Cannot clone SIZ marker segment");
 					}
 					return ms;
 				}
 				
 			}
-			public HeaderInfo Enclosing_Instance
-			{
-				get
-				{
-					return enclosingInstance;
-				}
-				
-			}
+			public HeaderInfo Enclosing_Instance => enclosingInstance;
 			public int lcod;
 			public int scod;
 			public int sgcod_po; // Progression order
@@ -471,9 +390,9 @@ namespace CSJ2K.j2k.codestream
 			public int[] spcod_t = new int[1]; // Transformation
 			public int[] spcod_ps; // Precinct size
 			/// <summary>Display information found in this COD marker segment </summary>
-			public override System.String ToString()
+			public override string ToString()
 			{
-				System.String str = "\n --- COD (" + lcod + " bytes) ---\n";
+				var str = $"\n --- COD ({lcod} bytes) ---\n";
 				str += " Coding style   : ";
 				if (scod == 0)
 				{
@@ -481,14 +400,14 @@ namespace CSJ2K.j2k.codestream
 				}
 				else
 				{
-					if ((scod & CSJ2K.j2k.codestream.Markers.SCOX_PRECINCT_PARTITION) != 0)
+					if ((scod & Markers.SCOX_PRECINCT_PARTITION) != 0)
 						str += "Precints ";
-					if ((scod & CSJ2K.j2k.codestream.Markers.SCOX_USE_SOP) != 0)
+					if ((scod & Markers.SCOX_USE_SOP) != 0)
 						str += "SOP ";
-					if ((scod & CSJ2K.j2k.codestream.Markers.SCOX_USE_EPH) != 0)
+					if ((scod & Markers.SCOX_USE_EPH) != 0)
 						str += "EPH ";
-					int cb0x = ((scod & CSJ2K.j2k.codestream.Markers.SCOX_HOR_CB_PART) != 0)?1:0;
-					int cb0y = ((scod & CSJ2K.j2k.codestream.Markers.SCOX_VER_CB_PART) != 0)?1:0;
+					var cb0x = ((scod & Markers.SCOX_HOR_CB_PART) != 0)?1:0;
+					var cb0y = ((scod & Markers.SCOX_VER_CB_PART) != 0)?1:0;
 					if (cb0x != 0 || cb0y != 0)
 					{
 						str += "Code-blocks offset";
@@ -521,23 +440,23 @@ namespace CSJ2K.j2k.codestream
 				switch (sgcod_po)
 				{
 					
-					case CSJ2K.j2k.codestream.ProgressionType.LY_RES_COMP_POS_PROG: 
+					case ProgressionType.LY_RES_COMP_POS_PROG: 
 						str += " Progress. type : LY_RES_COMP_POS_PROG\n";
 						break;
 					
-					case CSJ2K.j2k.codestream.ProgressionType.RES_LY_COMP_POS_PROG: 
+					case ProgressionType.RES_LY_COMP_POS_PROG: 
 						str += " Progress. type : RES_LY_COMP_POS_PROG\n";
 						break;
 					
-					case CSJ2K.j2k.codestream.ProgressionType.RES_POS_COMP_LY_PROG: 
+					case ProgressionType.RES_POS_COMP_LY_PROG: 
 						str += " Progress. type : RES_POS_COMP_LY_PROG\n";
 						break;
 					
-					case CSJ2K.j2k.codestream.ProgressionType.POS_COMP_RES_LY_PROG: 
+					case ProgressionType.POS_COMP_RES_LY_PROG: 
 						str += " Progress. type : POS_COMP_RES_LY_PROG\n";
 						break;
 					
-					case CSJ2K.j2k.codestream.ProgressionType.COMP_POS_RES_LY_PROG: 
+					case ProgressionType.COMP_POS_RES_LY_PROG: 
 						str += " Progress. type : COMP_POS_RES_LY_PROG\n";
 						break;
 					}
@@ -546,11 +465,11 @@ namespace CSJ2K.j2k.codestream
 				switch (spcod_t[0])
 				{
 					
-					case CSJ2K.j2k.wavelet.FilterTypes_Fields.W9X7: 
+					case FilterTypes_Fields.W9X7: 
 						str += " Filter         : 9-7 irreversible\n";
 						break;
 					
-					case CSJ2K.j2k.wavelet.FilterTypes_Fields.W5X3: 
+					case FilterTypes_Fields.W5X3: 
 						str += " Filter         : 5-3 reversible\n";
 						break;
 					}
@@ -558,16 +477,14 @@ namespace CSJ2K.j2k.codestream
 				if (spcod_ps != null)
 				{
 					str += " Precincts      : ";
-					for (int i = 0; i < spcod_ps.Length; i++)
-					{
-						str += ((1 << (spcod_ps[i] & 0x000F)) + "x" + (1 << (((spcod_ps[i] & 0x00F0) >> 4))) + " ");
-					}
+					str = spcod_ps.Aggregate(str, (current, t) 
+						=> current + ((1 << (t & 0x000F)) + "x" + (1 << (((t & 0x00F0) >> 4))) + " "));
 				}
 				str += "\n";
 				return str;
 			}
 			//UPGRADE_TODO: The following method was automatically generated and it must be implemented in order to preserve the class logic. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1232'"
-			virtual public System.Object Clone()
+			public virtual object Clone()
 			{
 				return null;
 			}
@@ -586,14 +503,7 @@ namespace CSJ2K.j2k.codestream
 				this.enclosingInstance = enclosingInstance;
 			}
 			private HeaderInfo enclosingInstance;
-			public HeaderInfo Enclosing_Instance
-			{
-				get
-				{
-					return enclosingInstance;
-				}
-				
-			}
+			public HeaderInfo Enclosing_Instance => enclosingInstance;
 			public int lcoc;
 			public int ccoc;
 			public int scoc;
@@ -604,9 +514,9 @@ namespace CSJ2K.j2k.codestream
 			public int[] spcoc_t = new int[1];
 			public int[] spcoc_ps;
 			/// <summary>Display information found in this COC marker segment </summary>
-			public override System.String ToString()
+			public override string ToString()
 			{
-				System.String str = "\n --- COC (" + lcoc + " bytes) ---\n";
+				var str = $"\n --- COC ({lcoc} bytes) ---\n";
 				str += (" Component      : " + ccoc + "\n");
 				str += " Coding style   : ";
 				if (scoc == 0)
@@ -649,21 +559,19 @@ namespace CSJ2K.j2k.codestream
 				switch (spcoc_t[0])
 				{
 					
-					case CSJ2K.j2k.wavelet.FilterTypes_Fields.W9X7: 
+					case FilterTypes_Fields.W9X7: 
 						str += " Filter         : 9-7 irreversible\n";
 						break;
 					
-					case CSJ2K.j2k.wavelet.FilterTypes_Fields.W5X3: 
+					case FilterTypes_Fields.W5X3: 
 						str += " Filter         : 5-3 reversible\n";
 						break;
 					}
 				if (spcoc_ps != null)
 				{
 					str += " Precincts      : ";
-					for (int i = 0; i < spcoc_ps.Length; i++)
-					{
-						str += ((1 << (spcoc_ps[i] & 0x000F)) + "x" + (1 << (((spcoc_ps[i] & 0x00F0) >> 4))) + " ");
-					}
+					str = spcoc_ps.Aggregate(str, (current, t) 
+						=> current + ((1 << (t & 0x000F)) + "x" + (1 << (((t & 0x00F0) >> 4))) + " "));
 				}
 				str += "\n";
 				return str;
@@ -683,22 +591,15 @@ namespace CSJ2K.j2k.codestream
 				this.enclosingInstance = enclosingInstance;
 			}
 			private HeaderInfo enclosingInstance;
-			public HeaderInfo Enclosing_Instance
-			{
-				get
-				{
-					return enclosingInstance;
-				}
-				
-			}
+			public HeaderInfo Enclosing_Instance => enclosingInstance;
 			public int lrgn;
 			public int crgn;
 			public int srgn;
 			public int sprgn;
 			/// <summary>Display information found in this RGN marker segment </summary>
-			public override System.String ToString()
+			public override string ToString()
 			{
-				System.String str = "\n --- RGN (" + lrgn + " bytes) ---\n";
+				var str = $"\n --- RGN ({lrgn} bytes) ---\n";
 				str += (" Component : " + crgn + "\n");
 				if (srgn == 0)
 				{
@@ -727,38 +628,31 @@ namespace CSJ2K.j2k.codestream
 				this.enclosingInstance = enclosingInstance;
 			}
 			private HeaderInfo enclosingInstance;
-			virtual public int QuantType
+			public virtual int QuantType
 			{
 				get
 				{
 					if (qType == - 1)
 					{
-						qType = sqcd & ~ (CSJ2K.j2k.codestream.Markers.SQCX_GB_MSK << CSJ2K.j2k.codestream.Markers.SQCX_GB_SHIFT);
+						qType = sqcd & ~ (Markers.SQCX_GB_MSK << Markers.SQCX_GB_SHIFT);
 					}
 					return qType;
 				}
 				
 			}
-			virtual public int NumGuardBits
+			public virtual int NumGuardBits
 			{
 				get
 				{
 					if (gb == - 1)
 					{
-						gb = (sqcd >> CSJ2K.j2k.codestream.Markers.SQCX_GB_SHIFT) & CSJ2K.j2k.codestream.Markers.SQCX_GB_MSK;
+						gb = (sqcd >> Markers.SQCX_GB_SHIFT) & Markers.SQCX_GB_MSK;
 					}
 					return gb;
 				}
 				
 			}
-			public HeaderInfo Enclosing_Instance
-			{
-				get
-				{
-					return enclosingInstance;
-				}
-				
-			}
+			public HeaderInfo Enclosing_Instance => enclosingInstance;
 			public int lqcd;
 			public int sqcd;
 			public int[][] spqcd;
@@ -767,34 +661,34 @@ namespace CSJ2K.j2k.codestream
 			private int gb = - 1;
 			
 			/// <summary>Display information found in this QCD marker segment </summary>
-			public override System.String ToString()
+			public override string ToString()
 			{
-				System.String str = "\n --- QCD (" + lqcd + " bytes) ---\n";
+				var str = $"\n --- QCD ({lqcd} bytes) ---\n";
 				str += " Quant. type    : ";
-				int qt = QuantType;
-				if (qt == CSJ2K.j2k.codestream.Markers.SQCX_NO_QUANTIZATION)
+				var qt = QuantType;
+				if (qt == Markers.SQCX_NO_QUANTIZATION)
 					str += "No quantization \n";
-				else if (qt == CSJ2K.j2k.codestream.Markers.SQCX_SCALAR_DERIVED)
+				else if (qt == Markers.SQCX_SCALAR_DERIVED)
 					str += "Scalar derived\n";
-				else if (qt == CSJ2K.j2k.codestream.Markers.SQCX_SCALAR_EXPOUNDED)
+				else if (qt == Markers.SQCX_SCALAR_EXPOUNDED)
 					str += "Scalar expounded\n";
 				str += (" Guard bits     : " + NumGuardBits + "\n");
-				if (qt == CSJ2K.j2k.codestream.Markers.SQCX_NO_QUANTIZATION)
+				if (qt == Markers.SQCX_NO_QUANTIZATION)
 				{
 					str += " Exponents   :\n";
 					int exp;
-					for (int i = 0; i < spqcd.Length; i++)
+					for (var i = 0; i < spqcd.Length; i++)
 					{
-						for (int j = 0; j < spqcd[i].Length; j++)
+						for (var j = 0; j < spqcd[i].Length; j++)
 						{
 							if (i == 0 && j == 0)
 							{
-								exp = (spqcd[0][0] >> CSJ2K.j2k.codestream.Markers.SQCX_EXP_SHIFT) & CSJ2K.j2k.codestream.Markers.SQCX_EXP_MASK;
+								exp = (spqcd[0][0] >> Markers.SQCX_EXP_SHIFT) & Markers.SQCX_EXP_MASK;
 								str += ("\tr=0 : " + exp + "\n");
 							}
 							else if (i != 0 && j > 0)
 							{
-								exp = (spqcd[i][j] >> CSJ2K.j2k.codestream.Markers.SQCX_EXP_SHIFT) & CSJ2K.j2k.codestream.Markers.SQCX_EXP_MASK;
+								exp = (spqcd[i][j] >> Markers.SQCX_EXP_SHIFT) & Markers.SQCX_EXP_MASK;
 								str += ("\tr=" + i + ",s=" + j + " : " + exp + "\n");
 							}
 						}
@@ -805,9 +699,9 @@ namespace CSJ2K.j2k.codestream
 					str += " Exp / Mantissa : \n";
 					int exp;
 					double mantissa;
-					for (int i = 0; i < spqcd.Length; i++)
+					for (var i = 0; i < spqcd.Length; i++)
 					{
-						for (int j = 0; j < spqcd[i].Length; j++)
+						for (var j = 0; j < spqcd[i].Length; j++)
 						{
 							if (i == 0 && j == 0)
 							{
@@ -844,38 +738,31 @@ namespace CSJ2K.j2k.codestream
 				this.enclosingInstance = enclosingInstance;
 			}
 			private HeaderInfo enclosingInstance;
-			virtual public int QuantType
+			public virtual int QuantType
 			{
 				get
 				{
 					if (qType == - 1)
 					{
-						qType = sqcc & ~ (CSJ2K.j2k.codestream.Markers.SQCX_GB_MSK << CSJ2K.j2k.codestream.Markers.SQCX_GB_SHIFT);
+						qType = sqcc & ~ (Markers.SQCX_GB_MSK << Markers.SQCX_GB_SHIFT);
 					}
 					return qType;
 				}
 				
 			}
-			virtual public int NumGuardBits
+			public virtual int NumGuardBits
 			{
 				get
 				{
 					if (gb == - 1)
 					{
-						gb = (sqcc >> CSJ2K.j2k.codestream.Markers.SQCX_GB_SHIFT) & CSJ2K.j2k.codestream.Markers.SQCX_GB_MSK;
+						gb = (sqcc >> Markers.SQCX_GB_SHIFT) & Markers.SQCX_GB_MSK;
 					}
 					return gb;
 				}
 				
 			}
-			public HeaderInfo Enclosing_Instance
-			{
-				get
-				{
-					return enclosingInstance;
-				}
-				
-			}
+			public HeaderInfo Enclosing_Instance => enclosingInstance;
 			public int lqcc;
 			public int cqcc;
 			public int sqcc;
@@ -885,35 +772,35 @@ namespace CSJ2K.j2k.codestream
 			private int gb = - 1;
 			
 			/// <summary>Display information found in this QCC marker segment </summary>
-			public override System.String ToString()
+			public override string ToString()
 			{
-				System.String str = "\n --- QCC (" + lqcc + " bytes) ---\n";
+				var str = $"\n --- QCC ({lqcc} bytes) ---\n";
 				str += (" Component      : " + cqcc + "\n");
 				str += " Quant. type    : ";
-				int qt = QuantType;
-				if (qt == CSJ2K.j2k.codestream.Markers.SQCX_NO_QUANTIZATION)
+				var qt = QuantType;
+				if (qt == Markers.SQCX_NO_QUANTIZATION)
 					str += "No quantization \n";
-				else if (qt == CSJ2K.j2k.codestream.Markers.SQCX_SCALAR_DERIVED)
+				else if (qt == Markers.SQCX_SCALAR_DERIVED)
 					str += "Scalar derived\n";
-				else if (qt == CSJ2K.j2k.codestream.Markers.SQCX_SCALAR_EXPOUNDED)
+				else if (qt == Markers.SQCX_SCALAR_EXPOUNDED)
 					str += "Scalar expounded\n";
 				str += (" Guard bits     : " + NumGuardBits + "\n");
-				if (qt == CSJ2K.j2k.codestream.Markers.SQCX_NO_QUANTIZATION)
+				if (qt == Markers.SQCX_NO_QUANTIZATION)
 				{
 					str += " Exponents   :\n";
 					int exp;
-					for (int i = 0; i < spqcc.Length; i++)
+					for (var i = 0; i < spqcc.Length; i++)
 					{
-						for (int j = 0; j < spqcc[i].Length; j++)
+						for (var j = 0; j < spqcc[i].Length; j++)
 						{
 							if (i == 0 && j == 0)
 							{
-								exp = (spqcc[0][0] >> CSJ2K.j2k.codestream.Markers.SQCX_EXP_SHIFT) & CSJ2K.j2k.codestream.Markers.SQCX_EXP_MASK;
+								exp = (spqcc[0][0] >> Markers.SQCX_EXP_SHIFT) & Markers.SQCX_EXP_MASK;
 								str += ("\tr=0 : " + exp + "\n");
 							}
 							else if (i != 0 && j > 0)
 							{
-								exp = (spqcc[i][j] >> CSJ2K.j2k.codestream.Markers.SQCX_EXP_SHIFT) & CSJ2K.j2k.codestream.Markers.SQCX_EXP_MASK;
+								exp = (spqcc[i][j] >> Markers.SQCX_EXP_SHIFT) & Markers.SQCX_EXP_MASK;
 								str += ("\tr=" + i + ",s=" + j + " : " + exp + "\n");
 							}
 						}
@@ -924,9 +811,9 @@ namespace CSJ2K.j2k.codestream
 					str += " Exp / Mantissa : \n";
 					int exp;
 					double mantissa;
-					for (int i = 0; i < spqcc.Length; i++)
+					for (var i = 0; i < spqcc.Length; i++)
 					{
-						for (int j = 0; j < spqcc[i].Length; j++)
+						for (var j = 0; j < spqcc[i].Length; j++)
 						{
 							if (i == 0 && j == 0)
 							{
@@ -963,14 +850,7 @@ namespace CSJ2K.j2k.codestream
 				this.enclosingInstance = enclosingInstance;
 			}
 			private HeaderInfo enclosingInstance;
-			public HeaderInfo Enclosing_Instance
-			{
-				get
-				{
-					return enclosingInstance;
-				}
-				
-			}
+			public HeaderInfo Enclosing_Instance => enclosingInstance;
 			public int lpoc;
 			public int[] rspoc;
 			public int[] cspoc;
@@ -979,33 +859,33 @@ namespace CSJ2K.j2k.codestream
 			public int[] cepoc;
 			public int[] ppoc;
 			/// <summary>Display information found in this POC marker segment </summary>
-			public override System.String ToString()
+			public override string ToString()
 			{
-				System.String str = "\n --- POC (" + lpoc + " bytes) ---\n";
+				var str = $"\n --- POC ({lpoc} bytes) ---\n";
 				str += " Chg_idx RSpoc CSpoc LYEpoc REpoc CEpoc Ppoc\n";
-				for (int chg = 0; chg < rspoc.Length; chg++)
+				for (var chg = 0; chg < rspoc.Length; chg++)
 				{
 					str += ("   " + chg + "      " + rspoc[chg] + "     " + cspoc[chg] + "     " + lyepoc[chg] + "      " + repoc[chg] + "     " + cepoc[chg]);
 					switch (ppoc[chg])
 					{
 						
-						case CSJ2K.j2k.codestream.ProgressionType.LY_RES_COMP_POS_PROG: 
+						case ProgressionType.LY_RES_COMP_POS_PROG: 
 							str += "  LY_RES_COMP_POS_PROG\n";
 							break;
 						
-						case CSJ2K.j2k.codestream.ProgressionType.RES_LY_COMP_POS_PROG: 
+						case ProgressionType.RES_LY_COMP_POS_PROG: 
 							str += "  RES_LY_COMP_POS_PROG\n";
 							break;
 						
-						case CSJ2K.j2k.codestream.ProgressionType.RES_POS_COMP_LY_PROG: 
+						case ProgressionType.RES_POS_COMP_LY_PROG: 
 							str += "  RES_POS_COMP_LY_PROG\n";
 							break;
 						
-						case CSJ2K.j2k.codestream.ProgressionType.POS_COMP_RES_LY_PROG: 
+						case ProgressionType.POS_COMP_RES_LY_PROG: 
 							str += "  POS_COMP_RES_LY_PROG\n";
 							break;
 						
-						case CSJ2K.j2k.codestream.ProgressionType.COMP_POS_RES_LY_PROG: 
+						case ProgressionType.COMP_POS_RES_LY_PROG: 
 							str += "  COMP_POS_RES_LY_PROG\n";
 							break;
 						}
@@ -1028,22 +908,15 @@ namespace CSJ2K.j2k.codestream
 				this.enclosingInstance = enclosingInstance;
 			}
 			private HeaderInfo enclosingInstance;
-			public HeaderInfo Enclosing_Instance
-			{
-				get
-				{
-					return enclosingInstance;
-				}
-				
-			}
+			public HeaderInfo Enclosing_Instance => enclosingInstance;
 			public int lcrg;
 			public int[] xcrg;
 			public int[] ycrg;
 			/// <summary>Display information found in the CRG marker segment </summary>
-			public override System.String ToString()
+			public override string ToString()
 			{
-				System.String str = "\n --- CRG (" + lcrg + " bytes) ---\n";
-				for (int c = 0; c < xcrg.Length; c++)
+				var str = $"\n --- CRG ({lcrg} bytes) ---\n";
+				for (var c = 0; c < xcrg.Length; c++)
 				{
 					str += (" Component " + c + " offset : " + xcrg[c] + "," + ycrg[c] + "\n");
 				}
@@ -1065,21 +938,14 @@ namespace CSJ2K.j2k.codestream
 				this.enclosingInstance = enclosingInstance;
 			}
 			private HeaderInfo enclosingInstance;
-			public HeaderInfo Enclosing_Instance
-			{
-				get
-				{
-					return enclosingInstance;
-				}
-				
-			}
+			public HeaderInfo Enclosing_Instance => enclosingInstance;
 			public int lcom;
 			public int rcom;
 			public byte[] ccom;
 			/// <summary>Display information found in the COM marker segment </summary>
-			public override System.String ToString()
+			public override string ToString()
 			{
-				System.String str = "\n --- COM (" + lcom + " bytes) ---\n";
+				var str = $"\n --- COM ({lcom} bytes) ---\n";
 				if (rcom == 0)
 				{
 					str += " Registration : General use (binary values)\n";
@@ -1104,40 +970,40 @@ namespace CSJ2K.j2k.codestream
 		/// <summary>Reference to the SOT marker segments found in tile-part headers. The
 		/// kwy is given by "t"+tileIdx"_tp"+tilepartIndex. 
 		/// </summary>
-		public System.Collections.Generic.Dictionary<string, SOT> sotValue = new Dictionary<string, SOT>();
+		public Dictionary<string, SOT> sotValue = new Dictionary<string, SOT>();
 		
 		/// <summary>Reference to the COD marker segments found in main and first tile-part
 		/// header. The key is either "main" or "t"+tileIdx.
 		/// </summary>
-		public System.Collections.Generic.Dictionary<string, COD> codValue = new Dictionary<string, COD>();
+		public Dictionary<string, COD> codValue = new Dictionary<string, COD>();
 
 		/// <summary>Reference to the COC marker segments found in main and first tile-part
 		/// header. The key is either "main_c"+componentIndex or
 		/// "t"+tileIdx+"_c"+component_index. 
 		/// </summary>
-		public System.Collections.Generic.Dictionary<string, COC> cocValue = new Dictionary<string, COC>();
+		public Dictionary<string, COC> cocValue = new Dictionary<string, COC>();
 		
 		/// <summary>Reference to the RGN marker segments found in main and first tile-part
 		/// header. The key is either "main_c"+componentIndex or
 		/// "t"+tileIdx+"_c"+component_index. 
 		/// </summary>
-		public System.Collections.Generic.Dictionary<string, RGN> rgnValue = new Dictionary<string, RGN>();
+		public Dictionary<string, RGN> rgnValue = new Dictionary<string, RGN>();
 		
 		/// <summary>Reference to the QCD marker segments found in main and first tile-part
 		/// header. The key is either "main" or "t"+tileIdx. 
 		/// </summary>
-		public System.Collections.Generic.Dictionary<string, QCD> qcdValue = new Dictionary<string, QCD>();
+		public Dictionary<string, QCD> qcdValue = new Dictionary<string, QCD>();
 		
 		/// <summary>Reference to the QCC marker segments found in main and first tile-part
 		/// header. They key is either "main_c"+componentIndex or
 		/// "t"+tileIdx+"_c"+component_index. 
 		/// </summary>
-		public System.Collections.Generic.Dictionary<string, QCC> qccValue = new Dictionary<string, QCC>();
+		public Dictionary<string, QCC> qccValue = new Dictionary<string, QCC>();
 		
 		/// <summary>Reference to the POC marker segments found in main and first tile-part
 		/// header. They key is either "main" or "t"+tileIdx. 
 		/// </summary>
-		public System.Collections.Generic.Dictionary<string, POC> pocValue = new Dictionary<string, POC>();
+		public Dictionary<string, POC> pocValue = new Dictionary<string, POC>();
 		
 		/// <summary>Reference to the CRG marker segment found in main header </summary>
 		public CRG crgValue;
@@ -1145,7 +1011,7 @@ namespace CSJ2K.j2k.codestream
 		/// <summary>Reference to the COM marker segments found in main and tile-part
 		/// headers. The key is either "main_"+comIdx or "t"+tileIdx+"_"+comIdx. 
 		/// </summary>
-		public System.Collections.Generic.Dictionary<string, COM> comValue = new Dictionary<string, COM>();
+		public Dictionary<string, COM> comValue = new Dictionary<string, COM>();
 		
 		/// <summary>Number of found COM marker segment </summary>
 		private int ncom = 0;
@@ -1153,49 +1019,49 @@ namespace CSJ2K.j2k.codestream
 		/// <summary>Display information found in the different marker segments of the main
 		/// header 
 		/// </summary>
-		public virtual System.String toStringMainHeader()
+		public virtual string toStringMainHeader()
 		{
-			int nc = sizValue.csiz;
+			var nc = sizValue.csiz;
 			// SIZ
-			System.String str = "" + sizValue;
+			var str = $"{sizValue}";
 			// COD
 			if (codValue["main"] != null)
 			{
-				str += ("" + ((COD) codValue["main"]));
+				str += ("" + codValue["main"]);
 			}
 			// COCs
-			for (int c = 0; c < nc; c++)
+			for (var c = 0; c < nc; c++)
 			{
-				if (cocValue["main_c" + c] != null)
+				if (cocValue[$"main_c{c}"] != null)
 				{
-					str += ("" + ((COC) cocValue["main_c" + c]));
+					str += ("" + cocValue[$"main_c{c}"]);
 				}
 			}
 			// QCD
 			if (qcdValue["main"] != null)
 			{
-				str += ("" + ((QCD) qcdValue["main"]));
+				str += ("" + qcdValue["main"]);
 			}
 			// QCCs
-			for (int c = 0; c < nc; c++)
+			for (var c = 0; c < nc; c++)
 			{
-				if (qccValue["main_c" + c] != null)
+				if (qccValue[$"main_c{c}"] != null)
 				{
-					str += ("" + ((QCC) qccValue["main_c" + c]));
+					str += ("" + qccValue[$"main_c{c}"]);
 				}
 			}
 			// RGN
-			for (int c = 0; c < nc; c++)
+			for (var c = 0; c < nc; c++)
 			{
-				if (rgnValue["main_c" + c] != null)
+				if (rgnValue[$"main_c{c}"] != null)
 				{
-					str += ("" + ((RGN) rgnValue["main_c" + c]));
+					str += ("" + rgnValue[$"main_c{c}"]);
 				}
 			}
 			// POC
 			if (pocValue["main"] != null)
 			{
-				str += ("" + ((POC) pocValue["main"]));
+				str += ("" + pocValue["main"]);
 			}
 			// CRG
 			if (crgValue != null)
@@ -1203,11 +1069,11 @@ namespace CSJ2K.j2k.codestream
 				str += ("" + crgValue);
 			}
 			// COM
-			for (int i = 0; i < ncom; i++)
+			for (var i = 0; i < ncom; i++)
 			{
-				if (comValue["main_" + i] != null)
+				if (comValue[$"main_{i}"] != null)
 				{
-					str += ("" + ((COM) comValue["main_" + i]));
+					str += ("" + comValue[$"main_{i}"]);
 				}
 			}
 			return str;
@@ -1222,54 +1088,54 @@ namespace CSJ2K.j2k.codestream
 		/// <param name="tp">Number of tile-parts
 		/// 
 		/// </param>
-		public virtual System.String toStringTileHeader(int t, int ntp)
+		public virtual string toStringTileHeader(int t, int ntp)
 		{
-			int nc = sizValue.csiz;
-			System.String str = "";
+			var nc = sizValue.csiz;
+			var str = "";
 			// SOT
-			for (int i = 0; i < ntp; i++)
+			for (var i = 0; i < ntp; i++)
 			{
 				str += ("Tile-part " + i + ", tile " + t + ":\n");
-				str += ("" + ((SOT) sotValue["t" + t + "_tp" + i]));
+				str += ("" + sotValue[$"t{t}_tp{i}"]);
 			}
 			// COD
-			if (codValue["t" + t] != null)
+			if (codValue[$"t{t}"] != null)
 			{
-				str += ("" + ((COD) codValue["t" + t]));
+				str += ("" + codValue[$"t{t}"]);
 			}
 			// COCs
-			for (int c = 0; c < nc; c++)
+			for (var c = 0; c < nc; c++)
 			{
-				if (cocValue["t" + t + "_c" + c] != null)
+				if (cocValue[$"t{t}_c{c}"] != null)
 				{
-					str += ("" + ((COC) cocValue["t" + t + "_c" + c]));
+					str += ("" + cocValue[$"t{t}_c{c}"]);
 				}
 			}
 			// QCD
-			if (qcdValue["t" + t] != null)
+			if (qcdValue[$"t{t}"] != null)
 			{
-				str += ("" + ((QCD) qcdValue["t" + t]));
+				str += ("" + qcdValue[$"t{t}"]);
 			}
 			// QCCs
-			for (int c = 0; c < nc; c++)
+			for (var c = 0; c < nc; c++)
 			{
-				if (qccValue["t" + t + "_c" + c] != null)
+				if (qccValue[$"t{t}_c{c}"] != null)
 				{
-					str += ("" + ((QCC) qccValue["t" + t + "_c" + c]));
+					str += ("" + qccValue[$"t{t}_c{c}"]);
 				}
 			}
 			// RGN
-			for (int c = 0; c < nc; c++)
+			for (var c = 0; c < nc; c++)
 			{
-				if (rgnValue["t" + t + "_c" + c] != null)
+				if (rgnValue[$"t{t}_c{c}"] != null)
 				{
-					str += ("" + ((RGN) rgnValue["t" + t + "_c" + c]));
+					str += ("" + rgnValue[$"t{t}_c{c}"]);
 				}
 			}
 			// POC
-			if (pocValue["t" + t] != null)
+			if (pocValue[$"t{t}"] != null)
 			{
-				str += ("" + ((POC) pocValue["t" + t]));
+				str += ("" + pocValue[$"t{t}"]);
 			}
 			return str;
 		}
@@ -1284,48 +1150,48 @@ namespace CSJ2K.j2k.codestream
 		/// <param name="tp">Number of tile-parts
 		/// 
 		/// </param>
-		public virtual System.String toStringThNoSOT(int t, int ntp)
+		public virtual string toStringThNoSOT(int t, int ntp)
 		{
-			int nc = sizValue.csiz;
-			System.String str = "";
+			var nc = sizValue.csiz;
+			var str = "";
 			// COD
-			if (codValue["t" + t] != null)
+			if (codValue[$"t{t}"] != null)
 			{
-				str += ("" + ((COD) codValue["t" + t]));
+				str += ("" + codValue[$"t{t}"]);
 			}
 			// COCs
-			for (int c = 0; c < nc; c++)
+			for (var c = 0; c < nc; c++)
 			{
-				if (cocValue["t" + t + "_c" + c] != null)
+				if (cocValue[$"t{t}_c{c}"] != null)
 				{
-					str += ("" + ((COC) cocValue["t" + t + "_c" + c]));
+					str += ("" + cocValue[$"t{t}_c{c}"]);
 				}
 			}
 			// QCD
-			if (qcdValue["t" + t] != null)
+			if (qcdValue[$"t{t}"] != null)
 			{
-				str += ("" + ((QCD) qcdValue["t" + t]));
+				str += ("" + qcdValue[$"t{t}"]);
 			}
 			// QCCs
-			for (int c = 0; c < nc; c++)
+			for (var c = 0; c < nc; c++)
 			{
-				if (qccValue["t" + t + "_c" + c] != null)
+				if (qccValue[$"t{t}_c{c}"] != null)
 				{
-					str += ("" + ((QCC) qccValue["t" + t + "_c" + c]));
+					str += ("" + qccValue[$"t{t}_c{c}"]);
 				}
 			}
 			// RGN
-			for (int c = 0; c < nc; c++)
+			for (var c = 0; c < nc; c++)
 			{
-				if (rgnValue["t" + t + "_c" + c] != null)
+				if (rgnValue[$"t{t}_c{c}"] != null)
 				{
-					str += ("" + ((RGN) rgnValue["t" + t + "_c" + c]));
+					str += ("" + rgnValue[$"t{t}_c{c}"]);
 				}
 			}
 			// POC
-			if (pocValue["t" + t] != null)
+			if (pocValue[$"t{t}"] != null)
 			{
-				str += ("" + ((POC) pocValue["t" + t]));
+				str += ("" + pocValue[$"t{t}"]);
 			}
 			return str;
 		}
@@ -1340,29 +1206,29 @@ namespace CSJ2K.j2k.codestream
 				nhi = (HeaderInfo) Clone();
 			}
 			//UPGRADE_NOTE: Exception 'java.lang.CloneNotSupportedException' was converted to 'System.Exception' which has different behavior. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1100'"
-			catch (System.Exception e)
+			catch (Exception)
 			{
-				throw new System.InvalidOperationException("Cannot clone HeaderInfo instance");
+				throw new InvalidOperationException("Cannot clone HeaderInfo instance");
 			}
 			nhi.sizValue = sizValue.Copy;
 			// COD
 			if (codValue["main"] != null)
 			{
-				COD ms = (COD) codValue["main"];
+				var ms = codValue["main"];
 				nhi.codValue["main"] = ms.Copy;
 			}
-			for (int t = 0; t < nt; t++)
+			for (var t = 0; t < nt; t++)
 			{
-				if (codValue["t" + t] != null)
+				if (codValue[$"t{t}"] != null)
 				{
-					COD ms = (COD) codValue["t" + t];
-					nhi.codValue["t" + t] = ms.Copy;
+					var ms = codValue[$"t{t}"];
+					nhi.codValue[$"t{t}"] = ms.Copy;
 				}
 			}
 			return nhi;
 		}
 		//UPGRADE_TODO: The following method was automatically generated and it must be implemented in order to preserve the class logic. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1232'"
-		virtual public System.Object Clone()
+		public virtual object Clone()
 		{
 			return null;
 		}

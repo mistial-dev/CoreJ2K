@@ -11,10 +11,10 @@
 *
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -57,10 +57,10 @@ namespace CSJ2K.j2k.entropy.decoder
 	/// concept of a current tile and all operations are performed on the current
 	/// tile.
 	/// 
-	/// <p>Default implementations of the methods in 'MultiResImgData' are provided
+	/// Default implementations of the methods in 'MultiResImgData' are provided
 	/// through the 'MultiResImgDataAdapter' abstract class.</p>
 	/// 
-	/// <p>Sign magnitude representation is used (instead of two's complement) for
+	/// Sign magnitude representation is used (instead of two's complement) for
 	/// the output data. The most significant bit is used for the sign (0 if
 	/// positive, 1 if negative). Then the magnitude of the quantized coefficient
 	/// is stored in the next most significat bits. The most significant magnitude
@@ -78,26 +78,14 @@ namespace CSJ2K.j2k.entropy.decoder
 		/// are 0 and 1, nothing else.
 		/// 
 		/// </summary>
-		virtual public int CbULX
-		{
-			get
-			{
-				return src.CbULX;
-			}
-			
-		}
+		public virtual int CbULX => src.CbULX;
+
 		/// <summary> Returns the vertical code-block partition origin. Allowable values are
 		/// 0 and 1, nothing else.
 		/// 
 		/// </summary>
-		virtual public int CbULY
-		{
-			get
-			{
-				return src.CbULY;
-			}
-			
-		}
+		public virtual int CbULY => src.CbULY;
+
 		/// <summary> Returns the parameters that are used in this class and
 		/// implementing classes. It returns a 2D String array. Each of the
 		/// 1D arrays is for a different option, and they have 3
@@ -113,15 +101,8 @@ namespace CSJ2K.j2k.entropy.decoder
 		/// or null if no options are supported.
 		/// 
 		/// </returns>
-		public static System.String[][] ParameterInfo
-		{
-			get
-			{
-				return pinfo;
-			}
-			
-		}
-		
+		public static string[][] ParameterInfo => pinfo;
+
 		/// <summary>The prefix for entropy decoder optiojns: 'C' </summary>
 		public const char OPT_PREFIX = 'C';
 		
@@ -129,7 +110,7 @@ namespace CSJ2K.j2k.entropy.decoder
 		/// decoders. They start with 'C'. 
 		/// </summary>
 		//UPGRADE_NOTE: Final was removed from the declaration of 'pinfo'. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
-		private static readonly System.String[][] pinfo = new System.String[][]{new System.String[]{"Cverber", "[on|off]", "Specifies if the entropy decoder should be verbose about detected " + "errors. If 'on' a message is printed whenever an error is detected.", "on"}, new System.String[]{"Cer", "[on|off]", "Specifies if error detection should be performed by the entropy " + "decoder engine. If errors are detected they will be concealed and " + "the resulting distortion will be less important. Note that errors " + "can only be detected if the encoder that generated the data " + "included error resilience information.", "on"}};
+		private static readonly string[][] pinfo = new string[][]{new string[]{"Cverber", "[on|off]", "Specifies if the entropy decoder should be verbose about detected " + "errors. If 'on' a message is printed whenever an error is detected.", "on"}, new string[]{"Cer", "[on|off]", "Specifies if error detection should be performed by the entropy " + "decoder engine. If errors are detected they will be concealed and " + "the resulting distortion will be less important. Note that errors " + "can only be detected if the encoder that generated the data " + "included error resilience information.", "on"}};
 		
 		/// <summary>The bit stream transport from where to get the compressed data
 		/// (the source) 
@@ -151,7 +132,7 @@ namespace CSJ2K.j2k.entropy.decoder
 		/// returns the root element of the subband tree structure, see Subband and
 		/// SubbandSyn. The tree comprises all the available resolution levels.
 		/// 
-		/// <P>The number of magnitude bits ('magBits' member variable) for
+		/// The number of magnitude bits ('magBits' member variable) for
 		/// each subband is not initialized.
 		/// 
 		/// </summary>
@@ -168,7 +149,7 @@ namespace CSJ2K.j2k.entropy.decoder
 		{
 			return src.getSynSubbandTree(t, c);
 		}
-		public abstract CSJ2K.j2k.image.DataBlk getCodeBlock(int param1, int param2, int param3, CSJ2K.j2k.wavelet.synthesis.SubbandSyn param4, CSJ2K.j2k.image.DataBlk param5);
-		public abstract CSJ2K.j2k.image.DataBlk getInternCodeBlock(int param1, int param2, int param3, CSJ2K.j2k.wavelet.synthesis.SubbandSyn param4, CSJ2K.j2k.image.DataBlk param5);
+		public abstract DataBlk getCodeBlock(int param1, int param2, int param3, SubbandSyn param4, DataBlk param5);
+		public abstract DataBlk getInternCodeBlock(int param1, int param2, int param3, SubbandSyn param4, DataBlk param5);
 	}
 }

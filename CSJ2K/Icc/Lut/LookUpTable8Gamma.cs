@@ -30,11 +30,11 @@ namespace CSJ2K.Icc.Lut
 		*/
 		public LookUpTable8Gamma(ICCCurveType curve, int dwNumInput, byte dwMaxOutput):base(curve, dwNumInput, dwMaxOutput)
 		{
-			double dfE = ICCCurveType.CurveGammaToDouble(curve.entry(0)); // Gamma exponent for inverse transformation
-			for (int i = 0; i < dwNumInput; i++)
+			var dfE = ICCCurveType.CurveGammaToDouble(curve.entry(0)); // Gamma exponent for inverse transformation
+			for (var i = 0; i < dwNumInput; i++)
 			{
 				//UPGRADE_WARNING: Data types in Visual C# might be different.  Verify the accuracy of narrowing conversions. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1042'"
-				lut[i] = (byte) System.Math.Floor(System.Math.Pow((double) i / (dwNumInput - 1), dfE) * dwMaxOutput + 0.5);
+				lut[i] = (byte) Math.Floor(Math.Pow((double) i / (dwNumInput - 1), dfE) * dwMaxOutput + 0.5);
 			}
 		}
 		

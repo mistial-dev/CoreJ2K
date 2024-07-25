@@ -11,10 +11,10 @@
 *
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -48,7 +48,7 @@ namespace CSJ2K.j2k.io
 	/// implements the <tt>BinaryDataInput</tt> and <tt>BinaryDataOutput</tt>
 	/// interfaces so that binary data input/output can be performed.
 	/// 
-	/// <p>This interface supports streams of up to 2 GB in length.</p>
+	/// This interface supports streams of up to 2 GB in length.</p>
 	/// 
 	/// </summary>
 	/// <seealso cref="BinaryDataInput">

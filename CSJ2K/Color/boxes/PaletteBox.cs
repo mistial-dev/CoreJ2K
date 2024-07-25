@@ -25,26 +25,11 @@ namespace CSJ2K.Color.Boxes
 	public sealed class PaletteBox:JP2Box
 	{
 		/// <summary>Return the number of palette entries. </summary>
-		public int NumEntries
-		{
-			get
-			{
-				return nentries;
-			}
-			
-		}
+		public int NumEntries { get; private set; }
+
 		/// <summary>Return the number of palette columns. </summary>
-		public int NumColumns
-		{
-			get
-			{
-				return ncolumns;
-			}
-			
-		}
-		
-		private int nentries;
-		private int ncolumns;
+		public int NumColumns { get; private set; }
+
 		private short[] bitdepth;
 		private int[][] entries;
 		
@@ -63,37 +48,37 @@ namespace CSJ2K.Color.Boxes
 		/// <summary>Analyze the box content. </summary>
 		internal void  readBox()
 		{
-			byte[] bfr = new byte[4];
+			var bfr = new byte[4];
 			int i, j, b, m;
 			//int entry;
 			
 			// Read the number of palette entries and columns per entry.
-			in_Renamed.seek((int) dataStart);
+			in_Renamed.seek(dataStart);
 			in_Renamed.readFully(bfr, 0, 3);
-            nentries = ICCProfile.getShort(bfr, 0) & 0x0000ffff;
-			ncolumns = bfr[2] & 0x0000ffff;
+            NumEntries = ICCProfile.getShort(bfr, 0) & 0x0000ffff;
+			NumColumns = bfr[2] & 0x0000ffff;
 			
 			// Read the bitdepths for each column
-			bitdepth = new short[ncolumns];
-			bfr = new byte[ncolumns];
-			in_Renamed.readFully(bfr, 0, ncolumns);
-			for (i = 0; i < ncolumns; ++i)
+			bitdepth = new short[NumColumns];
+			bfr = new byte[NumColumns];
+			in_Renamed.readFully(bfr, 0, NumColumns);
+			for (i = 0; i < NumColumns; ++i)
 			{
 				bitdepth[i] = (short) (bfr[i] & 0x00fff);
 			}
 			
-			entries = new int[nentries * ncolumns][];
+			entries = new int[NumEntries * NumColumns][];
 			
 			bfr = new byte[2];
-			for (i = 0; i < nentries; ++i)
+			for (i = 0; i < NumEntries; ++i)
 			{
-				entries[i] = new int[ncolumns];
+				entries[i] = new int[NumColumns];
 				
-				for (j = 0; j < ncolumns; ++j)
+				for (j = 0; j < NumColumns; ++j)
 				{
 					
 					int bd = getBitDepth(j);
-					bool signed = isSigned(j);
+					var signed = isSigned(j);
 					
 					switch (getEntrySize(j))
 					{
@@ -167,11 +152,11 @@ namespace CSJ2K.Color.Boxes
 		}
 		
 		/// <summary>Return a suitable String representation of the class instance. </summary>
-		public override System.String ToString()
+		public override string ToString()
 		{
-			System.Text.StringBuilder rep = new System.Text.StringBuilder("[PaletteBox ").Append("nentries= ").Append(System.Convert.ToString(nentries)).Append(", ncolumns= ").Append(System.Convert.ToString(ncolumns)).Append(", bitdepth per column= (");
-			for (int i = 0; i < ncolumns; ++i)
-				rep.Append(getBitDepth(i)).Append(isSigned(i)?"S":"U").Append(i < ncolumns - 1?", ":"");
+			var rep = new System.Text.StringBuilder("[PaletteBox ").Append("nentries= ").Append(Convert.ToString(NumEntries)).Append(", ncolumns= ").Append(Convert.ToString(NumColumns)).Append(", bitdepth per column= (");
+			for (var i = 0; i < NumColumns; ++i)
+				rep.Append(getBitDepth(i)).Append(isSigned(i)?"S":"U").Append(i < NumColumns - 1?", ":"");
 			return rep.Append(")]").ToString();
 		}
 		

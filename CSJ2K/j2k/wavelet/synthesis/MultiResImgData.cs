@@ -12,10 +12,10 @@
 * 
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -55,15 +55,15 @@ namespace CSJ2K.j2k.wavelet.synthesis
 	/// define methods to transfer image data (i.e. pixel data), that is defined by
 	/// other interfaces, such as 'CBlkQuantDataSrcDec'.
 	/// 
-	/// <p>This interface is very similar to the 'ImgData' one. It differs only by
+	/// This interface is very similar to the 'ImgData' one. It differs only by
 	/// the fact that it handles multiple resolutions.</p>
 	/// 
-	/// <p>Resolution levels are counted from 0 to L. Resolution level 0 is the
+	/// Resolution levels are counted from 0 to L. Resolution level 0 is the
 	/// lower resolution, while L is the maximum resolution level, or full
 	/// resolution, which is returned by 'getMaxResLvl()'. Note that there are L+1
 	/// resolution levels available.</p>
 	/// 
-	/// <p>As in the 'ImgData' interface a multi-resolution image lies on top of a
+	/// As in the 'ImgData' interface a multi-resolution image lies on top of a
 	/// canvas. The canvas coordinates are mapped from the full resolution
 	/// reference grid (i.e. resolution level 'L' reference grid) to a resolution
 	/// level 'l' reference grid by '(x_l,y_l) =
@@ -71,10 +71,10 @@ namespace CSJ2K.j2k.wavelet.synthesis
 	/// resolution reference grid coordinates and '(x_l,y_l)' are the level 'l'
 	/// reference grid coordinates.</p>
 	/// 
-	/// <p>For details on the canvas system and its implications consult the
+	/// For details on the canvas system and its implications consult the
 	/// 'ImgData' interface.</p>
 	/// 
-	/// <p>Note that tile sizes may not be obtained by simply dividing the tile
+	/// Note that tile sizes may not be obtained by simply dividing the tile
 	/// size in the reference grid by the subsampling factor.</p>
 	/// 
 	/// </summary>

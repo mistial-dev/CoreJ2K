@@ -54,9 +54,9 @@ namespace CSJ2K.Icc.Types
 		}
 		
 		/// <summary>String representation of class instance. </summary>
-		public override System.String ToString()
+		public override string ToString()
 		{
-			return "Version " + uMajor + "." + uMinor;
+			return $"Version {uMajor}.{uMinor}";
 		}
 		
 		/* end class ICCProfileVersion */

@@ -11,10 +11,10 @@
 * 
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -122,26 +122,12 @@ namespace CSJ2K.j2k.codestream.reader
 				if (bbuf != 0xFF)
 				{
 					// No bit stuffing
-					if (usebais)
-					{
-						bbuf = bais.ReadByte();
-					}
-					else
-					{
-						bbuf = in_Renamed.read();
-					}
+					bbuf = usebais ? bais.ReadByte() : in_Renamed.read();
 					bpos = 8;
 					if (bbuf == 0xFF)
 					{
 						// If new bit stuffing get next byte
-						if (usebais)
-						{
-							nextbbuf = bais.ReadByte();
-						}
-						else
-						{
-							nextbbuf = in_Renamed.read();
-						}
+						nextbbuf = usebais ? bais.ReadByte() : in_Renamed.read();
 					}
 				}
 				else
@@ -195,27 +181,13 @@ namespace CSJ2K.j2k.codestream.reader
 					if (bbuf != 0xFF)
 					{
 						// No bit stuffing
-						if (usebais)
-						{
-							bbuf = bais.ReadByte();
-						}
-						else
-						{
-							bbuf = in_Renamed.read();
-						}
+						bbuf = usebais ? bais.ReadByte() : in_Renamed.read();
 						
 						bpos = 8;
 						if (bbuf == 0xFF)
 						{
 							// If new bit stuffing get next byte
-							if (usebais)
-							{
-								nextbbuf = bais.ReadByte();
-							}
-							else
-							{
-								nextbbuf = in_Renamed.read();
-							}
+							nextbbuf = usebais ? bais.ReadByte() : in_Renamed.read();
 						}
 					}
 					else
@@ -238,7 +210,7 @@ namespace CSJ2K.j2k.codestream.reader
 		/// discards and buffered bits and gets ready to read bits from the current 
 		/// position in the underlying byte based input.
 		/// 
-		/// <p>This method should always be called when some data has been read
+		/// This method should always be called when some data has been read
 		/// directly from the underlying byte based input since the last call to
 		/// 'readBits()' or 'readBit()' before a new call to any of those
 		/// methods.</p>
@@ -254,7 +226,7 @@ namespace CSJ2K.j2k.codestream.reader
 		/// discards any currently buffered bits and gets ready to start reading
 		/// bits from 'in'.
 		/// 
-		/// <p>This method is equivalent to creating a new 'PktHeaderBitReader'
+		/// This method is equivalent to creating a new 'PktHeaderBitReader'
 		/// object.</p>
 		/// 
 		/// </summary>
@@ -272,7 +244,7 @@ namespace CSJ2K.j2k.codestream.reader
 		/// discards any currently buffered bits and gets ready to start reading
 		/// bits from 'in'.
 		/// 
-		/// <p>This method is equivalent to creating a new 'PktHeaderBitReader'
+		/// This method is equivalent to creating a new 'PktHeaderBitReader'
 		/// object.</p>
 		/// 
 		/// </summary>

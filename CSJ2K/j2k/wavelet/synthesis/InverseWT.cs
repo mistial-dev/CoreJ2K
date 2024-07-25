@@ -12,10 +12,10 @@
 *
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -55,14 +55,14 @@ namespace CSJ2K.j2k.wavelet.synthesis
     /// <summary> This abstract class extends the WaveletTransform one with the specifics of
     /// inverse wavelet transforms.
     /// 
-    /// <p>The image can be reconstructed at different resolution levels. This is
+    /// The image can be reconstructed at different resolution levels. This is
     /// controlled by the setResLevel() method. All the image, tile and component
     /// dimensions are relative the the resolution level being used. The number of
     /// resolution levels indicates the number of wavelet recompositions that will
     /// be used, if it is equal as the number of decomposition levels then the full
     /// resolution image is reconstructed.</p>
     /// 
-    /// <p>It is assumed in this class that all tiles and components the same
+    /// It is assumed in this class that all tiles and components the same
     /// reconstruction resolution level. If that where not the case the
     /// implementing class should have additional data structures to store those
     /// values for each tile. However, the 'recResLvl' member variable always
@@ -78,7 +78,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
         /// reconstruction (i.e. the maximum resolution available from the 'src'
         /// source).
         /// 
-        /// <p>It is assumed here that all tiles and components have the same
+        /// It is assumed here that all tiles and components have the same
         /// reconstruction resolution level. If that was not the case it should be
         /// the value for the current tile of the source.</p>
         /// 
@@ -115,11 +115,11 @@ namespace CSJ2K.j2k.wavelet.synthesis
             return new InvWTFull(src, decSpec);
         }
 
-        public abstract int getFixedPoint(int c);
+        public abstract int GetFixedPoint(int c);
 
-        public abstract DataBlk getInternCompData(DataBlk blk, int c);
+        public abstract DataBlk GetInternCompData(DataBlk blk, int c);
 
-        public abstract DataBlk getCompData(DataBlk blk, int c);
+        public abstract DataBlk GetCompData(DataBlk blk, int c);
 
         /// <summary> Closes the underlying file or network connection from where the
         /// image data is being read.
@@ -127,7 +127,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
         /// </summary>
         /// <exception cref="IOException">If an I/O error occurs.
         /// </exception>
-        public void close()
+        public void Close()
         {
             // Do nothing.
         }
@@ -142,7 +142,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
         /// <returns> true if the data was originally signed, false if not.
         /// 
         /// </returns>
-        public bool isOrigSigned(int c)
+        public bool IsOrigSigned(int c)
         {
             return false;
         }

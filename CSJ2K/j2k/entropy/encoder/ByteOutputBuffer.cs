@@ -14,10 +14,10 @@
 *
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -50,11 +50,11 @@ namespace CSJ2K.j2k.entropy.encoder
 	/// <summary> This class provides a buffering output stream similar to
 	/// ByteArrayOutputStream, with some additional methods.
 	/// 
-	/// <p>Once an array has been written to an output stream or to a byte array,
+	/// Once an array has been written to an output stream or to a byte array,
 	/// the object can be reused as a new stream if the reset() method is
 	/// called.</p>
 	/// 
-	/// <p>Unlike the ByteArrayOutputStream class, this class is not thread
+	/// Unlike the ByteArrayOutputStream class, this class is not thread
 	/// safe.</p>
 	/// 
 	/// </summary>
@@ -111,7 +111,7 @@ namespace CSJ2K.j2k.entropy.encoder
 			if (count == buf.Length)
 			{
 				// Resize buffer
-				byte[] tmpbuf = buf;
+				var tmpbuf = buf;
 				buf = new byte[buf.Length + BUF_INC];
 				Array.Copy(tmpbuf, 0, buf, 0, count);
 			}
@@ -176,7 +176,7 @@ namespace CSJ2K.j2k.entropy.encoder
 		{
 			if (pos >= count)
 			{
-				throw new System.ArgumentException();
+				throw new ArgumentException();
 			}
 			return buf[pos] & 0xFF;
 		}

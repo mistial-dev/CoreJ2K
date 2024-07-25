@@ -1,13 +1,14 @@
 // Copyright (c) 2007-2016 CSJ2K contributors.
 // Licensed under the BSD 3-Clause License.
 
+using System.Runtime.InteropServices;
 using CSJ2K.Util;
 
 namespace codectest
 {
     using System;
-    using System.Drawing;
     using System.IO;
+    using SkiaSharp;
 
     using CSJ2K;
 
@@ -15,8 +16,8 @@ namespace codectest
     {
         private static void Main(string[] args)
         {
-            BitmapImageCreator.Register();
-
+            SKBitmapImageCreator.Register();
+            
             File.Delete("file11.jp2");
             File.Delete("file12.jp2");
             File.Delete("file13.jp2");
@@ -34,32 +35,40 @@ namespace codectest
                 File.WriteAllBytes("file12.jp2", enc);
             }
 
-            using (var ppm = File.OpenRead("c1p0_05_0.pgx"))
+            using (var pgx = File.OpenRead("c1p0_05_0.pgx"))
             {
-                var enc = J2kImage.ToBytes(J2kImage.CreateEncodableSource(ppm));
+                var enc = J2kImage.ToBytes(J2kImage.CreateEncodableSource(pgx));
                 File.WriteAllBytes("file13.jp2", enc);
             }
-
-            using (var bitmap = (Bitmap)Image.FromFile("logo.png"))
+            
+            using (var bitmap = SKBitmap.Decode("logo.png"))
             {
                 var enc = J2kImage.ToBytes(bitmap);
                 File.WriteAllBytes("file14.jp2", enc);
             }
 
 
-            for (int i = 1; i <= 14; i++)
+            for (var i = 1; i <= 14; i++)
             {
                 try
                 {
-                    HiPerfTimer timer = new HiPerfTimer();
-                    timer.Start();
-                    Bitmap image = J2kImage.FromFile("file" + i + ".jp2").As<Bitmap>();
-                    timer.Stop();
-                    Console.WriteLine("file" + i + ": " + timer.Duration + " seconds");
+                    SKBitmap image;
+                    if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                    {
+                        var timer = new HiPerfTimer();
+                        timer.Start();
+                        image = J2kImage.FromFile($"file{i}.jp2").As<SKBitmap>();
+                        timer.Stop();
+                        Console.WriteLine($"file{i}: {timer.Duration} seconds");
+                    }
+                    else
+                    {
+                        image = J2kImage.FromFile($"file{i}.jp2").As<SKBitmap>();
+                    }
 
-                    Bitmap histogram = GenerateHistogram(image);
+                    var histogram = GenerateHistogram(image);
 
-                    if (image.Height > 2 * histogram.Height)
+                    /*if (image.Height > 2 * histogram.Height)
                     {
                         Graphics g = Graphics.FromImage(image);
                         g.DrawImage(histogram, 0, 0);
@@ -69,11 +78,11 @@ namespace codectest
                     dlg.Text = "file" + i + ".jp2";
                     dlg.ClientSize = new Size(image.Width, image.Height);
                     dlg.pictureBox1.Image = image;
-                    dlg.ShowDialog();
+                    dlg.ShowDialog();*/
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("file" + i + ":\r\n" + e.Message);
+                    Console.WriteLine($"file{i}:\r\n{e.Message}");
                     if (e.InnerException != null)
                     {
                         Console.WriteLine(e.InnerException.Message);
@@ -85,37 +94,36 @@ namespace codectest
             }
         }
 
-        private static Bitmap GenerateHistogram(Bitmap image)
+        private static SKBitmap GenerateHistogram(SKBitmap image)
         {
-            Bitmap histogram = new Bitmap(256, 100);
+            var histogram = new SKBitmap(256, 100, true);
 
-            int[] colorcounts = new int[256];
+            var colorcounts = new int[256];
 
-            // This is ungodly slow but it's just for diagnostics.
-            for (int y = 0; y < image.Height; y++)
+            // This is ungodly slow, but it's just for diagnostics.
+            for (var y = 0; y < image.Height; y++)
             {
-                for (int x = 0; x < image.Width; x++)
+                for (var x = 0; x < image.Width; x++)
                 {
-                    Color c = image.GetPixel(x, y);
-                    colorcounts[c.R]++;
-                    colorcounts[c.G]++;
-                    colorcounts[c.B]++;
+                    var c = image.GetPixel(x, y);
+                    colorcounts[c.Red]++;
+                    colorcounts[c.Green]++;
+                    colorcounts[c.Blue]++;
                 }
             }
 
-            int maxval = 0;
-            for (int i = 0; i < 256; i++) if (colorcounts[i] > maxval) maxval = colorcounts[i];
-            for (int i = 1; i < 255; i++)
+            var maxval = 0;
+            for (var i = 0; i < 256; i++) if (colorcounts[i] > maxval) maxval = colorcounts[i];
+            for (var i = 1; i < 255; i++)
             {
                 //Console.WriteLine(i + ": " + histogram[i] + "," + (((float)histogram[i] / (float)maxval) * 100F));
-                colorcounts[i] = (int)Math.Round(((double)colorcounts[i] / (double)maxval) * 100D);
+                colorcounts[i] = (int)Math.Round((colorcounts[i] / (double)maxval) * 100D);
             }
-            for (int x = 0; x < 256; x++)
+            for (var x = 0; x < 256; x++)
             {
-                for (int y = 0; y < 100; y++)
+                for (var y = 0; y < 100; y++)
                 {
-                    if (colorcounts[x] >= (100 - y)) histogram.SetPixel(x, y, Color.Black);
-                    else histogram.SetPixel(x, y, Color.White);
+                    histogram.SetPixel(x, y, colorcounts[x] >= (100 - y) ? SKColors.Black : SKColors.White);
                 }
             }
             return histogram;

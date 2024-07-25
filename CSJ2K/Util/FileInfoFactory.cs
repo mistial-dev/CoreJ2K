@@ -32,7 +32,7 @@ namespace CSJ2K.Util
         internal static IFileInfo New(string fileName)
         {
             if (_creator == null) throw new InvalidOperationException("No file info creator is registered.");
-            if (fileName == null) throw new ArgumentNullException("fileName");
+            if (fileName == null) throw new ArgumentNullException(nameof(fileName));
 
             return _creator.Create(fileName);
         }

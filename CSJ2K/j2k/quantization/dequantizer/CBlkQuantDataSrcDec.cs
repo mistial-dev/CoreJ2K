@@ -13,10 +13,10 @@
 * 
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -54,10 +54,10 @@ namespace CSJ2K.j2k.quantization.dequantizer
 	/// decoder side. In each call to 'getCodeBlock()' or 'getInternCodeBlock()' a
 	/// new code-block is returned.
 	/// 
-	/// <P>This class is the source of data for the dequantizer. See the
+	/// This class is the source of data for the dequantizer. See the
 	/// 'Dequantizer' class.
 	/// 
-	/// <P>Code-block data is returned in sign-magnitude representation, instead of
+	/// Code-block data is returned in sign-magnitude representation, instead of
 	/// the normal two's complement one. Only integral types are used. The sign
 	/// magnitude representation is more adequate for entropy coding. In sign
 	/// magnitude representation, the most significant bit is used for the sign (0
@@ -83,7 +83,7 @@ namespace CSJ2K.j2k.quantization.dequantizer
 		/// <summary> Returns the specified code-block in the current tile for the specified
 		/// component, as a copy (see below).
 		/// 
-		/// <p>The returned code-block may be progressive, which is indicated by
+		/// The returned code-block may be progressive, which is indicated by
 		/// the 'progressive' variable of the returned 'DataBlk' object. If a
 		/// code-block is progressive it means that in a later request to this
 		/// method for the same code-block it is possible to retrieve data which is
@@ -92,13 +92,13 @@ namespace CSJ2K.j2k.quantization.dequantizer
 		/// progressive then later calls to this method for the same code-block
 		/// will return the exact same data values.</p>
 		/// 
-		/// <p>The data returned by this method is always a copy of the internal
+		/// The data returned by this method is always a copy of the internal
 		/// data of this object, if any, and it can be modified "in place" without
 		/// any problems after being returned. The 'offset' of the returned data is
 		/// 0, and the 'scanw' is the same as the code-block width. See the
 		/// 'DataBlk' class.</p>
 		/// 
-		/// <p>The 'ulx' and 'uly' members of the returned 'DataBlk' object contain
+		/// The 'ulx' and 'uly' members of the returned 'DataBlk' object contain
 		/// the coordinates of the top-left corner of the block, with respect to
 		/// the tile, not the subband.</p>
 		/// 
@@ -135,7 +135,7 @@ namespace CSJ2K.j2k.quantization.dequantizer
 		/// <summary> Returns the specified code-block in the current tile for the specified
 		/// component (as a reference or copy).
 		/// 
-		/// <p>The returned code-block may be progressive, which is indicated by
+		/// The returned code-block may be progressive, which is indicated by
 		/// the 'progressive' variable of the returned 'DataBlk' object. If a
 		/// code-block is progressive it means that in a later request to this
 		/// method for the same code-block it is possible to retrieve data which is
@@ -144,12 +144,12 @@ namespace CSJ2K.j2k.quantization.dequantizer
 		/// progressive then later calls to this method for the same code-block
 		/// will return the exact same data values.</p>
 		/// 
-		/// <p>The data returned by this method can be the data in the internal
+		/// The data returned by this method can be the data in the internal
 		/// buffer of this object, if any, and thus can not be modified by the
 		/// caller. The 'offset' and 'scanw' of the returned data can be
 		/// arbitrary. See the 'DataBlk' class.</p>
 		/// 
-		/// <p>The 'ulx' and 'uly' members of the returned 'DataBlk' object contain
+		/// The 'ulx' and 'uly' members of the returned 'DataBlk' object contain
 		/// the coordinates of the top-left corner of the block, with respect to
 		/// the tile, not the subband.</p>
 		/// 

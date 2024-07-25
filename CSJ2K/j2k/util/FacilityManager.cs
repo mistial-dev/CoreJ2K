@@ -4,10 +4,10 @@
 /*
  * JJ2000 COPYRIGHT:
  * 
- * This software module was originally developed by Raphaël Grosbois and
+ * This software module was originally developed by Raphaï¿½l Grosbois and
  * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
- * Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
- * Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+ * Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+ * Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
  * Centre France S.A) in the course of development of the JPEG2000
  * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
  * software module is an implementation of a part of the JPEG 2000
@@ -44,11 +44,11 @@ namespace CSJ2K.j2k.util
     /// methods, while possibly having different ones for different
     /// threads. Also a default facility exists that is used for threads
     /// for which no particular facility has been registerd registered.
-    /// <p>Currently the only kind of facilities managed is MsgLogger.</p>
-    /// <p>An example use of this class is if 2 instances of a decoder are running
+    /// Currently the only kind of facilities managed is MsgLogger.</p>
+    /// An example use of this class is if 2 instances of a decoder are running
     /// in different threads and the messages of the 2 instances should be
     /// separated.</p>
-    /// <p>The default MsgLogger is a StreamMsgLogger that uses System.out as
+    /// The default MsgLogger is a StreamMsgLogger that uses System.out as
     /// the 'out' stream and System.err as the 'err' stream, and a line width of
     /// 78. This can be changed using the registerMsgLogger() method.</p>
     /// </summary>
@@ -78,10 +78,7 @@ namespace CSJ2K.j2k.util
         /// <summary>The default logger, for threads that have none associated with them </summary>
         public static IMsgLogger DefaultMsgLogger
         {
-            set
-            {
-                _defMsgLogger = value;
-            }
+            set => _defMsgLogger = value;
         }
 
         #endregion

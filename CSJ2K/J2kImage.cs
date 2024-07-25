@@ -10,30 +10,30 @@ namespace CSJ2K
     using System.IO;
     using System.Text;
 
-    using CSJ2K.Color;
-    using CSJ2K.Icc;
-    using CSJ2K.j2k.codestream;
-    using CSJ2K.j2k.codestream.reader;
-    using CSJ2K.j2k.codestream.writer;
-    using CSJ2K.j2k.decoder;
-    using CSJ2K.j2k.encoder;
-    using CSJ2K.j2k.entropy.decoder;
-    using CSJ2K.j2k.entropy.encoder;
-    using CSJ2K.j2k.fileformat.reader;
-    using CSJ2K.j2k.fileformat.writer;
-    using CSJ2K.j2k.image;
-    using CSJ2K.j2k.image.forwcomptransf;
-    using CSJ2K.j2k.image.input;
-    using CSJ2K.j2k.image.invcomptransf;
-    using CSJ2K.j2k.io;
-    using CSJ2K.j2k.quantization.dequantizer;
-    using CSJ2K.j2k.quantization.quantizer;
-    using CSJ2K.j2k.roi;
-    using CSJ2K.j2k.roi.encoder;
-    using CSJ2K.j2k.util;
-    using CSJ2K.j2k.wavelet.analysis;
-    using CSJ2K.j2k.wavelet.synthesis;
-    using CSJ2K.Util;
+    using Color;
+    using Icc;
+    using j2k.codestream;
+    using j2k.codestream.reader;
+    using j2k.codestream.writer;
+    using j2k.decoder;
+    using j2k.encoder;
+    using j2k.entropy.decoder;
+    using j2k.entropy.encoder;
+    using j2k.fileformat.reader;
+    using j2k.fileformat.writer;
+    using j2k.image;
+    using j2k.image.forwcomptransf;
+    using j2k.image.input;
+    using j2k.image.invcomptransf;
+    using j2k.io;
+    using j2k.quantization.dequantizer;
+    using j2k.quantization.quantizer;
+    using j2k.roi;
+    using j2k.roi.encoder;
+    using j2k.util;
+    using j2k.wavelet.analysis;
+    using j2k.wavelet.synthesis;
+    using Util;
 
     public class J2kImage
     {
@@ -61,15 +61,15 @@ namespace CSJ2K
             RandomAccessIO in_stream = new ISRandomAccessIO(stream);
 
             // Initialize default parameters
-            ParameterList defpl = GetDefaultDecoderParameterList(decoder_pinfo);
+            var defpl = GetDefaultDecoderParameterList(decoder_pinfo);
 
             // Create parameter list using defaults
-            ParameterList pl = parameters ?? new ParameterList(defpl);
+            var pl = parameters ?? new ParameterList(defpl);
 
             // **** File Format ****
             // If the codestream is wrapped in the jp2 fileformat, Read the
             // file format wrapper
-            FileFormatReader ff = new FileFormatReader(in_stream);
+            var ff = new FileFormatReader(in_stream);
             ff.readFileFormat();
             if (ff.JP2FFUsed)
             {
@@ -82,7 +82,7 @@ namespace CSJ2K
 
             // **** Header decoder ****
             // Instantiate header decoder and read main header 
-            HeaderInfo hi = new HeaderInfo();
+            var hi = new HeaderInfo();
             HeaderDecoder hd;
             try
             {
@@ -93,13 +93,13 @@ namespace CSJ2K
                 throw new InvalidOperationException("Codestream too short or bad header, unable to decode.", e);
             }
 
-            int nCompCod = hd.NumComps;
-            int nTiles = hi.sizValue.NumTiles;
-            DecoderSpecs decSpec = hd.DecoderSpecs;
+            var nCompCod = hd.NumComps;
+            var nTiles = hi.sizValue.NumTiles;
+            var decSpec = hd.DecoderSpecs;
 
             // Get demixed bitdepths
-            int[] depth = new int[nCompCod];
-            for (int i = 0; i < nCompCod; i++)
+            var depth = new int[nCompCod];
+            for (var i = 0; i < nCompCod; i++)
             {
                 depth[i] = hd.getOriginalBitDepth(i);
             }
@@ -145,7 +145,7 @@ namespace CSJ2K
             Dequantizer deq;
             try
             {
-                deq = hd.createDequantizer(roids, depth, decSpec);
+                deq = HeaderDecoder.createDequantizer(roids, depth, decSpec);
             }
             catch (ArgumentException e)
             {
@@ -164,14 +164,14 @@ namespace CSJ2K
                 throw new InvalidOperationException("Cannot instantiate inverse wavelet transform.", e);
             }
 
-            int res = breader.ImgRes;
+            var res = breader.ImgRes;
             invWT.ImgResLevel = res;
 
             // **** Data converter **** (after inverse transform module)
-            ImgDataConverter converter = new ImgDataConverter(invWT, 0);
+            var converter = new ImgDataConverter(invWT, 0);
 
             // **** Inverse component transformation **** 
-            InvCompTransf ictransf = new InvCompTransf(converter, decSpec, depth, pl);
+            var ictransf = new InvCompTransf(converter, decSpec, depth, pl);
 
             // **** Color space mapping ****
             BlkImgDataSrc color;
@@ -179,10 +179,10 @@ namespace CSJ2K
             {
                 try
                 {
-                    ColorSpace csMap = new ColorSpace(in_stream, hd, pl);
-                    BlkImgDataSrc channels = hd.createChannelDefinitionMapper(ictransf, csMap);
-                    BlkImgDataSrc resampled = hd.createResampler(channels, csMap);
-                    BlkImgDataSrc palettized = hd.createPalettizedColorSpaceMapper(resampled, csMap);
+                    var csMap = new ColorSpace(in_stream, hd, pl);
+                    var channels = hd.createChannelDefinitionMapper(ictransf, csMap);
+                    var resampled = hd.createResampler(channels, csMap);
+                    var palettized = hd.createPalettizedColorSpaceMapper(resampled, csMap);
                     color = hd.createColorSpaceMapper(palettized, csMap);
                 }
                 catch (ArgumentException e)
@@ -202,7 +202,7 @@ namespace CSJ2K
 
             // This is the last image in the decoding chain and should be
             // assigned by the last transformation:
-            BlkImgDataSrc decodedImage = color;
+            var decodedImage = color;
             if (color == null)
             {
                 decodedImage = ictransf;
@@ -217,56 +217,56 @@ namespace CSJ2K
 
             var dst = new PortableImage(imgWidth, decodedImage.ImgHeight, numComps, bitsUsed);
 
-            Coord numTiles = decodedImage.getNumTiles(null);
+            var numTiles = decodedImage.getNumTiles(null);
 
-            int tIdx = 0;
+            var tIdx = 0;
 
-            for (int y = 0; y < numTiles.y; y++)
+            for (var y = 0; y < numTiles.y; y++)
             {
                 // Loop on horizontal tiles
-                for (int x = 0; x < numTiles.x; x++, tIdx++)
+                for (var x = 0; x < numTiles.x; x++, tIdx++)
                 {
                     decodedImage.setTile(x, y);
 
-                    int height = decodedImage.getTileCompHeight(tIdx, 0);
-                    int width = decodedImage.getTileCompWidth(tIdx, 0);
+                    var height = decodedImage.getTileCompHeight(tIdx, 0);
+                    var width = decodedImage.getTileCompWidth(tIdx, 0);
 
-                    int tOffx = decodedImage.getCompULX(0)
+                    var tOffx = decodedImage.getCompULX(0)
                                 - (int)Math.Ceiling(decodedImage.ImgULX / (double)decodedImage.getCompSubsX(0));
 
-                    int tOffy = decodedImage.getCompULY(0)
+                    var tOffy = decodedImage.getCompULY(0)
                                 - (int)Math.Ceiling(decodedImage.ImgULY / (double)decodedImage.getCompSubsY(0));
 
-                    DataBlkInt[] db = new DataBlkInt[numComps];
-                    int[] ls = new int[numComps];
-                    int[] mv = new int[numComps];
-                    int[] fb = new int[numComps];
-                    for (int i = 0; i < numComps; i++)
+                    var db = new DataBlkInt[numComps];
+                    var ls = new int[numComps];
+                    var mv = new int[numComps];
+                    var fb = new int[numComps];
+                    for (var i = 0; i < numComps; i++)
                     {
                         db[i] = new DataBlkInt();
                         ls[i] = 1 << (decodedImage.getNomRangeBits(0) - 1);
                         mv[i] = (1 << decodedImage.getNomRangeBits(0)) - 1;
-                        fb[i] = decodedImage.getFixedPoint(0);
+                        fb[i] = decodedImage.GetFixedPoint(0);
                     }
-                    for (int l = 0; l < height; l++)
+                    for (var l = 0; l < height; l++)
                     {
-                        for (int i = numComps - 1; i >= 0; i--)
+                        for (var i = numComps - 1; i >= 0; i--)
                         {
                             db[i].ulx = 0;
                             db[i].uly = l;
                             db[i].w = width;
                             db[i].h = 1;
-                            decodedImage.getInternCompData(db[i], i);
+                            decodedImage.GetInternCompData(db[i], i);
                         }
-                        int[] k = new int[numComps];
-                        for (int i = numComps - 1; i >= 0; i--) k[i] = db[i].offset + width - 1;
+                        var k = new int[numComps];
+                        for (var i = numComps - 1; i >= 0; i--) k[i] = db[i].offset + width - 1;
 
                         var rowvalues = new int[width * numComps];
 
-                        for (int i = width - 1; i >= 0; i--)
+                        for (var i = width - 1; i >= 0; i--)
                         {
-                            int[] tmp = new int[numComps];
-                            for (int j = numComps - 1; j >= 0; j--)
+                            var tmp = new int[numComps];
+                            for (var j = numComps - 1; j >= 0; j--)
                             {
                                 tmp[j] = (db[j].data_array[k[j]--] >> fb[j]) + ls[j];
                                 tmp[j] = (tmp[j] < 0) ? 0 : ((tmp[j] > mv[j]) ? mv[j] : tmp[j]);
@@ -315,7 +315,7 @@ namespace CSJ2K
         {
             if (streams == null)
             {
-                throw new ArgumentNullException("streams");
+                throw new ArgumentNullException(nameof(streams));
             }
 
             var counter = 0;
@@ -344,7 +344,7 @@ namespace CSJ2K
                         ncomp += 1;
                         break;
                     default:
-                        throw new ArgumentOutOfRangeException("streams", "Invalid image type");
+                        throw new ArgumentOutOfRangeException(nameof(streams), "Invalid image type");
                 }
             }
 
@@ -381,16 +381,16 @@ namespace CSJ2K
         public static byte[] ToBytes(BlkImgDataSrc imgsrc, ParameterList parameters = null)
         {
             // Initialize default parameters
-            ParameterList defpl = GetDefaultEncoderParameterList(encoder_pinfo);
+            var defpl = GetDefaultEncoderParameterList(encoder_pinfo);
 
             // Create parameter list using defaults
-            ParameterList pl = parameters ?? new ParameterList(defpl);
+            var pl = parameters ?? new ParameterList(defpl);
 
-            bool useFileFormat = false;
-            bool pphTile = false;
-            bool pphMain = false;
-            bool tempSop = false;
-            bool tempEph = false;
+            var useFileFormat = false;
+            var pphTile = false;
+            var pphMain = false;
+            var tempSop = false;
+            var tempEph = false;
 
             // **** Get general parameters ****
 
@@ -460,9 +460,9 @@ namespace CSJ2K
                     rate = float.MaxValue;
                 }
             }
-            catch (FormatException e)
+            catch (FormatException)
             {
-                error("Invalid value in 'rate' option: " + pl.getParameter("rate"), 2);
+                error($"Invalid value in 'rate' option: {pl.getParameter("rate")}", 2);
                 return null;
             }
             int pktspertp;
@@ -483,9 +483,9 @@ namespace CSJ2K
                     }
                 }
             }
-            catch (FormatException e)
+            catch (FormatException)
             {
-                error("Invalid value in 'tile_parts' option: " + pl.getParameter("tile_parts"), 2);
+                error($"Invalid value in 'tile_parts' option: {pl.getParameter("tile_parts")}", 2);
                 return null;
             }
 
@@ -495,21 +495,21 @@ namespace CSJ2K
 
             // **** Tiler ****
             // get nominal tile dimensions
-            SupportClass.StreamTokenizerSupport stok =
+            var stok =
                 new SupportClass.StreamTokenizerSupport(new StringReader(pl.getParameter("tiles")));
             stok.EOLIsSignificant(false);
 
             stok.NextToken();
             if (stok.ttype != SupportClass.StreamTokenizerSupport.TT_NUMBER)
             {
-                error("An error occurred while parsing the tiles option: " + pl.getParameter("tiles"), 2);
+                error($"An error occurred while parsing the tiles option: {pl.getParameter("tiles")}", 2);
                 return null;
             }
             var tw = (int)stok.nval;
             stok.NextToken();
             if (stok.ttype != SupportClass.StreamTokenizerSupport.TT_NUMBER)
             {
-                error("An error occurred while parsing the tiles option: " + pl.getParameter("tiles"), 2);
+                error($"An error occurred while parsing the tiles option: {pl.getParameter("tiles")}", 2);
                 return null;
             }
             var th = (int)stok.nval;
@@ -520,14 +520,14 @@ namespace CSJ2K
             int refy;
             try
             {
-                refx = Int32.Parse(refs[0]);
-                refy = Int32.Parse(refs[1]);
+                refx = int.Parse(refs[0]);
+                refy = int.Parse(refs[1]);
             }
-            catch (IndexOutOfRangeException e)
+            catch (IndexOutOfRangeException)
             {
                 throw new ArgumentException("Error while parsing 'ref' " + "option");
             }
-            catch (FormatException e)
+            catch (FormatException)
             {
                 throw new ArgumentException("Invalid number type in " + "'ref' option");
             }
@@ -542,14 +542,14 @@ namespace CSJ2K
             int trefy;
             try
             {
-                trefx = Int32.Parse(trefs[0]);
-                trefy = Int32.Parse(trefs[1]);
+                trefx = int.Parse(trefs[0]);
+                trefy = int.Parse(trefs[1]);
             }
-            catch (IndexOutOfRangeException e)
+            catch (IndexOutOfRangeException)
             {
                 throw new ArgumentException("Error while parsing 'tref' " + "option");
             }
-            catch (FormatException e)
+            catch (FormatException)
             {
                 throw new ArgumentException("Invalid number type in " + "'tref' option");
             }
@@ -566,10 +566,10 @@ namespace CSJ2K
             }
             catch (ArgumentException e)
             {
-                error("Could not tile image" + ((e.Message != null) ? (":\n" + e.Message) : ""), 2);
+                error($"Could not tile image{((e.Message != null) ? (":\n" + e.Message) : "")}", 2);
                 return null;
             }
-            int ntiles = imgtiler.getNumTiles();
+            var ntiles = imgtiler.getNumTiles();
 
             // **** Encoder specifications ****
             var encSpec = new EncoderSpecs(ntiles, ncomp, imgsrc, pl);
@@ -593,8 +593,7 @@ namespace CSJ2K
             catch (ArgumentException e)
             {
                 error(
-                    "Could not instantiate forward component " + "transformation"
-                    + ((e.Message != null) ? (":\n" + e.Message) : ""),
+                    $"Could not instantiate forward component transformation{((e.Message != null) ? (":\n" + e.Message) : "")}",
                     2);
                 return null;
             }
@@ -611,7 +610,7 @@ namespace CSJ2K
             }
             catch (ArgumentException e)
             {
-                error("Could not instantiate wavelet transform" + ((e.Message != null) ? (":\n" + e.Message) : ""), 2);
+                error($"Could not instantiate wavelet transform{((e.Message != null) ? (":\n" + e.Message) : "")}", 2);
                 return null;
             }
 
@@ -623,7 +622,7 @@ namespace CSJ2K
             }
             catch (ArgumentException e)
             {
-                error("Could not instantiate quantizer" + ((e.Message != null) ? (":\n" + e.Message) : ""), 2);
+                error($"Could not instantiate quantizer{((e.Message != null) ? (":\n" + e.Message) : "")}", 2);
                 return null;
             }
 
@@ -635,7 +634,7 @@ namespace CSJ2K
             }
             catch (ArgumentException e)
             {
-                error("Could not instantiate ROI scaler" + ((e.Message != null) ? (":\n" + e.Message) : ""), 2);
+                error($"Could not instantiate ROI scaler{((e.Message != null) ? (":\n" + e.Message) : "")}", 2);
                 return null;
             }
 
@@ -658,7 +657,7 @@ namespace CSJ2K
             }
             catch (ArgumentException e)
             {
-                error("Could not instantiate entropy coder" + ((e.Message != null) ? (":\n" + e.Message) : ""), 2);
+                error($"Could not instantiate entropy coder{((e.Message != null) ? (":\n" + e.Message) : "")}", 2);
                 return null;
             }
 
@@ -673,7 +672,7 @@ namespace CSJ2K
                 }
                 catch (IOException e)
                 {
-                    error("Could not open output file" + ((e.Message != null) ? (":\n" + e.Message) : ""), 2);
+                    error($"Could not open output file{((e.Message != null) ? (":\n" + e.Message) : "")}", 2);
                     return null;
                 }
 
@@ -685,7 +684,7 @@ namespace CSJ2K
                 }
                 catch (ArgumentException e)
                 {
-                    error("Could not instantiate rate allocator" + ((e.Message != null) ? (":\n" + e.Message) : ""), 2);
+                    error($"Could not instantiate rate allocator{((e.Message != null) ? (":\n" + e.Message) : "")}", 2);
                     return null;
                 }
 
@@ -715,14 +714,14 @@ namespace CSJ2K
                 bwriter.close();
 
                 // **** Calculate file length ****
-                int fileLength = bwriter.Length;
+                var fileLength = bwriter.Length;
 
                 // **** Tile-parts and packed packet headers ****
                 if (pktspertp > 0 || pphTile || pphMain)
                 {
                     try
                     {
-                        CodestreamManipulator cm = new CodestreamManipulator(
+                        var cm = new CodestreamManipulator(
                             outStream,
                             ntiles,
                             pktspertp,
@@ -736,7 +735,7 @@ namespace CSJ2K
                         {
                             FacilityManager.getMsgLogger()
                                 .println(
-                                    "Created tile-parts " + "containing at most " + pktspertp + " packets per tile.",
+                                    $"Created tile-parts containing at most {pktspertp} packets per tile.",
                                     4,
                                     6);
                         }
@@ -752,8 +751,7 @@ namespace CSJ2K
                     catch (IOException e)
                     {
                         error(
-                            "Error while creating tileparts or packed packet" + " headers"
-                            + ((e.Message != null) ? (":\n" + e.Message) : ""),
+                            $"Error while creating tileparts or packed packet headers{((e.Message != null) ? (":\n" + e.Message) : "")}",
                             2);
                         return null;
                     }
@@ -764,9 +762,9 @@ namespace CSJ2K
                 {
                     try
                     {
-                        int nc = imgsrc.NumComps;
-                        int[] bpc = new int[nc];
-                        for (int comp = 0; comp < nc; comp++)
+                        var nc = imgsrc.NumComps;
+                        var bpc = new int[nc];
+                        for (var comp = 0; comp < nc; comp++)
                         {
                             bpc[comp] = imgsrc.getNomRangeBits(comp);
                         }
@@ -783,12 +781,12 @@ namespace CSJ2K
                     }
                     catch (IOException e)
                     {
-                        throw new InvalidOperationException("Error while writing JP2 file format: " + e.Message);
+                        throw new InvalidOperationException($"Error while writing JP2 file format: {e.Message}");
                     }
                 }
 
                 // **** Close image readers ***
-                imgsrc.close();
+                imgsrc.Close();
 
                 return outStream.ToArray();
             }
@@ -800,70 +798,70 @@ namespace CSJ2K
 
         public static ParameterList GetDefaultDecoderParameterList(string[][] pinfo)
         {
-            ParameterList pl = new ParameterList();
+            var pl = new ParameterList();
             string[][] str;
 
             str = BitstreamReaderAgent.ParameterInfo;
-            if (str != null) for (int i = str.Length - 1; i >= 0; i--) pl[str[i][0]] = str[i][3];
+            if (str != null) for (var i = str.Length - 1; i >= 0; i--) pl[str[i][0]] = str[i][3];
 
             str = EntropyDecoder.ParameterInfo;
-            if (str != null) for (int i = str.Length - 1; i >= 0; i--) pl[str[i][0]] = str[i][3];
+            if (str != null) for (var i = str.Length - 1; i >= 0; i--) pl[str[i][0]] = str[i][3];
 
             str = ROIDeScaler.ParameterInfo;
-            if (str != null) for (int i = str.Length - 1; i >= 0; i--) pl[str[i][0]] = str[i][3];
+            if (str != null) for (var i = str.Length - 1; i >= 0; i--) pl[str[i][0]] = str[i][3];
 
             str = Dequantizer.ParameterInfo;
-            if (str != null) for (int i = str.Length - 1; i >= 0; i--) pl[str[i][0]] = str[i][3];
+            if (str != null) for (var i = str.Length - 1; i >= 0; i--) pl[str[i][0]] = str[i][3];
 
             str = InvCompTransf.ParameterInfo;
-            if (str != null) for (int i = str.Length - 1; i >= 0; i--) pl[str[i][0]] = str[i][3];
+            if (str != null) for (var i = str.Length - 1; i >= 0; i--) pl[str[i][0]] = str[i][3];
 
             str = HeaderDecoder.ParameterInfo;
-            if (str != null) for (int i = str.Length - 1; i >= 0; i--) pl[str[i][0]] = str[i][3];
+            if (str != null) for (var i = str.Length - 1; i >= 0; i--) pl[str[i][0]] = str[i][3];
 
-            str = ICCProfiler.ParameterInfo;
-            if (str != null) for (int i = str.Length - 1; i >= 0; i--) pl[str[i][0]] = str[i][3];
+            str = ColorSpaceMapper.ParameterInfo;
+            if (str != null) for (var i = str.Length - 1; i >= 0; i--) pl[str[i][0]] = str[i][3];
 
             str = pinfo ?? decoder_pinfo;
-            if (str != null) for (int i = str.Length - 1; i >= 0; i--) pl[str[i][0]] = str[i][3];
+            if (str != null) for (var i = str.Length - 1; i >= 0; i--) pl[str[i][0]] = str[i][3];
 
             return pl;
         }
 
         public static ParameterList GetDefaultEncoderParameterList(string[][] pinfo)
         {
-            ParameterList pl = new ParameterList();
+            var pl = new ParameterList();
             string[][] str;
 
             str = pinfo ?? encoder_pinfo;
-            if (str != null) for (int i = str.Length - 1; i >= 0; i--) pl[str[i][0]] = str[i][3];
+            if (str != null) for (var i = str.Length - 1; i >= 0; i--) pl[str[i][0]] = str[i][3];
 
             str = ForwCompTransf.ParameterInfo;
-            if (str != null) for (int i = str.Length - 1; i >= 0; i--) pl[str[i][0]] = str[i][3];
+            if (str != null) for (var i = str.Length - 1; i >= 0; i--) pl[str[i][0]] = str[i][3];
 
             str = AnWTFilter.ParameterInfo;
-            if (str != null) for (int i = str.Length - 1; i >= 0; i--) pl[str[i][0]] = str[i][3];
+            if (str != null) for (var i = str.Length - 1; i >= 0; i--) pl[str[i][0]] = str[i][3];
 
             str = ForwardWT.ParameterInfo;
-            if (str != null) for (int i = str.Length - 1; i >= 0; i--) pl[str[i][0]] = str[i][3];
+            if (str != null) for (var i = str.Length - 1; i >= 0; i--) pl[str[i][0]] = str[i][3];
 
             str = Quantizer.ParameterInfo;
-            if (str != null) for (int i = str.Length - 1; i >= 0; i--) pl[str[i][0]] = str[i][3];
+            if (str != null) for (var i = str.Length - 1; i >= 0; i--) pl[str[i][0]] = str[i][3];
 
             str = ROIScaler.ParameterInfo;
-            if (str != null) for (int i = str.Length - 1; i >= 0; i--) pl[str[i][0]] = str[i][3];
+            if (str != null) for (var i = str.Length - 1; i >= 0; i--) pl[str[i][0]] = str[i][3];
 
             str = EntropyCoder.ParameterInfo;
-            if (str != null) for (int i = str.Length - 1; i >= 0; i--) pl[str[i][0]] = str[i][3];
+            if (str != null) for (var i = str.Length - 1; i >= 0; i--) pl[str[i][0]] = str[i][3];
 
             str = HeaderEncoder.ParameterInfo;
-            if (str != null) for (int i = str.Length - 1; i >= 0; i--) pl[str[i][0]] = str[i][3];
+            if (str != null) for (var i = str.Length - 1; i >= 0; i--) pl[str[i][0]] = str[i][3];
 
             str = PostCompRateAllocator.ParameterInfo;
-            if (str != null) for (int i = str.Length - 1; i >= 0; i--) pl[str[i][0]] = str[i][3];
+            if (str != null) for (var i = str.Length - 1; i >= 0; i--) pl[str[i][0]] = str[i][3];
 
             str = PktEncoder.ParameterInfo;
-            if (str != null) for (int i = str.Length - 1; i >= 0; i--) pl[str[i][0]] = str[i][3];
+            if (str != null) for (var i = str.Length - 1; i >= 0; i--) pl[str[i][0]] = str[i][3];
 
             return pl;
         }
@@ -872,7 +870,7 @@ namespace CSJ2K
 
         #region Decoder Parameters
 
-        private static String[][] decoder_pinfo =
+        private static string[][] decoder_pinfo =
             {
                 new string[]
                     {
@@ -1064,7 +1062,7 @@ namespace CSJ2K
 
         #region Encoder Parameters
 
-        private static String[][] encoder_pinfo =
+        private static string[][] encoder_pinfo =
             {
                 new string[]
                     {
@@ -1221,7 +1219,7 @@ namespace CSJ2K
      * @param code The exit code to set
      * */
 
-        private static void error(String msg, int code)
+        private static void error(string msg, int code)
         {
             //exitCode = code;
             FacilityManager.getMsgLogger().printmsg(MsgLogger_Fields.ERROR, msg);
@@ -1234,7 +1232,7 @@ namespace CSJ2K
          * @param msg The error message
          * */
 
-        private static void warning(String msg)
+        private static void warning(string msg)
         {
             FacilityManager.getMsgLogger().printmsg(MsgLogger_Fields.WARNING, msg);
         }

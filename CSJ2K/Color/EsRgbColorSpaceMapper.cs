@@ -39,7 +39,7 @@ namespace CSJ2K.Color
 		/// </param>
 		/// <returns> SYccColorSpaceMapper instance
 		/// </returns>
-		public static new BlkImgDataSrc createInstance(BlkImgDataSrc src, ColorSpace csMap)
+		public new static BlkImgDataSrc createInstance(BlkImgDataSrc src, ColorSpace csMap)
 		{
 			return new EsRgbColorSpaceMapper(src, csMap);
 		}
@@ -63,8 +63,8 @@ namespace CSJ2K.Color
 			
 			if (ncomps != 1 && ncomps != 3)
 			{
-				System.String msg = "EsRgbColorSpaceMapper: e-sRGB transformation _not_ applied to " + ncomps + " component image";
-				FacilityManager.getMsgLogger().printmsg(CSJ2K.j2k.util.MsgLogger_Fields.ERROR, msg);
+				var msg = $"EsRgbColorSpaceMapper: e-sRGB transformation _not_ applied to {ncomps} component image";
+				FacilityManager.getMsgLogger().printmsg(j2k.util.MsgLogger_Fields.ERROR, msg);
 				throw new ColorSpaceException(msg);
 			}
 		}
@@ -103,22 +103,22 @@ namespace CSJ2K.Color
 		/// </param>
 		/// <returns> The requested DataBlk
 		/// </returns>
-		/// <seealso cref="getInternCompData">
+		/// <seealso cref="GetInternCompData">
 		/// 
 		/// </seealso>
-		public override DataBlk getCompData(DataBlk outblk, int c)
+		public override DataBlk GetCompData(DataBlk outblk, int c)
 		{
 			
-			int type = outblk.DataType;
-            double colors = Math.Pow(2, src.getNomRangeBits(c));
-	        double bitoff=colors*0.375D;
+			var type = outblk.DataType;
+            var colors = Math.Pow(2, src.getNomRangeBits(c));
+	        var bitoff=colors*0.375D;
             if (type == DataBlk.TYPE_INT)
             {
-                DataBlkInt intblk=(DataBlkInt)src.getInternCompData(outblk, c);
+                var intblk=(DataBlkInt)src.GetInternCompData(outblk, c);
 
-                for (int i = 0; i < intblk.data_array.Length; i++)
+                for (var i = 0; i < intblk.data_array.Length; i++)
                 {
-                    int tmp = intblk.data_array[i];
+                    var tmp = intblk.data_array[i];
 
                     tmp += (int)(colors / 2);
                     tmp -= (int)bitoff;
@@ -131,9 +131,9 @@ namespace CSJ2K.Color
             }
             else if (type == DataBlk.TYPE_FLOAT)
             {
-                FacilityManager.getMsgLogger().printmsg(CSJ2K.j2k.util.MsgLogger_Fields.WARNING, "Unsupported e-sRGB DataType (float)");
+                FacilityManager.getMsgLogger().printmsg(j2k.util.MsgLogger_Fields.WARNING, "Unsupported e-sRGB DataType (float)");
 
-                DataBlkFloat fltblk = (DataBlkFloat)src.getInternCompData(outblk, c);
+                var fltblk = (DataBlkFloat)src.GetInternCompData(outblk, c);
                 outblk = fltblk;
             }
 			return outblk;
@@ -144,23 +144,23 @@ namespace CSJ2K.Color
 		/// returned, as a reference to the internal data, if any, instead of as a
 		/// copy, therefore the returned data should not be modified.
 		/// 
-		/// <P>The rectangular area to return is specified by the 'ulx', 'uly', 'w'
+		/// The rectangular area to return is specified by the 'ulx', 'uly', 'w'
 		/// and 'h' members of the 'blk' argument, relative to the current
 		/// tile. These members are not modified by this method. The 'offset' and
 		/// 'scanw' of the returned data can be arbitrary. See the 'DataBlk' class.
 		/// 
-		/// <P>This method, in general, is more efficient than the 'getCompData()'
+		/// This method, in general, is more efficient than the 'getCompData()'
 		/// method since it may not copy the data. However if the array of returned
 		/// data is to be modified by the caller then the other method is probably
 		/// preferable.
 		/// 
-		/// <P>If possible, the data in the returned 'DataBlk' should be the
+		/// If possible, the data in the returned 'DataBlk' should be the
 		/// internal data itself, instead of a copy, in order to increase the data
 		/// transfer efficiency. However, this depends on the particular
 		/// implementation (it may be more convenient to just return a copy of the
 		/// data). This is the reason why the returned data should not be modified.
 		/// 
-		/// <P>If the data array in <tt>blk</tt> is <tt>null</tt>, then a new one
+		/// If the data array in <tt>blk</tt> is <tt>null</tt>, then a new one
 		/// is created if necessary. The implementation of this interface may
 		/// choose to return the same array or a new one, depending on what is more
 		/// efficient. Therefore, the data array in <tt>blk</tt> prior to the
@@ -168,7 +168,7 @@ namespace CSJ2K.Color
 		/// new array may have been created. Instead, get the array from
 		/// <tt>blk</tt> after the method has returned.
 		/// 
-		/// <P>The returned data may have its 'progressive' attribute set. In this
+		/// The returned data may have its 'progressive' attribute set. In this
 		/// case the returned data is only an approximation of the "final" data.
 		/// 
 		/// </summary>
@@ -183,28 +183,28 @@ namespace CSJ2K.Color
 		/// <returns> The requested DataBlk
 		/// 
 		/// </returns>
-		/// <seealso cref="getCompData">
+		/// <seealso cref="GetCompData">
 		/// </seealso>
-		public override DataBlk getInternCompData(DataBlk out_Renamed, int c)
+		public override DataBlk GetInternCompData(DataBlk out_Renamed, int c)
 		{
-			return getCompData(out_Renamed, c);
+			return GetCompData(out_Renamed, c);
 		}
 		
 		/// <summary>Return a suitable String representation of the class instance. </summary>
-		public override System.String ToString()
+		public override string ToString()
 		{
 			int i;
 			
-			System.Text.StringBuilder rep_nComps = new System.Text.StringBuilder("ncomps= ").Append(System.Convert.ToString(ncomps));
-			System.Text.StringBuilder rep_comps = new System.Text.StringBuilder();
+			var rep_nComps = new System.Text.StringBuilder("ncomps= ").Append(Convert.ToString(ncomps));
+			var rep_comps = new System.Text.StringBuilder();
 			
 			for (i = 0; i < ncomps; ++i)
 			{
-				rep_comps.Append("  ").Append("component[").Append(System.Convert.ToString(i)).Append("] height, width = (").Append(src.getCompImgHeight(i)).Append(", ").Append(src.getCompImgWidth(i)).Append(")").Append(eol);
+				rep_comps.Append("  ").Append("component[").Append(Convert.ToString(i)).Append("] height, width = (").Append(src.getCompImgHeight(i)).Append(", ").Append(src.getCompImgWidth(i)).Append(")").Append(Environment.NewLine);
 			}
 			
-			System.Text.StringBuilder rep = new System.Text.StringBuilder("[EsRGBColorSpaceMapper ");
-			rep.Append(rep_nComps).Append(eol);
+			var rep = new System.Text.StringBuilder("[EsRGBColorSpaceMapper ");
+			rep.Append(rep_nComps).Append(Environment.NewLine);
 			rep.Append(rep_comps).Append("  ");
 			
 			return rep.Append("]").ToString();

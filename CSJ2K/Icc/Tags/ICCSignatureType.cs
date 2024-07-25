@@ -5,9 +5,9 @@ namespace CSJ2K.Icc.Tags
 {
     public class ICCSignatureType : ICCTag
     {
-        new public int type;
+        public new int type;
         public int reserved;
-        new public int signature;
+        public new int signature;
 
         /// <summary> Construct this tag from its constituant parts</summary>
         /// <param name="signature">tag id</param>

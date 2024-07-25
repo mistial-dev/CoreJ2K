@@ -32,10 +32,8 @@ namespace CSJ2K.Icc.Tags
 	/// </version>
 	/// <author> 	Bruce A. Kern
 	/// </author>
-	public class ICCTagTable:System.Collections.Generic.Dictionary<System.Int32, ICCTag>
+	public class ICCTagTable:System.Collections.Generic.Dictionary<int, ICCTag>
 	{
-		//UPGRADE_NOTE: Final was removed from the declaration of 'eol '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
-		private static readonly System.String eol = System.Environment.NewLine;
 		//UPGRADE_NOTE: Final was removed from the declaration of 'offTagCount '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
 		//UPGRADE_NOTE: The initialization of  'offTagCount' was moved to static method 'icc.tags.ICCTagTable'. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1005'"
 		private static readonly int offTagCount;
@@ -79,18 +77,18 @@ namespace CSJ2K.Icc.Tags
 		/// <returns> String
 		/// </returns>
 		//UPGRADE_NOTE: The equivalent of method 'java.util.Hashtable.toString' is not an override method. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1143'"
-		public override System.String ToString()
+		public override string ToString()
 		{
-			System.Text.StringBuilder rep = new System.Text.StringBuilder("[ICCTagTable containing " + tagCount + " tags:");
-			System.Text.StringBuilder body = new System.Text.StringBuilder("  ");
+			var rep = new System.Text.StringBuilder($"[ICCTagTable containing {tagCount} tags:");
+			var body = new System.Text.StringBuilder("  ");
 			System.Collections.IEnumerator keys = Keys.GetEnumerator();
 			//UPGRADE_TODO: Method 'java.util.Enumeration.hasMoreElements' was converted to 'System.Collections.IEnumerator.MoveNext' which has a different behavior. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1073_javautilEnumerationhasMoreElements'"
 			while (keys.MoveNext())
 			{
 				//UPGRADE_TODO: Method 'java.util.Enumeration.nextElement' was converted to 'System.Collections.IEnumerator.Current' which has a different behavior. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1073_javautilEnumerationnextElement'"
-				System.Int32 key = (System.Int32) keys.Current;
-				ICCTag tag = (ICCTag) this[key];
-				body.Append(eol).Append(tag.ToString());
+				var key = (int) keys.Current;
+				var tag = this[key];
+				body.Append(Environment.NewLine).Append(tag);
 			}
 			rep.Append(ColorSpace.indent("  ", body));
 			return rep.Append("]").ToString();
@@ -104,7 +102,7 @@ namespace CSJ2K.Icc.Tags
 		/// </returns>
 		public static ICCTagTable createInstance(byte[] data)
 		{
-			ICCTagTable tags = new ICCTagTable(data);
+			var tags = new ICCTagTable(data);
 			return tags;
 		}
 		
@@ -116,12 +114,12 @@ namespace CSJ2K.Icc.Tags
 		{
             tagCount = ICCProfile.getInt(data, offTagCount);
 			
-			int offset = offTags;
-			for (int i = 0; i < tagCount; ++i)
+			var offset = offTags;
+			for (var i = 0; i < tagCount; ++i)
 			{
-                int signature = ICCProfile.getInt(data, offset);
-                int tagOffset = ICCProfile.getInt(data, offset + ICCProfile.int_size);
-                int length = ICCProfile.getInt(data, offset + 2 * ICCProfile.int_size);
+                var signature = ICCProfile.getInt(data, offset);
+                var tagOffset = ICCProfile.getInt(data, offset + ICCProfile.int_size);
+                var length = ICCProfile.getInt(data, offset + 2 * ICCProfile.int_size);
 				trios.Add(new Triplet(signature, tagOffset, length));
 				offset += 3 * ICCProfile.int_size;
 			}
@@ -132,9 +130,9 @@ namespace CSJ2K.Icc.Tags
 			while (Enum.MoveNext())
 			{
 				//UPGRADE_TODO: Method 'java.util.Enumeration.nextElement' was converted to 'System.Collections.IEnumerator.Current' which has a different behavior. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1073_javautilEnumerationnextElement'"
-				Triplet trio = (Triplet) Enum.Current;
-				ICCTag tag = ICCTag.createInstance(trio.signature, data, trio.offset, trio.count);
-				this[(System.Int32) tag.signature] = tag;
+				var trio = Enum.Current;
+				var tag = ICCTag.createInstance(trio.signature, data, trio.offset, trio.count);
+				this[tag.signature] = tag;
 			}
 		}
 		
@@ -145,44 +143,44 @@ namespace CSJ2K.Icc.Tags
 		/// <exception cref="IOException">
 		/// </exception>
 		//UPGRADE_TODO: Class 'java.io.RandomAccessFile' was converted to 'System.IO.FileStream' which has a different behavior. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1073_javaioRandomAccessFile'"
-		public virtual void  write(System.IO.Stream raf)
+		public virtual void  write(Stream raf)
 		{
 			
-			int ntags = trios.Count;
+			var ntags = trios.Count;
 			
-			int countOff = ICCProfileHeader.size;
-			int tagOff = countOff + ICCProfile.int_size;
-			int dataOff = tagOff + 3 * ntags * ICCProfile.int_size;
+			var countOff = ICCProfileHeader.size;
+			var tagOff = countOff + ICCProfile.int_size;
+			var dataOff = tagOff + 3 * ntags * ICCProfile.int_size;
 			
-			raf.Seek(countOff, System.IO.SeekOrigin.Begin);
-			System.IO.BinaryWriter temp_BinaryWriter;
-			temp_BinaryWriter = new System.IO.BinaryWriter(raf);
-			temp_BinaryWriter.Write((System.Int32) ntags);
+			raf.Seek(countOff, SeekOrigin.Begin);
+			BinaryWriter temp_BinaryWriter;
+			temp_BinaryWriter = new BinaryWriter(raf);
+			temp_BinaryWriter.Write(ntags);
 			
-			int currentTagOff = tagOff;
-			int currentDataOff = dataOff;
+			var currentTagOff = tagOff;
+			var currentDataOff = dataOff;
 			
 			System.Collections.IEnumerator enum_Renamed = trios.GetEnumerator();
 			//UPGRADE_TODO: Method 'java.util.Enumeration.hasMoreElements' was converted to 'System.Collections.IEnumerator.MoveNext' which has a different behavior. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1073_javautilEnumerationhasMoreElements'"
 			while (enum_Renamed.MoveNext())
 			{
 				//UPGRADE_TODO: Method 'java.util.Enumeration.nextElement' was converted to 'System.Collections.IEnumerator.Current' which has a different behavior. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1073_javautilEnumerationnextElement'"
-				Triplet trio = (Triplet) enum_Renamed.Current;
-				ICCTag tag = (ICCTag) this[(System.Int32) trio.signature];
+				var trio = (Triplet) enum_Renamed.Current;
+				var tag = this[trio.signature];
 				
-				raf.Seek(currentTagOff, System.IO.SeekOrigin.Begin);
-				System.IO.BinaryWriter temp_BinaryWriter2;
-				temp_BinaryWriter2 = new System.IO.BinaryWriter(raf);
-				temp_BinaryWriter2.Write((System.Int32) tag.signature);
-				System.IO.BinaryWriter temp_BinaryWriter3;
-				temp_BinaryWriter3 = new System.IO.BinaryWriter(raf);
-				temp_BinaryWriter3.Write((System.Int32) currentDataOff);
-				System.IO.BinaryWriter temp_BinaryWriter4;
-				temp_BinaryWriter4 = new System.IO.BinaryWriter(raf);
-				temp_BinaryWriter4.Write((System.Int32) tag.count);
-				currentTagOff += 3 * CSJ2K.Icc.Tags.ICCTagTable.Triplet.size;
+				raf.Seek(currentTagOff, SeekOrigin.Begin);
+				BinaryWriter temp_BinaryWriter2;
+				temp_BinaryWriter2 = new BinaryWriter(raf);
+				temp_BinaryWriter2.Write(tag.signature);
+				BinaryWriter temp_BinaryWriter3;
+				temp_BinaryWriter3 = new BinaryWriter(raf);
+				temp_BinaryWriter3.Write(currentDataOff);
+				BinaryWriter temp_BinaryWriter4;
+				temp_BinaryWriter4 = new BinaryWriter(raf);
+				temp_BinaryWriter4.Write(tag.count);
+				currentTagOff += 3 * Triplet.size;
 				
-				raf.Seek(currentDataOff, System.IO.SeekOrigin.Begin);
+				raf.Seek(currentDataOff, SeekOrigin.Begin);
 				raf.Write(tag.data, tag.offset, tag.count);
 				currentDataOff += tag.count;
 			}

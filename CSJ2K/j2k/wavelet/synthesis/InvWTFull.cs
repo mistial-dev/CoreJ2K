@@ -14,10 +14,10 @@
 * 
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -55,21 +55,21 @@ namespace CSJ2K.j2k.wavelet.synthesis
 	/// <summary> This class implements the InverseWT with the full-page approach for int and
 	/// float data.
 	/// 
-	/// <p>The image can be reconstructed at different (image) resolution levels
+	/// The image can be reconstructed at different (image) resolution levels
 	/// indexed from the lowest resolution available for each tile-component. This
 	/// is controlled by the setImgResLevel() method.</p>
 	/// 
-	/// <p>Note: Image resolution level indexes may differ from tile-component
+	/// Note: Image resolution level indexes may differ from tile-component
 	/// resolution index. They are indeed indexed starting from the lowest number
 	/// of decomposition levels of each component of each tile.</p>
 	/// 
-	/// <p>Example: For an image (1 tile) with 2 components (component 0 having 2
+	/// Example: For an image (1 tile) with 2 components (component 0 having 2
 	/// decomposition levels and component 1 having 3 decomposition levels), the
 	/// first (tile-) component has 3 resolution levels and the second one has 4
 	/// resolution levels, whereas the image has only 3 resolution levels
 	/// available.</p>
 	/// 
-	/// <p>This implementation does not support progressive data: Data is
+	/// This implementation does not support progressive data: Data is
 	/// considered to be non-progressive (i.e. "final" data) and the 'progressive'
 	/// attribute of the 'DataBlk' class is always set to false, see the 'DataBlk'
 	/// class.</p>
@@ -119,7 +119,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		public InvWTFull(CBlkWTDataSrcDec src, DecoderSpecs decSpec):base(src, decSpec)
 		{
 			this.src = src;
-			int nc = src.NumComps;
+			var nc = src.NumComps;
 			reconstructedComps = new DataBlk[nc];
 			ndl = new int[nc];
 		}
@@ -173,7 +173,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 			{
 				// Reversibility not yet calculated for this tile
 				reversible[t] = new bool[NumComps];
-				for (int i = reversible[t].Length - 1; i >= 0; i--)
+				for (var i = reversible[t].Length - 1; i >= 0; i--)
 				{
 					reversible[t][i] = isSubbandReversible(src.getSynSubbandTree(t, i));
 				}
@@ -185,12 +185,12 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// corresponding to the nominal range of the data in the specified
 		/// component.
 		/// 
-		/// <p>The returned value corresponds to the nominal dynamic range of the
+		/// The returned value corresponds to the nominal dynamic range of the
 		/// reconstructed image data, as long as the getNomRangeBits() method of
 		/// the source returns a value corresponding to the nominal dynamic range
 		/// of the image data and not not of the wavelet coefficients.</p>
 		/// 
-		/// <p>If this number is <i>b</b> then for unsigned data the nominal range
+		/// If this number is <i>b</b> then for unsigned data the nominal range
 		/// is between 0 and 2^b-1, and for signed data it is between -2^(b-1) and
 		/// 2^(b-1)-1.</p>
 		/// 
@@ -215,7 +215,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// and 0 should be returned. Position 0 is the position of the least
 		/// significant bit in the data.
 		/// 
-		/// <p>This default implementation assumes that the wavelet transform does
+		/// This default implementation assumes that the wavelet transform does
 		/// not modify the fixed point. If that were the case this method should be
 		/// overriden.</p>
 		/// 
@@ -227,7 +227,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// number of fractional bits. For floating-point data 0 is returned.
 		/// 
 		/// </returns>
-		public override int getFixedPoint(int c)
+		public override int GetFixedPoint(int c)
 		{
 			return src.getFixedPoint(c);
 		}
@@ -237,16 +237,16 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// below). The rectangular area is specified by the coordinates and
 		/// dimensions of the 'blk' object.
 		/// 
-		/// <p>The area to return is specified by the 'ulx', 'uly', 'w' and 'h'
+		/// The area to return is specified by the 'ulx', 'uly', 'w' and 'h'
 		/// members of the 'blk' argument. These members are not modified by this
 		/// method.</p>
 		/// 
-		/// <p>The data returned by this method can be the data in the internal
+		/// The data returned by this method can be the data in the internal
 		/// buffer of this object, if any, and thus can not be modified by the
 		/// caller. The 'offset' and 'scanw' of the returned data can be
 		/// arbitrary. See the 'DataBlk' class.</p>
 		/// 
-		/// <p>The returned data has its 'progressive' attribute unset
+		/// The returned data has its 'progressive' attribute unset
 		/// (i.e. false).</p>
 		/// 
 		/// </summary>
@@ -259,20 +259,15 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// <returns> The requested DataBlk
 		/// 
 		/// </returns>
-		/// <seealso cref="getInternCompData">
+		/// <seealso cref="GetInternCompData">
 		/// 
 		/// </seealso>
-		public override DataBlk getInternCompData(DataBlk blk, int c)
+		public override DataBlk GetInternCompData(DataBlk blk, int c)
 		{
-			int tIdx = TileIdx;
-			if (src.getSynSubbandTree(tIdx, c).HorWFilter == null)
-			{
-				dtype = DataBlk.TYPE_INT;
-			}
-			else
-			{
-				dtype = src.getSynSubbandTree(tIdx, c).HorWFilter.DataType;
-			}
+			var tIdx = TileIdx;
+			dtype = src.getSynSubbandTree(tIdx, c).HorWFilter == null 
+				? DataBlk.TYPE_INT 
+				: src.getSynSubbandTree(tIdx, c).HorWFilter.DataType;
 			
 			//If the source image has not been decomposed 
 			if (reconstructedComps[c] == null)
@@ -316,21 +311,21 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// in the specified component, as a copy (see below). The rectangular area
 		/// is specified by the coordinates and dimensions of the 'blk' object.
 		/// 
-		/// <p>The area to return is specified by the 'ulx', 'uly', 'w' and 'h'
+		/// The area to return is specified by the 'ulx', 'uly', 'w' and 'h'
 		/// members of the 'blk' argument. These members are not modified by this
 		/// method.</p>
 		/// 
-		/// <p>The data returned by this method is always a copy of the internal
+		/// The data returned by this method is always a copy of the internal
 		/// data of this object, if any, and it can be modified "in place" without
 		/// any problems after being returned. The 'offset' of the returned data is
 		/// 0, and the 'scanw' is the same as the block's width. See the 'DataBlk'
 		/// class.</p>
 		/// 
-		/// <p>If the data array in 'blk' is <tt>null</tt>, then a new one is
+		/// If the data array in 'blk' is <tt>null</tt>, then a new one is
 		/// created. If the data array is not <tt>null</tt> then it must be big
 		/// enough to contain the requested area.</p>
 		/// 
-		/// <p>The returned data always has its 'progressive' attribute unset (i.e
+		/// The returned data always has its 'progressive' attribute unset (i.e
 		/// false)</p>
 		/// 
 		/// </summary>
@@ -346,13 +341,13 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// <returns> The requested DataBlk
 		/// 
 		/// </returns>
-		/// <seealso cref="getCompData">
+		/// <seealso cref="GetCompData">
 		/// 
 		/// </seealso>
-		public override DataBlk getCompData(DataBlk blk, int c)
+		public override DataBlk GetCompData(DataBlk blk, int c)
 		{
 			//int j;
-            System.Object dst_data; // src_data removed
+            object dst_data; // src_data removed
             int[] dst_data_int; // src_data_int removed
             float[] dst_data_float; // src_data_float removed
 			
@@ -384,7 +379,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 			
 			// Use getInternCompData() to get the data, since getInternCompData()
 			// returns reference to internal buffer, we must copy it.
-			blk = getInternCompData(blk, c);
+			blk = GetInternCompData(blk, c);
 			
 			// Copy the data
 			blk.Data = dst_data;
@@ -409,8 +404,8 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// </param>
 		private void  wavelet2DReconstruction(DataBlk db, SubbandSyn sb, int c)
 		{
-			System.Object data;
-			System.Object buf;
+			object data;
+			object buf;
 			int ulx, uly, w, h;
 			int i, j, k;
 			int offset;
@@ -450,7 +445,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 				for (i = 0; i < h; i++, offset += db.w)
 				{
                     // CONVERSION PROBLEM?
-					Array.Copy((System.Array)data, offset, (System.Array)buf, 0, w);
+					Array.Copy((Array)data, offset, (Array)buf, 0, w);
 					sb.hFilter.synthetize_lpf(buf, 0, (w + 1) / 2, 1, buf, (w + 1) / 2, w / 2, 1, data, offset, 1);
 				}
 			}
@@ -460,7 +455,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 				for (i = 0; i < h; i++, offset += db.w)
 				{
                     // CONVERSION PROBLEM?
-					Array.Copy((System.Array)data, offset, (System.Array)buf, 0, w);
+					Array.Copy((Array)data, offset, (Array)buf, 0, w);
 					sb.hFilter.synthetize_hpf(buf, 0, w / 2, 1, buf, w / 2, (w + 1) / 2, 1, data, offset, 1);
 				}
 			}
@@ -549,7 +544,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 			if (!sb.isNode)
 			{
 				int i, m, n;
-				System.Object src_data, dst_data;
+				object src_data, dst_data;
 				Coord ncblks;
 				
 				if (sb.w == 0 || sb.h == 0)
@@ -579,7 +574,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 						for (i = subbData.h - 1; i >= 0; i--)
 						{
                             // CONVERSION PROBLEM
-							Array.Copy((System.Array)src_data, subbData.offset + i * subbData.scanw, (System.Array)dst_data, (subbData.uly + i) * img.w + subbData.ulx, subbData.w);
+							Array.Copy((Array)src_data, subbData.offset + i * subbData.scanw, (Array)dst_data, (subbData.uly + i) * img.w + subbData.ulx, subbData.w);
 						}
 					}
 				}
@@ -600,7 +595,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 					waveletTreeReconstruction(img, (SubbandSyn) sb.HH, c);
 					
 					//Perform the 2D wavelet decomposition of the current subband
-					wavelet2DReconstruction(img, (SubbandSyn) sb, c);
+					wavelet2DReconstruction(img, sb, c);
 				}
 			}
 		}
@@ -620,7 +615,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// </seealso>
 		public override int getImplementationType(int c)
 		{
-			return CSJ2K.j2k.wavelet.WaveletTransform_Fields.WT_IMPL_FULL;
+			return WaveletTransform_Fields.WT_IMPL_FULL;
 		}
 		
 		/// <summary> Changes the current tile, given the new indexes. An
@@ -641,9 +636,9 @@ namespace CSJ2K.j2k.wavelet.synthesis
 			// Change tile
 			base.setTile(x, y);
 			
-			int nc = src.NumComps;
-			int tIdx = src.TileIdx;
-			for (int c = 0; c < nc; c++)
+			var nc = src.NumComps;
+			var tIdx = src.TileIdx;
+			for (var c = 0; c < nc; c++)
 			{
 				ndl[c] = src.getSynSubbandTree(tIdx, c).resLvl;
 			}
@@ -659,10 +654,10 @@ namespace CSJ2K.j2k.wavelet.synthesis
 			
 			cblkToDecode = 0;
 			SubbandSyn root, sb;
-			for (int c = 0; c < nc; c++)
+			for (var c = 0; c < nc; c++)
 			{
 				root = src.getSynSubbandTree(tIdx, c);
-				for (int r = 0; r <= reslvl - maxImgRes + root.resLvl; r++)
+				for (var r = 0; r <= reslvl - maxImgRes + root.resLvl; r++)
 				{
 					if (r == 0)
 					{
@@ -698,9 +693,9 @@ namespace CSJ2K.j2k.wavelet.synthesis
 			// Change tile
 			base.nextTile();
 			
-			int nc = src.NumComps;
-			int tIdx = src.TileIdx;
-			for (int c = 0; c < nc; c++)
+			var nc = src.NumComps;
+			var tIdx = src.TileIdx;
+			for (var c = 0; c < nc; c++)
 			{
 				ndl[c] = src.getSynSubbandTree(tIdx, c).resLvl;
 			}

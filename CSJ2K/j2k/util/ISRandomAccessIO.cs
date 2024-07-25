@@ -12,10 +12,10 @@
 *
 * COPYRIGHT:
 * 
-* This software module was originally developed by Raphaël Grosbois and
+* This software module was originally developed by Raphaï¿½l Grosbois and
 * Diego Santa Cruz (Swiss Federal Institute of Technology-EPFL); Joel
-* Askelöf (Ericsson Radio Systems AB); and Bertrand Berthelot, David
-* Bouchard, Félix Henry, Gerard Mozelle and Patrice Onno (Canon Research
+* Askelï¿½f (Ericsson Radio Systems AB); and Bertrand Berthelot, David
+* Bouchard, Fï¿½lix Henry, Gerard Mozelle and Patrice Onno (Canon Research
 * Centre France S.A) in the course of development of the JPEG2000
 * standard as specified by ISO/IEC 15444 (JPEG 2000 Standard). This
 * software module is an implementation of a part of the JPEG 2000
@@ -52,27 +52,27 @@ namespace CSJ2K.j2k.util
 	/// be limited to a specified size. The data is read into the cache on a as
 	/// needed basis, blocking only when necessary.
 	/// 
-	/// <p>The cache grows automatically as necessary. However, if the data length
+	/// The cache grows automatically as necessary. However, if the data length
 	/// is known prior to the creation of a ISRandomAccessIO object, it is best to
 	/// specify that as the initial in-memory buffer size. That will minimize data
-	/// copying and multiple allocation.<p>
+	/// copying and multiple allocation.
 	/// 
-	/// <p>Multi-byte data is read in big-endian order. The in-memory buffer
+	/// Multi-byte data is read in big-endian order. The in-memory buffer
 	/// storage is released when 'close()' is called. This class can only be used
 	/// for data input, not output. The wrapped InputStream is closed when all the
 	/// input data is cached or when 'close()' is called.</p>
 	/// 
-	/// <p>If an out of memory condition is encountered when growing the in-memory
+	/// If an out of memory condition is encountered when growing the in-memory
 	/// buffer an IOException is thrown instead of an OutOfMemoryError. The
 	/// exception message is "Out of memory to cache input data".</p>
 	/// 
-	/// <p>This class is intended for use as a "quick and dirty" way to give
+	/// This class is intended for use as a "quick and dirty" way to give
 	/// network connectivity to RandomAccessIO based classes. It is not intended as
 	/// an efficient means of implementing network connectivity. Doing such
 	/// requires reimplementing the RandomAccessIO based classes to directly use
 	/// network connections.</p>
 	/// 
-	/// <p>This class does not use temporary files as buffers, because that would
+	/// This class does not use temporary files as buffers, because that would
 	/// preclude the use in unsigned applets.</p>
 	/// 
 	/// </summary>
@@ -86,14 +86,8 @@ namespace CSJ2K.j2k.util
 		/// <exception cref="IOException">If an I/O error occurred.
 		/// 
 		/// </exception>
-		virtual public int Pos
-		{
-			get
-			{
-				return pos;
-			}
-			
-		}
+		public virtual int Pos => pos;
+
 		/// <summary> Returns the endianess (i.e., byte ordering) of multi-byte I/O
 		/// operations. Always EndianType.BIG_ENDIAN since this class implements
 		/// only big-endian.
@@ -105,15 +99,8 @@ namespace CSJ2K.j2k.util
 		/// <seealso cref="EndianType">
 		/// 
 		/// </seealso>
-		virtual public int ByteOrdering
-		{
-			get
-			{
-				return CSJ2K.j2k.io.EndianType_Fields.BIG_ENDIAN;
-			}
-			
-		}
-		
+		public virtual int ByteOrdering => EndianType_Fields.BIG_ENDIAN;
+
 		/// <summary>The InputStream that is wrapped </summary>
 		private System.IO.Stream is_Renamed;
 		
@@ -159,16 +146,16 @@ namespace CSJ2K.j2k.util
 		{
 			if (size < 0 || inc <= 0 || maxsize <= 0 || is_Renamed == null)
 			{
-				throw new System.ArgumentException();
+				throw new ArgumentException();
 			}
 			this.is_Renamed = is_Renamed;
 			// Increase size by one to count in EOF
-			if (size < System.Int32.MaxValue)
+			if (size < int.MaxValue)
 				size++;
 			buf = new byte[size];
 			this.inc = inc;
 			// The maximum size is one byte more, to allow reading the EOF.
-			if (maxsize < System.Int32.MaxValue)
+			if (maxsize < int.MaxValue)
 				maxsize++;
 			this.maxsize = maxsize;
 			pos = 0;
@@ -184,7 +171,7 @@ namespace CSJ2K.j2k.util
 		/// <param name="is">The input from where to get the data.
 		/// 
 		/// </param>
-		public ISRandomAccessIO(System.IO.Stream is_Renamed):this(is_Renamed, 1 << 18, 1 << 18, System.Int32.MaxValue)
+		public ISRandomAccessIO(System.IO.Stream is_Renamed):this(is_Renamed, 1 << 18, 1 << 18, int.MaxValue)
 		{
 		}
 		
@@ -207,13 +194,13 @@ namespace CSJ2K.j2k.util
 				effinc = maxsize - buf.Length;
 			if (effinc <= 0)
 			{
-				throw new System.IO.IOException("Reached maximum cache size (" + maxsize + ")");
+				throw new System.IO.IOException($"Reached maximum cache size ({maxsize})");
 			}
 			try
 			{
 				newbuf = new byte[buf.Length + inc];
 			}
-			catch (System.OutOfMemoryException e)
+			catch (OutOfMemoryException)
 			{
 				throw new System.IO.IOException("Out of memory to cache input data");
 			}
@@ -241,7 +228,7 @@ namespace CSJ2K.j2k.util
 			
 			if (complete)
 			{
-				throw new System.ArgumentException("Already reached EOF");
+				throw new ArgumentException("Already reached EOF");
 			}
 			long available;
 			available = is_Renamed.Length - is_Renamed.Position;
@@ -442,13 +429,11 @@ namespace CSJ2K.j2k.util
 		/// </exception>
 		public virtual byte readUnsignedByte()
 		{
-			if (pos < len)
-			{
+			return pos < len ?
 				// common, fast case
-				return buf[pos++];
-			}
-			// general case
-			return read();
+				buf[pos++] :
+				// general case
+				read();
 		}
 		
 		/// <summary> Reads a signed short (16 bit) from the input.
@@ -566,10 +551,10 @@ namespace CSJ2K.j2k.util
 			if (pos + 7 < len)
 			{
 				// common, fast case
-				return (((long) buf[pos++] << 56) | ((long) buf[pos++] << 48) | ((long) buf[pos++] << 40) | ((long) buf[pos++] << 32) | ((long) buf[pos++] << 24) | ((long) buf[pos++] << 16) | ((long) buf[pos++] << 8) | (long) buf[pos++]);
+				return (((long) buf[pos++] << 56) | ((long) buf[pos++] << 48) | ((long) buf[pos++] << 40) | ((long) buf[pos++] << 32) | ((long) buf[pos++] << 24) | ((long) buf[pos++] << 16) | ((long) buf[pos++] << 8) | buf[pos++]);
 			}
 			// general case
-			return (((long) read() << 56) | ((long) read() << 48) | ((long) read() << 40) | ((long) read() << 32) | ((long) read() << 24) | ((long) read() << 16) | ((long) read() << 8) | (long) read());
+			return (((long) read() << 56) | ((long) read() << 48) | ((long) read() << 40) | ((long) read() << 32) | ((long) read() << 24) | ((long) read() << 16) | ((long) read() << 8) | read());
 		}
 		
 		/// <summary> Reads an IEEE single precision (i.e., 32 bit) floating-point number
@@ -628,9 +613,9 @@ namespace CSJ2K.j2k.util
             // CONVERSION PROBLEM?  BIGENDIAN
             long doublelong;
             if (pos + 7 < len)
-                doublelong = ((long)buf[pos++] << 56) | ((long)buf[pos++] << 48) | ((long)buf[pos++] << 40) | ((long)buf[pos++] << 32) | ((long)buf[pos++] << 24) | ((long)buf[pos++] << 16) | ((long)buf[pos++] << 8) | (long)buf[pos++];
+                doublelong = ((long)buf[pos++] << 56) | ((long)buf[pos++] << 48) | ((long)buf[pos++] << 40) | ((long)buf[pos++] << 32) | ((long)buf[pos++] << 24) | ((long)buf[pos++] << 16) | ((long)buf[pos++] << 8) | buf[pos++];
             else
-                doublelong = ((long)read() << 56) | ((long)read() << 48) | ((long)read() << 40) | ((long)read() << 32) | ((long)read() << 24) | ((long)read() << 16) | ((long)read() << 8) | (long)read();
+                doublelong = ((long)read() << 56) | ((long)read() << 48) | ((long)read() << 40) | ((long)read() << 32) | ((long)read() << 24) | ((long)read() << 16) | ((long)read() << 8) | read();
             return BitConverter.ToDouble(BitConverter.GetBytes(doublelong), 0);
 
             /*
