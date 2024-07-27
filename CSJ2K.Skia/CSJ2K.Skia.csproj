@@ -7,6 +7,7 @@
     <DefineConstants>$(DefineConstants);NETSTANDARD</DefineConstants>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="..\CSJ2K\**\*.cs" Exclude="bin\**;obj\**;**\*.xproj;packages\**" />
