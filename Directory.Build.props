@@ -1,10 +1,11 @@
 <Project>
 	<PropertyGroup>
 		<Version>0.9.0.0</Version>
-		<Product>csj2k-skia</Product>
+		<Product>CSJ2K-Skia</Product>
 		<Authors>Sjofn LLC</Authors>
-		<Copyright>Copyright © 1999-2000 JJ2000 Partners. Original C# port © 2007-2012 Jason S. Clary. Copyright © Sjofn LLC 2024. All rights reserved.</Copyright>
+		<Copyright>Copyright © 1999-2000 JJ2000 Partners.Copyright © 2007-2012 Jason S. Clary. Copyright © 2013-2018 Anders Gustafsson, Cureos AB. Copyright © Sjofn LLC 2024. All rights reserved.</Copyright>
 		<Company>Sjofn LLC</Company>
+		<Description>.NETStandard JPEG-2000 codec library with Skia support</Description>
 	</PropertyGroup>
 	<PropertyGroup>
 		<PackageVersion>0.9.0.0</PackageVersion>
