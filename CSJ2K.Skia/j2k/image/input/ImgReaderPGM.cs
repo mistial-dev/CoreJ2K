@@ -1,6 +1,6 @@
 /*
 *
-* Class:                   ImageWriterRawPGM
+* Class:                   ImgReaderPGM
 *
 * Description:             Image writer for unsigned 8 bit data in
 *                          PGM files.
@@ -49,31 +49,30 @@ namespace CSJ2K.j2k.image.input
 	/// from a binary PGM file.
 	/// 
 	/// After being read the coefficients are level shifted by subtracting
-	/// 2^(nominal bit range-1)</p>
+	/// 2^(nominal bit range-1)
 	/// 
-	/// The TransferType (see ImgData) of this class is TYPE_INT.</p>
+	/// The TransferType (see ImgData) of this class is TYPE_INT.
 	/// 
 	/// NOTE: This class is not thread safe, for reasons of internal buffering.
 	/// 
 	/// </summary>
-	/// <seealso cref="jj2000.j2k.image.ImgData">
+	/// <seealso cref="image.ImgData">
 	/// 
 	/// </seealso>
 	public class ImgReaderPGM:ImgReader
 	{
-		
 		/// <summary>DC offset value used when reading image </summary>
-		public static int DC_OFFSET = 128;
-		
+		public const int DC_OFFSET = 128;
+
 		/// <summary>Where to read the data from </summary>
 		//UPGRADE_TODO: Class 'java.io.RandomAccessFile' was converted to 'System.IO.FileStream' which has a different behavior. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1073_javaioRandomAccessFile'"
-		private System.IO.Stream in_Renamed;
+		private System.IO.Stream inRenamed;
 		
 		/// <summary>The offset of the raw pixel data in the PGM file </summary>
 		private int offset;
 		
 		/// <summary>The number of bits that determine the nominal dynamic range </summary>
-		private int rb;
+		private readonly int rb;
 		
 		/// <summary>The line buffer. </summary>
 		// This makes the class not thrad safe
@@ -108,7 +107,8 @@ namespace CSJ2K.j2k.image.input
 		/// <exception cref="IOException">If an error occurs while opening the file.
 		/// 
 		/// </exception>
-		public ImgReaderPGM(string fname):this(SupportClass.RandomAccessFileSupport.CreateRandomAccessFile(fname, "r"))
+		public ImgReaderPGM(string fname)
+			: this(SupportClass.RandomAccessFileSupport.CreateRandomAccessFile(fname, "r"))
 		{
 		}
 		
@@ -116,7 +116,7 @@ namespace CSJ2K.j2k.image.input
 		/// object. The file header is read to acquire the image size.
 		/// 
 		/// </summary>
-		/// <param name="in">From where to read the data 
+		/// <param name="inRenamed">From where to read the data 
 		/// 
 		/// </param>
 		/// <exception cref="EOFException">if an EOF is read
@@ -125,18 +125,18 @@ namespace CSJ2K.j2k.image.input
 		/// 
 		/// </exception>
 		//UPGRADE_TODO: Class 'java.io.RandomAccessFile' was converted to 'System.IO.FileStream' which has a different behavior. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1073_javaioRandomAccessFile'"
-		public ImgReaderPGM(System.IO.Stream in_Renamed)
+		public ImgReaderPGM(System.IO.Stream inRenamed)
 		{
-			this.in_Renamed = in_Renamed;
+			this.inRenamed = inRenamed;
 			
-			confirmFileType();
-			skipCommentAndWhiteSpace();
-			w = readHeaderInt();
-			skipCommentAndWhiteSpace();
-			h = readHeaderInt();
-			skipCommentAndWhiteSpace();
+			ConfirmFileType();
+			SkipCommentAndWhiteSpace();
+			w = ReadHeaderInt();
+			SkipCommentAndWhiteSpace();
+			h = ReadHeaderInt();
+			SkipCommentAndWhiteSpace();
 			/*Read the highest pixel value from header (not used)*/
-			readHeaderInt();
+			ReadHeaderInt();
 			nc = 1;
 			rb = 8;
 		}
@@ -151,8 +151,8 @@ namespace CSJ2K.j2k.image.input
 		/// </exception>
 		public override void  Close()
 		{
-			in_Renamed.Dispose();
-			in_Renamed = null;
+			inRenamed.Dispose();
+			inRenamed = null;
 		}
 		
 		/// <summary> Returns the number of bits corresponding to the nominal range of the
@@ -254,8 +254,7 @@ namespace CSJ2K.j2k.image.input
 		public override DataBlk GetInternCompData(DataBlk blk, int c)
 		{
 			int k, j, i, mi;
-			int[] barr;
-			
+
 			// Check component index
 			if (c != 0)
 				throw new ArgumentException();
@@ -274,9 +273,9 @@ namespace CSJ2K.j2k.image.input
 				}
 				blk = intBlk;
 			}
-			
+
 			// Get data array
-			barr = (int[]) blk.Data;
+			var barr = (int[]) blk.Data;
 			if (barr == null || barr.Length < blk.w * blk.h)
 			{
 				barr = new int[blk.w * blk.h];
@@ -296,8 +295,8 @@ namespace CSJ2K.j2k.image.input
 				for (i = blk.uly; i < mi; i++)
 				{
 					// Reposition in input
-					in_Renamed.Seek(offset + i * w + blk.ulx, System.IO.SeekOrigin.Begin);
-					in_Renamed.Read(buf, 0, blk.w);
+					inRenamed.Seek(offset + i * w + blk.ulx, System.IO.SeekOrigin.Begin);
+					var read = inRenamed.Read(buf, 0, blk.w);
 					for (k = (i - blk.uly) * blk.w + blk.w - 1, j = blk.w - 1; j >= 0; j--, k--)
 					{
 						barr[k] = (buf[j] & 0xFF) - DC_OFFSET;
@@ -385,10 +384,10 @@ namespace CSJ2K.j2k.image.input
 		/// <exception cref="EOFException">If an EOF is read 
 		/// 
 		/// </exception>
-		private byte countedByteRead()
+		private byte CountedByteRead()
 		{
 			offset++;
-			return (byte) in_Renamed.ReadByte();
+			return (byte) inRenamed.ReadByte();
 		}
 		
 		/// <summary> Checks that the RandomAccessIO begins with 'P5'
@@ -399,7 +398,7 @@ namespace CSJ2K.j2k.image.input
 		/// <exception cref="EOFException">If an EOF is read
 		/// 
 		/// </exception>
-		private void  confirmFileType()
+		private void  ConfirmFileType()
 		{
 			var type = new byte[]{80, 53}; // 'P5'
 			int i;
@@ -407,7 +406,7 @@ namespace CSJ2K.j2k.image.input
 			
 			for (i = 0; i < 2; i++)
 			{
-				b = countedByteRead();
+				b = CountedByteRead();
 				if (b != type[i])
 				{
 					if (i == 1 && b == 50)
@@ -432,7 +431,7 @@ namespace CSJ2K.j2k.image.input
 		/// <exception cref="EOFException">if an EOF is read
 		/// 
 		/// </exception>
-		private void  skipCommentAndWhiteSpace()
+		private void  SkipCommentAndWhiteSpace()
 		{
 			
 			var done = false;
@@ -440,14 +439,14 @@ namespace CSJ2K.j2k.image.input
 			
 			while (!done)
 			{
-				b = countedByteRead();
+				b = CountedByteRead();
 				if (b == 35)
 				{
 					// Comment start
 					while (b != 10 && b != 13)
 					{
 						// Comment ends in end of line
-						b = countedByteRead();
+						b = CountedByteRead();
 					}
 				}
 				else if (!(b == 9 || b == 10 || b == 13 || b == 32))
@@ -458,7 +457,7 @@ namespace CSJ2K.j2k.image.input
 			}
 			// Put last valid byte in
 			offset--;
-			in_Renamed.Seek(offset, System.IO.SeekOrigin.Begin);
+			inRenamed.Seek(offset, System.IO.SeekOrigin.Begin);
 		}
 		
 		
@@ -473,17 +472,17 @@ namespace CSJ2K.j2k.image.input
 		/// <exception cref="EOFException">If an EOF is read 
 		/// 
 		/// </exception>
-		private int readHeaderInt()
+		private int ReadHeaderInt()
 		{
 			var res = 0;
 			byte b = 0;
 			
-			b = countedByteRead();
+			b = CountedByteRead();
 			while (b != 32 && b != 10 && b != 9 && b != 13)
 			{
 				// While not whitespace
 				res = res * 10 + b - 48; // Covert ASCII to numerical value
-				b = countedByteRead();
+				b = CountedByteRead();
 			}
 			return res;
 		}
@@ -518,7 +517,7 @@ namespace CSJ2K.j2k.image.input
 		public override string ToString()
 		{
 			//UPGRADE_TODO: The equivalent in .NET for method 'java.lang.Object.toString' may return a different value. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1043'"
-			return $"ImgReaderPGM: WxH = {w}x{h}, Component = 0\nUnderlying RandomAccessIO:\n{in_Renamed}";
+			return $"ImgReaderPGM: WxH = {w}x{h}, Component = 0\nUnderlying RandomAccessIO:\n{inRenamed}";
 		}
 	}
 }

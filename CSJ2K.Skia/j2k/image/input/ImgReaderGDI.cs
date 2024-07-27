@@ -1,6 +1,6 @@
 /*
 *
-* Class:                   ImgWriterGDI
+* Class:                   ImgReaderGDI
 *
 * Description:             Image writer for System.Drawing.GDI streams
 *

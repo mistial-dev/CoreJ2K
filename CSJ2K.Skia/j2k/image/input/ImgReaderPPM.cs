@@ -1,6 +1,6 @@
 /*
 *
-* Class:                   ImgWriterPPM
+* Class:                   ImgReaderPPM
 *
 * Description:             Image writer for unsigned 8 bit data in
 *                          PPM files.
@@ -40,9 +40,7 @@
 * */
 using System;
 using CSJ2K.Util;
-using CSJ2K.j2k.image;
-using CSJ2K.j2k.io;
-using CSJ2K.j2k;
+
 namespace CSJ2K.j2k.image.input
 {
 	
@@ -61,30 +59,29 @@ namespace CSJ2K.j2k.image.input
 	/// NOTE: This class is not thread safe, for reasons of internal buffering.
 	/// 
 	/// </summary>
-	/// <seealso cref="jj2000.j2k.image.ImgData">
+	/// <seealso cref="image.ImgData">
 	/// 
 	/// </seealso>
 	public class ImgReaderPPM:ImgReader
 	{
-		
 		/// <summary>DC offset value used when reading image </summary>
-		public static int DC_OFFSET = 128;
-		
+		private const int DC_OFFSET = 128;
+
 		/// <summary>Where to read the data from </summary>
 		//UPGRADE_TODO: Class 'java.io.RandomAccessFile' was converted to 'System.IO.FileStream' which has a different behavior. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1073_javaioRandomAccessFile'"
-		private System.IO.Stream in_Renamed;
+		private System.IO.Stream inRenamed;
 		
 		/// <summary>The offset of the raw pixel data in the PPM file </summary>
 		private int offset;
 		
 		/// <summary>The number of bits that determine the nominal dynamic range </summary>
-		private int rb;
+		private readonly int rb;
 		
 		/// <summary>Buffer for the 3 components of each pixel(in the current block) </summary>
-		private int[][] barr = new int[3][];
+		private readonly int[][] barr = new int[3][];
 		
 		/// <summary>Data block used only to store coordinates of the buffered blocks </summary>
-		private DataBlkInt dbi = new DataBlkInt();
+		private readonly DataBlkInt dbi = new DataBlkInt();
 		
 		/// <summary>The line buffer. </summary>
 		// This makes the class not thread safe (but it is not the only one making
@@ -119,7 +116,8 @@ namespace CSJ2K.j2k.image.input
 		/// <param name="IOException">If an error occurs while opening the file.
 		/// 
 		/// </param>
-		public ImgReaderPPM(string fname):this(SupportClass.RandomAccessFileSupport.CreateRandomAccessFile(fname, "r"))
+		public ImgReaderPPM(string fname)
+			: this(SupportClass.RandomAccessFileSupport.CreateRandomAccessFile(fname, "r"))
 		{
 		}
 		
@@ -127,7 +125,7 @@ namespace CSJ2K.j2k.image.input
 		/// object. The file header is read to acquire the image size.
 		/// 
 		/// </summary>
-		/// <param name="in">From where to read the data
+		/// <param name="inRenamed">From where to read the data
 		/// 
 		/// </param>
 		/// <exception cref="EOFException">if an EOF is read
@@ -136,18 +134,18 @@ namespace CSJ2K.j2k.image.input
 		/// 
 		/// </exception>
 		//UPGRADE_TODO: Class 'java.io.RandomAccessFile' was converted to 'System.IO.FileStream' which has a different behavior. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1073_javaioRandomAccessFile'"
-		public ImgReaderPPM(System.IO.Stream in_Renamed)
+		public ImgReaderPPM(System.IO.Stream inRenamed)
 		{
-			this.in_Renamed = in_Renamed;
+			this.inRenamed = inRenamed;
 			
-			confirmFileType();
-			skipCommentAndWhiteSpace();
-			w = readHeaderInt();
-			skipCommentAndWhiteSpace();
-			h = readHeaderInt();
-			skipCommentAndWhiteSpace();
+			ConfirmFileType();
+			SkipCommentAndWhiteSpace();
+			w = ReadHeaderInt();
+			SkipCommentAndWhiteSpace();
+			h = ReadHeaderInt();
+			SkipCommentAndWhiteSpace();
 			/*Read the highest pixel value from header (not used)*/
-			readHeaderInt();
+			ReadHeaderInt();
 			nc = 3;
 			rb = 8;
 		}
@@ -161,8 +159,8 @@ namespace CSJ2K.j2k.image.input
 		/// </exception>
 		public override void  Close()
 		{
-			in_Renamed.Dispose();
-			in_Renamed = null;
+			inRenamed.Dispose();
+			inRenamed = null;
 			// Free memory
 			barr[0] = null;
 			barr[1] = null;
@@ -176,19 +174,13 @@ namespace CSJ2K.j2k.image.input
 		/// was specified in the constructor, which normally is 8 for non bilevel
 		/// data, and 1 for bilevel data.
 		/// 
-		/// If this number is <i>b</b> then the nominal range is between
+		/// If this number is <i>b</i> then the nominal range is between
 		/// -2^(b-1) and 2^(b-1)-1, since unsigned data is level shifted to have a
-		/// nominal avergae of 0.
-		/// 
-		/// </summary>
-		/// <param name="c">The index of the component.
-		/// 
-		/// </param>
+		/// nominal avergae of 0.</summary>
+		/// <param name="c">The index of the component.</param>
 		/// <returns> The number of bits corresponding to the nominal range of the
 		/// data. For floating-point data this value is not applicable and the
-		/// return value is undefined.
-		/// 
-		/// </returns>
+		/// return value is undefined.</returns>
 		public override int getNomRangeBits(int c)
 		{
 			// Check component index
@@ -200,16 +192,10 @@ namespace CSJ2K.j2k.image.input
 		
 		/// <summary> Returns the position of the fixed point in the specified component
 		/// (i.e. the number of fractional bits), which is always 0 for this
-		/// ImgReader.
-		/// 
-		/// </summary>
-		/// <param name="c">The index of the component.
-		/// 
-		/// </param>
+		/// ImgReader.</summary>
+		/// <param name="c">The index of the component.</param>
 		/// <returns> The position of the fixed-point (i.e. the number of fractional
-		/// bits). Always 0 for this ImgReader.
-		/// 
-		/// </returns>
+		/// bits). Always 0 for this ImgReader.</returns>
 		public override int GetFixedPoint(int c)
 		{
 			// Check component index
@@ -220,7 +206,7 @@ namespace CSJ2K.j2k.image.input
 		
 		
 		/// <summary> Returns, in the blk argument, the block of image data containing the
-		/// specifed rectangular area, in the specified component. The data is
+		/// specified rectangular area, in the specified component. The data is
 		/// returned, as a reference to the internal data, if any, instead of as a
 		/// copy, therefore the returned data should not be modified.
 		/// 
@@ -250,26 +236,14 @@ namespace CSJ2K.j2k.image.input
 		/// 
 		/// This method implements buffering for the 3 components: When the
 		/// first one is asked, all the 3 components are read and stored until they
-		/// are needed.
-		/// 
-		/// </summary>
+		/// are needed.</summary>
 		/// <param name="blk">Its coordinates and dimensions specify the area to
-		/// return. Some fields in this object are modified to return the data.
-		/// 
-		/// </param>
+		/// return. Some fields in this object are modified to return the data.</param>
 		/// <param name="c">The index of the component from which to get the data. Only 0,
-		/// 1 and 3 are valid.
-		/// 
-		/// </param>
-		/// <returns> The requested DataBlk
-		/// 
-		/// </returns>
-		/// <seealso cref="GetCompData">
-		/// 
-		/// </seealso>
-		/// <seealso cref="JJ2KExceptionHandler">
-		/// 
-		/// </seealso>
+		/// 1 and 3 are valid.</param>
+		/// <returns> The requested DataBlk</returns>
+		/// <seealso cref="GetCompData" />
+		/// <seealso cref="JJ2KExceptionHandler" />
 		public override DataBlk GetInternCompData(DataBlk blk, int c)
 		{
 			// Check component index
@@ -296,8 +270,7 @@ namespace CSJ2K.j2k.image.input
 			if ((barr[c] == null) || (dbi.ulx > blk.ulx) || (dbi.uly > blk.uly) || (dbi.ulx + dbi.w < blk.ulx + blk.w) || (dbi.uly + dbi.h < blk.uly + blk.h))
 			{
 				int k, j, i, mi;
-				int[] red, green, blue;
-				
+
 				// Reset data arrays if needed
 				if (barr[c] == null || barr[c].Length < blk.w * blk.h)
 				{
@@ -328,9 +301,9 @@ namespace CSJ2K.j2k.image.input
 					buf = new byte[3 * blk.w];
 				}
 				
-				red = barr[0];
-				green = barr[1];
-				blue = barr[2];
+				var red = barr[0];
+				var green = barr[1];
+				var blue = barr[2];
 				
 				try
 				{
@@ -340,9 +313,9 @@ namespace CSJ2K.j2k.image.input
 					{
 						// Reposition in input offset takes care of
 						// header offset
-						in_Renamed.Seek(offset + i * 3 * w + 3 * blk.ulx, System.IO.SeekOrigin.Begin);
-						in_Renamed.Read(buf, 0, 3 * blk.w);
-						
+						inRenamed.Seek(offset + i * 3 * w + 3 * blk.ulx, System.IO.SeekOrigin.Begin);
+						var read = inRenamed.Read(buf, 0, 3 * blk.w);
+
 						for (k = (i - blk.uly) * blk.w + blk.w - 1, j = 3 * blk.w - 1; j >= 0; k--)
 						{
 							// Read every third sample
@@ -403,28 +376,16 @@ namespace CSJ2K.j2k.image.input
 		/// When an I/O exception is encountered the JJ2KExceptionHandler is
 		/// used. The exception is passed to its handleException method. The action
 		/// that is taken depends on the action that has been registered in
-		/// JJ2KExceptionHandler. See JJ2KExceptionHandler for details.
-		/// 
-		/// </summary>
+		/// JJ2KExceptionHandler. See JJ2KExceptionHandler for details.</summary>
 		/// <param name="blk">Its coordinates and dimensions specify the area to
 		/// return. If it contains a non-null data array, then it must have the
 		/// correct dimensions. If it contains a null data array a new one is
-		/// created. The fields in this object are modified to return the data.
-		/// 
-		/// </param>
+		/// created. The fields in this object are modified to return the data.</param>
 		/// <param name="c">The index of the component from which to get the data. Only
-		/// 0,1 and 2 are valid.
-		/// 
-		/// </param>
-		/// <returns> The requested DataBlk
-		/// 
-		/// </returns>
-		/// <seealso cref="GetInternCompData">
-		/// 
-		/// </seealso>
-		/// <seealso cref="JJ2KExceptionHandler">
-		/// 
-		/// </seealso>
+		/// 0,1 and 2 are valid.</param>
+		/// <returns> The requested DataBlk</returns>
+		/// <seealso cref="GetInternCompData" />
+		/// <seealso cref="JJ2KExceptionHandler" />
 		public override DataBlk GetCompData(DataBlk blk, int c)
 		{
 			// NOTE: can not directly call getInterCompData since that returns
@@ -482,16 +443,16 @@ namespace CSJ2K.j2k.image.input
 		/// <returns> One byte read from the header of the PPM file.  
 		/// 
 		/// </returns>
-		private byte countedByteRead()
+		private byte CountedByteRead()
 		{
 			offset++;
-			return (byte) in_Renamed.ReadByte();
+			return (byte) inRenamed.ReadByte();
 		}
 		
 		/// <summary> Checks that the file begins with 'P6' 
 		/// 
 		/// </summary>
-		private void  confirmFileType()
+		private void  ConfirmFileType()
 		{
 			var type = new byte[]{80, 54};
 			int i;
@@ -499,7 +460,7 @@ namespace CSJ2K.j2k.image.input
 			
 			for (i = 0; i < 2; i++)
 			{
-				b = countedByteRead();
+				b = CountedByteRead();
 				if (b != type[i])
 				{
 					if (i == 1 && b == 51)
@@ -519,22 +480,21 @@ namespace CSJ2K.j2k.image.input
 		/// feed or carriage return.
 		/// 
 		/// </summary>
-		private void  skipCommentAndWhiteSpace()
+		private void  SkipCommentAndWhiteSpace()
 		{
 			
 			var done = false;
-			byte b;
-			
+
 			while (!done)
 			{
-				b = countedByteRead();
+				var b = CountedByteRead();
 				if (b == 35)
 				{
 					// Comment start
 					while (b != 10 && b != 13)
 					{
 						// While not comment end (end-of-line)
-						b = countedByteRead();
+						b = CountedByteRead();
 					}
 				}
 				else if (!(b == 9 || b == 10 || b == 13 || b == 32))
@@ -545,7 +505,7 @@ namespace CSJ2K.j2k.image.input
 			}
 			// Put back last valid byte
 			offset--;
-			in_Renamed.Seek(offset, System.IO.SeekOrigin.Begin);
+			inRenamed.Seek(offset, System.IO.SeekOrigin.Begin);
 		}
 		
 		/// <summary> Returns an int read from the header of the PPM file.
@@ -554,32 +514,26 @@ namespace CSJ2K.j2k.image.input
 		/// <returns> One int read from the header of the PPM file.  
 		/// 
 		/// </returns>
-		private int readHeaderInt()
+		private int ReadHeaderInt()
 		{
 			var res = 0;
 			byte b = 0;
 			
-			b = countedByteRead();
+			b = CountedByteRead();
 			while (b != 32 && b != 10 && b != 9 && b != 13)
 			{
 				// While not whitespace
 				res = res * 10 + b - 48; // Convert from ASCII to decimal
-				b = countedByteRead();
+				b = CountedByteRead();
 			}
 			return res;
 		}
 		
 		/// <summary> Returns true if the data read was originally signed in the specified
 		/// component, false if not. This method always returns false since PPM
-		/// data is always unsigned.
-		/// 
-		/// </summary>
-		/// <param name="c">The index of the component, from 0 to N-1.
-		/// 
-		/// </param>
-		/// <returns> always false, since PPM data is always unsigned.
-		/// 
-		/// </returns>
+		/// data is always unsigned.</summary>
+		/// <param name="c">The index of the component, from 0 to N-1.</param>
+		/// <returns> always false, since PPM data is always unsigned.</returns>
 		public override bool IsOrigSigned(int c)
 		{
 			// Check component index
@@ -590,16 +544,12 @@ namespace CSJ2K.j2k.image.input
 		
 		/// <summary> Returns a string of information about the object, more than 1 line
 		/// long. The information string includes information from the underlying
-		/// RandomAccessFile (its toString() method is called in turn).
-		/// 
-		/// </summary>
-		/// <returns> A string of information about the object.  
-		/// 
-		/// </returns>
+		/// RandomAccessFile (its toString() method is called in turn).</summary>
+		/// <returns> A string of information about the object.</returns>
 		public override string ToString()
 		{
 			//UPGRADE_TODO: The equivalent in .NET for method 'java.lang.Object.toString' may return a different value. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1043'"
-			return $"ImgReaderPPM: WxH = {w}x{h}, Component = 0,1,2\nUnderlying RandomAccessFile:\n{in_Renamed}";
+			return $"ImgReaderPPM: WxH = {w}x{h}, Component = 0,1,2\nUnderlying RandomAccessFile:\n{inRenamed}";
 		}
 	}
 }
