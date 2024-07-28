@@ -194,16 +194,16 @@ namespace CSJ2K.j2k.image.forwcomptransf
 		/// bits is not modified by the component mixer.</p>
 		/// 
 		/// </summary>
-		/// <param name="c">The index of the component.
+		/// <param name="compIndex">The index of the component.
 		/// 
 		/// </param>
 		/// <returns> The value of the fixed point position of the source since the
 		/// color transform does not affect it.
 		/// 
 		/// </returns>
-		public virtual int GetFixedPoint(int c)
+		public virtual int GetFixedPoint(int compIndex)
 		{
-			return src.GetFixedPoint(c);
+			return src.GetFixedPoint(compIndex);
 		}
 		
 		/// <summary> Calculates the bitdepths of the transformed components, given the
@@ -374,23 +374,23 @@ namespace CSJ2K.j2k.image.forwcomptransf
 		/// affected by the multiple component transform.
 		/// 
 		/// </summary>
-		/// <param name="c">The index of the component.
+		/// <param name="compIndex">The index of the component.
 		/// 
 		/// </param>
 		/// <returns> The bitdepth of component 'c' after mixing.
 		/// 
 		/// </returns>
-		public override int getNomRangeBits(int c)
+		public override int getNomRangeBits(int compIndex)
 		{
 			switch (transfType)
 			{
 				
 				case FORW_RCT: 
 				case FORW_ICT: 
-					return tdepth[c];
+					return tdepth[compIndex];
 				
 				case NONE: 
-					return src.getNomRangeBits(c);
+					return src.getNomRangeBits(compIndex);
 				
 				default: 
 					throw new ArgumentException("Non JPEG 2000 part I" + " component transformation");
@@ -451,13 +451,13 @@ namespace CSJ2K.j2k.image.forwcomptransf
 	    /// component, false if not.
 	    /// 
 	    /// </summary>
-	    /// <param name="c">The index of the component, from 0 to C-1.
+	    /// <param name="compIndex">The index of the component, from 0 to C-1.
 	    /// 
 	    /// </param>
 	    /// <returns> true if the data was originally signed, false if not.
 	    /// 
 	    /// </returns>
-	    public bool IsOrigSigned(int c)
+	    public bool IsOrigSigned(int compIndex)
 	    {
 	        return false;
 	    }
@@ -476,25 +476,25 @@ namespace CSJ2K.j2k.image.forwcomptransf
 		/// <param name="blk">Determines the rectangular area to return.
 		/// 
 		/// </param>
-		/// <param name="c">Index of the output component.
+		/// <param name="compIndex">Index of the output component.
 		/// 
 		/// </param>
 		/// <returns> The requested DataBlk
 		/// 
 		/// </returns>
-		public virtual DataBlk GetInternCompData(DataBlk blk, int c)
+		public virtual DataBlk GetInternCompData(DataBlk blk, int compIndex)
 		{
 			switch (transfType)
 			{
 				
 				case NONE: 
-					return src.GetInternCompData(blk, c);
+					return src.GetInternCompData(blk, compIndex);
 				
 				case FORW_RCT: 
-					return forwRCT(blk, c);
+					return forwRCT(blk, compIndex);
 				
 				case FORW_ICT: 
-					return forwICT(blk, c);
+					return forwICT(blk, compIndex);
 				
 				default: 
 					throw new ArgumentException($"Non JPEG 2000 part 1 component transformation for tile: {tIdx}");

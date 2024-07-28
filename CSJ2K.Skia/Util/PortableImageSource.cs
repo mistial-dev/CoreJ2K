@@ -102,7 +102,7 @@ namespace CSJ2K.Util
             return TileHeight;
         }
 
-        public int getNomRangeBits(int c)
+        public int getNomRangeBits(int compIndex)
         {
             return rb;
         }
@@ -159,16 +159,16 @@ namespace CSJ2K.Util
             return 1;
         }
 
-        public int GetFixedPoint(int c)
+        public int GetFixedPoint(int compIndex)
         {
             return 0;
         }
 
-        public DataBlk GetInternCompData(DataBlk blk, int c)
+        public DataBlk GetInternCompData(DataBlk blk, int compIndex)
         {
-            if (c < 0 || c >= NumComps)
+            if (compIndex < 0 || compIndex >= NumComps)
             {
-                throw new ArgumentOutOfRangeException(nameof(c));
+                throw new ArgumentOutOfRangeException(nameof(compIndex));
             }
 
             var data = new int[blk.w * blk.h];
@@ -176,7 +176,7 @@ namespace CSJ2K.Util
             {
                 for (int x = blk.ulx, xy = blk.uly * TileWidth + blk.ulx; x < blk.ulx + blk.w; ++x, ++k, ++xy)
                 {
-                    data[k] = comps[c][xy];
+                    data[k] = comps[compIndex][xy];
                 }
             }
 
@@ -199,14 +199,14 @@ namespace CSJ2K.Util
             // Do nothing.
         }
 
-        public bool IsOrigSigned(int c)
+        public bool IsOrigSigned(int compIndex)
         {
-            if (c < 0 || c >= NumComps)
+            if (compIndex < 0 || compIndex >= NumComps)
             {
-                throw new ArgumentOutOfRangeException(nameof(c));
+                throw new ArgumentOutOfRangeException(nameof(compIndex));
             }
 
-            return sgnd[c];
+            return sgnd[compIndex];
         }
 
         #endregion

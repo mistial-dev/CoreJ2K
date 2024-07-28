@@ -70,7 +70,7 @@ namespace CSJ2K.j2k.image.input
         /// nominal average of 0.
         /// 
         /// </summary>
-        /// <param name="c">The index of the component.
+        /// <param name="compIndex">The index of the component.
         /// 
         /// </param>
         /// <returns> The number of bits corresponding to the nominal range of the
@@ -78,11 +78,11 @@ namespace CSJ2K.j2k.image.input
         /// return value is undefined.
         /// 
         /// </returns>
-        public override int getNomRangeBits(int c)
+        public override int getNomRangeBits(int compIndex)
         {
             // Check component index
-            if (c < 0 || c > 2)
-                throw new System.ArgumentException();
+            if (compIndex < 0 || compIndex > 2)
+                throw new ArgumentOutOfRangeException(nameof(compIndex) + " is out of range");
 
             return rb;
         }
@@ -92,18 +92,18 @@ namespace CSJ2K.j2k.image.input
         /// ImgReader.
         /// 
         /// </summary>
-        /// <param name="c">The index of the component.
+        /// <param name="compIndex">The index of the component.
         /// 
         /// </param>
         /// <returns> The position of the fixed-point (i.e. the number of fractional
         /// bits). Always 0 for this ImgReader.
         /// 
         /// </returns>
-        public override int GetFixedPoint(int c)
+        public override int GetFixedPoint(int compIndex)
         {
             // Check component index
-            if (c < 0 || c > 2)
-                throw new System.ArgumentException();
+            if (compIndex < 0 || compIndex > 2)
+                throw new ArgumentOutOfRangeException(nameof(compIndex) + " is out of range");
             return 0;
         }
 
@@ -145,7 +145,7 @@ namespace CSJ2K.j2k.image.input
         /// return. Some fields in this object are modified to return the data.
         /// 
         /// </param>
-        /// <param name="c">The index of the component from which to get the data. Only 0,
+        /// <param name="compIndex">The index of the component from which to get the data. Only 0,
         /// 1 and 3 are valid.
         /// 
         /// </param>
@@ -158,11 +158,11 @@ namespace CSJ2K.j2k.image.input
         /// <seealso cref="JJ2KExceptionHandler">
         /// 
         /// </seealso>
-        public override DataBlk GetInternCompData(DataBlk blk, int c)
+        public override DataBlk GetInternCompData(DataBlk blk, int compIndex)
         {
             // Check component index
-            if (c < 0 || c > 2)
-                throw new System.ArgumentException();
+            if (compIndex < 0 || compIndex > 2)
+                throw new ArgumentOutOfRangeException(nameof(compIndex) + " is out of range");
 
             // Check type of block provided as an argument
             if (blk.DataType != DataBlk.TYPE_INT)
@@ -182,23 +182,23 @@ namespace CSJ2K.j2k.image.input
             // If asking a component for the first time for this block, read all of the components
             if ((barr == null) || (dbi.ulx > blk.ulx) || (dbi.uly > blk.uly) || (dbi.ulx + dbi.w < blk.ulx + blk.w) || (dbi.uly + dbi.h < blk.uly + blk.h))
             {
-                int componentCount = (image.PixelFormat == PixelFormat.Format32bppArgb) ? 4 : 3;
+                var componentCount = (image.PixelFormat == PixelFormat.Format32bppArgb) ? 4 : 3;
 
                 barr = new int[componentCount][];
 
                 // Reset data arrays if needed
-                if (barr[c] == null || barr[c].Length < blk.w * blk.h)
+                if (barr[compIndex] == null || barr[compIndex].Length < blk.w * blk.h)
                 {
-                    barr[c] = new int[blk.w * blk.h];
+                    barr[compIndex] = new int[blk.w * blk.h];
                 }
-                blk.Data = barr[c];
+                blk.Data = barr[compIndex];
 
-                var i = (c + 1) % 3;
+                var i = (compIndex + 1) % 3;
                 if (barr[i] == null || barr[i].Length < blk.w * blk.h)
                 {
                     barr[i] = new int[blk.w * blk.h];
                 }
-                i = (c + 2) % 3;
+                i = (compIndex + 2) % 3;
                 if (barr[i] == null || barr[i].Length < blk.w * blk.h)
                 {
                     barr[i] = new int[blk.w * blk.h];
@@ -221,21 +221,21 @@ namespace CSJ2K.j2k.image.input
                 var blue = barr[2];
                 var alpha = (componentCount == 4) ? barr[3] : null;
 
-                Bitmap bitmap = (Bitmap)image;
-                BitmapData data = bitmap.LockBits(new Rectangle(blk.ulx, blk.uly, blk.w, blk.h), ImageLockMode.ReadOnly,
+                var bitmap = (Bitmap)image;
+                var data = bitmap.LockBits(new Rectangle(blk.ulx, blk.uly, blk.w, blk.h), ImageLockMode.ReadOnly,
                     (componentCount == 3) ? PixelFormat.Format24bppRgb : PixelFormat.Format32bppArgb);
                 unsafe
                 {
-                    byte* ptr = (byte*)data.Scan0.ToPointer();
+                    var ptr = (byte*)data.Scan0.ToPointer();
                     
-                    int k = 0;
-                    for (int j = 0; j < blk.w * blk.h; j++)
+                    var k = 0;
+                    for (var j = 0; j < blk.w * blk.h; j++)
                     {
-                        blue[k] = ((byte)*(ptr + 0) & 0xFF) - 128;
-                        green[k] = ((byte)*(ptr + 1) & 0xFF) - 128;
-                        red[k] = ((byte)*(ptr + 2) & 0xFF) - 128;
+                        blue[k] = (*(ptr + 0) & 0xFF) - 128;
+                        green[k] = (*(ptr + 1) & 0xFF) - 128;
+                        red[k] = (*(ptr + 2) & 0xFF) - 128;
                         if (componentCount == 4)
-                            alpha[k] = ((byte)*(ptr + 3) & 0xFF) - 128;
+                            alpha[k] = (*(ptr + 3) & 0xFF) - 128;
 
                         ++k;
                         ptr += 3;
@@ -250,14 +250,14 @@ namespace CSJ2K.j2k.image.input
                     barr[3] = alpha;
 
                 // Set buffer attributes
-                blk.Data = barr[c];
+                blk.Data = barr[compIndex];
                 blk.offset = 0;
                 blk.scanw = blk.w;
             }
             else
             {
                 //Asking for the 2nd or 3rd (or 4th) block component
-                blk.Data = barr[c];
+                blk.Data = barr[compIndex];
                 blk.offset = (blk.ulx - dbi.ulx) * dbi.w + blk.ulx - dbi.ulx;
                 blk.scanw = dbi.scanw;
             }
@@ -319,11 +319,11 @@ namespace CSJ2K.j2k.image.input
             // Check type of block provided as an argument
             if (blk.DataType != DataBlk.TYPE_INT)
             {
-                DataBlkInt tmp = new DataBlkInt(blk.ulx, blk.uly, blk.w, blk.h);
+                var tmp = new DataBlkInt(blk.ulx, blk.uly, blk.w, blk.h);
                 blk = tmp;
             }
 
-            int[] bakarr = (int[])blk.Data;
+            var bakarr = (int[])blk.Data;
             // Save requested block size
             var ulx = blk.ulx;
             var uly = blk.uly;
@@ -341,16 +341,16 @@ namespace CSJ2K.j2k.image.input
             {
                 // Requested and returned block buffer are the same size
                 // CONVERSION PROBLEM?
-                Array.Copy((System.Array)blk.Data, 0, (System.Array)bakarr, 0, w * h);
+                Array.Copy((Array)blk.Data, 0, bakarr, 0, w * h);
             }
             else
             {
                 // Requested and returned block are different
-                for (int i = h - 1; i >= 0; i--)
+                for (var i = h - 1; i >= 0; i--)
                 {
                     // copy line by line
                     // CONVERSION PROBLEM?
-                    Array.Copy((System.Array)blk.Data, blk.offset + i * blk.scanw, (System.Array)bakarr, i * w, w);
+                    Array.Copy((Array)blk.Data, blk.offset + i * blk.scanw, bakarr, i * w, w);
                 }
             }
             blk.Data = bakarr;
@@ -364,17 +364,17 @@ namespace CSJ2K.j2k.image.input
         /// data is always unsigned.
         /// 
         /// </summary>
-        /// <param name="c">The index of the component, from 0 to N-1.
+        /// <param name="compIndex">The index of the component, from 0 to N-1.
         /// 
         /// </param>
         /// <returns> always false, since PPM data is always unsigned.
         /// 
         /// </returns>
-        public override bool IsOrigSigned(int c)
+        public override bool IsOrigSigned(int compIndex)
         {
             // Check component index
-            if (c < 0 || c > 2)
-                throw new System.ArgumentException();
+            if (compIndex < 0 || compIndex > 2)
+                throw new ArgumentOutOfRangeException(nameof(compIndex) + " is out of range");
             return false;
         }
 

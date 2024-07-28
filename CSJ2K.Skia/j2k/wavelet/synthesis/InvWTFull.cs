@@ -195,16 +195,16 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// 2^(b-1)-1.</p>
 		/// 
 		/// </summary>
-		/// <param name="c">The index of the component.
+		/// <param name="compIndex">The index of the component.
 		/// 
 		/// </param>
 		/// <returns> The number of bits corresponding to the nominal range of the
 		/// data.
 		/// 
 		/// </returns>
-		public override int getNomRangeBits(int c)
+		public override int getNomRangeBits(int compIndex)
 		{
-			return src.getNomRangeBits(c);
+			return src.getNomRangeBits(compIndex);
 		}
 		
 		/// <summary> Returns the position of the fixed point in the specified
@@ -220,16 +220,16 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// overriden.</p>
 		/// 
 		/// </summary>
-		/// <param name="c">The index of the component.
+		/// <param name="compIndex">The index of the component.
 		/// 
 		/// </param>
 		/// <returns> The position of the fixed-point, which is the same as the
 		/// number of fractional bits. For floating-point data 0 is returned.
 		/// 
 		/// </returns>
-		public override int GetFixedPoint(int c)
+		public override int GetFixedPoint(int compIndex)
 		{
-			return src.getFixedPoint(c);
+			return src.getFixedPoint(compIndex);
 		}
 		
 		/// <summary> Returns a block of image data containing the specifed rectangular area,
@@ -253,7 +253,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// <param name="blk">Its coordinates and dimensions specify the area to return.
 		/// 
 		/// </param>
-		/// <param name="c">The index of the component from which to get the data.
+		/// <param name="compIndex">The index of the component from which to get the data.
 		/// 
 		/// </param>
 		/// <returns> The requested DataBlk
@@ -262,30 +262,30 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// <seealso cref="GetInternCompData">
 		/// 
 		/// </seealso>
-		public override DataBlk GetInternCompData(DataBlk blk, int c)
+		public override DataBlk GetInternCompData(DataBlk blk, int compIndex)
 		{
 			var tIdx = TileIdx;
-			dtype = src.getSynSubbandTree(tIdx, c).HorWFilter == null 
+			dtype = src.getSynSubbandTree(tIdx, compIndex).HorWFilter == null 
 				? DataBlk.TYPE_INT 
-				: src.getSynSubbandTree(tIdx, c).HorWFilter.DataType;
+				: src.getSynSubbandTree(tIdx, compIndex).HorWFilter.DataType;
 			
 			//If the source image has not been decomposed 
-			if (reconstructedComps[c] == null)
+			if (reconstructedComps[compIndex] == null)
 			{
 				//Allocate component data buffer
 				switch (dtype)
 				{
 					
 					case DataBlk.TYPE_FLOAT: 
-						reconstructedComps[c] = new DataBlkFloat(0, 0, getTileCompWidth(tIdx, c), getTileCompHeight(tIdx, c));
+						reconstructedComps[compIndex] = new DataBlkFloat(0, 0, getTileCompWidth(tIdx, compIndex), getTileCompHeight(tIdx, compIndex));
 						break;
 					
 					case DataBlk.TYPE_INT: 
-						reconstructedComps[c] = new DataBlkInt(0, 0, getTileCompWidth(tIdx, c), getTileCompHeight(tIdx, c));
+						reconstructedComps[compIndex] = new DataBlkInt(0, 0, getTileCompWidth(tIdx, compIndex), getTileCompHeight(tIdx, compIndex));
 						break;
 					}
 				//Reconstruct source image
-				waveletTreeReconstruction(reconstructedComps[c], src.getSynSubbandTree(tIdx, c), c);
+				waveletTreeReconstruction(reconstructedComps[compIndex], src.getSynSubbandTree(tIdx, compIndex), compIndex);
 			}
 			
 			if (blk.DataType != dtype)
@@ -300,9 +300,9 @@ namespace CSJ2K.j2k.wavelet.synthesis
 				}
 			}
 			// Set the reference to the internal buffer
-			blk.Data = reconstructedComps[c].Data;
-			blk.offset = reconstructedComps[c].w * blk.uly + blk.ulx;
-			blk.scanw = reconstructedComps[c].w;
+			blk.Data = reconstructedComps[compIndex].Data;
+			blk.offset = reconstructedComps[compIndex].w * blk.uly + blk.ulx;
+			blk.scanw = reconstructedComps[compIndex].w;
 			blk.progressive = false;
 			return blk;
 		}

@@ -359,16 +359,16 @@ namespace CSJ2K.j2k.image
         /// significant bit in the data.
         /// 
         /// </summary>
-        /// <param name="c">The index of the component.
+        /// <param name="compIndex">The index of the component.
         /// 
         /// </param>
         /// <returns> The position of the fixed-point, which is the same as the
         /// number of fractional bits. For floating-point data 0 is returned.
         /// 
         /// </returns>
-        public virtual int GetFixedPoint(int c)
+        public virtual int GetFixedPoint(int compIndex)
         {
-            return src.GetFixedPoint(c);
+            return src.GetFixedPoint(compIndex);
         }
 
         /// <summary> Returns, in the blk argument, a block of image data containing the
@@ -405,7 +405,7 @@ namespace CSJ2K.j2k.image
         /// to return the data.
         /// 
         /// </param>
-        /// <param name="c">The index of the component from which to get the data.
+        /// <param name="compIndex">The index of the component from which to get the data.
         /// 
         /// </param>
         /// <returns> The requested DataBlk
@@ -414,21 +414,21 @@ namespace CSJ2K.j2k.image
         /// <seealso cref="GetCompData">
         /// 
         /// </seealso>
-        public DataBlk GetInternCompData(DataBlk blk, int c)
+        public DataBlk GetInternCompData(DataBlk blk, int compIndex)
         {
             // Check that block is inside tile
-            if (blk.ulx < 0 || blk.uly < 0 || blk.w > compW[c] || blk.h > compH[c])
+            if (blk.ulx < 0 || blk.uly < 0 || blk.w > compW[compIndex] || blk.h > compH[compIndex])
             {
                 throw new ArgumentException("Block is outside the tile");
             }
             // Translate to the sources coordinates
             //UPGRADE_WARNING: Data types in Visual C# might be different.  Verify the accuracy of narrowing conversions. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1042'"
-            var incx = (int)Math.Ceiling(x0siz / (double)src.getCompSubsX(c));
+            var incx = (int)Math.Ceiling(x0siz / (double)src.getCompSubsX(compIndex));
             //UPGRADE_WARNING: Data types in Visual C# might be different.  Verify the accuracy of narrowing conversions. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1042'"
-            var incy = (int)Math.Ceiling(y0siz / (double)src.getCompSubsY(c));
+            var incy = (int)Math.Ceiling(y0siz / (double)src.getCompSubsY(compIndex));
             blk.ulx -= incx;
             blk.uly -= incy;
-            blk = src.GetInternCompData(blk, c);
+            blk = src.GetInternCompData(blk, compIndex);
             // Translate back to the tiled coordinates
             blk.ulx += incx;
             blk.uly += incy;
@@ -513,13 +513,13 @@ namespace CSJ2K.j2k.image
         /// component, false if not.
         /// 
         /// </summary>
-        /// <param name="c">The index of the component, from 0 to C-1.
+        /// <param name="compIndex">The index of the component, from 0 to C-1.
         /// 
         /// </param>
         /// <returns> true if the data was originally signed, false if not.
         /// 
         /// </returns>
-        public bool IsOrigSigned(int c)
+        public bool IsOrigSigned(int compIndex)
         {
             return false;
         }

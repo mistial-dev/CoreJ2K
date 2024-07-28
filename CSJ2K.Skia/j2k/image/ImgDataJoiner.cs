@@ -389,7 +389,7 @@ namespace CSJ2K.j2k.image
         /// applicable.
         /// 
         /// </summary>
-        /// <param name="c">The index of the component.
+        /// <param name="compIndex">The index of the component.
         /// 
         /// </param>
         /// <returns> The number of bits corresponding to the nominal range of the
@@ -397,9 +397,9 @@ namespace CSJ2K.j2k.image
         /// return value is undefined.
         /// 
         /// </returns>
-        public virtual int getNomRangeBits(int c)
+        public virtual int getNomRangeBits(int compIndex)
         {
-            return imageData[c].getNomRangeBits(compIdx[c]);
+            return imageData[compIndex].getNomRangeBits(compIdx[compIndex]);
         }
         
         /// <summary> Returns the position of the fixed point in the specified
@@ -411,16 +411,16 @@ namespace CSJ2K.j2k.image
         /// significant bit in the data.
         /// 
         /// </summary>
-        /// <param name="c">The index of the component.
+        /// <param name="compIndex">The index of the component.
         /// 
         /// </param>
         /// <returns> The position of the fixed-point, which is the same as the
         /// number of fractional bits. For floating-point data 0 is returned.
         /// 
         /// </returns>
-        public virtual int GetFixedPoint(int c)
+        public virtual int GetFixedPoint(int compIndex)
         {
-            return imageData[c].GetFixedPoint(compIdx[c]);
+            return imageData[compIndex].GetFixedPoint(compIdx[compIndex]);
         }
         
         /// <summary> Returns, in the blk argument, a block of image data containing the
@@ -455,7 +455,7 @@ namespace CSJ2K.j2k.image
         /// to return the data.
         /// 
         /// </param>
-        /// <param name="c">The index of the component from which to get the data.
+        /// <param name="compIndex">The index of the component from which to get the data.
         /// 
         /// </param>
         /// <returns> The requested DataBlk
@@ -464,9 +464,9 @@ namespace CSJ2K.j2k.image
         /// <seealso cref="GetCompData">
         /// 
         /// </seealso>
-        public virtual DataBlk GetInternCompData(DataBlk blk, int c)
+        public virtual DataBlk GetInternCompData(DataBlk blk, int compIndex)
         {
-            return imageData[c].GetInternCompData(blk, compIdx[c]);
+            return imageData[compIndex].GetInternCompData(blk, compIdx[compIndex]);
         }
         
         /// <summary> Returns, in the blk argument, a block of image data containing the
@@ -533,13 +533,13 @@ namespace CSJ2K.j2k.image
         /// component, false if not.
         /// 
         /// </summary>
-        /// <param name="c">The index of the component, from 0 to C-1.
+        /// <param name="compIndex">The index of the component, from 0 to C-1.
         /// 
         /// </param>
         /// <returns> true if the data was originally signed, false if not.
         /// 
         /// </returns>
-        public bool IsOrigSigned(int c)
+        public bool IsOrigSigned(int compIndex)
         {
             return false;
         }

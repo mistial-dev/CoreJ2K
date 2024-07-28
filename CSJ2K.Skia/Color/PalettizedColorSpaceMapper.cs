@@ -291,7 +291,7 @@ namespace CSJ2K.Color
 		/// to return the data.
 		/// 
 		/// </param>
-		/// <param name="c">The index of the component from which to get the data.
+		/// <param name="compIndex">The index of the component from which to get the data.
 		/// 
 		/// </param>
 		/// <returns> The requested DataBlk
@@ -299,9 +299,9 @@ namespace CSJ2K.Color
 		/// </returns>
 		/// <seealso cref="GetCompData">
 		/// </seealso>
-		public override DataBlk GetInternCompData(DataBlk out_Renamed, int c)
+		public override DataBlk GetInternCompData(DataBlk out_Renamed, int compIndex)
 		{
-			return GetCompData(out_Renamed, c);
+			return GetCompData(out_Renamed, compIndex);
 		}
 		
 		/// <summary> Returns the number of bits, referred to as the "range bits",
@@ -313,15 +313,15 @@ namespace CSJ2K.Color
 		/// "range bits" of the image data that generated the coefficients.
 		/// 
 		/// </summary>
-		/// <param name="c">The index of the component.
+		/// <param name="compIndex">The index of the component.
 		/// 
 		/// </param>
 		/// <returns> The number of bits corresponding to the nominal range of the
 		/// image data (in the image domain).
 		/// </returns>
-		public override int getNomRangeBits(int c)
+		public override int getNomRangeBits(int compIndex)
 		{
-			return pbox == null?src.getNomRangeBits(c):pbox.getBitDepth(c);
+			return pbox == null?src.getNomRangeBits(compIndex):pbox.getBitDepth(compIndex);
 		}
 		
 		

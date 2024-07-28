@@ -526,7 +526,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 			return mressrc.getSynSubbandTree(t, c);
 		}
 		public abstract bool isReversible(int param1, int param2);
-		public abstract int getNomRangeBits(int param1);
+		public abstract int getNomRangeBits(int compIndex);
 		public abstract int getImplementationType(int param1);
 	}
 }

@@ -127,7 +127,7 @@ namespace CSJ2K.Color
 		/// created. The fields in this object are modified to return the data.
 		/// 
 		/// </param>
-		/// <param name="c">The index of the component from which to get the data. Only 0
+		/// <param name="compIndex">The index of the component from which to get the data. Only 0
 		/// and 3 are valid.
 		/// 
 		/// </param>
@@ -136,17 +136,17 @@ namespace CSJ2K.Color
 		/// </returns>
 		/// <seealso cref="GetCompData">
 		/// </seealso>
-		public override DataBlk GetInternCompData(DataBlk outblk, int c)
+		public override DataBlk GetInternCompData(DataBlk outblk, int compIndex)
 		{
 			
 			// If the scaling factor of this channel is 1 in both
 			// directions, simply return the source DataBlk.
 			
-			if (src.getCompSubsX(c) == 1 && src.getCompSubsY(c) == 1)
-				return src.GetInternCompData(outblk, c);
+			if (src.getCompSubsX(compIndex) == 1 && src.getCompSubsY(compIndex) == 1)
+				return src.GetInternCompData(outblk, compIndex);
 			
-			var wfactor = src.getCompSubsX(c);
-			var hfactor = src.getCompSubsY(c);
+			var wfactor = src.getCompSubsX(compIndex);
+			var hfactor = src.getCompSubsY(compIndex);
 			if ((wfactor != 2 && wfactor != 1) || (hfactor != 2 && hfactor != 1))
 				throw new ArgumentException("Upsampling by other than 2:1" + " not supported");
 			
@@ -190,8 +190,8 @@ namespace CSJ2K.Color
 				case DataBlk.TYPE_INT: 
 					
 					var inblkInt = new DataBlkInt(x0In, y0In, reqW, reqH);
-					inblkInt = (DataBlkInt) src.GetInternCompData(inblkInt, c);
-					dataInt[c] = inblkInt.DataInt;
+					inblkInt = (DataBlkInt) src.GetInternCompData(inblkInt, compIndex);
+					dataInt[compIndex] = inblkInt.DataInt;
 					
 					// Reference the working array   
 					var outdataInt = (int[]) outblk.Data;
@@ -222,7 +222,7 @@ namespace CSJ2K.Color
 						if ((x0Out & 0x1) == 1)
 						{
 							// first is odd do the pixel once.
-							outdataInt[kOut++] = dataInt[c][kIn++];
+							outdataInt[kOut++] = dataInt[compIndex][kIn++];
 						}
 						
 						if ((x1Out & 0x1) == 0)
@@ -233,14 +233,14 @@ namespace CSJ2K.Color
 						
 						while (kOut < rightedgeOut)
 						{
-							outdataInt[kOut++] = dataInt[c][kIn];
-							outdataInt[kOut++] = dataInt[c][kIn++];
+							outdataInt[kOut++] = dataInt[compIndex][kIn];
+							outdataInt[kOut++] = dataInt[compIndex][kIn++];
 						}
 						
 						if ((x1Out & 0x1) == 0)
 						{
 							// last is even do the pixel once.
-							outdataInt[kOut++] = dataInt[c][kIn];
+							outdataInt[kOut++] = dataInt[compIndex][kIn];
 						}
 					}
 					
@@ -251,8 +251,8 @@ namespace CSJ2K.Color
 				case DataBlk.TYPE_FLOAT: 
 					
 					var inblkFloat = new DataBlkFloat(x0In, y0In, reqW, reqH);
-					inblkFloat = (DataBlkFloat) src.GetInternCompData(inblkFloat, c);
-					dataFloat[c] = inblkFloat.DataFloat;
+					inblkFloat = (DataBlkFloat) src.GetInternCompData(inblkFloat, compIndex);
+					dataFloat[compIndex] = inblkFloat.DataFloat;
 					
 					// Reference the working array   
 					var outdataFloat = (float[]) outblk.Data;
@@ -283,7 +283,7 @@ namespace CSJ2K.Color
 						if ((x0Out & 0x1) == 1)
 						{
 							// first is odd do the pixel once.
-							outdataFloat[kOut++] = dataFloat[c][kIn++];
+							outdataFloat[kOut++] = dataFloat[compIndex][kIn++];
 						}
 						
 						if ((x1Out & 0x1) == 0)
@@ -294,14 +294,14 @@ namespace CSJ2K.Color
 						
 						while (kOut < rightedgeOut)
 						{
-							outdataFloat[kOut++] = dataFloat[c][kIn];
-							outdataFloat[kOut++] = dataFloat[c][kIn++];
+							outdataFloat[kOut++] = dataFloat[compIndex][kIn];
+							outdataFloat[kOut++] = dataFloat[compIndex][kIn++];
 						}
 						
 						if ((x1Out & 0x1) == 0)
 						{
 							// last is even do the pixel once.
-							outdataFloat[kOut++] = dataFloat[c][kIn];
+							outdataFloat[kOut++] = dataFloat[compIndex][kIn];
 						}
 					}
 					

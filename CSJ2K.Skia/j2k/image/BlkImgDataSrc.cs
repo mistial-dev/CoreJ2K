@@ -71,14 +71,14 @@ namespace CSJ2K.j2k.image
         /// the data.
         /// 
         /// </summary>
-        /// <param name="c">The index of the component.
+        /// <param name="compIndex">The index of the component.
         /// 
         /// </param>
         /// <returns> The position of the fixed-point, which is the same as the
         /// number of fractional bits. For floating-point data 0 is returned.
         /// 
         /// </returns>
-        int GetFixedPoint(int c);
+        int GetFixedPoint(int compIndex);
 
         /// <summary> Returns, in the blk argument, a block of image data containing the
         /// specifed rectangular area, in the specified component. The data is
@@ -112,7 +112,7 @@ namespace CSJ2K.j2k.image
         /// to return the data.
         /// 
         /// </param>
-        /// <param name="c">The index of the component from which to get the data.
+        /// <param name="compIndex">The index of the component from which to get the data.
         /// 
         /// </param>
         /// <returns> The requested DataBlk
@@ -121,7 +121,7 @@ namespace CSJ2K.j2k.image
         /// <seealso cref="GetCompData">
         /// 
         /// </seealso>
-        DataBlk GetInternCompData(DataBlk blk, int c);
+        DataBlk GetInternCompData(DataBlk blk, int compIndex);
 
         /// <summary> Returns, in the blk argument, a block of image data containing the
         /// specifed rectangular area, in the specified component. The data is
@@ -175,12 +175,12 @@ namespace CSJ2K.j2k.image
         /// component, false if not.
         /// 
         /// </summary>
-        /// <param name="c">The index of the component, from 0 to C-1.
+        /// <param name="compIndex">The index of the component, from 0 to C-1.
         /// 
         /// </param>
         /// <returns> true if the data was originally signed, false if not.
         /// 
         /// </returns>
-        bool IsOrigSigned(int c);
+        bool IsOrigSigned(int compIndex);
     }
 }

@@ -422,16 +422,16 @@ namespace CSJ2K.j2k.image.input
 		/// component, false if not.
 		/// 
 		/// </summary>
-		/// <param name="c">The index of the component, from 0 to C-1.
+		/// <param name="compIndex">The index of the component, from 0 to C-1.
 		/// 
 		/// </param>
 		/// <returns> true if the data was originally signed, false if not.
 		/// 
 		/// </returns>
-		public abstract bool IsOrigSigned(int c);
-		public abstract int GetFixedPoint(int c);
-		public abstract DataBlk GetInternCompData(DataBlk blk, int c);
-		public abstract int getNomRangeBits(int c);
+		public abstract bool IsOrigSigned(int compIndex);
+		public abstract int GetFixedPoint(int compIndex);
+		public abstract DataBlk GetInternCompData(DataBlk blk, int compIndex);
+		public abstract int getNomRangeBits(int compIndex);
 		public abstract DataBlk GetCompData(DataBlk blk, int c);
 	}
 }

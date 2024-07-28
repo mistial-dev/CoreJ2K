@@ -177,30 +177,29 @@ namespace CSJ2K.j2k.image.input
 		/// If this number is <i>b</i> then the nominal range is between
 		/// -2^(b-1) and 2^(b-1)-1, since unsigned data is level shifted to have a
 		/// nominal avergae of 0.</summary>
-		/// <param name="c">The index of the component.</param>
+		/// <param name="compIndex">The index of the component.</param>
 		/// <returns> The number of bits corresponding to the nominal range of the
 		/// data. For floating-point data this value is not applicable and the
 		/// return value is undefined.</returns>
-		public override int getNomRangeBits(int c)
+		public override int getNomRangeBits(int compIndex)
 		{
 			// Check component index
-			if (c < 0 || c > 2)
-				throw new ArgumentException();
-			
+			if (compIndex < 0 || compIndex > 2)
+				throw new ArgumentOutOfRangeException(nameof(compIndex) + " is out of range");
 			return rb;
 		}
 		
 		/// <summary> Returns the position of the fixed point in the specified component
 		/// (i.e. the number of fractional bits), which is always 0 for this
 		/// ImgReader.</summary>
-		/// <param name="c">The index of the component.</param>
+		/// <param name="compIndex">The index of the component.</param>
 		/// <returns> The position of the fixed-point (i.e. the number of fractional
 		/// bits). Always 0 for this ImgReader.</returns>
-		public override int GetFixedPoint(int c)
+		public override int GetFixedPoint(int compIndex)
 		{
 			// Check component index
-			if (c < 0 || c > 2)
-				throw new ArgumentException();
+			if (compIndex < 0 || compIndex > 2)
+				throw new ArgumentOutOfRangeException(nameof(compIndex) + " is out of range");
 			return 0;
 		}
 		
@@ -239,16 +238,16 @@ namespace CSJ2K.j2k.image.input
 		/// are needed.</summary>
 		/// <param name="blk">Its coordinates and dimensions specify the area to
 		/// return. Some fields in this object are modified to return the data.</param>
-		/// <param name="c">The index of the component from which to get the data. Only 0,
+		/// <param name="compIndex">The index of the component from which to get the data. Only 0,
 		/// 1 and 3 are valid.</param>
 		/// <returns> The requested DataBlk</returns>
 		/// <seealso cref="GetCompData" />
 		/// <seealso cref="JJ2KExceptionHandler" />
-		public override DataBlk GetInternCompData(DataBlk blk, int c)
+		public override DataBlk GetInternCompData(DataBlk blk, int compIndex)
 		{
 			// Check component index
-			if (c < 0 || c > 2)
-				throw new ArgumentException();
+			if (compIndex < 0 || compIndex > 2)
+				throw new ArgumentOutOfRangeException(nameof(compIndex) + " is out of range");
 			
 			// Check type of block provided as an argument
 			if (blk.DataType != DataBlk.TYPE_INT)
@@ -267,23 +266,23 @@ namespace CSJ2K.j2k.image.input
 			
 			// If asking a component for the first time for this block, read the 3
 			// components
-			if ((barr[c] == null) || (dbi.ulx > blk.ulx) || (dbi.uly > blk.uly) || (dbi.ulx + dbi.w < blk.ulx + blk.w) || (dbi.uly + dbi.h < blk.uly + blk.h))
+			if ((barr[compIndex] == null) || (dbi.ulx > blk.ulx) || (dbi.uly > blk.uly) || (dbi.ulx + dbi.w < blk.ulx + blk.w) || (dbi.uly + dbi.h < blk.uly + blk.h))
 			{
 				int k, j, i, mi;
 
 				// Reset data arrays if needed
-				if (barr[c] == null || barr[c].Length < blk.w * blk.h)
+				if (barr[compIndex] == null || barr[compIndex].Length < blk.w * blk.h)
 				{
-					barr[c] = new int[blk.w * blk.h];
+					barr[compIndex] = new int[blk.w * blk.h];
 				}
-				blk.Data = barr[c];
+				blk.Data = barr[compIndex];
 				
-				i = (c + 1) % 3;
+				i = (compIndex + 1) % 3;
 				if (barr[i] == null || barr[i].Length < blk.w * blk.h)
 				{
 					barr[i] = new int[blk.w * blk.h];
 				}
-				i = (c + 2) % 3;
+				i = (compIndex + 2) % 3;
 				if (barr[i] == null || barr[i].Length < blk.w * blk.h)
 				{
 					barr[i] = new int[blk.w * blk.h];
@@ -334,14 +333,14 @@ namespace CSJ2K.j2k.image.input
 				barr[2] = blue;
 				
 				// Set buffer attributes
-				blk.Data = barr[c];
+				blk.Data = barr[compIndex];
 				blk.offset = 0;
 				blk.scanw = blk.w;
 			}
 			else
 			{
 				//Asking for the 2nd or 3rd block component
-				blk.Data = barr[c];
+				blk.Data = barr[compIndex];
 				blk.offset = (blk.ulx - dbi.ulx) * dbi.w + blk.ulx - dbi.ulx;
 				blk.scanw = dbi.scanw;
 			}
@@ -532,13 +531,13 @@ namespace CSJ2K.j2k.image.input
 		/// <summary> Returns true if the data read was originally signed in the specified
 		/// component, false if not. This method always returns false since PPM
 		/// data is always unsigned.</summary>
-		/// <param name="c">The index of the component, from 0 to N-1.</param>
+		/// <param name="compIndex">The index of the component, from 0 to N-1.</param>
 		/// <returns> always false, since PPM data is always unsigned.</returns>
-		public override bool IsOrigSigned(int c)
+		public override bool IsOrigSigned(int compIndex)
 		{
 			// Check component index
-			if (c < 0 || c > 2)
-				throw new ArgumentException();
+			if (compIndex < 0 || compIndex > 2)
+				throw new ArgumentOutOfRangeException(nameof(compIndex) + " is out of range");
 			return false;
 		}
 		

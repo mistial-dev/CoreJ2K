@@ -136,7 +136,7 @@ namespace CSJ2K.Color
 		/// to return the data.
 		/// 
 		/// </param>
-		/// <param name="c">The index of the component from which to get the data.
+		/// <param name="compIndex">The index of the component from which to get the data.
 		/// 
 		/// </param>
 		/// <returns> The requested DataBlk
@@ -145,9 +145,9 @@ namespace CSJ2K.Color
 		/// <seealso cref="GetCompData">
 		/// 
 		/// </seealso>
-		public override DataBlk GetInternCompData(DataBlk out_Renamed, int c)
+		public override DataBlk GetInternCompData(DataBlk out_Renamed, int compIndex)
 		{
-			return src.GetInternCompData(out_Renamed, c);
+			return src.GetInternCompData(out_Renamed, compIndex);
 		}
 		
 		

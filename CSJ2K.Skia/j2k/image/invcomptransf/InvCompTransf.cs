@@ -242,16 +242,16 @@ namespace CSJ2K.j2k.image.invcomptransf
         /// bits is not modified by the component mixer.
         /// 
         /// </summary>
-        /// <param name="c">The index of the component.
+        /// <param name="compIndex">The index of the component.
         /// 
         /// </param>
         /// <returns> The value of the fixed point position of the source since the
         /// color transform does not affect it.
         /// 
         /// </returns>
-        public virtual int GetFixedPoint(int c)
+        public virtual int GetFixedPoint(int compIndex)
         {
-            return src.GetFixedPoint(c);
+            return src.GetFixedPoint(compIndex);
         }
 
         /// <summary> Calculates the bitdepths of the transformed components, given the
@@ -352,15 +352,15 @@ namespace CSJ2K.j2k.image.invcomptransf
         /// -2^(b-1) and 2^(b-1)-1.
         /// 
         /// </summary>
-        /// <param name="c">The index of the component.
+        /// <param name="compIndex">The index of the component.
         /// 
         /// </param>
         /// <returns> The bitdepth of un-transformed component 'c'.
         /// 
         /// </returns>
-        public override int getNomRangeBits(int c)
+        public override int getNomRangeBits(int compIndex)
         {
-            return utdepth[c];
+            return utdepth[compIndex];
         }
 
         /// <summary> Apply inverse component transformation associated with the current
@@ -416,13 +416,13 @@ namespace CSJ2K.j2k.image.invcomptransf
         /// component, false if not.
         /// 
         /// </summary>
-        /// <param name="c">The index of the component, from 0 to C-1.
+        /// <param name="compIndex">The index of the component, from 0 to C-1.
         /// 
         /// </param>
         /// <returns> true if the data was originally signed, false if not.
         /// 
         /// </returns>
-        public bool IsOrigSigned(int c)
+        public bool IsOrigSigned(int compIndex)
         {
             return false;
         }
@@ -442,30 +442,30 @@ namespace CSJ2K.j2k.image.invcomptransf
         /// <param name="blk">Determines the rectangular area to return.
         /// 
         /// </param>
-        /// <param name="c">Index of the output component.
+        /// <param name="compIndex">Index of the output component.
         /// 
         /// </param>
         /// <returns> The requested DataBlk
         /// 
         /// </returns>
-        public virtual DataBlk GetInternCompData(DataBlk blk, int c)
+        public virtual DataBlk GetInternCompData(DataBlk blk, int compIndex)
         {
             // if specified in the command line that no component transform should
             // be made, return original data
-            if (noCompTransf) return src.GetInternCompData(blk, c);
+            if (noCompTransf) return src.GetInternCompData(blk, compIndex);
 
             switch (transfType)
             {
 
                 case NONE:
-                    return src.GetInternCompData(blk, c);
+                    return src.GetInternCompData(blk, compIndex);
 
 
                 case INV_RCT:
-                    return invRCT(blk, c);
+                    return invRCT(blk, compIndex);
 
                 case INV_ICT:
-                    return invICT(blk, c);
+                    return invICT(blk, compIndex);
 
                 default:
                     throw new ArgumentException("Non JPEG 2000 part I" + " component transformation");

@@ -165,7 +165,7 @@ namespace CSJ2K.j2k.image.input
 		/// nominal average of 0.
 		/// 
 		/// </summary>
-		/// <param name="c">The index of the component.
+		/// <param name="compIndex">The index of the component.
 		/// 
 		/// </param>
 		/// <returns> The number of bits corresponding to the nominal range of the
@@ -173,12 +173,11 @@ namespace CSJ2K.j2k.image.input
 		/// return value is undefined.
 		/// 
 		/// </returns>
-		public override int getNomRangeBits(int c)
+		public override int getNomRangeBits(int compIndex)
 		{
 			// Check component index
-			if (c != 0)
-				throw new ArgumentException();
-			
+			if (compIndex != 0)
+				throw new ArgumentOutOfRangeException(nameof(compIndex) + " is out of range");
 			return rb;
 		}
 		
@@ -188,18 +187,18 @@ namespace CSJ2K.j2k.image.input
 		/// ImgReader.
 		/// 
 		/// </summary>
-		/// <param name="c">The index of the component.
+		/// <param name="compIndex">The index of the component.
 		/// 
 		/// </param>
 		/// <returns> The position of the fixed-point (i.e. the number of fractional
 		/// bits). Always 0 for this ImgReader.
 		/// 
 		/// </returns>
-		public override int GetFixedPoint(int c)
+		public override int GetFixedPoint(int compIndex)
 		{
 			// Check component index
-			if (c != 0)
-				throw new ArgumentException();
+			if (compIndex != 0)
+				throw new ArgumentOutOfRangeException(nameof(compIndex) + " is out of range");
 			return 0;
 		}
 		
@@ -238,7 +237,7 @@ namespace CSJ2K.j2k.image.input
 		/// return. Some fields in this object are modified to return the data.
 		/// 
 		/// </param>
-		/// <param name="c">The index of the component from which to get the data. Only 0
+		/// <param name="compIndex">The index of the component from which to get the data. Only 0
 		/// is valid.
 		/// 
 		/// </param>
@@ -251,13 +250,13 @@ namespace CSJ2K.j2k.image.input
 		/// <seealso cref="JJ2KExceptionHandler">
 		/// 
 		/// </seealso>
-		public override DataBlk GetInternCompData(DataBlk blk, int c)
+		public override DataBlk GetInternCompData(DataBlk blk, int compIndex)
 		{
 			int k, j, i, mi;
 
 			// Check component index
-			if (c != 0)
-				throw new ArgumentException();
+			if (compIndex != 0)
+				throw new ArgumentOutOfRangeException(nameof(compIndex) + " is out of range");
 			
 			// Check type of block provided as an argument
 			if (blk.DataType != DataBlk.TYPE_INT)
@@ -492,16 +491,16 @@ namespace CSJ2K.j2k.image.input
 		/// data is always unsigned.
 		/// 
 		/// </summary>
-		/// <param name="c">The index of the component, from 0 to N-1.
+		/// <param name="compIndex">The index of the component, from 0 to N-1.
 		/// 
 		/// </param>
 		/// <returns> always false, since PGM data is always unsigned.
 		/// 
 		/// </returns>
-		public override bool IsOrigSigned(int c)
+		public override bool IsOrigSigned(int compIndex)
 		{
 			// Check component index
-			if (c != 0)
+			if (compIndex != 0)
 				throw new ArgumentException();
 			return false;
 		}

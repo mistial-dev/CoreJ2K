@@ -120,14 +120,14 @@ namespace CSJ2K.j2k.image
         /// significant bit in the data.
         /// 
         /// </summary>
-        /// <param name="c">The index of the component.
+        /// <param name="compIndex">The index of the component.
         /// 
         /// </param>
         /// <returns> The position of the fixed-point, which is the same as the
         /// number of fractional bits.
         /// 
         /// </returns>
-        public virtual int GetFixedPoint(int c)
+        public virtual int GetFixedPoint(int compIndex)
         {
             return fp;
         }
@@ -191,13 +191,13 @@ namespace CSJ2K.j2k.image
         /// component, false if not.
         /// 
         /// </summary>
-        /// <param name="c">The index of the component, from 0 to C-1.
+        /// <param name="compIndex">The index of the component, from 0 to C-1.
         /// 
         /// </param>
         /// <returns> true if the data was originally signed, false if not.
         /// 
         /// </returns>
-        public bool IsOrigSigned(int c)
+        public bool IsOrigSigned(int compIndex)
         {
             return false;
         }
@@ -239,7 +239,7 @@ namespace CSJ2K.j2k.image
         /// to return the data.
         /// 
         /// </param>
-        /// <param name="c">The index of the component from which to get the data.
+        /// <param name="compIndex">The index of the component from which to get the data.
         /// 
         /// </param>
         /// <returns> The requested DataBlk
@@ -248,9 +248,9 @@ namespace CSJ2K.j2k.image
         /// <seealso cref="GetCompData">
         /// 
         /// </seealso>
-        public DataBlk GetInternCompData(DataBlk blk, int c)
+        public DataBlk GetInternCompData(DataBlk blk, int compIndex)
         {
-            return getData(blk, c, true);
+            return getData(blk, compIndex, true);
         }
 
         /// <summary> Implements the 'getInternCompData()' and the 'getCompData()'

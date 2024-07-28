@@ -126,15 +126,15 @@ namespace CSJ2K.Color
 		/// data.
 		/// 
 		/// </param>
-		/// <param name="c">The index of the component from which to get the data.
+		/// <param name="compIndex">The index of the component from which to get the data.
 		/// 
 		/// </param>
 		/// <seealso cref="GetCompData">
 		/// 
 		/// </seealso>
-		public override DataBlk GetInternCompData(DataBlk out_Renamed, int c)
+		public override DataBlk GetInternCompData(DataBlk out_Renamed, int compIndex)
 		{
-			return src.GetInternCompData(out_Renamed, csMap.getChannelDefinition(c));
+			return src.GetInternCompData(out_Renamed, csMap.getChannelDefinition(compIndex));
 		}
 		
 		/// <summary> Returns the number of bits, referred to as the "range bits",
@@ -145,21 +145,21 @@ namespace CSJ2K.Color
 		/// applicable.
 		/// 
 		/// </summary>
-		/// <param name="c">The index of the component.
+		/// <param name="compIndex">The index of the component.
 		/// 
 		/// </param>
 		/// <returns> The number of bits corresponding to the nominal range of the
 		/// data. Fro floating-point data this value is not applicable and the
 		/// return value is undefined.
 		/// </returns>
-		public override int GetFixedPoint(int c)
+		public override int GetFixedPoint(int compIndex)
 		{
-			return src.GetFixedPoint(csMap.getChannelDefinition(c));
+			return src.GetFixedPoint(csMap.getChannelDefinition(compIndex));
 		}
 		
-		public override int getNomRangeBits(int c)
+		public override int getNomRangeBits(int compIndex)
 		{
-			return src.getNomRangeBits(csMap.getChannelDefinition(c));
+			return src.getNomRangeBits(csMap.getChannelDefinition(compIndex));
 		}
 		
 		public override int getCompImgHeight(int c)

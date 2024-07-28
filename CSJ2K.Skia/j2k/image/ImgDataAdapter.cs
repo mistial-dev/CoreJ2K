@@ -316,16 +316,16 @@ namespace CSJ2K.j2k.image
 		/// This default implementation returns the value of the source.</p>
 		/// 
 		/// </summary>
-		/// <param name="c">The index of the component.
+		/// <param name="compIndex">The index of the component.
 		/// 
 		/// </param>
 		/// <returns> The number of bits corresponding to the nominal range of the
 		/// image data (in the image domain).
 		/// 
 		/// </returns>
-		public virtual int getNomRangeBits(int c)
+		public virtual int getNomRangeBits(int compIndex)
 		{
-			return imgdatasrc.getNomRangeBits(c);
+			return imgdatasrc.getNomRangeBits(compIndex);
 		}
 		
 		/// <summary> Changes the current tile, given the new indexes. An

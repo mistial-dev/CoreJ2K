@@ -115,9 +115,9 @@ namespace CSJ2K.j2k.wavelet.synthesis
             return new InvWTFull(src, decSpec);
         }
 
-        public abstract int GetFixedPoint(int c);
+        public abstract int GetFixedPoint(int compIndex);
 
-        public abstract DataBlk GetInternCompData(DataBlk blk, int c);
+        public abstract DataBlk GetInternCompData(DataBlk blk, int compIndex);
 
         public abstract DataBlk GetCompData(DataBlk blk, int c);
 
@@ -136,13 +136,13 @@ namespace CSJ2K.j2k.wavelet.synthesis
         /// component, false if not.
         /// 
         /// </summary>
-        /// <param name="c">The index of the component, from 0 to C-1.
+        /// <param name="compIndex">The index of the component, from 0 to C-1.
         /// 
         /// </param>
         /// <returns> true if the data was originally signed, false if not.
         /// 
         /// </returns>
-        public bool IsOrigSigned(int c)
+        public bool IsOrigSigned(int compIndex)
         {
             return false;
         }
