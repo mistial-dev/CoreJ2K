@@ -16,9 +16,9 @@ namespace CSJ2K.Util
 
         private SKBitmapImageSource(SKBitmap bitmap) 
             : base(bitmap.Width, bitmap.Height
-            , GetNumberOfComponents(bitmap.Info)
+            , GetNumberOfComponents(bitmap)
             , bitmap.Info.BytesPerPixel
-            , GetSignedArray(bitmap.Info)
+            , GetSignedArray(bitmap)
             , GetComponents(bitmap))
         { }
 
@@ -33,33 +33,35 @@ namespace CSJ2K.Util
             return bitmap == null ? null : new SKBitmapImageSource(bitmap);
         }
 
-        private static int GetNumberOfComponents(SKImageInfo image)
+        private static int GetNumberOfComponents(SKBitmap bitmap)
         {
-            switch (image.ColorType)
+            switch (bitmap.ColorType)
             {
                 case SKColorType.Alpha8:
                 case SKColorType.Alpha16:
-                case SKColorType.AlphaF16:
                 case SKColorType.Gray8:
                     return 1;
                 case SKColorType.Rg88:
-                case SKColorType.RgF16:
                 case SKColorType.Rg1616:
                     return 2;
                 case SKColorType.Rgb888x:
                 case SKColorType.Rgb565:
                 case SKColorType.Rgb101010x:
                 case SKColorType.Bgr101010x:
+                    return 3;
                 case SKColorType.Argb4444:
                 case SKColorType.Bgra8888:
                 case SKColorType.Rgba8888:
                 case SKColorType.Rgba1010102:
                 case SKColorType.Bgra1010102:
                 case SKColorType.Rgba16161616:
+                    return bitmap.AlphaType > SKAlphaType.Opaque ? 4 : 3;
                 case SKColorType.RgbaF16:
                 case SKColorType.RgbaF16Clamped:
                 case SKColorType.RgbaF32:
-                    return 3;
+                case SKColorType.RgF16:
+                case SKColorType.AlphaF16:
+                    throw new ArgumentException("Floating point color types unsupported at this time.");
                 case SKColorType.Unknown:
                 default:
                     throw new ArgumentException(
@@ -71,10 +73,10 @@ namespace CSJ2K.Util
         {
             var w = bitmap.Width;
             var h = bitmap.Height;
-            var nc = GetNumberOfComponents(bitmap.Info);
+            var nc = GetNumberOfComponents(bitmap);
 
             var comps = new int[nc][];
-            for (var c = 0; c < nc; ++c) comps[c] = new int[w * h];
+            for (var c = 0; c < nc; ++c) { comps[c] = new int[w * h]; }
 
             for (int y = 0, xy = 0; y < h; ++y)
             {
@@ -91,9 +93,9 @@ namespace CSJ2K.Util
             return comps;
         }
 
-        private static bool[] GetSignedArray(SKImageInfo imageInfo)
+        private static bool[] GetSignedArray(SKBitmap bitmap)
         {
-            return Enumerable.Repeat(false, GetNumberOfComponents(imageInfo)).ToArray();
+            return Enumerable.Repeat(false, GetNumberOfComponents(bitmap)).ToArray();
         }
         
         #endregion
