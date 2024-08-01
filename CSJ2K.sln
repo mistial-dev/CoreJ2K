@@ -11,6 +11,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "codectest", "codectest\code
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSJ2K.Skia", "CSJ2K.Skia\CSJ2K.Skia.csproj", "{CEC3F104-4874-47AF-B325-05881C62F9E6}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9AE6461C-EC2B-4782-A41F-87358FEC8F77}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+		.appveyor.yml = .appveyor.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		CSJ2K\CSJ2K.Shared.projitems*{1ea0f9ba-0194-4f08-9e55-89888d5a4724}*SharedItemsImports = 4

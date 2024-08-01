@@ -5,6 +5,7 @@
     <RootNamespace>codectest</RootNamespace>
     <AssemblyName>codectest</AssemblyName>
     <Platform>AnyCPU</Platform>
+    <IsPackable>false</IsPackable>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

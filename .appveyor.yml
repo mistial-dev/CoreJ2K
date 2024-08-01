@@ -1,0 +1,59 @@
+init:
+  - ps: if ($env:APPVEYOR_REPO_TAG -eq "true") { $env:TAG_VERSION = "$env:APPVEYOR_REPO_TAG_NAME.$env:APPVEYOR_BUILD_NUMBER" } else { $env:TAG_VERSION = "v0.10.0.$env:APPVEYOR_BUILD_NUMBER" }
+  - ps: $env:TAG_VERSION = $env:TAG_VERSION -replace 'v',''
+  - ps: Write-Host "Setting version to '$env:TAG_VERSION'"
+  - ps: Update-AppveyorBuild -Version "$env:TAG_VERSION"
+
+image: Visual Studio 2022
+
+configuration: Release
+
+pull_requests:
+  do_not_increment_build_number: true
+
+nuget:
+  disable_publish_on_pr: true
+
+dotnet_csproj:
+  patch: true
+  file: '**\*.csproj;**\*.props'
+  version: '{version}'
+  package_version: '{version}'
+
+build:
+  project: CSJ2K.sln
+  parallel: true
+  verbosity: minimal
+  publish_nuget: true
+  publish_nuget_symbols: true
+
+cache:
+  - packages -> **\packages.config
+  - '%LocalAppData%\NuGet\Cache'
+
+before_build:
+  - nuget restore CSJ2K.sln
+    
+deploy:
+  - provider: NuGet
+    name: nuget_release
+    api_key:
+      secure: fO5RZZiaAOY+/uKN95VvLFZrUM8T8TWuTz7+hxIG6JKSZ3JMC4G/duM+g93kEENU
+    artifact: /.*CSJ2K.Skia.*(\.|\.s)nupkg/
+    skip_symbols: false
+    draft: false
+    prerelease: false
+    on:
+      APPVEYOR_REPO_TAG: true
+  - provider: GitHub
+    name: github_releases
+    description: Release v$(appveyor_build_version)
+    tag: $(appveyor_build_version)
+    auth_token:
+      secure: lzcaOIXHRZG5WwFThR/DpNiVFh/q4zVis8YcLkmXhJHjFsq8tZgewzVhTmopZhjW
+    artifact: /.*CSJ2K.Skia.*(\.|\.s)nupkg/
+    skip_symbols: false
+    draft: false
+    prerelease: false
+    on:
+      APPVEYOR_REPO_TAG: true
