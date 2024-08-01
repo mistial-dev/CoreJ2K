@@ -23,6 +23,10 @@ namespace codectest
             File.Delete("file13.jp2");
             File.Delete("file14.jp2");
             File.Delete("file15.jp2");
+            foreach (var f in Directory.EnumerateFiles(".",$"file*_histogram.png"))
+            {
+                File.Delete(f);
+            }
 
             using (var ppm = File.OpenRead("a1_mono.ppm"))
             {
@@ -74,18 +78,8 @@ namespace codectest
                     }
 
                     var histogram = GenerateHistogram(image);
-
-                    /*if (image.Height > 2 * histogram.Height)
-                    {
-                        Graphics g = Graphics.FromImage(image);
-                        g.DrawImage(histogram, 0, 0);
-                    }
-
-                    ImageDialog dlg = new ImageDialog();
-                    dlg.Text = "file" + i + ".jp2";
-                    dlg.ClientSize = new Size(image.Width, image.Height);
-                    dlg.pictureBox1.Image = image;
-                    dlg.ShowDialog();*/
+                    var encoded = histogram.Encode(SKEncodedImageFormat.Png, 100);
+                    File.WriteAllBytes($"file{i}_histogram.png", encoded.ToArray());
                 }
                 catch (Exception e)
                 {
