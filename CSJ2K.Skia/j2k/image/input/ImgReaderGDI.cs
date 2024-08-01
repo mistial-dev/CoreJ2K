@@ -219,7 +219,7 @@ namespace CSJ2K.j2k.image.input
                 var red = barr[0];
                 var green = barr[1];
                 var blue = barr[2];
-                var alpha = (componentCount == 4) ? barr[3] : null;
+                var alpha = (componentCount > 3) ? barr[3] : null;
 
                 var bitmap = (Bitmap)image;
                 var data = bitmap.LockBits(new Rectangle(blk.ulx, blk.uly, blk.w, blk.h), ImageLockMode.ReadOnly,
@@ -234,8 +234,7 @@ namespace CSJ2K.j2k.image.input
                         blue[k] = (*(ptr + 0) & 0xFF) - 128;
                         green[k] = (*(ptr + 1) & 0xFF) - 128;
                         red[k] = (*(ptr + 2) & 0xFF) - 128;
-                        if (componentCount == 4)
-                            alpha[k] = (*(ptr + 3) & 0xFF) - 128;
+                        if (alpha != null) { alpha[k] = (*(ptr + 3) & 0xFF) - 128; }
 
                         ++k;
                         ptr += 3;
@@ -246,8 +245,7 @@ namespace CSJ2K.j2k.image.input
                 barr[0] = red;
                 barr[1] = green;
                 barr[2] = blue;
-                if (componentCount == 4)
-                    barr[3] = alpha;
+                if (alpha != null) barr[3] = alpha;
 
                 // Set buffer attributes
                 blk.Data = barr[compIndex];
