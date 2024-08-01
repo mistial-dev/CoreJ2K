@@ -22,6 +22,7 @@ namespace codectest
             File.Delete("file12.jp2");
             File.Delete("file13.jp2");
             File.Delete("file14.jp2");
+            File.Delete("file15.jp2");
 
             using (var ppm = File.OpenRead("a1_mono.ppm"))
             {
@@ -41,12 +42,18 @@ namespace codectest
                 File.WriteAllBytes("file13.jp2", enc);
             }
             
-            using (var bitmap = SKBitmap.Decode("logo.png"))
+            using (var bitmap = SKBitmap.Decode("racoon.png"))
             {
-                var enc = J2kImage.ToBytes(bitmap);
+                var src = J2kImage.CreateEncodableSource(bitmap);
+                var enc = J2kImage.ToBytes(src);
                 File.WriteAllBytes("file14.jp2", enc);
             }
-
+            using (var bitmap = SKBitmap.Decode("dog.jpeg"))
+            {
+                var src = J2kImage.CreateEncodableSource(bitmap);
+                var enc = J2kImage.ToBytes(src);
+                File.WriteAllBytes("file15.jp2", enc);
+            }
 
             for (var i = 1; i <= 14; i++)
             {

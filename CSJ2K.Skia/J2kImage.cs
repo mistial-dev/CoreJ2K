@@ -2,6 +2,7 @@
 // Licensed under the BSD 3-Clause License.
 
 using System.Linq;
+using SkiaSharp;
 
 namespace CSJ2K
 {
@@ -372,6 +373,24 @@ namespace CSJ2K
             return imgsrc;
         }
 
+        public static BlkImgDataSrc CreateEncodableSource(SKBitmap bitmap)
+        {
+            if (bitmap == null)
+            {
+                throw new ArgumentNullException(nameof(bitmap));
+            }
+            
+            // TODO: Build this out.
+            //var counter = 0;
+            //var ncomp = 0;
+            //var ppminput = false;
+            BlkImgDataSrc imgsrc;
+            
+            var imageReaders = new List<ImgReader> { new ImgReaderSkia(bitmap) };
+            imgsrc = imageReaders[0];
+            return imgsrc;
+        }
+
         public static byte[] ToBytes(object imageObject, ParameterList parameters = null)
         {
             var imgsrc = ImageFactory.ToPortableImageSource(imageObject);
@@ -397,7 +416,8 @@ namespace CSJ2K
             if (pl.getParameter("file_format").Equals("on"))
             {
                 useFileFormat = true;
-                if (pl.getParameter("rate") != null && pl.getFloatParameter("rate") != defpl.getFloatParameter("rate"))
+                if (pl.getParameter("rate") != null 
+                    && pl.getFloatParameter("rate") != defpl.getFloatParameter("rate"))
                 {
                     warning("Specified bit-rate applies only on the codestream but not on the whole file.");
                 }
@@ -441,10 +461,11 @@ namespace CSJ2K
                 }
             }
 
-            if (pphTile && pphMain) error("Can't have packed packet headers in both main and" + " tile headers", 2);
+            if (pphTile && pphMain) error("Can't have packed packet headers in both main and tile headers", 2);
 
             if (pl.getBooleanParameter("lossless") && pl.getParameter("rate") != null
-                && pl.getFloatParameter("rate") != defpl.getFloatParameter("rate")) throw new ArgumentException("Cannot use '-rate' and " + "'-lossless' option at " + " the same time.");
+                && pl.getFloatParameter("rate") != defpl.getFloatParameter("rate"))
+                throw new ArgumentException("Cannot use '-rate' and '-lossless' option at  the same time.");
 
             if (pl.getParameter("rate") == null)
             {
@@ -525,15 +546,15 @@ namespace CSJ2K
             }
             catch (IndexOutOfRangeException)
             {
-                throw new ArgumentException("Error while parsing 'ref' " + "option");
+                throw new ArgumentException("Error while parsing 'ref' option");
             }
             catch (FormatException)
             {
-                throw new ArgumentException("Invalid number type in " + "'ref' option");
+                throw new ArgumentException("Invalid number type in 'ref' option");
             }
             if (refx < 0 || refy < 0)
             {
-                throw new ArgumentException("Invalid value in 'ref' " + "option ");
+                throw new ArgumentException("Invalid value in 'ref' option ");
             }
 
             // Get tiling reference point
@@ -547,15 +568,15 @@ namespace CSJ2K
             }
             catch (IndexOutOfRangeException)
             {
-                throw new ArgumentException("Error while parsing 'tref' " + "option");
+                throw new ArgumentException("Error while parsing 'tref' option");
             }
             catch (FormatException)
             {
-                throw new ArgumentException("Invalid number type in " + "'tref' option");
+                throw new ArgumentException("Invalid number type in 'tref' option");
             }
             if (trefx < 0 || trefy < 0 || trefx > refx || trefy > refy)
             {
-                throw new ArgumentException("Invalid value in 'tref' " + "option ");
+                throw new ArgumentException("Invalid value in 'tref' option ");
             }
 
             // Instantiate tiler
@@ -741,11 +762,11 @@ namespace CSJ2K
                         }
                         if (pphTile)
                         {
-                            FacilityManager.getMsgLogger().println("Moved packet headers " + "to tile headers", 4, 6);
+                            FacilityManager.getMsgLogger().println("Moved packet headers to tile headers", 4, 6);
                         }
                         if (pphMain)
                         {
-                            FacilityManager.getMsgLogger().println("Moved packet headers " + "to main header", 4, 6);
+                            FacilityManager.getMsgLogger().println("Moved packet headers to main header", 4, 6);
                         }
                     }
                     catch (IOException e)
