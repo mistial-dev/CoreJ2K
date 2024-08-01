@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <AssemblyName>CSJ2K</AssemblyName>
-    <PackageId>CSJ2K</PackageId>
+    <PackageId>CSJ2K-Skia</PackageId>
     <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     <DefineConstants>$(DefineConstants);NETSTANDARD</DefineConstants>
