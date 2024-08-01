@@ -56,12 +56,8 @@ namespace CSJ2K.j2k.image.input
 	/// when the first one (R) is asked. The 2 others are stored until they are
 	/// needed.
 	/// 
-	/// NOTE: This class is not thread safe, for reasons of internal buffering.
-	/// 
-	/// </summary>
-	/// <seealso cref="image.ImgData">
-	/// 
-	/// </seealso>
+	/// NOTE: This class is not thread safe, for reasons of internal buffering.</summary>
+	/// <seealso cref="image.ImgData" />
 	public class ImgReaderPPM:ImgReader
 	{
 		/// <summary>DC offset value used when reading image </summary>
@@ -83,56 +79,35 @@ namespace CSJ2K.j2k.image.input
 		/// <summary>Data block used only to store coordinates of the buffered blocks </summary>
 		private readonly DataBlkInt dbi = new DataBlkInt();
 		
-		/// <summary>The line buffer. </summary>
-		// This makes the class not thread safe (but it is not the only one making
-		// it so)
+		/// <summary>The line buffer.</summary>
+		// This makes the class not thread safe (but it is not the only one making it so)
 		private byte[] buf;
 		
 		/// <summary>Temporary DataBlkInt object (needed when encoder uses floating-point
-		/// filters). This avoid allocating new DataBlk at each time 
-		/// </summary>
+		/// filters). This avoids allocating a new DataBlk each time</summary>
 		private DataBlkInt intBlk;
 
-		/// <summary> Creates a new PPM file reader from the specified file.
-		/// 
-		/// </summary>
-		/// <param name="file">The input file.
-		/// 
-		/// </param>
-		/// <param name="IOException">If an error occurs while opening the file.
-		/// 
-		/// </param>
+		/// <summary> Creates a new PPM file reader from the specified file.</summary>
+		/// <param name="file">The input file.</param>
+		/// <param name="IOException">If an error occurs while opening the file.</param>
 		public ImgReaderPPM(IFileInfo file)
 			: this(SupportClass.RandomAccessFileSupport.CreateRandomAccessFile(file, "r"))
 		{
 		} 
 		
-		/// <summary> Creates a new PPM file reader from the specified file name.
-		/// 
-		/// </summary>
-		/// <param name="fname">The input file name.
-		/// 
-		/// </param>
-		/// <param name="IOException">If an error occurs while opening the file.
-		/// 
-		/// </param>
+		/// <summary> Creates a new PPM file reader from the specified file name.</summary>
+		/// <param name="fname">The input file name.</param>
+		/// <param name="IOException">If an error occurs while opening the file.</param>
 		public ImgReaderPPM(string fname)
 			: this(SupportClass.RandomAccessFileSupport.CreateRandomAccessFile(fname, "r"))
 		{
 		}
 		
 		/// <summary> Creates a new PPM file reader from the specified RandomAccessFile
-		/// object. The file header is read to acquire the image size.
-		/// 
-		/// </summary>
-		/// <param name="inRenamed">From where to read the data
-		/// 
-		/// </param>
-		/// <exception cref="EOFException">if an EOF is read
-		/// </exception>
-		/// <exception cref="IOException">if an error occurs when opening the file
-		/// 
-		/// </exception>
+		/// object. The file header is read to acquire the image size.</summary>
+		/// <param name="inRenamed">From where to read the data</param>
+		/// <exception cref="EOFException">if an EOF is read</exception>
+		/// <exception cref="IOException">if an error occurs when opening the file</exception>
 		//UPGRADE_TODO: Class 'java.io.RandomAccessFile' was converted to 'System.IO.FileStream' which has a different behavior. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1073_javaioRandomAccessFile'"
 		public ImgReaderPPM(System.IO.Stream inRenamed)
 		{
@@ -151,12 +126,8 @@ namespace CSJ2K.j2k.image.input
 		}
 		
 		/// <summary> Closes the underlying file from where the image data is being read. No
-		/// operations are possible after a call to this method.
-		/// 
-		/// </summary>
-		/// <exception cref="IOException">If an I/O error occurs.
-		/// 
-		/// </exception>
+		/// operations are possible after a call to this method.</summary>
+		/// <exception cref="IOException">If an I/O error occurs.</exception>
 		public override void  Close()
 		{
 			inRenamed.Dispose();
@@ -351,7 +322,7 @@ namespace CSJ2K.j2k.image.input
 		}
 		
 		/// <summary> Returns, in the blk argument, a block of image data containing the
-		/// specifed rectangular area, in the specified component. The data is
+		/// specified rectangular area, in the specified component. The data is
 		/// returned, as a copy of the internal data, therefore the returned data
 		/// can be modified "in place".
 		/// 
@@ -366,7 +337,7 @@ namespace CSJ2K.j2k.image.input
 		/// 
 		/// If the data array in 'blk' is 'null', then a new one is created. If
 		/// the data array is not 'null' then it is reused, and it must be large
-		/// enough to contain the block's data. Otherwise an 'ArrayStoreException'
+		/// enough to contain the block's data. Otherwise, an 'ArrayStoreException'
 		/// or an 'IndexOutOfBoundsException' is thrown by the Java system.
 		/// 
 		/// The returned data has its 'progressive' attribute unset

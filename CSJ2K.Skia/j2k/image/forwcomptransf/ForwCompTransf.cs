@@ -55,12 +55,8 @@ namespace CSJ2K.j2k.image.forwcomptransf
 	/// efficiency but are not related to colour transforms used to map colour
 	/// values for display purposes. JPEG 2000 part I defines 2 component
 	/// transformations: RCT (Reversible Component Transformation) and ICT
-	/// (Irreversible Component Transformation).
-	/// 
-	/// </summary>
-	/// <seealso cref="ModuleSpec">
-	/// 
-	/// </seealso>
+	/// (Irreversible Component Transformation).</summary>
+	/// <seealso cref="ModuleSpec" />
 	public class ForwCompTransf:ImgDataAdapter, BlkImgDataSrc
 	{
 		/// <summary> Returns the parameters that are used in this class and implementing
@@ -70,24 +66,16 @@ namespace CSJ2K.j2k.image.forwcomptransf
 		/// description of what the parameter is and the fourth is its default
 		/// value. The synopsis or description may be 'null', in which case it is
 		/// assumed that there is no synopsis or description of the option,
-		/// respectively. Null may be returned if no options are supported.
-		/// 
-		/// </summary>
+		/// respectively. Null may be returned if no options are supported.</summary>
 		/// <returns> the options name, their synopsis and their explanation, or null
-		/// if no options are supported.
-		/// 
-		/// </returns>
+		/// if no options are supported.</returns>
 		public static string[][] ParameterInfo => pinfo;
 
 		/// <summary> Returns true if this transform is reversible in current
 		/// tile. Reversible component transformations are those which operation
 		/// can be completely reversed without any loss of information (not even
-		/// due to rounding).
-		/// 
-		/// </summary>
-		/// <returns> Reversibility of component transformation in current tile
-		/// 
-		/// </returns>
+		/// due to rounding).</summary>
+		/// <returns> Reversibility of component transformation in current tile</returns>
 		public virtual bool Reversible
 		{
 			get
@@ -103,45 +91,41 @@ namespace CSJ2K.j2k.image.forwcomptransf
 						return false;
 					
 					default: 
-						throw new ArgumentException("Non JPEG 2000 part I" + " component transformation");
+						throw new ArgumentException("Non JPEG 2000 part I component transformation");
 					
 				}
 			}
 			
 		}
-		/// <summary>Identifier for no component transformation. Value is 0. </summary>
+		/// <summary>Identifier for no component transformation. Value is 0.</summary>
 		public const int NONE = 0;
 		
 		/// <summary>Identifier for the Forward Reversible Component Transformation
-		/// (FORW_RCT). Value is 1. 
-		/// </summary>
+		/// (FORW_RCT). Value is 1.</summary>
 		public const int FORW_RCT = 1;
 		
 		/// <summary>Identifier for the Forward Irreversible Component Transformation
-		/// (FORW_ICT). Value is 2 
-		/// </summary>
+		/// (FORW_ICT). Value is 2</summary>
 		public const int FORW_ICT = 2;
 		
-		/// <summary>The source of image data </summary>
+		/// <summary>The source of image data</summary>
 		private BlkImgDataSrc src;
 		
-		/// <summary>The component transformations specifications </summary>
+		/// <summary>The component transformations specifications</summary>
 		private CompTransfSpec cts;
 		
-		/// <summary>The wavelet filter specifications </summary>
+		/// <summary>The wavelet filter specifications</summary>
 		private AnWTFilterSpec wfs;
 		
 		/// <summary>The type of the current component transformation. JPEG 2000 part 1
-		/// supports only NONE, FORW_RCT and FORW_ICT types 
-		/// </summary>
+		/// supports only NONE, FORW_RCT and FORW_ICT types</summary>
 		private int transfType = NONE;
 		
-		/// <summary>The bit-depths of transformed components </summary>
+		/// <summary>The bit-depths of transformed components</summary>
 		private int[] tdepth;
 		
 		/// <summary>Output block used instead of the one provided as an argument if the
-		/// later is DataBlkFloat.
-		/// </summary>
+		/// latter is DataBlkFloat.</summary>
 		private DataBlk outBlk;
 		
 		/// <summary>Block used to request component with index 0 </summary>
@@ -154,18 +138,10 @@ namespace CSJ2K.j2k.image.forwcomptransf
 		private DataBlkInt block2;
 		
 		/// <summary> Constructs a new ForwCompTransf object that operates on the specified
-		/// source of image data.
-		/// 
-		/// </summary>
-		/// <param name="imgSrc">The source from where to get the data to be transformed
-		/// 
-		/// </param>
-		/// <param name="encSpec">The encoder specifications
-		/// 
-		/// </param>
-		/// <seealso cref="BlkImgDataSrc">
-		/// 
-		/// </seealso>
+		/// source of image data.</summary>
+		/// <param name="imgSrc">The source from where to get the data to be transformed</param>
+		/// <param name="encSpec">The encoder specifications</param>
+		/// <seealso cref="BlkImgDataSrc" />
 		public ForwCompTransf(BlkImgDataSrc imgSrc, EncoderSpecs encSpec):base(imgSrc)
 		{
 			cts = encSpec.cts;
@@ -173,13 +149,11 @@ namespace CSJ2K.j2k.image.forwcomptransf
 			src = imgSrc;
 		}
 		
-		/// <summary>The prefix for component transformation type: 'M' </summary>
+		/// <summary>The prefix for component transformation type: 'M'</summary>
 		public const char OPT_PREFIX = 'M';
 		
 		/// <summary>The list of parameters that is accepted by the forward component
-		/// transformation module. Options start with an 'M'. 
-		/// </summary>
-		//UPGRADE_NOTE: Final was removed from the declaration of 'pinfo'. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
+		/// transformation module. Options start with an 'M'.</summary>
 		private static readonly string[][] pinfo = new string[][]{new string[]{"Mct", "[<tile index>] [on|off] ...", "Specifies in which tiles to use a multiple component transform. " + "Note that this multiple component transform can only be applied " + "in tiles that contain at least three components and whose " + "components are processed with the same wavelet filters and " + "quantization type. " + "If the wavelet transform is reversible (w5x3 filter), the " + "Reversible Component Transformation (RCT) is applied. If not " + "(w9x7 filter), the Irreversible Component Transformation (ICT)" + " is used.", null}};
 		
 		/// <summary> Returns the position of the fixed point in the specified
@@ -191,16 +165,10 @@ namespace CSJ2K.j2k.image.forwcomptransf
 		/// significant bit in the data.
 		/// 
 		/// This default implementation assumes that the number of fractional
-		/// bits is not modified by the component mixer.</p>
-		/// 
-		/// </summary>
-		/// <param name="compIndex">The index of the component.
-		/// 
-		/// </param>
+		/// bits is not modified by the component mixer.</summary>
+		/// <param name="compIndex">The index of the component.</param>
 		/// <returns> The value of the fixed point position of the source since the
-		/// color transform does not affect it.
-		/// 
-		/// </returns>
+		/// color transform does not affect it.</returns>
 		public virtual int GetFixedPoint(int compIndex)
 		{
 			return src.GetFixedPoint(compIndex);
@@ -208,22 +176,12 @@ namespace CSJ2K.j2k.image.forwcomptransf
 		
 		/// <summary> Calculates the bitdepths of the transformed components, given the
 		/// bitdepth of the un-transformed components and the component
-		/// transformation type.
-		/// 
-		/// </summary>
-		/// <param name="ntdepth">The bitdepth of each non-transformed components.
-		/// 
-		/// </param>
-		/// <param name="ttype">The type ID of the component transformation.
-		/// 
-		/// </param>
+		/// transformation type.</summary>
+		/// <param name="ntdepth">The bitdepth of each non-transformed components.</param>
+		/// <param name="ttype">The type ID of the component transformation.</param>
 		/// <param name="tdepth">If not null the results are stored in this array,
-		/// otherwise a new array is allocated and returned.
-		/// 
-		/// </param>
-		/// <returns> The bitdepth of each transformed component.
-		/// 
-		/// </returns>
+		/// otherwise a new array is allocated and returned.</param>
+		/// <returns> The bitdepth of each transformed component.</returns>
 		public static int[] calcMixedBitDepths(int[] ntdepth, int ttype, int[] tdepth)
 		{
 			
@@ -270,11 +228,8 @@ namespace CSJ2K.j2k.image.forwcomptransf
 					// The MathUtil.log2(x) function calculates floor(log2(x)), so we
 					// use 'MathUtil.log2(2*x-1)+1', which calculates ceil(log2(x))
 					// for any x>=1, x integer.
-					//UPGRADE_WARNING: Data types in Visual C# might be different.  Verify the accuracy of narrowing conversions. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1042'"
 					tdepth[0] = MathUtil.log2((int) Math.Floor((1 << ntdepth[0]) * 0.299072 + (1 << ntdepth[1]) * 0.586914 + (1 << ntdepth[2]) * 0.114014) - 1) + 1;
-					//UPGRADE_WARNING: Data types in Visual C# might be different.  Verify the accuracy of narrowing conversions. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1042'"
 					tdepth[1] = MathUtil.log2((int) Math.Floor((1 << ntdepth[0]) * 0.168701 + (1 << ntdepth[1]) * 0.331299 + (1 << ntdepth[2]) * 0.5) - 1) + 1;
-					//UPGRADE_WARNING: Data types in Visual C# might be different.  Verify the accuracy of narrowing conversions. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1042'"
 					tdepth[2] = MathUtil.log2((int) Math.Floor((1 << ntdepth[0]) * 0.5 + (1 << ntdepth[1]) * 0.418701 + (1 << ntdepth[2]) * 0.081299) - 1) + 1;
 					break;
 				}
@@ -283,9 +238,7 @@ namespace CSJ2K.j2k.image.forwcomptransf
 		}
 		
 		/// <summary> Initialize some variables used with RCT. It must be called, at least,
-		/// at the beginning of each new tile.
-		/// 
-		/// </summary>
+		/// at the beginning of each new tile.</summary>
 		private void  initForwRCT()
 		{
 			int i;
@@ -311,9 +264,7 @@ namespace CSJ2K.j2k.image.forwcomptransf
 		}
 		
 		/// <summary> Initialize some variables used with ICT. It must be called, at least,
-		/// at the beginning of a new tile.
-		/// 
-		/// </summary>
+		/// at the beginning of a new tile.</summary>
 		private void  initForwICT()
 		{
 			int i;
@@ -338,14 +289,10 @@ namespace CSJ2K.j2k.image.forwcomptransf
 			tdepth = calcMixedBitDepths(utd, FORW_ICT, null);
 		}
 		
-		/// <summary> Returns a string with a descriptive text of which forward component
+		/// <summary>Returns a string with a descriptive text of which forward component
 		/// transformation is used. This can be either "Forward RCT" or "Forward
-		/// ICT" or "No component transformation" depending on the current tile.
-		/// 
-		/// </summary>
-		/// <returns> A descriptive string
-		/// 
-		/// </returns>
+		/// ICT" or "No component transformation" depending on the current tile.</summary>
+		/// <returns>A descriptive string</returns>
 		public override string ToString()
 		{
 			switch (transfType)
@@ -371,15 +318,9 @@ namespace CSJ2K.j2k.image.forwcomptransf
 		/// component and in the current tile. If this number is <i>b</i> then for
 		/// unsigned data the nominal range is between 0 and 2^b-1, and for signed
 		/// data it is between -2^(b-1) and 2^(b-1)-1. Note that this value can be
-		/// affected by the multiple component transform.
-		/// 
-		/// </summary>
-		/// <param name="compIndex">The index of the component.
-		/// 
-		/// </param>
-		/// <returns> The bitdepth of component 'c' after mixing.
-		/// 
-		/// </returns>
+		/// affected by the multiple component transform.</summary>
+		/// <param name="compIndex">The index of the component.</param>
+		/// <returns> The bitdepth of component 'c' after mixing.</returns>
 		public override int getNomRangeBits(int compIndex)
 		{
 			switch (transfType)
@@ -404,22 +345,12 @@ namespace CSJ2K.j2k.image.forwcomptransf
 		/// 
 		/// This method calls the getInternCompData() method, but respects the
 		/// definitions of the getCompData() method defined in the BlkImgDataSrc
-		/// interface.</p>
-		/// 
-		/// </summary>
+		/// interface.</summary>
 		/// <param name="blk">Determines the rectangular area to return, and the data is
-		/// returned in this object.
-		/// 
-		/// </param>
-		/// <param name="c">Index of the output component.
-		/// 
-		/// </param>
-		/// <returns> The requested DataBlk
-		/// 
-		/// </returns>
-		/// <seealso cref="BlkImgDataSrc.GetCompData">
-		/// 
-		/// </seealso>
+		/// returned in this object.</param>
+		/// <param name="c">Index of the output component.</param>
+		/// <returns> The requested DataBlk</returns>
+		/// <seealso cref="BlkImgDataSrc.GetCompData" />
 		public virtual DataBlk GetCompData(DataBlk blk, int c)
 		{
 			// If requesting a component whose index is greater than 3 or there is
@@ -437,26 +368,16 @@ namespace CSJ2K.j2k.image.forwcomptransf
 		}
 
 	    /// <summary> Closes the underlying file or network connection from where the
-	    /// image data is being read.
-	    /// 
-	    /// </summary>
-	    /// <exception cref="IOException">If an I/O error occurs.
-	    /// </exception>
+	    /// image data is being read.</summary>
 	    public void Close()
 	    {
 	        // Do nothing.
 	    }
 
 	    /// <summary> Returns true if the data read was originally signed in the specified
-	    /// component, false if not.
-	    /// 
-	    /// </summary>
-	    /// <param name="compIndex">The index of the component, from 0 to C-1.
-	    /// 
-	    /// </param>
-	    /// <returns> true if the data was originally signed, false if not.
-	    /// 
-	    /// </returns>
+	    /// component, false if not.</summary>
+	    /// <param name="compIndex">The index of the component, from 0 to C-1.</param>
+	    /// <returns> true if the data was originally signed, false if not.</returns>
 	    public bool IsOrigSigned(int compIndex)
 	    {
 	        return false;
@@ -464,24 +385,12 @@ namespace CSJ2K.j2k.image.forwcomptransf
 
 	    /// <summary> Apply the component transformation associated with the current tile. If
 		/// no component transformation has been requested by the user, data are
-		/// not modified. Else, appropriate method is called (forwRCT or forwICT).
-		/// 
-		/// </summary>
-		/// <seealso cref="forwRCT">
-		/// 
-		/// </seealso>
-		/// <seealso cref="forwICT">
-		/// 
-		/// </seealso>
-		/// <param name="blk">Determines the rectangular area to return.
-		/// 
-		/// </param>
-		/// <param name="compIndex">Index of the output component.
-		/// 
-		/// </param>
-		/// <returns> The requested DataBlk
-		/// 
-		/// </returns>
+		/// not modified. Else, appropriate method is called (forwRCT or forwICT).</summary>
+		/// <seealso cref="forwRCT" />
+		/// <seealso cref="forwICT" />
+		/// <param name="blk">Determines the rectangular area to return.</param>
+		/// <param name="compIndex">Index of the output component.</param>
+		/// <returns> The requested DataBlk</returns>
 		public virtual DataBlk GetInternCompData(DataBlk blk, int compIndex)
 		{
 			switch (transfType)
@@ -504,18 +413,10 @@ namespace CSJ2K.j2k.image.forwcomptransf
 		
 		/// <summary> Apply forward component transformation to obtain requested component
 		/// from specified block of data. Whatever the type of requested DataBlk,
-		/// it always returns a DataBlkInt.
-		/// 
-		/// </summary>
-		/// <param name="blk">Determine the rectangular area to return 
-		/// 
-		/// </param>
-		/// <param name="c">The index of the requested component
-		/// 
-		/// </param>
-		/// <returns> Data of requested component
-		/// 
-		/// </returns>
+		/// it always returns a DataBlkInt.</summary>
+		/// <param name="blk">Determine the rectangular area to return</param>
+		/// <param name="c">The index of the requested component</param>
+		/// <returns> Data of requested component</returns>
 		private DataBlk forwRCT(DataBlk blk, int c)
 		{
 			int k, k0, k1, k2, mink, i;
@@ -654,18 +555,10 @@ namespace CSJ2K.j2k.image.forwcomptransf
 		
 		/// <summary> Apply forward irreversible component transformation to obtain requested
 		/// component from specified block of data. Whatever the type of requested
-		/// DataBlk, it always returns a DataBlkFloat.
-		/// 
-		/// </summary>
-		/// <param name="blk">Determine the rectangular area to return 
-		/// 
-		/// </param>
-		/// <param name="c">The index of the requested component
-		/// 
-		/// </param>
-		/// <returns> Data of requested component
-		/// 
-		/// </returns>
+		/// DataBlk, it always returns a DataBlkFloat.</summary>
+		/// <param name="blk">Determine the rectangular area to return</param>
+		/// <param name="c">The index of the requested component</param>
+		/// <returns> Data of requested component</returns>
 		private DataBlk forwICT(DataBlk blk, int c)
 		{
 			int k, k0, k1, k2, mink, i;
@@ -767,7 +660,7 @@ namespace CSJ2K.j2k.image.forwcomptransf
 							{
 								outdata[k] = (- 0.16875f) * data0[k0] - 0.33126f * data1[k1] + 0.5f * data2[k2];
 							}
-							// Jump to beggining of previous line in input
+							// Jump to beginning of previous line in input
 							k0 -= (block0.scanw - w);
 							k1 -= (block1.scanw - w);
 							k2 -= (block2.scanw - w);
@@ -783,7 +676,7 @@ namespace CSJ2K.j2k.image.forwcomptransf
 							{
 								outdata[k] = 0.5f * data0[k0] - 0.41869f * data1[k1] - 0.08131f * data2[k2];
 							}
-							// Jump to beggining of previous line in input
+							// Jump to beginning of previous line in input
 							k0 -= (block0.scanw - w);
 							k1 -= (block1.scanw - w);
 							k2 -= (block2.scanw - w);
@@ -838,16 +731,10 @@ namespace CSJ2K.j2k.image.forwcomptransf
 		/// a valid tile.
 		/// 
 		/// This default implementation changes the tile in the source and
-		/// re-initializes properly component transformation variables..</p>
-		/// 
-		/// </summary>
-		/// <param name="x">The horizontal index of the tile.
-		/// 
-		/// </param>
-		/// <param name="y">The vertical index of the new tile.
-		/// 
-		/// </param>
-		public override void  setTile(int x, int y)
+		/// re-initializes properly component transformation variables.</summary>
+		/// <param name="x">The horizontal index of the tile.</param>
+		/// <param name="y">The vertical index of the new tile.</param>
+		public override void setTile(int x, int y)
 		{
 			src.setTile(x, y);
 			tIdx = TileIdx; // index of the current tile
@@ -870,7 +757,7 @@ namespace CSJ2K.j2k.image.forwcomptransf
 			}
 			else
 			{
-				throw new ArgumentException("Component transformation" + " not recognized");
+				throw new ArgumentException("Component transformation not recognized");
 			}
 		}
 		
@@ -880,10 +767,8 @@ namespace CSJ2K.j2k.image.forwcomptransf
 		/// 
 		/// This default implementation just advances to the next tile in the
 		/// source and re-initializes properly component transformation
-		/// variables.</p>
-		/// 
-		/// </summary>
-		public override void  nextTile()
+		/// variables.</summary>
+		public override void nextTile()
 		{
 			src.nextTile();
 			tIdx = TileIdx; // index of the current tile
@@ -906,7 +791,7 @@ namespace CSJ2K.j2k.image.forwcomptransf
 			}
 			else
 			{
-				throw new ArgumentException("Component transformation" + " not recognized");
+				throw new ArgumentException("Component transformation not recognized");
 			}
 		}
 	}

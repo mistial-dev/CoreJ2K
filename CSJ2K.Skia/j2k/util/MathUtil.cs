@@ -67,7 +67,7 @@ namespace CSJ2K.j2k.util
 			// No log of 0 or negative
 			if (x <= 0)
 			{
-				throw new ArgumentException($"{x} <= 0");
+				throw new ArgumentException($"Cannot calculate log2: {nameof(x)} <= 0");
 			}
 			// Calculate log2 (it's actually floor log2)
 			v = x;
@@ -94,7 +94,7 @@ namespace CSJ2K.j2k.util
 		{
 			if (x1 <= 0 || x2 <= 0)
 			{
-				throw new ArgumentException("Cannot compute the least " + "common multiple of two " + "numbers if one, at least," + "is negative.");
+				throw new ArgumentException("Cannot compute the least common multiple of two numbers if one, at least, is negative.");
 			}
 			int max, min;
 			if (x1 > x2)
@@ -128,14 +128,14 @@ namespace CSJ2K.j2k.util
 		{
 			if (x.Length < 2)
 			{
-				throw new InvalidOperationException("Do not use this method if there are less than" + " two numbers.");
+				throw new InvalidOperationException("Do not use this method if there are less than two numbers.");
 			}
 			var tmp = lcm(x[x.Length - 1], x[x.Length - 2]);
 			for (var i = x.Length - 3; i >= 0; i--)
 			{
 				if (x[i] <= 0)
 				{
-					throw new ArgumentException("Cannot compute the least " + "common multiple of " + "several numbers where " + "one, at least," + "is negative.");
+					throw new ArgumentException("Cannot compute the least common multiple of several numbers where one, at least, is negative.");
 				}
 				tmp = lcm(tmp, x[i]);
 			}
@@ -150,7 +150,7 @@ namespace CSJ2K.j2k.util
 		{
 			if (x1 < 0 || x2 < 0)
 			{
-				throw new ArgumentException("Cannot compute the GCD " + "if one integer is negative.");
+				throw new ArgumentException("Cannot compute the GCD if one integer is negative.");
 			}
 			int a, b, g, z;
 			
@@ -190,14 +190,14 @@ namespace CSJ2K.j2k.util
 		{
 			if (x.Length < 2)
 			{
-				throw new InvalidOperationException("Do not use this method if there are less than" + " two numbers.");
+				throw new InvalidOperationException("Do not use this method if there are less than two numbers.");
 			}
 			var tmp = gcd(x[x.Length - 1], x[x.Length - 2]);
 			for (var i = x.Length - 3; i >= 0; i--)
 			{
 				if (x[i] < 0)
 				{
-					throw new ArgumentException("Cannot compute the least " + "common multiple of " + "several numbers where " + "one, at least," + "is negative.");
+					throw new ArgumentException("Cannot compute the least common multiple of several numbers where one, at least, is negative.");
 				}
 				tmp = gcd(tmp, x[i]);
 			}

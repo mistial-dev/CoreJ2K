@@ -371,8 +371,9 @@ namespace CSJ2K.j2k.image
             return src.GetFixedPoint(compIndex);
         }
 
-        /// <summary> Returns, in the blk argument, a block of image data containing the
-        /// specifed rectangular area, in the specified component. The data is
+        /// <summary>
+        /// Returns, in the blk argument, a block of image data containing the
+        /// specified rectangular area, in the specified component. The data is
         /// returned, as a reference to the internal data, if any, instead of as a
         /// copy, therefore the returned data should not be modified.
         /// 
@@ -380,12 +381,12 @@ namespace CSJ2K.j2k.image
         /// and 'h' members of the 'blk' argument, relative to the current
         /// tile. These members are not modified by this method. The 'offset' and
         /// 'scanw' of the returned data can be arbitrary. See the 'DataBlk'
-        /// class.</p>
+        /// class.
         /// 
         /// This method, in general, is more efficient than the 'getCompData()'
         /// method since it may not copy the data. However if the array of returned
         /// data is to be modified by the caller then the other method is probably
-        /// preferable.</p>
+        /// preferable.
         /// 
         /// If the data array in <tt>blk</tt> is <tt>null</tt>, then a new one
         /// is created if necessary. The implementation of this interface may
@@ -393,27 +394,18 @@ namespace CSJ2K.j2k.image
         /// efficient. Therefore, the data array in <tt>blk</tt> prior to the
         /// method call should not be considered to contain the returned data, a
         /// new array may have been created. Instead, get the array from
-        /// <tt>blk</tt> after the method has returned.</p>
+        /// <tt>blk</tt> after the method has returned.
         /// 
         /// The returned data may have its 'progressive' attribute set. In this
         /// case the returned data is only an approximation of the "final"
-        /// data.</p>
-        /// 
+        /// data.
         /// </summary>
         /// <param name="blk">Its coordinates and dimensions specify the area to return,
         /// relative to the current tile. Some fields in this object are modified
-        /// to return the data.
-        /// 
-        /// </param>
-        /// <param name="compIndex">The index of the component from which to get the data.
-        /// 
-        /// </param>
-        /// <returns> The requested DataBlk
-        /// 
-        /// </returns>
-        /// <seealso cref="GetCompData">
-        /// 
-        /// </seealso>
+        /// to return the data.</param>
+        /// <param name="compIndex">The index of the component from which to get the data.</param>
+        /// <returns> The requested DataBlk</returns>
+        /// <seealso cref="GetCompData" />
         public DataBlk GetInternCompData(DataBlk blk, int compIndex)
         {
             // Check that block is inside tile
@@ -435,8 +427,9 @@ namespace CSJ2K.j2k.image
             return blk;
         }
 
-        /// <summary> Returns, in the blk argument, a block of image data containing the
-        /// specifed rectangular area, in the specified component. The data is
+        /// <summary>
+        /// Returns, in the blk argument, a block of image data containing the
+        /// specified rectangular area, in the specified component. The data is
         /// returned, as a copy of the internal data, therefore the returned data
         /// can be modified "in place".
         /// 
@@ -444,39 +437,30 @@ namespace CSJ2K.j2k.image
         /// and 'h' members of the 'blk' argument, relative to the current
         /// tile. These members are not modified by this method. The 'offset' of
         /// the returned data is 0, and the 'scanw' is the same as the block's
-        /// width. See the 'DataBlk' class.</p>
+        /// width. See the 'DataBlk' class.
         /// 
         /// This method, in general, is less efficient than the
         /// 'getInternCompData()' method since, in general, it copies the
         /// data. However if the array of returned data is to be modified by the
-        /// caller then this method is preferable.</p>
+        /// caller then this method is preferable.
         /// 
         /// If the data array in 'blk' is 'null', then a new one is created. If
         /// the data array is not 'null' then it is reused, and it must be large
         /// enough to contain the block's data. Otherwise an 'ArrayStoreException'
-        /// or an 'IndexOutOfBoundsException' is thrown by the Java system.</p>
+        /// or an 'IndexOutOfBoundsException' is thrown by the Java system.
         /// 
         /// The returned data may have its 'progressive' attribute set. In this
         /// case the returned data is only an approximation of the "final"
-        /// data.</p>
-        /// 
+        /// data.
         /// </summary>
         /// <param name="blk">Its coordinates and dimensions specify the area to return,
         /// relative to the current tile. If it contains a non-null data array,
         /// then it must be large enough. If it contains a null data array a new
         /// one is created. Some fields in this object are modified to return the
-        /// data.
-        /// 
-        /// </param>
-        /// <param name="c">The index of the component from which to get the data.
-        /// 
-        /// </param>
-        /// <returns> The requested DataBlk
-        /// 
-        /// </returns>
-        /// <seealso cref="GetInternCompData">
-        /// 
-        /// </seealso>
+        /// data.</param>
+        /// <param name="c">The index of the component from which to get the data.</param>
+        /// <returns> The requested DataBlk</returns>
+        /// <seealso cref="GetInternCompData" />
         public DataBlk GetCompData(DataBlk blk, int c)
         {
             // Check that block is inside tile
@@ -498,43 +482,33 @@ namespace CSJ2K.j2k.image
             return blk;
         }
 
-        /// <summary> Closes the underlying file or network connection from where the
+        /// <summary>
+        /// Closes the underlying file or network connection from where the
         /// image data is being read.
-        /// 
         /// </summary>
-        /// <exception cref="IOException">If an I/O error occurs.
-        /// </exception>
+        /// <exception cref="IOException">If an I/O error occurs.</exception>
         public void Close()
         {
             // Do nothing.
         }
 
-        /// <summary> Returns true if the data read was originally signed in the specified
-        /// component, false if not.
-        /// 
-        /// </summary>
-        /// <param name="compIndex">The index of the component, from 0 to C-1.
-        /// 
-        /// </param>
-        /// <returns> true if the data was originally signed, false if not.
-        /// 
-        /// </returns>
+        /// <summary>
+        /// Returns true if the data read was originally signed in the specified
+        /// component, false if not.</summary>
+        /// <param name="compIndex">The index of the component, from 0 to C-1.</param>
+        /// <returns> true if the data was originally signed, false if not.</returns>
         public bool IsOrigSigned(int compIndex)
         {
             return false;
         }
 
-        /// <summary> Changes the current tile, given the new tile indexes. An
+        /// <summary>
+        /// Changes the current tile, given the new tile indexes. An
         /// IllegalArgumentException is thrown if the coordinates do not correspond
         /// to a valid tile.
-        /// 
         /// </summary>
-        /// <param name="x">The horizontal index of the tile.
-        /// 
-        /// </param>
-        /// <param name="y">The vertical index of the new tile.
-        /// 
-        /// </param>
+        /// <param name="x">The horizontal index of the tile.</param>
+        /// <param name="y">The vertical index of the new tile.</param>
         public override void setTile(int x, int y)
         {
             // Check tile indexes
@@ -573,10 +547,10 @@ namespace CSJ2K.j2k.image
             }
         }
 
-        /// <summary> Advances to the next tile, in standard scan-line order (by rows then
+        /// <summary>
+        /// Advances to the next tile, in standard scan-line order (by rows then
         /// columns). An NoNextElementException is thrown if the current tile is
         /// the last one (i.e. there is no next tile).
-        /// 
         /// </summary>
         public override void nextTile()
         {
@@ -597,16 +571,10 @@ namespace CSJ2K.j2k.image
             }
         }
 
-        /// <summary> Returns the horizontal and vertical indexes of the current tile.
-        /// 
-        /// </summary>
+        /// <summary>Returns the horizontal and vertical indexes of the current tile.</summary>
         /// <param name="co">If not null this object is used to return the
-        /// information. If null a new one is created and returned.
-        /// 
-        /// </param>
-        /// <returns> The current tile's horizontal and vertical indexes..
-        /// 
-        /// </returns>
+        /// information. If null a new one is created and returned.</param>
+        /// <returns> The current tile's horizontal and vertical indexes.</returns>
         public override Coord getTile(Coord co)
         {
             if (co != null)
@@ -621,41 +589,31 @@ namespace CSJ2K.j2k.image
             }
         }
 
-        /// <summary> Returns the horizontal coordinate of the upper-left corner of the
+        /// <summary>
+        /// Returns the horizontal coordinate of the upper-left corner of the
         /// specified component in the current tile.
-        /// 
         /// </summary>
-        /// <param name="c">The component index.
-        /// 
-        /// </param>
+        /// <param name="c">The component index.</param>
         public override int getCompULX(int c)
         {
             return tcx0[c];
         }
 
-        /// <summary> Returns the vertical coordinate of the upper-left corner of the
+        /// <summary>
+        /// Returns the vertical coordinate of the upper-left corner of the
         /// specified component in the current tile.
-        /// 
         /// </summary>
-        /// <param name="c">The component index.
-        /// 
-        /// </param>
+        /// <param name="c">The component index.</param>
         public override int getCompULY(int c)
         {
             return tcy0[c];
         }
 
-        /// <summary> Returns the number of tiles in the horizontal and vertical directions.
-        /// 
-        /// </summary>
+        /// <summary>Returns the number of tiles in the horizontal and vertical directions.</summary>
         /// <param name="co">If not null this object is used to return the information. If
-        /// null a new one is created and returned.
-        /// 
-        /// </param>
+        /// null a new one is created and returned.</param>
         /// <returns> The number of tiles in the horizontal (Coord.x) and vertical
-        /// (Coord.y) directions.
-        /// 
-        /// </returns>
+        /// (Coord.y) directions.</returns>
         public override Coord getNumTiles(Coord co)
         {
             if (co != null)
@@ -670,32 +628,22 @@ namespace CSJ2K.j2k.image
             }
         }
 
-        /// <summary> Returns the total number of tiles in the image.
-        /// 
-        /// </summary>
-        /// <returns> The total number of tiles in the image.
-        /// 
-        /// </returns>
+        /// <summary>Returns the total number of tiles in the image.</summary>
+        /// <returns>The total number of tiles in the image.</returns>
         public override int getNumTiles()
         {
             return ntX * ntY;
         }
 
-        /// <summary> Returns the tiling origin, referred to as '(xt0siz,yt0siz)' in the
+        /// <summary>
+        /// Returns the tiling origin, referred to as '(xt0siz,yt0siz)' in the
         /// codestream header (SIZ marker segment).
-        /// 
         /// </summary>
         /// <param name="co">If not null this object is used to return the information. If
-        /// null a new one is created and returned.
-        /// 
-        /// </param>
+        /// null a new one is created and returned.</param>
         /// <returns> The coordinate of the tiling origin, in the canvas system, on
-        /// the reference grid.
-        /// 
-        /// </returns>
-        /// <seealso cref="ImgData">
-        /// 
-        /// </seealso>
+        /// the reference grid.</returns>
+        /// <seealso cref="ImgData" />
         public Coord getTilingOrigin(Coord co)
         {
             if (co != null)
@@ -710,12 +658,8 @@ namespace CSJ2K.j2k.image
             }
         }
 
-        /// <summary> Returns a String object representing Tiler's informations
-        /// 
-        /// </summary>
-        /// <returns> Tiler's infos in a string
-        /// 
-        /// </returns>
+        /// <summary>Returns a String object representing Tiler information</summary>
+        /// <returns>Tiler's info in as string</returns>
         public override string ToString()
         {
             //UPGRADE_TODO: The equivalent in .NET for method 'java.lang.Object.toString' may return a different value. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1043'"

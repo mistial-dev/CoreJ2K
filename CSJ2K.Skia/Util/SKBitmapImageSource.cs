@@ -17,11 +17,10 @@ namespace CSJ2K.Util
         private SKBitmapImageSource(SKBitmap bitmap) 
             : base(bitmap.Width, bitmap.Height
             , GetNumberOfComponents(bitmap.Info)
-            ,    bitmap.Info.BytesPerPixel
-            ,    GetSignedArray(bitmap.Info)
-            ,    GetComponents(bitmap))
-        {
-        }
+            , bitmap.Info.BytesPerPixel
+            , GetSignedArray(bitmap.Info)
+            , GetComponents(bitmap))
+        { }
 
         #endregion
 
@@ -47,7 +46,6 @@ namespace CSJ2K.Util
                 case SKColorType.RgF16:
                 case SKColorType.Rg1616:
                     return 2;
-                
                 case SKColorType.Rgb888x:
                 case SKColorType.Rgb565:
                 case SKColorType.Rgb101010x:
@@ -64,16 +62,12 @@ namespace CSJ2K.Util
                     return 3;
                 case SKColorType.Unknown:
                 default:
-                    throw new ArgumentException("Image colortype is unknown, number of components cannot be determined.");
+                    throw new ArgumentException(
+                        "Image colortype is unknown, number of components cannot be determined.");
             }
         }
 
-        private static bool[] GetSignedArray(SKImageInfo pixelFormat)
-        {
-            return Enumerable.Repeat(false, GetNumberOfComponents(pixelFormat)).ToArray();
-        }
-
-        private static int[][] GetComponents(SKBitmap bitmap)
+        public static int[][] GetComponents(SKBitmap bitmap)
         {
             var w = bitmap.Width;
             var h = bitmap.Height;
@@ -97,6 +91,11 @@ namespace CSJ2K.Util
             return comps;
         }
 
+        private static bool[] GetSignedArray(SKImageInfo imageInfo)
+        {
+            return Enumerable.Repeat(false, GetNumberOfComponents(imageInfo)).ToArray();
+        }
+        
         #endregion
     }
 }

@@ -65,7 +65,6 @@ namespace CSJ2K.j2k.image.input
 		public const int DC_OFFSET = 128;
 
 		/// <summary>Where to read the data from </summary>
-		//UPGRADE_TODO: Class 'java.io.RandomAccessFile' was converted to 'System.IO.FileStream' which has a different behavior. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1073_javaioRandomAccessFile'"
 		private System.IO.Stream inRenamed;
 		
 		/// <summary>The offset of the raw pixel data in the PGM file </summary>
@@ -75,7 +74,7 @@ namespace CSJ2K.j2k.image.input
 		private readonly int rb;
 		
 		/// <summary>The line buffer. </summary>
-		// This makes the class not thrad safe
+		// This makes the class not thread safe
 		// (but it is not the only one making it so)
 		private byte[] buf;
 		
