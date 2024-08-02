@@ -385,20 +385,6 @@ namespace CSJ2K
             imgsrc = imageReaders[0];
             return imgsrc;
         }
-        
-        public static BlkImgDataSrc CreateEncodableSource(Bitmap bitmap)
-        {
-            if (bitmap == null)
-            {
-                throw new ArgumentNullException(nameof(bitmap));
-            }
-            
-            BlkImgDataSrc imgsrc;
-            
-            var imageReaders = new List<ImgReader> { new ImgReaderGDI(bitmap) };
-            imgsrc = imageReaders[0];
-            return imgsrc;
-        }
 
         public static byte[] ToBytes(object imageObject, ParameterList parameters = null)
         {
