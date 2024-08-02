@@ -32,9 +32,9 @@ namespace CSJ2K.Util
 
         #region PROPERTIES
 
-        internal int Width { get; }
+        public int Width { get; }
 
-        internal int Height { get; }
+        public int Height { get; }
 
         public int NumberOfComponents { get; }
 
@@ -86,14 +86,29 @@ namespace CSJ2K.Util
             switch (numberOfComponents)
             {
                 case 1:
-                    var scale = byteScaling[0];
-                    for (int i = 0, j = 0; i < count; ++i)
                     {
-                        var b = (byte)(scale * data[i]);
-                        bytes[j++] = b;
-                        bytes[j++] = b;
-                        bytes[j++] = b;
-                        bytes[j++] = 0xff;
+                        var scale = byteScaling[0];
+                        for (int i = 0, j = 0; i < count; ++i)
+                        {
+                            var b = (byte)(scale * data[i]);
+                            bytes[j++] = b;
+                            bytes[j++] = b;
+                            bytes[j++] = b;
+                            bytes[j++] = 0xff;
+                        }
+                    }
+                    break;
+                case 2:
+                    {
+                        var scale0 = byteScaling[0];
+                        var scale1 = byteScaling[1];
+                        for (int i = 0, j = 0; i < count;)
+                        {
+                            bytes[j++] = (byte)(scale0 * data[i++]);
+                            bytes[j++] = (byte)(scale1 * data[i++]);
+                            bytes[j++] = 0xff;
+                            bytes[j++] = 0xff;
+                        }
                     }
                     break;
                 case 3:
