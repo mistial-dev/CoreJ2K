@@ -29,11 +29,11 @@ namespace CSJ2K.j2k.image.input
         /// filters). This avoids allocating new DataBlk at each time.</summary>
         private DataBlkInt intBlk;
 
-        private SKBitmap image;
+        private SKPixmap image;
         
         public ImgReaderSkia(SKBitmap image)
         {
-            this.image = image;
+            this.image = image.PeekPixels();
             w = image.Width;
             h = image.Height;
             rb = 8;
@@ -190,8 +190,8 @@ namespace CSJ2K.j2k.image.input
                 var green = barr[1];
                 var blue = barr[2];
                 var alpha = nc > 3 ? barr[3] : null;
-                
-                var pixelsAddr = image.GetAddress(blk.ulx, blk.uly);
+
+                var pixelsAddr = image.GetPixels(blk.ulx, blk.uly);
                 
                 unsafe
                 {
