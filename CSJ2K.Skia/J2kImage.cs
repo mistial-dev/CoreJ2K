@@ -13,11 +13,9 @@ namespace CSJ2K
     using System.Text;
 
     using Color;
-    using Icc;
     using j2k.codestream;
     using j2k.codestream.reader;
     using j2k.codestream.writer;
-    using j2k.decoder;
     using j2k.encoder;
     using j2k.entropy.decoder;
     using j2k.entropy.encoder;

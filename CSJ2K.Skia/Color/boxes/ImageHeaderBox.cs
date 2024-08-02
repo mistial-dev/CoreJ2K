@@ -7,8 +7,6 @@
 /// ***************************************************************************
 /// </summary>
 using System;
-using ColorSpaceException = CSJ2K.Color.ColorSpaceException;
-using ParameterList = CSJ2K.j2k.util.ParameterList;
 using RandomAccessIO = CSJ2K.j2k.io.RandomAccessIO;
 using ICCProfile = CSJ2K.Icc.ICCProfile;
 namespace CSJ2K.Color.Boxes

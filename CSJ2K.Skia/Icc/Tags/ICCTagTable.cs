@@ -9,7 +9,6 @@
 using System;
 using System.IO;
 using ColorSpace = CSJ2K.Color.ColorSpace;
-using ICCProfile = CSJ2K.Icc.ICCProfile;
 using ICCProfileHeader = CSJ2K.Icc.Types.ICCProfileHeader;
 namespace CSJ2K.Icc.Tags
 {

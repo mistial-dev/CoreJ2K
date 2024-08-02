@@ -1,5 +1,3 @@
-using System;
-using CSJ2K.Icc;
 using CSJ2K.Icc.Types;
 
 namespace CSJ2K.Icc.Tags

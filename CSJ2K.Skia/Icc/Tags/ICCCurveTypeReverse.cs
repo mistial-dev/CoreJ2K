@@ -7,7 +7,7 @@
 /// ***************************************************************************
 /// </summary>
 using System;
-using ICCProfile = CSJ2K.Icc.ICCProfile;
+
 namespace CSJ2K.Icc.Tags
 {
 	

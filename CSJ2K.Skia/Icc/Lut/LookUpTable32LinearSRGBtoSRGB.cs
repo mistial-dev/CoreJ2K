@@ -7,7 +7,7 @@
 /// ***************************************************************************
 /// </summary>
 using System;
-using ICCCurveType = CSJ2K.Icc.Tags.ICCCurveType;
+
 namespace CSJ2K.Icc.Lut
 {
 	

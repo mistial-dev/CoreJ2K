@@ -8,7 +8,7 @@
 /// </summary>
 using System;
 using CSJ2K.j2k.image;
-using CSJ2K.j2k.util;
+
 namespace CSJ2K.Color
 {
 	

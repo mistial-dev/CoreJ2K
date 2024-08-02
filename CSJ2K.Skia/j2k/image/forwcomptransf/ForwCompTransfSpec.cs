@@ -43,9 +43,8 @@
 using System;
 using CSJ2K.j2k.wavelet.analysis;
 using CSJ2K.j2k.wavelet;
-using CSJ2K.j2k.image;
 using CSJ2K.j2k.util;
-using CSJ2K.j2k;
+
 namespace CSJ2K.j2k.image.forwcomptransf
 {
 	

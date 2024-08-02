@@ -41,8 +41,6 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 *  */
 using System;
-using CSJ2K.j2k.codestream;
-using CSJ2K.j2k.fileformat;
 using CSJ2K.j2k.io;
 namespace CSJ2K.j2k.fileformat.writer
 {

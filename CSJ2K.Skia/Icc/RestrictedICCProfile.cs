@@ -6,11 +6,10 @@
 /// $Date $
 /// ***************************************************************************
 /// </summary>
-using System;
+
 using ICCCurveType = CSJ2K.Icc.Tags.ICCCurveType;
 using ICCXYZType = CSJ2K.Icc.Tags.ICCXYZType;
-using ICCTagTable = CSJ2K.Icc.Tags.ICCTagTable;
-using ICCTag = CSJ2K.Icc.Tags.ICCTag;
+
 namespace CSJ2K.Icc
 {
 	

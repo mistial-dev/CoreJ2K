@@ -44,9 +44,7 @@
 using System;
 using CSJ2K.j2k.codestream.writer;
 using CSJ2K.j2k.wavelet.analysis;
-using CSJ2K.j2k.entropy.encoder;
 using CSJ2K.j2k.codestream;
-using CSJ2K.j2k.entropy;
 using CSJ2K.j2k.encoder;
 using CSJ2K.j2k.image;
 using CSJ2K.j2k.util;

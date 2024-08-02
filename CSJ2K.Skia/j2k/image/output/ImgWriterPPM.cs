@@ -43,9 +43,7 @@
 * */
 using System;
 using CSJ2K.Util;
-using CSJ2K.j2k.image;
-using CSJ2K.j2k.util;
-using CSJ2K.j2k.io;
+
 namespace CSJ2K.j2k.image.output
 {
 	

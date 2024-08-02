@@ -41,9 +41,9 @@
 * 
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
-using System;
+
 using System.Linq;
-using CSJ2K.j2k.entropy;
+
 namespace CSJ2K.j2k.entropy.decoder
 {
 	

@@ -43,10 +43,8 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 using System;
-using CSJ2K.j2k.entropy.encoder;
-using CSJ2K.j2k.entropy;
 using CSJ2K.j2k.util;
-using CSJ2K.j2k;
+
 namespace CSJ2K.j2k.entropy.encoder
 {
 	

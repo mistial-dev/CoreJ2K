@@ -9,8 +9,6 @@
 using System;
 using System.Globalization;
 using ColorSpace = CSJ2K.Color.ColorSpace;
-using ICCProfile = CSJ2K.Icc.ICCProfile;
-using RestrictedICCProfile = CSJ2K.Icc.RestrictedICCProfile;
 using ICCXYZType = CSJ2K.Icc.Tags.ICCXYZType;
 using DataBlkInt = CSJ2K.j2k.image.DataBlkInt;
 using DataBlkFloat = CSJ2K.j2k.image.DataBlkFloat;

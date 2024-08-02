@@ -44,16 +44,13 @@
 using System;
 using System.Collections.Generic;
 using CSJ2K.j2k.quantization.quantizer;
-using CSJ2K.j2k.codestream.writer;
 using CSJ2K.j2k.wavelet.analysis;
-using CSJ2K.j2k.quantization;
 using CSJ2K.j2k.image.input;
 using CSJ2K.j2k.wavelet;
 using CSJ2K.j2k.encoder;
 using CSJ2K.j2k.image;
 using CSJ2K.j2k.util;
-using CSJ2K.j2k.roi;
-using CSJ2K.j2k;
+
 namespace CSJ2K.j2k.roi.encoder
 {
 	

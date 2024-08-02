@@ -11,13 +11,12 @@ using FileFormatBoxes = CSJ2K.j2k.fileformat.FileFormatBoxes;
 using ParameterList = CSJ2K.j2k.util.ParameterList;
 using HeaderDecoder = CSJ2K.j2k.codestream.reader.HeaderDecoder;
 using RandomAccessIO = CSJ2K.j2k.io.RandomAccessIO;
-using ICCProfile = CSJ2K.Icc.ICCProfile;
 using PaletteBox = CSJ2K.Color.Boxes.PaletteBox;
 using ComponentMappingBox = CSJ2K.Color.Boxes.ComponentMappingBox;
 using ColorSpecificationBox = CSJ2K.Color.Boxes.ColorSpecificationBox;
 using ChannelDefinitionBox = CSJ2K.Color.Boxes.ChannelDefinitionBox;
 using ImageHeaderBox = CSJ2K.Color.Boxes.ImageHeaderBox;
-using JP2Box = CSJ2K.Color.Boxes.JP2Box;
+
 namespace CSJ2K.Color
 {
 	

@@ -41,8 +41,7 @@
 /// Copyright (c) 1999/2000 JJ2000 Partners.
 
 using System;
-using CSJ2K.j2k.image;
-using CSJ2K.j2k;
+
 namespace CSJ2K.j2k.image.input
 {
 	

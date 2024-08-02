@@ -7,7 +7,6 @@
  **/
 
 using System;
-using CSJ2K.Util;
 using SkiaSharp;
 
 namespace CSJ2K.j2k.image.input

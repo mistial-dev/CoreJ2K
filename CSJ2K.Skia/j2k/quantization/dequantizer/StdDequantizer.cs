@@ -46,13 +46,9 @@
 * */
 using System;
 using CSJ2K.j2k.wavelet.synthesis;
-using CSJ2K.j2k.entropy.decoder;
-using CSJ2K.j2k.quantization;
-using CSJ2K.j2k.codestream;
-using CSJ2K.j2k.entropy;
 using CSJ2K.j2k.decoder;
 using CSJ2K.j2k.image;
-using CSJ2K.j2k.io;
+
 namespace CSJ2K.j2k.quantization.dequantizer
 {
 	

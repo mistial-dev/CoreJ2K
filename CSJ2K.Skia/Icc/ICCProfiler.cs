@@ -7,10 +7,8 @@
 /// ***************************************************************************
 /// </summary>
 using System;
-using CSJ2K.j2k.decoder;
 using CSJ2K.j2k.image;
 using CSJ2K.j2k.util;
-using CSJ2K.j2k.io;
 using CSJ2K.Color;
 using CSJ2K.Icc.Lut;
 namespace CSJ2K.Icc

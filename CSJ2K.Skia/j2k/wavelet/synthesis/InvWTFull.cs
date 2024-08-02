@@ -45,10 +45,9 @@
 * */
 using System;
 using System.Collections.Generic;
-using CSJ2K.j2k.wavelet;
 using CSJ2K.j2k.decoder;
 using CSJ2K.j2k.image;
-using CSJ2K.j2k.util;
+
 namespace CSJ2K.j2k.wavelet.synthesis
 {
 	

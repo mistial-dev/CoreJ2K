@@ -42,7 +42,7 @@
 * */
 using System;
 using CSJ2K.j2k.util;
-using CSJ2K.j2k.io;
+
 namespace CSJ2K.j2k.codestream.reader
 {
 	

@@ -9,8 +9,7 @@
 using System;
 using CSJ2K.j2k.util;
 using CSJ2K.j2k.io;
-using CSJ2K.Color;
-using CSJ2K.Icc;
+
 namespace CSJ2K.Color.Boxes
 {
 	

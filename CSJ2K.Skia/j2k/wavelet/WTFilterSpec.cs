@@ -43,7 +43,7 @@
 * 
 * 
 */
-using System;
+
 namespace CSJ2K.j2k.wavelet
 {
 	

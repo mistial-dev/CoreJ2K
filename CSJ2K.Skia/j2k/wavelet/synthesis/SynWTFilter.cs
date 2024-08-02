@@ -41,11 +41,7 @@
 * 
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
-using System;
-using CSJ2K.j2k.codestream;
-using CSJ2K.j2k.wavelet;
-using CSJ2K.j2k.io;
-using CSJ2K.j2k;
+
 namespace CSJ2K.j2k.wavelet.synthesis
 {
 	

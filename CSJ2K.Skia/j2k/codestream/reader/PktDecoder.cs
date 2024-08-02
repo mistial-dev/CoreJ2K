@@ -44,9 +44,7 @@
 using System;
 using System.Collections.Generic;
 using CSJ2K.j2k.wavelet.synthesis;
-using CSJ2K.j2k.codestream;
 using CSJ2K.j2k.entropy;
-using CSJ2K.j2k.wavelet;
 using CSJ2K.j2k.decoder;
 using CSJ2K.j2k.image;
 using CSJ2K.j2k.util;

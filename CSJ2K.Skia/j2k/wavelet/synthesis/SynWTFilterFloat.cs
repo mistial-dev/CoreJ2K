@@ -44,8 +44,7 @@
 * 
 * 
 */
-using System;
-using CSJ2K.j2k.wavelet;
+
 using CSJ2K.j2k.image;
 namespace CSJ2K.j2k.wavelet.synthesis
 {

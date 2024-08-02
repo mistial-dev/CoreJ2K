@@ -6,10 +6,10 @@
 /// $Date $
 /// ***************************************************************************
 /// </summary>
-using System;
+
 using ColorSpace = CSJ2K.Color.ColorSpace;
 using ColorSpaceException = CSJ2K.Color.ColorSpaceException;
-using RandomAccessIO = CSJ2K.j2k.io.RandomAccessIO;
+
 namespace CSJ2K.Icc
 {
 	

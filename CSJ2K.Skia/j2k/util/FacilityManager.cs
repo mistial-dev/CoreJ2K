@@ -36,8 +36,6 @@
 
 namespace CSJ2K.j2k.util
 {
-    using System;
-
     /// <summary> This class manages common facilities for multi-threaded
     /// environments, It can register different facilities for each thread,
     /// and also a default one, so that they can be referred by static

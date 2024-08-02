@@ -7,13 +7,8 @@
 /// ***************************************************************************
 /// </summary>
 using System;
-using ParameterList = CSJ2K.j2k.util.ParameterList;
 using BlkImgDataSrc = CSJ2K.j2k.image.BlkImgDataSrc;
 using DataBlk = CSJ2K.j2k.image.DataBlk;
-using DataBlkInt = CSJ2K.j2k.image.DataBlkInt;
-using DataBlkFloat = CSJ2K.j2k.image.DataBlkFloat;
-using ImgDataAdapter = CSJ2K.j2k.image.ImgDataAdapter;
-using FacilityManager = CSJ2K.j2k.util.FacilityManager;
 
 namespace CSJ2K.Color
 {

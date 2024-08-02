@@ -40,15 +40,9 @@
 * 
 * Copyright (c) 1999/2000 JJ2000 Partners.
 */
-using System;
-using CSJ2K.j2k.io;
+
 using CSJ2K.j2k.wavelet;
-using CSJ2K.j2k.quantization;
-using CSJ2K.j2k.entropy.decoder;
-using CSJ2K.j2k.image;
-using CSJ2K.j2k.util;
-using CSJ2K.j2k.codestream;
-using CSJ2K.j2k.codestream.reader;
+
 namespace CSJ2K.j2k.quantization.dequantizer
 {
 	

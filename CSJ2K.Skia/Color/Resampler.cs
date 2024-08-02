@@ -7,7 +7,6 @@
 /// ***************************************************************************
 /// </summary>
 using System;
-using CSJ2K.j2k.util;
 using CSJ2K.j2k.image;
 namespace CSJ2K.Color
 {
