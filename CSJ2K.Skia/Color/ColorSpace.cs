@@ -49,7 +49,7 @@ namespace CSJ2K.Color
 		public virtual PaletteBox PaletteBox => pbox;
 
 		/// <summary>Return number of channels in the palette. </summary>
-		public virtual int PaletteChannels => pbox == null?0:pbox.NumColumns;
+		public virtual int PaletteChannels => pbox?.NumColumns ?? 0;
 
 		/// <summary>Is palettized predicate. </summary>
 		public virtual bool Palettized => pbox != null;
@@ -219,7 +219,7 @@ namespace CSJ2K.Color
 		/// <summary>Return the channel definition of the input component. </summary>
 		public virtual int getChannelDefinition(int c)
 		{
-			return cdbox == null ? c : cdbox.getCn(c + 1);
+			return cdbox?.getCn(c + 1) ?? c;
 		}
 		
 		/// <summary>Return the colorspace (sYCC, sRGB, sGreyScale). </summary>
@@ -231,7 +231,7 @@ namespace CSJ2K.Color
 		/// <summary>Return bitdepth of the palette entries. </summary>
 		public virtual int getPaletteChannelBits(int c)
 		{
-			return pbox == null ? 0 : pbox.getBitDepth(c);
+			return pbox?.getBitDepth(c) ?? 0;
 		}
 		
 		/// <summary> Return a palettized sample</summary>
@@ -243,13 +243,13 @@ namespace CSJ2K.Color
 		/// </returns>
 		public virtual int getPalettizedSample(int channel, int index)
 		{
-			return pbox == null?0:pbox.getEntry(channel, index);
+			return pbox?.getEntry(channel, index) ?? 0;
 		}
 		
 		/// <summary>Signed output predicate. </summary>
 		public virtual bool isOutputSigned(int channel)
 		{
-			return (pbox != null)?pbox.isSigned(channel):hd.isOriginalSigned(channel);
+			return pbox?.isSigned(channel) ?? hd.isOriginalSigned(channel);
 		}
 		
 		/// <summary>Return a suitable String representation of the class instance. </summary>

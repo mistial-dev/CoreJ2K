@@ -1971,7 +1971,7 @@ namespace CSJ2K.j2k.codestream.reader
 			
 			// Reads packets of the tile according to the progression order
 			var pocSpec = ((int[][]) decSpec.pcs.getTileDef(t));
-			var nChg = (pocSpec == null)?1:pocSpec.Length;
+			var nChg = pocSpec?.Length ?? 1;
 			
 			// Create an array containing information about changes (progression
 			// order type, layers index start, layer index end, resolution level

@@ -31,7 +31,7 @@ namespace CSJ2K.Color
 		/// </summary>
 		/// <returns> The number of components in the image.
 		/// </returns>
-		public override int NumComps => pbox == null?src.NumComps:pbox.NumColumns;
+		public override int NumComps => pbox?.NumColumns ?? src.NumComps;
 
 		internal int[] outShiftValueArray;
 		internal int srcChannel = 0;
@@ -68,7 +68,7 @@ namespace CSJ2K.Color
 		/// <summary>General utility used by ctors </summary>
 		private void  initialize()
 		{
-			if (ncomps != 1 && ncomps != 3)
+			if (ncomps != 1 && ncomps != 3 && ncomps != 4)
 				throw new ColorSpaceException($"wrong number of components ({ncomps}) for palettized image");
 			
 			var outComps = NumComps;
@@ -306,7 +306,7 @@ namespace CSJ2K.Color
 		
 		/// <summary> Returns the number of bits, referred to as the "range bits",
 		/// corresponding to the nominal range of the image data in the specified
-		/// component. If this number is <i>n</b> then for unsigned data the
+		/// component. If this number is <i>n</i> then for unsigned data the
 		/// nominal range is between 0 and 2^b-1, and for signed data it is between
 		/// -2^(b-1) and 2^(b-1)-1. In the case of transformed data which is not in
 		/// the image domain (e.g., wavelet coefficients), this method returns the
@@ -321,7 +321,7 @@ namespace CSJ2K.Color
 		/// </returns>
 		public override int getNomRangeBits(int compIndex)
 		{
-			return pbox == null?src.getNomRangeBits(compIndex):pbox.getBitDepth(compIndex);
+			return pbox?.getBitDepth(compIndex) ?? src.getNomRangeBits(compIndex);
 		}
 		
 		
