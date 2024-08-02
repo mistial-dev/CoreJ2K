@@ -59,7 +59,7 @@ namespace codectest
                 File.WriteAllBytes("file15.jp2", enc);
             }
 
-            for (var i = 1; i <= 14; i++)
+            for (var i = 1; i <= 15; i++)
             {
                 try
                 {
