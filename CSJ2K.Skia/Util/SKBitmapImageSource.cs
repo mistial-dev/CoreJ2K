@@ -29,8 +29,7 @@ namespace CSJ2K.Util
 
         internal static BlkImgDataSrc Create(object imageObject)
         {
-            var bitmap = imageObject as SKBitmap;
-            return bitmap == null ? null : new SKBitmapImageSource(bitmap);
+            return !(imageObject is SKBitmap bitmap) ? null : new SKBitmapImageSource(bitmap);
         }
 
         private static int GetNumberOfComponents(SKBitmap bitmap)

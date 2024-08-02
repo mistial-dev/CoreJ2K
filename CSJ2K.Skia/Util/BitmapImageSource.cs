@@ -32,8 +32,7 @@ namespace CSJ2K.Util
 
         internal static BlkImgDataSrc Create(object imageObject)
         {
-            var bitmap = imageObject as Bitmap;
-            return bitmap == null ? null : new BitmapImageSource(bitmap);
+            return !(imageObject is Bitmap bitmap) ? null : new BitmapImageSource(bitmap);
         }
 
         private static int GetNumberOfComponents(PixelFormat pixelFormat)
@@ -51,7 +50,7 @@ namespace CSJ2K.Util
                 case PixelFormat.Format32bppRgb:
                     return 3;
                 default:
-                    throw new ArgumentOutOfRangeException("pixelFormat");
+                    throw new ArgumentOutOfRangeException(nameof(pixelFormat));
             }
         }
 
@@ -72,7 +71,7 @@ namespace CSJ2K.Util
                 case PixelFormat.Format32bppRgb:
                     return 8;
                 default:
-                    throw new ArgumentOutOfRangeException("pixelFormat");
+                    throw new ArgumentOutOfRangeException(nameof(pixelFormat));
             }
         }
 
