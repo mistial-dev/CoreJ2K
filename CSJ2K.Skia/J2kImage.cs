@@ -1,6 +1,7 @@
 // Copyright (c) 2007-2016 CSJ2K contributors.
 // Licensed under the BSD 3-Clause License.
 
+using System.Drawing;
 using System.Linq;
 using SkiaSharp;
 
@@ -380,13 +381,23 @@ namespace CSJ2K
                 throw new ArgumentNullException(nameof(bitmap));
             }
             
-            // TODO: Build this out.
-            //var counter = 0;
-            //var ncomp = 0;
-            //var ppminput = false;
             BlkImgDataSrc imgsrc;
             
             var imageReaders = new List<ImgReader> { new ImgReaderSkia(bitmap) };
+            imgsrc = imageReaders[0];
+            return imgsrc;
+        }
+        
+        public static BlkImgDataSrc CreateEncodableSource(Bitmap bitmap)
+        {
+            if (bitmap == null)
+            {
+                throw new ArgumentNullException(nameof(bitmap));
+            }
+            
+            BlkImgDataSrc imgsrc;
+            
+            var imageReaders = new List<ImgReader> { new ImgReaderGDI(bitmap) };
             imgsrc = imageReaders[0];
             return imgsrc;
         }
