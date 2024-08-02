@@ -38,7 +38,7 @@ deploy:
   - provider: NuGet
     name: nuget_release
     api_key:
-      secure: fO5RZZiaAOY+/uKN95VvLFZrUM8T8TWuTz7+hxIG6JKSZ3JMC4G/duM+g93kEENU
+      secure: f3xILJA18TcwhGA0Xe+VDpLUwOi5aIRZl0vv0jJv0XkDfISTz0DxhzZaCUiDkq5a
     artifact: /.*CSJ2K.Skia.*(\.|\.s)nupkg/
     skip_symbols: false
     draft: false
