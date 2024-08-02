@@ -37,7 +37,16 @@ namespace CSJ2K.j2k.image.input
             w = image.Width;
             h = image.Height;
             rb = 8;
-            nc = GetNumberOfComponents(image);
+            nc = GetNumberOfComponents(image.Info);
+        }
+
+        public ImgReaderSkia(SKPixmap image)
+        {
+            this.image = image;
+            w = image.Width;
+            h = image.Height;
+            rb = 8;
+            nc = GetNumberOfComponents(image.Info);
         }
         
         public override void Close()
@@ -331,9 +340,9 @@ namespace CSJ2K.j2k.image.input
             return false;
         }
 
-        private int GetNumberOfComponents(SKBitmap bitmap)
+        private int GetNumberOfComponents(SKImageInfo info)
         {
-            switch (bitmap.ColorType)
+            switch (info.ColorType)
             {
                 case SKColorType.Alpha8:
                 case SKColorType.Alpha16:
