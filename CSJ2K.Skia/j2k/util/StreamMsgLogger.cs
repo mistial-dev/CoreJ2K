@@ -139,7 +139,7 @@ namespace CSJ2K.j2k.util
 
             }
 
-            mp.print(lout, 0, prefix.Length, prefix + msg);
+            mp.print(lout, 0, prefix.Length, $"{prefix}{msg}");
             lout.Flush();
         }
 

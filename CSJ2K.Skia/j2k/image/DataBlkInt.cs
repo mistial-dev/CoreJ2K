@@ -172,15 +172,13 @@ namespace CSJ2K.j2k.image
 				Array.Copy(src.data_array, i * src.scanw, data_array, i * scanw, w);
 		}
 		
-		/// <summary> Returns a string of informations about the DataBlkInt.
-		/// 
-		/// </summary>
+		/// <summary> Returns a string of information about the DataBlkInt.</summary>
 		public override string ToString()
 		{
 			var str = base.ToString();
 			if (data_array != null)
 			{
-				str += (",data=" + data_array.Length + " bytes");
+				str += $",data={data_array.Length} bytes";
 			}
 			return str;
 		}

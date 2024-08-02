@@ -700,7 +700,7 @@ namespace CSJ2K
                 try
                 {
                     // Rely on rate allocator to limit amount of data
-                    bwriter = new FileCodestreamWriter(outStream, Int32.MaxValue);
+                    bwriter = new FileCodestreamWriter(outStream, int.MaxValue);
                 }
                 catch (IOException e)
                 {

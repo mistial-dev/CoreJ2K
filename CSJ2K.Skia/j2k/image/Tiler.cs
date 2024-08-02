@@ -662,7 +662,6 @@ namespace CSJ2K.j2k.image
         /// <returns>Tiler's info in as string</returns>
         public override string ToString()
         {
-            //UPGRADE_TODO: The equivalent in .NET for method 'java.lang.Object.toString' may return a different value. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1043'"
             return $"Tiler: source= {src}\n{getNumTiles()} tile(s), nominal width={xtsiz}, nominal height={ytsiz}";
         }
     }

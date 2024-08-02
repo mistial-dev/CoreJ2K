@@ -485,7 +485,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 			var str = "";
 			AnWTFilter[][] an;
 			
-			str += ("nTiles=" + nTiles + "\nnComp=" + nComp + "\n\n");
+			str += $"nTiles={nTiles}\nnComp={nComp}\n\n";
 			
 			for (var t = 0; t < nTiles; t++)
 			{
@@ -493,21 +493,19 @@ namespace CSJ2K.j2k.wavelet.analysis
 				{
 					an = (AnWTFilter[][]) getSpec(t, c);
 					
-					str += ("(t:" + t + ",c:" + c + ")\n");
+					str += $"(t:{t},c:{c})\n";
 					
 					// Horizontal filters
 					str += "\tH:";
 					for (var i = 0; i < an[0].Length; i++)
 					{
-						//UPGRADE_TODO: The equivalent in .NET for method 'java.lang.Object.toString' may return a different value. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1043'"
-						str += (" " + an[0][i]);
+						str += $" {an[0][i]}";
 					}
 					// Horizontal filters
 					str += "\n\tV:";
 					for (var i = 0; i < an[1].Length; i++)
 					{
-						//UPGRADE_TODO: The equivalent in .NET for method 'java.lang.Object.toString' may return a different value. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1043'"
-						str += (" " + an[1][i]);
+						str += $" {an[1][i]}";
 					}
 					str += "\n";
 				}

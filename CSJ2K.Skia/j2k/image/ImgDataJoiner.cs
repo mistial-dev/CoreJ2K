@@ -675,8 +675,7 @@ namespace CSJ2K.j2k.image
             var string_Renamed = $"ImgDataJoiner: WxH = {w}x{h}";
             for (var i = 0; i < nc; i++)
             {
-                //UPGRADE_TODO: The equivalent in .NET for method 'java.lang.Object.toString' may return a different value. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1043'"
-                string_Renamed += ("\n- Component " + i + " " + imageData[i]);
+                string_Renamed += ($"\n- Component {i} {imageData[i]}");
             }
             return string_Renamed;
         }

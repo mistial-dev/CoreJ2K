@@ -179,7 +179,7 @@ namespace CSJ2K.j2k.image
 			var str = base.ToString();
 			if (data != null)
 			{
-				str += (",data=" + data.Length + " bytes");
+				str += $",data={data.Length} bytes";
 			}
 			return str;
 		}
