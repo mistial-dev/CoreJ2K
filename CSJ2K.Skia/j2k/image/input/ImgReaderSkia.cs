@@ -112,9 +112,9 @@ namespace CSJ2K.j2k.image.input
                 case SKColorType.RgbaF16Clamped:
                 case SKColorType.RgF16:
                 case SKColorType.RgbaF32:
-                    throw new ArgumentException($"Floating point colortypes ({image.ColorType}) are unsupported.");
+                    throw new NotSupportedException($"Floating point colortypes ({image.ColorType}) are unsupported.");
                 case SKColorType.Argb4444:
-                    throw new ArgumentException($"4-bit colortype ({image.ColorType}) not supported.");
+                    throw new NotSupportedException($"4-bit colortype ({image.ColorType}) not supported.");
                 case SKColorType.Unknown:
                 default:
                     throw new ArgumentException(
@@ -324,7 +324,7 @@ namespace CSJ2K.j2k.image.input
                             break;
                         }
                         default:
-                            throw new ArgumentException(
+                            throw new NotSupportedException(
                                 $"Colortype {nameof(image.ColorType)} not currently supported.");
                     }
                 }
@@ -477,7 +477,7 @@ namespace CSJ2K.j2k.image.input
                 case SKColorType.RgF16:
                 case SKColorType.AlphaF16:
                 default:
-                    throw new ArgumentException(
+                    throw new NotSupportedException(
                         $"Image colortype ({nameof(image.ColorType)} is not currently supported.");
                 case SKColorType.Unknown:
                     throw new ArgumentException(
