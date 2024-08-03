@@ -16,9 +16,6 @@ namespace CSJ2K.j2k.image.input
         /// <summary>DC offset value used when reading image </summary>
         private const int DC_OFFSET = 128;
         
-	    /// <summary>The number of bits that determine the nominal dynamic range</summary>
-	    private readonly int rb;
-        
         /// <summary>Buffer for the components of each pixel(in the current block)</summary>
         private int[][] barr;
 	    
@@ -36,7 +33,6 @@ namespace CSJ2K.j2k.image.input
             this.image = image.PeekPixels();
             w = image.Width;
             h = image.Height;
-            rb = 8;
             nc = GetNumberOfComponents(image.Info);
         }
 
@@ -45,7 +41,6 @@ namespace CSJ2K.j2k.image.input
             this.image = image;
             w = image.Width;
             h = image.Height;
-            rb = 8;
             nc = GetNumberOfComponents(image.Info);
         }
         
@@ -56,30 +51,82 @@ namespace CSJ2K.j2k.image.input
             barr = null;
         }
 
-        /// <summary> Returns the number of bits corresponding to the nominal range of the
+        /// <summary>
+        /// Returns the number of bits corresponding to the nominal range of the
         /// data in the specified component. This is the value rb (range bits) that
-        /// was specified in the constructor, which normally is 8 for non bilevel
+        /// was specified in the constructor, which normally is 8 for non bi-level
         /// data, and 1 for bi-level data.
         /// 
         /// If this number is <i>b</i> then the nominal range is between
         /// -2^(b-1) and 2^(b-1)-1, since unsigned data is level shifted to have a
-        /// nominal average of 0.</summary>
+        /// nominal average of 0.
+        /// </summary>
         /// <param name="compIndex">The index of the component.</param>
-        /// <returns> The number of bits corresponding to the nominal range of the
-        /// data. For floating-point data this value is not applicable and the
-        /// return value is undefined.</returns>
+        /// <returns>The number of bits corresponding to the nominal range of the
+        /// data.</returns>
+        /// <exception cref="ArgumentException">Unsupported <seealso cref="SKColorType" /></exception>
+        /// <exception cref="ArgumentOutOfRangeException">Component index outside range</exception>
         public override int getNomRangeBits(int compIndex)
         {
             // Check component index
             if (compIndex < 0 || compIndex > this.nc)
                 throw new ArgumentOutOfRangeException(nameof(compIndex) + " is out of range");
 			
-            return rb;
+            switch (image.ColorType)
+            {
+                case SKColorType.Alpha8:
+                case SKColorType.Gray8:
+                case SKColorType.Rg88:
+                case SKColorType.Rgb888x:
+                case SKColorType.Bgra8888:
+                case SKColorType.Rgba8888:
+                    return 8;
+                case SKColorType.Alpha16:
+                case SKColorType.Rg1616:
+                case SKColorType.Rgba16161616:
+                    return 16;
+                case SKColorType.Rgb565:
+                {
+                    switch (compIndex)
+                    {
+                        case 0:
+                            return 5;
+                        case 1:
+                            return 6;
+                        case 2:
+                            return 5;
+                        default:
+                            throw new ArgumentOutOfRangeException(nameof(compIndex) + " is out of range");
+                    }
+                }
+                case SKColorType.Rgb101010x:
+                case SKColorType.Bgr101010x:
+                    return 10;
+                case SKColorType.Rgba1010102:
+                case SKColorType.Bgra1010102:
+                {
+                    return compIndex == 3 ? 2 : 10;
+                }
+                case SKColorType.AlphaF16:
+                case SKColorType.RgbaF16:
+                case SKColorType.RgbaF16Clamped:
+                case SKColorType.RgF16:
+                case SKColorType.RgbaF32:
+                    throw new ArgumentException($"Floating point colortypes ({image.ColorType}) are unsupported.");
+                case SKColorType.Argb4444:
+                    throw new ArgumentException($"4-bit colortype ({image.ColorType}) not supported.");
+                case SKColorType.Unknown:
+                default:
+                    throw new ArgumentException(
+                        "Image colortype is unknown, Nominal range bits cannot be determined.");
+            }
         }
         
-        /// <summary> Returns the position of the fixed point in the specified component
+        /// <summary>
+        /// Returns the position of the fixed point in the specified component
         /// (i.e. the number of fractional bits), which is always 0 for this
-        /// ImgReader.</summary>
+        /// ImgReader.
+        /// </summary>
         /// <param name="compIndex">The index of the component.</param>
         /// <returns> The position of the fixed-point (i.e. the number of fractional
         /// bits). Always 0 for this ImgReader.</returns>
@@ -170,15 +217,22 @@ namespace CSJ2K.j2k.image.input
                 }
                 blk.Data = barr[compIndex];
 
-                var i = (compIndex + 1) % nc;
-                if (barr[i] == null || barr[i].Length < blk.w * blk.h)
+                int i;
+                if (nc > 1)
                 {
-                    barr[i] = new int[blk.w * blk.h];
+                    i = (compIndex + 1) % nc;
+                    if (barr[i] == null || barr[i].Length < blk.w * blk.h)
+                    {
+                        barr[i] = new int[blk.w * blk.h];
+                    }
                 }
-                i = (compIndex + 2) % nc;
-                if (barr[i] == null || barr[i].Length < blk.w * blk.h)
+                if (nc > 2)
                 {
-                    barr[i] = new int[blk.w * blk.h];
+                    i = (compIndex + 2) % nc;
+                    if (barr[i] == null || barr[i].Length < blk.w * blk.h)
+                    {
+                        barr[i] = new int[blk.w * blk.h];
+                    }
                 }
                 if (nc > 3)
                 {
@@ -196,8 +250,8 @@ namespace CSJ2K.j2k.image.input
                 dbi.h = blk.h;
 
                 var red = barr[0];
-                var green = barr[1];
-                var blue = barr[2];
+                var green = nc > 1 ? barr[1] : null;
+                var blue = nc > 2 ? barr[2] : null;
                 var alpha = nc > 3 ? barr[3] : null;
 
                 var pixelsAddr = image.GetPixels(blk.ulx, blk.uly);
@@ -205,23 +259,79 @@ namespace CSJ2K.j2k.image.input
                 unsafe
                 {
                     var ptr = (byte*)pixelsAddr.ToPointer();
-                    
-                    var k = 0;
-                    for (var j = 0; j < blk.w * blk.h; ++j)
-                    {
-                        red[k] = (*(ptr + 0) & 0xFF) - DC_OFFSET;
-                        green[k] = (*(ptr + 1) & 0xFF) - DC_OFFSET;
-                        blue[k] = (*(ptr + 2) & 0xFF) - DC_OFFSET;
-                        if (alpha != null) { alpha[k] = (*(ptr + 3) & 0xFF) - DC_OFFSET; }
 
-                        ++k;
-                        ptr += image.BytesPerPixel;
+                    switch (image.ColorType)
+                    {
+                        case SKColorType.Rgba8888:
+                        case SKColorType.Rgb888x:
+                            {
+                                var k = 0;
+                                for (var j = 0; j < blk.w * blk.h; ++j)
+                                {
+                                    red[k] = (*(ptr + 0) & 0xFF) - DC_OFFSET;
+                                    green[k] = (*(ptr + 1) & 0xFF) - DC_OFFSET;
+                                    blue[k] = (*(ptr + 2) & 0xFF) - DC_OFFSET;
+                                    if (alpha != null)
+                                    {
+                                        alpha[k] = (*(ptr + 3) & 0xFF) - DC_OFFSET;
+                                    }
+
+                                    ++k;
+                                    ptr += image.BytesPerPixel;
+                                }
+                            }
+                            break;
+                        case SKColorType.Bgra8888:
+                            {
+                                var k = 0;
+                                for (var j = 0; j < blk.w * blk.h; ++j)
+                                {
+                                    blue[k] = (*(ptr + 0) & 0xFF) - DC_OFFSET;
+                                    green[k] = (*(ptr + 1) & 0xFF) - DC_OFFSET;
+                                    red[k] = (*(ptr + 2) & 0xFF) - DC_OFFSET;
+                                    if (alpha != null)
+                                    {
+                                        alpha[k] = (*(ptr + 3) & 0xFF) - DC_OFFSET;
+                                    }
+
+                                    ++k;
+                                    ptr += image.BytesPerPixel;
+                                }
+                            }
+                            break;
+                        case SKColorType.Alpha8:
+                        case SKColorType.Gray8:
+                        {
+                            var k = 0;
+                            for (var j = 0; j < blk.w * blk.h; ++j)
+                            {
+                                red[k] = (*(ptr + 0) & 0xFF) - DC_OFFSET;
+                                ++k;
+                                ptr += image.BytesPerPixel;
+                            }
+                            break;
+                        }
+                        case SKColorType.Rg88:
+                        {
+                            var k = 0;
+                            for (var j = 0; j < blk.w * blk.h; ++j)
+                            {
+                                red[k] = (*(ptr + 0) & 0xFF) - DC_OFFSET;
+                                green[k] = (*(ptr + 1) & 0xFF) - DC_OFFSET;
+                                ++k;
+                                ptr += image.BytesPerPixel;
+                            }
+                            break;
+                        }
+                        default:
+                            throw new ArgumentException(
+                                $"Colortype {nameof(image.ColorType)} not currently supported.");
                     }
                 }
                 
-                barr[0] = red;
-                barr[1] = green;
-                barr[2] = blue;
+                if (red != null) { barr[0] = red; }
+                if (green != null) { barr[1] = green; }
+                if (blue != null) { barr[2] = blue; }
                 if (alpha != null) { barr[3] = alpha; }
 
                 // Set buffer attributes
@@ -242,7 +352,8 @@ namespace CSJ2K.j2k.image.input
             return blk;
         }
         
-        /// <summary> Returns, in the blk argument, a block of image data containing the
+        /// <summary>
+        /// Returns, in the blk argument, a block of image data containing the
 		/// specified rectangular area, in the specified component. The data is
 		/// returned, as a copy of the internal data, therefore the returned data
 		/// can be modified "in place".
@@ -267,7 +378,8 @@ namespace CSJ2K.j2k.image.input
 		/// When an I/O exception is encountered the JJ2KExceptionHandler is
 		/// used. The exception is passed to its handleException method. The action
 		/// that is taken depends on the action that has been registered in
-		/// JJ2KExceptionHandler. See JJ2KExceptionHandler for details.</summary>
+		/// JJ2KExceptionHandler. See JJ2KExceptionHandler for details.
+		/// </summary>
 		/// <param name="blk">Its coordinates and dimensions specify the area to
 		/// return. If it contains a non-null data array, then it must have the
 		/// correct dimensions. If it contains a null data array a new one is
@@ -321,17 +433,12 @@ namespace CSJ2K.j2k.image.input
             return blk;
         }
 
-        /// <summary> Returns true if the data read was originally signed in the specified
-        /// component, false if not. This method always returns false since PPM
-        /// data is always unsigned.
-        /// 
+        /// <summary>
+        /// Returns true if the data read was originally signed in the specified
+        /// component, false if not.
         /// </summary>
-        /// <param name="compIndex">The index of the component, from 0 to N-1.
-        /// 
-        /// </param>
-        /// <returns> always false, since PPM data is always unsigned.
-        /// 
-        /// </returns>
+        /// <param name="compIndex">The index of the component, from 0 to N-1.</param>
+        /// <returns> Data signededness.</returns>
         public override bool IsOrigSigned(int compIndex)
         {
             // Check component index
@@ -345,32 +452,34 @@ namespace CSJ2K.j2k.image.input
             switch (info.ColorType)
             {
                 case SKColorType.Alpha8:
-                case SKColorType.Alpha16:
+                //case SKColorType.Alpha16:
                 case SKColorType.Gray8:
                     return 1;
                 case SKColorType.Rg88:
-                case SKColorType.Rg1616:
+                //case SKColorType.Rg1616:
                     return 2;
                 case SKColorType.Rgb888x:
-                case SKColorType.Rgb565:
-                case SKColorType.Rgb101010x:
-                case SKColorType.Bgr101010x:
+                //case SKColorType.Rgb565:
+                //case SKColorType.Rgb101010x:
+                //case SKColorType.Bgr101010x:
                     return 3;
-                case SKColorType.Argb4444:
+                //case SKColorType.Argb4444:
                 case SKColorType.Bgra8888:
                 case SKColorType.Rgba8888:
-                case SKColorType.Rgba1010102:
-                case SKColorType.Bgra1010102:
-                case SKColorType.Rgba16161616:
+                //case SKColorType.Rgba1010102:
+                //case SKColorType.Bgra1010102:
+                //case SKColorType.Rgba16161616:
                     return image.AlphaType > SKAlphaType.Opaque ? 4 : 3;
+                // floating point types
                 case SKColorType.RgbaF16:
                 case SKColorType.RgbaF16Clamped:
                 case SKColorType.RgbaF32:
                 case SKColorType.RgF16:
                 case SKColorType.AlphaF16:
-                    throw new ArgumentException("Floating point color types unsupported at this time.");
-                case SKColorType.Unknown:
                 default:
+                    throw new ArgumentException(
+                        $"Image colortype ({nameof(image.ColorType)} is not currently supported.");
+                case SKColorType.Unknown:
                     throw new ArgumentException(
                         "Image colortype is unknown, number of components cannot be determined.");
             }
