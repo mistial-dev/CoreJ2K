@@ -18,7 +18,7 @@ namespace CSJ2K.Util
             var bitmap = new SKBitmap();
 
             var gcHandle = GCHandle.Alloc(Bytes, GCHandleType.Pinned);
-            var info = new SKImageInfo(Width, Height, SKImageInfo.PlatformColorType, SKAlphaType.Unpremul);
+            var info = new SKImageInfo(Width, Height, SKColorType.Bgra8888, SKAlphaType.Unpremul);
             bitmap.InstallPixels(info, gcHandle.AddrOfPinnedObject(), info.RowBytes,
                 delegate { gcHandle.Free(); }, null);
 
