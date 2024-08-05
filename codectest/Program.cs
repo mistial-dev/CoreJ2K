@@ -23,7 +23,15 @@ namespace codectest
             File.Delete("file13.jp2");
             File.Delete("file14.jp2");
             File.Delete("file15.jp2");
-            foreach (var f in Directory.EnumerateFiles(".",$"file*_histogram.png"))
+            foreach (var f in Directory.EnumerateFiles(".",$"histogram*.png"))
+            {
+                File.Delete(f);
+            }
+            foreach (var f in Directory.EnumerateFiles(".",$"encoded*.png"))
+            {
+                File.Delete(f);
+            }
+            foreach (var f in Directory.EnumerateFiles(".",$"encoded*.png"))
             {
                 File.Delete(f);
             }
@@ -79,7 +87,9 @@ namespace codectest
 
                     var histogram = GenerateHistogram(image);
                     var encoded = histogram.Encode(SKEncodedImageFormat.Png, 100);
-                    File.WriteAllBytes($"file{i}_histogram.png", encoded.ToArray());
+                    File.WriteAllBytes($"histogram{i}.png", encoded.ToArray());
+                    encoded = image.Encode(SKEncodedImageFormat.Png, 100);
+                    File.WriteAllBytes($"encoded{i}.png", encoded.ToArray());
                 }
                 catch (Exception e)
                 {
