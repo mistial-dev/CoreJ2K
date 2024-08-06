@@ -443,7 +443,6 @@ namespace CSJ2K.j2k.wavelet.synthesis
 				// start index is even => use LPF
 				for (i = 0; i < h; i++, offset += db.w)
 				{
-                    // CONVERSION PROBLEM?
 					Array.Copy((Array)data, offset, (Array)buf, 0, w);
 					sb.hFilter.synthetize_lpf(buf, 0, (w + 1) / 2, 1, buf, (w + 1) / 2, w / 2, 1, data, offset, 1);
 				}
@@ -453,7 +452,6 @@ namespace CSJ2K.j2k.wavelet.synthesis
 				// start index is odd => use HPF
 				for (i = 0; i < h; i++, offset += db.w)
 				{
-                    // CONVERSION PROBLEM?
 					Array.Copy((Array)data, offset, (Array)buf, 0, w);
 					sb.hFilter.synthetize_hpf(buf, 0, w / 2, 1, buf, w / 2, (w + 1) / 2, 1, data, offset, 1);
 				}

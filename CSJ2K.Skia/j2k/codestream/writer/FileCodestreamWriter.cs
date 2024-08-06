@@ -326,7 +326,6 @@ namespace CSJ2K.j2k.codestream.writer
 		{
 			
 			// Write the EOC marker and close the codestream.
-            // CONVERSION PROBLEM?
 			out_Renamed.WriteByte((byte) SupportClass.URShift(Markers.EOC, 8));
 			out_Renamed.WriteByte(Markers.EOC & 0x00FF);
 			

@@ -414,7 +414,6 @@ namespace CSJ2K.j2k.image.input
             if (blk.offset == 0 && blk.scanw == width)
             {
                 // Requested and returned block buffer are the same size
-                // CONVERSION PROBLEM?
                 Array.Copy((Array)blk.Data, 0, bakarr, 0, width * height);
             }
             else
@@ -423,7 +422,6 @@ namespace CSJ2K.j2k.image.input
                 for (var i = height - 1; i >= 0; i--)
                 {
                     // copy line by line
-                    // CONVERSION PROBLEM?
                     Array.Copy((Array)blk.Data, blk.offset + i * blk.scanw, bakarr, i * width, width);
                 }
             }

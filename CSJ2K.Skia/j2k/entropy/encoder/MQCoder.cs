@@ -1341,7 +1341,6 @@ namespace CSJ2K.j2k.entropy.encoder
 				object tmp;
 				tmp = savedC;
 				savedC = new int[nSaved + SAVED_INC];
-                // CONVERSION PROBLEM?
 				Array.Copy((Array)tmp, 0, savedC, 0, nSaved);
 				tmp = savedCT;
 				savedCT = new int[nSaved + SAVED_INC];

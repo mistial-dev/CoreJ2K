@@ -413,7 +413,6 @@ namespace CSJ2K.j2k.wavelet.analysis
 					bufblk.uly = kk;
 					bufblk.ulx = lstart;
 					bufblk = src.GetInternCompData(bufblk, c);
-                    // CONVERSION PROBLEM?
 					Array.Copy((Array)bufblk.Data, bufblk.offset, (Array)dst_data, k * w, w);
 				}
 				
@@ -672,7 +671,6 @@ namespace CSJ2K.j2k.wavelet.analysis
 			w = cblk.w;
 			for (j = w * (cblk.h - 1), k = cblk.offset + (cblk.h - 1) * cblk.scanw; j >= 0; j -= w, k -= cblk.scanw)
 			{
-                // CONVERSION PROBLEM?
 				Array.Copy((Array)src_data, k, (Array)dst_data, j, w);
 			}
 			cblk.Data = dst_data;
