@@ -5,18 +5,21 @@
 using System;
 using System.Linq;
 using CSJ2K.j2k.image;
+using CSJ2K.j2k.image.input;
 using SkiaSharp;
 
 namespace CSJ2K.Util
 {
     public class SKBitmapImageSource : PortableImageSource
     {
+        /// <summary>DC offset value used when reading image </summary>
+        private const int DC_OFFSET = 128;
         
 #region CONSTRUCTORS
 
         private SKBitmapImageSource(SKBitmap bitmap) 
             : base(bitmap.Width, bitmap.Height
-            , GetNumberOfComponents(bitmap)
+            , ImgReaderSkia.GetNumberOfComponents(bitmap.Info)
             , bitmap.Info.BytesPerPixel
             , GetSignedArray(bitmap)
             , GetComponents(bitmap))
@@ -32,69 +35,70 @@ namespace CSJ2K.Util
             return !(imageObject is SKBitmap bitmap) ? null : new SKBitmapImageSource(bitmap);
         }
 
-        private static int GetNumberOfComponents(SKBitmap bitmap)
+        public static int[][] GetComponents(SKBitmap image)
         {
-            switch (bitmap.ColorType)
+            var w = image.Width;
+            var h = image.Height;
+            var nc = ImgReaderSkia.GetNumberOfComponents(image.Info);
+            var safePtr = image.GetPixels();
+
+            var barr = new int[nc][];
+            for (var c = 0; c < nc; ++c) { barr[c] = new int[w * h]; }
+            var red = barr[0];
+            var green = nc > 1 ? barr[1] : null;
+            var blue = nc > 2 ? barr[2] : null;
+            var alpha = nc > 3 ? barr[3] : null;
+            
+            // avoid a swizzle
+            if (image.ColorType == SKColorType.Bgra8888 
+                || image.ColorType == SKColorType.Bgra1010102 
+                || image.ColorType == SKColorType.Bgr101010x)
             {
-                case SKColorType.Alpha8:
-                case SKColorType.Alpha16:
-                case SKColorType.Gray8:
-                    return 1;
-                case SKColorType.Rg88:
-                case SKColorType.Rg1616:
-                    return 2;
-                case SKColorType.Rgb888x:
-                case SKColorType.Rgb565:
-                case SKColorType.Rgb101010x:
-                case SKColorType.Bgr101010x:
-                    return 3;
-                case SKColorType.Argb4444:
-                case SKColorType.Bgra8888:
-                case SKColorType.Rgba8888:
-                case SKColorType.Rgba1010102:
-                case SKColorType.Bgra1010102:
-                case SKColorType.Rgba16161616:
-                    return bitmap.AlphaType > SKAlphaType.Opaque ? 4 : 3;
-                case SKColorType.RgbaF16:
-                case SKColorType.RgbaF16Clamped:
-                case SKColorType.RgbaF32:
-                case SKColorType.RgF16:
-                case SKColorType.AlphaF16:
-                    throw new ArgumentException("Floating point color types unsupported at this time.");
-                case SKColorType.Unknown:
-                default:
-                    throw new ArgumentException(
-                        "Image colortype is unknown, number of components cannot be determined.");
+                blue = barr[2];
+                red = barr[0];
             }
-        }
-
-        public static int[][] GetComponents(SKBitmap bitmap)
-        {
-            var w = bitmap.Width;
-            var h = bitmap.Height;
-            var nc = GetNumberOfComponents(bitmap);
-
-            var comps = new int[nc][];
-            for (var c = 0; c < nc; ++c) { comps[c] = new int[w * h]; }
-
-            for (int y = 0, xy = 0; y < h; ++y)
+            
+            unsafe
             {
-                for (var x = 0; x < w; ++x, ++xy)
+                var ptr = (byte*)safePtr.ToPointer();
+                switch (image.ColorType)
                 {
-                    var color = bitmap.GetPixel(x, y);
-                    for (var c = 0; c < nc; ++c)
+                    case SKColorType.Bgra8888:
+                    case SKColorType.Rgba8888:
+                    case SKColorType.Rgb888x:
+                    case SKColorType.Alpha8:
+                    case SKColorType.Gray8:
+                    case SKColorType.Rg88:
                     {
-                        comps[c][xy] = c == 0 ? color.Red : c == 1 ? color.Green : color.Blue;
-                    }
-                }
-            }
+                        var k = 0;
+                        for (var j = 0; j < w * h; ++j)
+                        {
+                            red[k] = (*(ptr + 0) & 0xFF) - DC_OFFSET;
+                            if (green != null) { green[k] = (*(ptr + 1) & 0xFF) - DC_OFFSET; }
+                            if (blue != null) { blue[k] = (*(ptr + 2) & 0xFF) - DC_OFFSET; }
+                            if (alpha != null) { alpha[k] = (*(ptr + 3) & 0xFF) - DC_OFFSET; }
 
-            return comps;
+                            ++k;
+                            ptr += image.BytesPerPixel;
+                        }
+                    } break;
+                    default:
+                        throw new NotSupportedException(
+                            $"Colortype {nameof(image.ColorType)} not currently supported.");
+                }
+                
+                if (red != null) { barr[0] = red; }
+                if (green != null) { barr[1] = green; }
+                if (blue != null) { barr[2] = blue; }
+                if (alpha != null) { barr[3] = alpha; }
+            }
+            
+            return barr;
         }
 
         private static bool[] GetSignedArray(SKBitmap bitmap)
         {
-            return Enumerable.Repeat(false, GetNumberOfComponents(bitmap)).ToArray();
+            return Enumerable.Repeat(false, ImgReaderSkia.GetNumberOfComponents(bitmap.Info)).ToArray();
         }
         
         #endregion

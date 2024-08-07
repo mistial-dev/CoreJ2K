@@ -253,6 +253,15 @@ namespace CSJ2K.j2k.image.input
                 var green = nc > 1 ? barr[1] : null;
                 var blue = nc > 2 ? barr[2] : null;
                 var alpha = nc > 3 ? barr[3] : null;
+                
+                // avoid a swizzle
+                if (image.ColorType == SKColorType.Bgra8888 
+                    || image.ColorType == SKColorType.Bgra1010102 
+                    || image.ColorType == SKColorType.Bgr101010x)
+                {
+                    blue = barr[2];
+                    red = barr[0];
+                }
 
                 var pixelsAddr = image.GetPixels(blk.ulx, blk.uly);
                 
@@ -262,67 +271,24 @@ namespace CSJ2K.j2k.image.input
 
                     switch (image.ColorType)
                     {
+                        case SKColorType.Bgra8888:
                         case SKColorType.Rgba8888:
                         case SKColorType.Rgb888x:
-                            {
-                                var k = 0;
-                                for (var j = 0; j < blk.w * blk.h; ++j)
-                                {
-                                    red[k] = (*(ptr + 0) & 0xFF) - DC_OFFSET;
-                                    green[k] = (*(ptr + 1) & 0xFF) - DC_OFFSET;
-                                    blue[k] = (*(ptr + 2) & 0xFF) - DC_OFFSET;
-                                    if (alpha != null)
-                                    {
-                                        alpha[k] = (*(ptr + 3) & 0xFF) - DC_OFFSET;
-                                    }
-
-                                    ++k;
-                                    ptr += image.BytesPerPixel;
-                                }
-                            }
-                            break;
-                        case SKColorType.Bgra8888:
-                            {
-                                var k = 0;
-                                for (var j = 0; j < blk.w * blk.h; ++j)
-                                {
-                                    blue[k] = (*(ptr + 0) & 0xFF) - DC_OFFSET;
-                                    green[k] = (*(ptr + 1) & 0xFF) - DC_OFFSET;
-                                    red[k] = (*(ptr + 2) & 0xFF) - DC_OFFSET;
-                                    if (alpha != null)
-                                    {
-                                        alpha[k] = (*(ptr + 3) & 0xFF) - DC_OFFSET;
-                                    }
-
-                                    ++k;
-                                    ptr += image.BytesPerPixel;
-                                }
-                            }
-                            break;
                         case SKColorType.Alpha8:
                         case SKColorType.Gray8:
-                        {
-                            var k = 0;
-                            for (var j = 0; j < blk.w * blk.h; ++j)
-                            {
-                                red[k] = (*(ptr + 0) & 0xFF) - DC_OFFSET;
-                                ++k;
-                                ptr += image.BytesPerPixel;
-                            }
-                            break;
-                        }
                         case SKColorType.Rg88:
-                        {
                             var k = 0;
                             for (var j = 0; j < blk.w * blk.h; ++j)
                             {
                                 red[k] = (*(ptr + 0) & 0xFF) - DC_OFFSET;
-                                green[k] = (*(ptr + 1) & 0xFF) - DC_OFFSET;
+                                if (green != null) { green[k] = (*(ptr + 1) & 0xFF) - DC_OFFSET; }
+                                if (blue != null) { blue[k] = (*(ptr + 2) & 0xFF) - DC_OFFSET; }
+                                if (alpha != null) { alpha[k] = (*(ptr + 3) & 0xFF) - DC_OFFSET; }
+
                                 ++k;
                                 ptr += image.BytesPerPixel;
                             }
                             break;
-                        }
                         default:
                             throw new NotSupportedException(
                                 $"Colortype {nameof(image.ColorType)} not currently supported.");
@@ -445,7 +411,7 @@ namespace CSJ2K.j2k.image.input
             return false;
         }
 
-        private int GetNumberOfComponents(SKImageInfo info)
+        public static int GetNumberOfComponents(SKImageInfo info)
         {
             switch (info.ColorType)
             {
@@ -467,7 +433,7 @@ namespace CSJ2K.j2k.image.input
                 //case SKColorType.Rgba1010102:
                 //case SKColorType.Bgra1010102:
                 //case SKColorType.Rgba16161616:
-                    return image.AlphaType > SKAlphaType.Opaque ? 4 : 3;
+                    return info.AlphaType > SKAlphaType.Opaque ? 4 : 3;
                 // floating point types
                 case SKColorType.RgbaF16:
                 case SKColorType.RgbaF16Clamped:
@@ -476,7 +442,7 @@ namespace CSJ2K.j2k.image.input
                 case SKColorType.AlphaF16:
                 default:
                     throw new NotSupportedException(
-                        $"Image colortype ({nameof(image.ColorType)} is not currently supported.");
+                        $"Image colortype ({nameof(info.ColorType)} is not currently supported.");
                 case SKColorType.Unknown:
                     throw new ArgumentException(
                         "Image colortype is unknown, number of components cannot be determined.");
