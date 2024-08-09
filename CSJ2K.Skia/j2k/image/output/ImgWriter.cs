@@ -52,13 +52,13 @@ namespace CSJ2K.j2k.image.output
 	/// Each object inheriting from this class should have a source ImgData
 	/// object associated with it. The image data to write to the file is obtained
 	/// from the associated ImgData object. In general this object would be
-	/// specified at construction time.</p>
+	/// specified at construction time.
 	/// 
 	/// Depending on the actual type of file that is written a call to any
 	/// write() or writeAll() method will write data from one component, several
 	/// components or all components. For example, a PGM writer will write data
 	/// from only one component (defined in the constructor) while a PPM writer
-	/// will write 3 components (normally R,G,B).</p>
+	/// will write 3 components (normally R,G,B).
 	/// 
 	/// </summary>
 	public abstract class ImgWriter
@@ -121,7 +121,7 @@ namespace CSJ2K.j2k.image.output
 		/// 
 		/// The implementing class should only write data that is not
 		/// "progressive" (in other words that it is final), see DataBlk for
-		/// details.</p>
+		/// details.
 		/// 
 		/// </summary>
 		/// <exception cref="IOException">If an I/O error occurs.
@@ -166,7 +166,7 @@ namespace CSJ2K.j2k.image.output
 		/// 
 		/// The implementing class should only write data that is not
 		/// "progressive" (in other words that is final), see DataBlk for
-		/// details.</p>
+		/// details.
 		/// 
 		/// </summary>
 		/// <param name="ulx">The horizontal coordinate of the upper-left corner of the

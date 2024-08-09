@@ -56,12 +56,12 @@ namespace CSJ2K.j2k.wavelet.synthesis
 	/// other interfaces, such as 'CBlkQuantDataSrcDec'.
 	/// 
 	/// This interface is very similar to the 'ImgData' one. It differs only by
-	/// the fact that it handles multiple resolutions.</p>
+	/// the fact that it handles multiple resolutions.
 	/// 
 	/// Resolution levels are counted from 0 to L. Resolution level 0 is the
 	/// lower resolution, while L is the maximum resolution level, or full
 	/// resolution, which is returned by 'getMaxResLvl()'. Note that there are L+1
-	/// resolution levels available.</p>
+	/// resolution levels available.
 	/// 
 	/// As in the 'ImgData' interface a multi-resolution image lies on top of a
 	/// canvas. The canvas coordinates are mapped from the full resolution
@@ -69,13 +69,13 @@ namespace CSJ2K.j2k.wavelet.synthesis
 	/// level 'l' reference grid by '(x_l,y_l) =
 	/// (ceil(x_l/2^(L-l)),ceil(y_l/2^(L-l)))', where '(x,y)' are the full
 	/// resolution reference grid coordinates and '(x_l,y_l)' are the level 'l'
-	/// reference grid coordinates.</p>
+	/// reference grid coordinates.
 	/// 
 	/// For details on the canvas system and its implications consult the
-	/// 'ImgData' interface.</p>
+	/// 'ImgData' interface.
 	/// 
 	/// Note that tile sizes may not be obtained by simply dividing the tile
-	/// size in the reference grid by the subsampling factor.</p>
+	/// size in the reference grid by the subsampling factor.
 	/// 
 	/// </summary>
 	/// <seealso cref="jj2000.j2k.image.ImgData">

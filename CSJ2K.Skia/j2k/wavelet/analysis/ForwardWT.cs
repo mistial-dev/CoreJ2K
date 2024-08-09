@@ -58,7 +58,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 	/// This class assumes that data is transferred in code-blocks, as defined
 	/// by the 'CBlkWTDataSrc' interface. The internal calculation of the wavelet
 	/// transform may be done differently but a buffering class should convert to
-	/// that type of transfer.</p>
+	/// that type of transfer.
 	/// 
 	/// </summary>
 	public abstract class ForwardWT:ImgDataAdapter, ForwWT, CBlkWTDataSrc

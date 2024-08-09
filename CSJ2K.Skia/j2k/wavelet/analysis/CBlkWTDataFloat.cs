@@ -49,7 +49,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 	/// floating point data (float).
 	/// 
 	/// The methods in this class are declared final, so that they can be
-	/// inlined by inlining compilers.</p>
+	/// inlined by inlining compilers.
 	/// 
 	/// </summary>
 	/// <seealso cref="CBlkWTData">

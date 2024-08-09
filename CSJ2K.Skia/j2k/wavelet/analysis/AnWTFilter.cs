@@ -49,7 +49,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 	/// (int, float) provide more specific method calls while retaining the
 	/// generality of this one. See the AnWTFilterInt and AnWTFilterFloat
 	/// classes. Implementations of analysis filters should inherit from one of
-	/// those classes.</p>
+	/// those classes.
 	/// 
 	/// All analysis wavelet filters should follow the following conventions:
 	/// 
@@ -143,7 +143,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// sample) is given by inOff. The number of samples to filter is given by
 		/// inLen. This array must be of the same type as the one for which the
 		/// particular implementation works with (which is returned by the
-		/// getDataType() method).</p>
+		/// getDataType() method).
 		/// 
 		/// The input signal can be interleaved with other signals in the same
 		/// inSig array, and this is determined by the inStep argument. This means
@@ -152,7 +152,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// on. Therefore if inStep is 1 there is no interleaving. This feature
 		/// allows to filter columns of a 2-D signal, when it is stored in a line
 		/// by line order in inSig, without having to copy the data, in this case
-		/// the inStep argument should be the line width.</p>
+		/// the inStep argument should be the line width.
 		/// 
 		/// This method also allows to apply the analysis wavelet filter by
 		/// parts in the input signal using an overlap and thus producing the same
@@ -168,17 +168,17 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// used for overlap. This overlap feature can be used for line-based
 		/// wavelet transforms (in which case it will only be used when filtering
 		/// the columns) or for overlapping block-based wavelet transforms (in
-		/// which case it will be used when filtering lines and columns).</p>
+		/// which case it will be used when filtering lines and columns).
 		/// 
 		/// The low-pass output signal is placed in the lowSig array. The lowOff
 		/// and lowStep arguments are analogous to the inOff and inStep ones, but
 		/// they apply to the lowSig array. The lowSig array must be long enough to
-		/// hold the low-pass output signal.</p>
+		/// hold the low-pass output signal.
 		/// 
 		/// The high-pass output signal is placed in the highSig array. The
 		/// highOff and highStep arguments are analogous to the inOff and inStep
 		/// ones, but they apply to the highSig array. The highSig array must be
-		/// long enough to hold the high-pass output signal.</p>
+		/// long enough to hold the high-pass output signal.
 		/// 
 		/// </summary>
 		/// <param name="inSig">This is the array that contains the input signal. It must
@@ -247,7 +247,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// sample) is given by inOff. The number of samples to filter is given by
 		/// inLen. This array must be of the same type as the one for which the
 		/// particular implementation works with (which is returned by the
-		/// getDataType() method).</p>
+		/// getDataType() method).
 		/// 
 		/// The input signal can be interleaved with other signals in the same
 		/// inSig array, and this is determined by the inStep argument. This means
@@ -256,17 +256,17 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// on. Therefore if inStep is 1 there is no interleaving. This feature
 		/// allows to filter columns of a 2-D signal, when it is stored in a line
 		/// by line order in inSig, without having to copy the data, in this case
-		/// the inStep argument should be the line width.</p>
+		/// the inStep argument should be the line width.
 		/// 
 		/// The low-pass output signal is placed in the lowSig array. The lowOff
 		/// and lowStep arguments are analogous to the inOff and inStep ones, but
 		/// they apply to the lowSig array. The lowSig array must be long enough to
-		/// hold the low-pass output signal.</p>
+		/// hold the low-pass output signal.
 		/// 
 		/// The high-pass output signal is placed in the highSig array. The
 		/// highOff and highStep arguments are analogous to the inOff and inStep
 		/// ones, but they apply to the highSig array. The highSig array must be
-		/// long enough to hold the high-pass output signal.</p>
+		/// long enough to hold the high-pass output signal.
 		/// 
 		/// </summary>
 		/// <param name="inSig">This is the array that contains the input signal. It must
@@ -324,7 +324,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// 
 		/// The returned array may not be modified (i.e. a reference to the
 		/// internal array may be returned by the implementation of this
-		/// method).</p>
+		/// method).
 		/// 
 		/// </summary>
 		/// <returns> The time-reversed low-pass synthesis waveform of the filter.
@@ -340,7 +340,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// 
 		/// The returned array may not be modified (i.e. a reference to the
 		/// internal array may be returned by the implementation of this
-		/// method).</p>
+		/// method).
 		/// 
 		/// </summary>
 		/// <returns> The time-reversed high-pass synthesis waveform of the filter.
@@ -356,7 +356,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// lengthg of the low-pass synthesis filter.
 		/// 
 		/// The length of the low-pass synthesis filter is
-		/// getSynLowNegSupport()+getSynLowPosSupport().</p>
+		/// getSynLowNegSupport()+getSynLowPosSupport().
 		/// 
 		/// </summary>
 		/// <param name="in">The synthesis waveform of the previous stage.
@@ -385,7 +385,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// the lengthg of the high-pass synthesis filter.
 		/// 
 		/// The length of the high-pass synthesis filter is
-		/// getSynHighNegSupport()+getSynHighPosSupport().</p>
+		/// getSynHighNegSupport()+getSynHighPosSupport().
 		/// 
 		/// </summary>
 		/// <param name="in">The synthesis waveform of the previous stage.
@@ -413,7 +413,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// 
 		/// The 'wf' signal has to be already time-reversed, therefore only a
 		/// dot-product is performed (instead of a convolution). This is equivalent
-		/// to convolving with the non-time-reversed 'wf' signal.</p>
+		/// to convolving with the non-time-reversed 'wf' signal.
 		/// 
 		/// </summary>
 		/// <param name="in">The signal to upsample and filter. If null it is considered

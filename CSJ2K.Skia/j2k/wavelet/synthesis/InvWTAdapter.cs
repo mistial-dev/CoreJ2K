@@ -54,15 +54,15 @@ namespace CSJ2K.j2k.wavelet.synthesis
 	/// 
 	/// This abstract class can be used to facilitate the development of other
 	/// classes that implement the 'InvWT' interface, because most of the trivial
-	/// methods are already implemented.</p>
+	/// methods are already implemented.
 	/// 
 	/// If the default implementation of a method provided in this class does
 	/// not suit a particular implementation of the 'InvWT' interface, the method
-	/// can be overriden to implement the proper behaviour.</p>
+	/// can be overriden to implement the proper behaviour.
 	/// 
 	/// If the 'setImgResLevel()' method is overriden then it is very important
 	/// that the one of this class is called from the overriding method, so that
-	/// the other methods in this class return the correct values.</p>
+	/// the other methods in this class return the correct values.
 	/// 
 	/// </summary>
 	/// <seealso cref="InvWT">
@@ -76,13 +76,13 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// 
 		/// Note: Image resolution level indexes may differ from tile-component
 		/// resolution index. They are indeed indexed starting from the lowest
-		/// number of decomposition levels of each component of each tile.</p>
+		/// number of decomposition levels of each component of each tile.
 		/// 
 		/// Example: For an image (1 tile) with 2 components (component 0 having
 		/// 2 decomposition levels and component 1 having 3 decomposition levels),
 		/// the first (tile-) component has 3 resolution levels and the second one
 		/// has 4 resolution levels, whereas the image has only 3 resolution levels
-		/// available.</p>
+		/// available.
 		/// 
 		/// </summary>
 		/// <param name="rl">The image resolution level.
@@ -109,7 +109,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// also referred as the reference grid width in the current tile.
 		/// 
 		/// This default implementation returns the value of the source at the
-		/// current reconstruction resolution level.</p>
+		/// current reconstruction resolution level.
 		/// 
 		/// </summary>
 		/// <returns> The total current tile's width in pixels.
@@ -141,7 +141,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// in the current tile.
 		/// 
 		/// This default implementation returns the value of the source at the
-		/// current reconstruction resolution level.</p>
+		/// current reconstruction resolution level.
 		/// 
 		/// </summary>
 		/// <returns> The total current tile's height in pixels.
@@ -204,7 +204,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// <summary> Returns the index of the current tile, relative to a standard scan-line
 		/// order.
 		/// 
-		/// This default implementation returns the value of the source.</p>
+		/// This default implementation returns the value of the source.
 		/// 
 		/// </summary>
 		/// <returns> The current tile's index (starts at 0).
@@ -216,7 +216,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// corner, in the canvas system, on the reference grid.
 		/// 
 		/// This default implementation returns the value of the source at the
-		/// current reconstruction resolution level.</p>
+		/// current reconstruction resolution level.
 		/// 
 		/// </summary>
 		/// <returns> The horizontal coordinate of the image origin in the canvas
@@ -229,7 +229,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// corner, in the canvas system, on the reference grid.
 		/// 
 		/// This default implementation returns the value of the source at the
-		/// current reconstruction resolution level.</p>
+		/// current reconstruction resolution level.
 		/// 
 		/// </summary>
 		/// <returns> The vertical coordinate of the image origin in the canvas
@@ -339,7 +339,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// <summary> Returns the height in pixels of the specified tile-component.
 		/// 
 		/// This default implementation returns the value of the source at the
-		/// current reconstruction resolution level.</p>
+		/// current reconstruction resolution level.
 		/// 
 		/// </summary>
 		/// <param name="t">The tile index.
@@ -383,7 +383,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// image.
 		/// 
 		/// This default implementation returns the value of the source at the
-		/// current reconstruction resolution level.</p>
+		/// current reconstruction resolution level.
 		/// 
 		/// </summary>
 		/// <param name="c">The index of the component, from 0 to N-1.
@@ -405,7 +405,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// IllegalArgumentException is thrown if the coordinates do not correspond
 		/// to a valid tile.
 		/// 
-		/// This default implementation calls the same method on the source.</p>
+		/// This default implementation calls the same method on the source.
 		/// 
 		/// </summary>
 		/// <param name="x">The horizontal index of the tile.
@@ -423,7 +423,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// columns). An NoNextElementException is thrown if the current tile is
 		/// the last one (i.e. there is no next tile).
 		/// 
-		/// This default implementation calls the same method on the source.</p>
+		/// This default implementation calls the same method on the source.
 		/// 
 		/// </summary>
 		public virtual void  nextTile()
@@ -434,7 +434,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// <summary> Returns the indixes of the current tile. These are the horizontal and
 		/// vertical indexes of the current tile.
 		/// 
-		/// This default implementation returns the value of the source.</p>
+		/// This default implementation returns the value of the source.
 		/// 
 		/// </summary>
 		/// <param name="co">If not null this object is used to return the information. If
@@ -483,7 +483,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		
 		/// <summary> Returns the number of tiles in the horizontal and vertical directions.
 		/// 
-		/// This default implementation returns the value of the source.</p>
+		/// This default implementation returns the value of the source.
 		/// 
 		/// </summary>
 		/// <param name="co">If not null this object is used to return the information. If
@@ -501,7 +501,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		
 		/// <summary> Returns the total number of tiles in the image.
 		/// 
-		/// This default implementation returns the value of the source.</p>
+		/// This default implementation returns the value of the source.
 		/// 
 		/// </summary>
 		/// <returns> The total number of tiles in the image.

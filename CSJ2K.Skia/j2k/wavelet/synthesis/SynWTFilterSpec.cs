@@ -102,7 +102,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// resolution level starting with resolution level 1 (i.e. the analysis
 		/// filter to go from resolution level 1 to resolution level 0). If there
 		/// are less elements than the maximum resolution level, then the last
-		/// element is assumed to be repeated.</p>
+		/// element is assumed to be repeated.
 		/// 
 		/// </summary>
 		/// <param name="t">The tile index, in raster scan order
@@ -129,7 +129,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// resolution level starting with resolution level 1 (i.e. the analysis
 		/// filter to go from resolution level 1 to resolution level 0). If there
 		/// are less elements than the maximum resolution level, then the last
-		/// element is assumed to be repeated.</p>
+		/// element is assumed to be repeated.
 		/// 
 		/// </summary>
 		/// <param name="t">The tile index, in raster scan order

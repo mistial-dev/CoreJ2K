@@ -53,10 +53,10 @@ namespace CSJ2K.j2k.entropy.decoder
 	/// 
 	/// Unlike the ByteArrayInputStream this class is not thread safe (i.e. no
 	/// two threads can use the same object at the same time, but different objects
-	/// may be used in different threads).</p>
+	/// may be used in different threads).
 	/// 
 	/// This class can modify the contents of the buffer given to the
-	/// constructor, when the addByteArray() method is called.</p>
+	/// constructor, when the addByteArray() method is called.
 	/// 
 	/// </summary>
 	/// <seealso cref="InputStream">
@@ -95,7 +95,7 @@ namespace CSJ2K.j2k.entropy.decoder
 		/// specified byte array. Up to length characters are to be read from the
 		/// byte array, starting at the indicated offset.
 		/// 
-		/// The byte array is not copied.</p>
+		/// The byte array is not copied.
 		/// 
 		/// </summary>
 		/// <param name="buf">the input buffer.
@@ -120,7 +120,7 @@ namespace CSJ2K.j2k.entropy.decoder
 		/// 'off+len', where 'off' and 'len' are the offset and length of the
 		/// current byte buffer.
 		/// 
-		/// The byte array is not copied.</p>
+		/// The byte array is not copied.
 		/// 
 		/// </summary>
 		/// <param name="buf">the input buffer. If null it is the current input buffer.
@@ -229,7 +229,7 @@ namespace CSJ2K.j2k.entropy.decoder
 		/// because the end of the stream has been reached, the EOFException
 		/// exception is thrown.
 		/// 
-		/// This method is not synchronized, so it is not thread safe.</p>
+		/// This method is not synchronized, so it is not thread safe.
 		/// 
 		/// </summary>
 		/// <returns> The byte read in the range 0-255.
@@ -254,7 +254,7 @@ namespace CSJ2K.j2k.entropy.decoder
 		/// returned as an int in the range 0 to 255. If no byte is available
 		/// because the end of the stream has been reached, -1 is returned.
 		/// 
-		/// This method is not synchronized, so it is not thread safe.</p>
+		/// This method is not synchronized, so it is not thread safe.
 		/// 
 		/// </summary>
 		/// <returns> The byte read in the range 0-255, or -1 if the end of stream

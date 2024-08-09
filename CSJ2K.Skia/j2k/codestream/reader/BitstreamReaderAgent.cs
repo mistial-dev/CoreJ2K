@@ -62,13 +62,13 @@ namespace CSJ2K.j2k.codestream.reader
 	/// The bit stream reader agent allows to make request for compressed block
 	/// data in any order. The amount of data returned would normally depend on the
 	/// data available at the time of the request, be it from a file or from a
-	/// network connection.</p>
+	/// network connection.
 	/// 
 	/// The bit stream reader agent has the notion of a current tile, and
-	/// coordinates are relative to the current tile, where applicable.</p>
+	/// coordinates are relative to the current tile, where applicable.
 	/// 
 	/// Resolution level 0 is the lowest resolution level, i.e. the LL subband
-	/// alone.</p>
+	/// alone.
 	/// 
 	/// </summary>
 	public abstract class BitstreamReaderAgent : CodedCBlkDataSrcDec
@@ -437,13 +437,13 @@ namespace CSJ2K.j2k.codestream.reader
 		/// Note: Tile resolution level indexes may be different from
 		/// tile-component resolution index. They are indeed indexed starting from
 		/// the lowest number of decomposition levels of each component of the
-		/// tile.</p>
+		/// tile.
 		/// 
 		/// For an image (1 tile) with 2 components (component 0 having 2
 		/// decomposition levels and component 1 having 3 decomposition levels),
 		/// the first (tile-)component has 3 resolution levels and the second one
 		/// has 4 resolution levels, whereas the tile has only 3 resolution levels
-		/// available.</p>
+		/// available.
 		/// 
 		/// </summary>
 		/// <param name="rl">The (tile) resolution level.
@@ -482,13 +482,13 @@ namespace CSJ2K.j2k.codestream.reader
 		/// Note: Tile resolution level indexes may be different from
 		/// tile-component resolution index. They are indeed indexed starting from
 		/// the lowest number of decomposition levels of each component of the
-		/// tile.</p>
+		/// tile.
 		/// 
 		/// For an image (1 tile) with 2 components (component 0 having 2
 		/// decomposition levels and component 1 having 3 decomposition levels),
 		/// the first (tile-)component has 3 resolution levels and the second one
 		/// has 4 resolution levels, whereas the tile has only 3 resolution levels
-		/// available.</p>
+		/// available.
 		/// 
 		/// </summary>
 		/// <param name="rl">The (tile) resolution level.
@@ -526,13 +526,13 @@ namespace CSJ2K.j2k.codestream.reader
 		/// 
 		/// Note: Image resolution level indexes may differ from tile-component
 		/// resolution index. They are indeed indexed starting from the lowest
-		/// number of decomposition levels of each component of each tile.</p>
+		/// number of decomposition levels of each component of each tile.
 		/// 
 		/// Example: For an image (1 tile) with 2 components (component 0 having
 		/// 2 decomposition levels and component 1 having 3 decomposition levels),
 		/// the first (tile-) component has 3 resolution levels and the second one
 		/// has 4 resolution levels, whereas the image has only 3 resolution levels
-		/// available.</p>
+		/// available.
 		/// 
 		/// </summary>
 		/// <param name="rl">The image resolution level.
@@ -562,13 +562,13 @@ namespace CSJ2K.j2k.codestream.reader
 		/// 
 		/// Note: Image resolution level indexes may differ from tile-component
 		/// resolution index. They are indeed indexed starting from the lowest
-		/// number of decomposition levels of each component of each tile.</p>
+		/// number of decomposition levels of each component of each tile.
 		/// 
 		/// Example: For an image (1 tile) with 2 components (component 0 having
 		/// 2 decomposition levels and component 1 having 3 decomposition levels),
 		/// the first (tile-) component has 3 resolution levels and the second one
 		/// has 4 resolution levels, whereas the image has only 3 resolution levels
-		/// available.</p>
+		/// available.
 		/// 
 		/// </summary>
 		/// <param name="rl">The image resolution level, from 0 to L.
@@ -596,13 +596,13 @@ namespace CSJ2K.j2k.codestream.reader
 		/// 
 		/// Note: Image resolution level indexes may differ from tile-component
 		/// resolution index. They are indeed indexed starting from the lowest
-		/// number of decomposition levels of each component of each tile.</p>
+		/// number of decomposition levels of each component of each tile.
 		/// 
 		/// Example: For an image (1 tile) with 2 components (component 0 having
 		/// 2 decomposition levels and component 1 having 3 decomposition levels),
 		/// the first (tile-) component has 3 resolution levels and the second one
 		/// has 4 resolution levels, whereas the image has only 3 resolution levels
-		/// available.</p>
+		/// available.
 		/// 
 		/// </summary>
 		/// <param name="rl">The resolution level, from 0 to L.
@@ -631,13 +631,13 @@ namespace CSJ2K.j2k.codestream.reader
 		/// 
 		/// Note: Image resolution level indexes may differ from tile-component
 		/// resolution index. They are indeed indexed starting from the lowest
-		/// number of decomposition levels of each component of each tile.</p>
+		/// number of decomposition levels of each component of each tile.
 		/// 
 		/// Example: For an image (1 tile) with 2 components (component 0 having
 		/// 2 decomposition levels and component 1 having 3 decomposition levels),
 		/// the first (tile-) component has 3 resolution levels and the second one
 		/// has 4 resolution levels, whereas the image has only 3 resolution levels
-		/// available.</p>
+		/// available.
 		/// 
 		/// </summary>
 		/// <param name="rl">The resolution level, from 0 to L.
@@ -736,13 +736,13 @@ namespace CSJ2K.j2k.codestream.reader
 		/// Note: Component resolution level indexes may differ from
 		/// tile-component resolution index. They are indeed indexed starting from
 		/// the lowest number of decomposition levels of same component of each
-		/// tile.</p>
+		/// tile.
 		/// 
 		/// Example: For an image (2 tiles) with 1 component (tile 0 having 2
 		/// decomposition levels and tile 1 having 3 decomposition levels), the
 		/// first tile(-component) has 3 resolution levels and the second one has 4
 		/// resolution levels, whereas the component has only 3 resolution levels
-		/// available.</p>
+		/// available.
 		/// 
 		/// </summary>
 		/// <param name="c">The index of the component, from 0 to N-1.
@@ -774,13 +774,13 @@ namespace CSJ2K.j2k.codestream.reader
 		/// Note: Component resolution level indexes may differ from
 		/// tile-component resolution index. They are indeed indexed starting from
 		/// the lowest number of decomposition levels of same component of each
-		/// tile.</p>
+		/// tile.
 		/// 
 		/// Example: For an image (2 tiles) with 1 component (tile 0 having 2
 		/// decomposition levels and tile 1 having 3 decomposition levels), the
 		/// first tile(-component) has 3 resolution levels and the second one has 4
 		/// resolution levels, whereas the component has only 3 resolution levels
-		/// available.</p>
+		/// available.
 		/// 
 		/// </summary>
 		/// <param name="c">The index of the component, from 0 to N-1.
@@ -942,10 +942,10 @@ namespace CSJ2K.j2k.codestream.reader
 		/// SubbandSyn. The tree comprises all the available resolution levels.
 		/// 
 		/// Note: this method is not able to return subband tree for a tile
-		/// different than the current one.</p>
+		/// different than the current one.
 		/// 
 		/// The number of magnitude bits ('magBits' member variable) for each
-		/// subband is not initialized.</p>
+		/// subband is not initialized.
 		/// 
 		/// </summary>
 		/// <param name="t">The tile index

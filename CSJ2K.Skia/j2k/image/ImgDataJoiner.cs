@@ -56,10 +56,10 @@ namespace CSJ2K.j2k.image
     /// All input ImgData must not be tiled (i.e. must have only 1 tile) and the
     /// image origin must be the canvas origin. The different inputs can have
     /// different dimensions though (this will lead to different subsampling
-    /// factors for each component).</p>
+    /// factors for each component).
     /// 
     /// The input ImgData and component index list must be defined when
-    /// constructing this class and can not be modified later.</p>
+    /// constructing this class and can not be modified later.
     /// 
     /// </summary>
     /// <seealso cref="ImgData">

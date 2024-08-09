@@ -57,7 +57,7 @@ namespace CSJ2K.j2k.entropy.decoder
 	/// flag is true). If a code-block is progressive then it means that more data
 	/// for it may be obtained for an improved quality. If the progressive flag is
 	/// false then no more data is available from the source for this
-	/// code-block.</p>
+	/// code-block.
 	/// 
 	/// </summary>
 	/// <seealso cref="CodedCBlk">

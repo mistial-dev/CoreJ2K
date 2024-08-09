@@ -53,7 +53,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 	/// returned. The code-blocks are returned in no specific order.
 	/// 
 	/// This class is the source of data, in general, for the inverse wavelet
-	/// transforms. See the 'InverseWT' class.</p>
+	/// transforms. See the 'InverseWT' class.
 	/// 
 	/// </summary>
 	/// <seealso cref="InvWTData">
@@ -78,11 +78,11 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// thus different nominal ranges. To have an idea of the nominal range in
 		/// each subband the subband analysis gain value from the subband tree
 		/// structure, returned by the 'getSynSubbandTree()' method, can be
-		/// used. See the 'Subband' class for more details.</p>
+		/// used. See the 'Subband' class for more details.
 		/// 
 		/// If this number is <i>b</b> then for unsigned data the nominal range
 		/// is between 0 and 2^b-1, and for signed data it is between -2^(b-1) and
-		/// 2^(b-1)-1.</p>
+		/// 2^(b-1)-1.
 		/// 
 		/// </summary>
 		/// <param name="c">The index of the component.
@@ -126,13 +126,13 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// a better approximation, since meanwhile more data to decode for the
 		/// code-block could have been received. If the code-block is not
 		/// progressive then later calls to this method for the same code-block
-		/// will return the exact same data values.</p>
+		/// will return the exact same data values.
 		/// 
 		/// The data returned by this method is always a copy of the internal
 		/// data of this object, if any, and it can be modified "in place" without
 		/// any problems after being returned. The 'offset' of the returned data is 
 		/// 0, and the 'scanw' is the same as the code-block width. See the
-		/// 'DataBlk' class.</p>
+		/// 'DataBlk' class.
 		/// 
 		/// </summary>
 		/// <param name="c">The component for which to return the next code-block.
@@ -174,12 +174,12 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// a better approximation, since meanwhile more data to decode for the
 		/// code-block could have been received. If the code-block is not
 		/// progressive then later calls to this method for the same code-block
-		/// will return the exact same data values.</p>
+		/// will return the exact same data values.
 		/// 
 		/// The data returned by this method can be the data in the internal
 		/// buffer of this object, if any, and thus can not be modified by the
 		/// caller. The 'offset' and 'scanw' of the returned data can be
-		/// arbitrary. See the 'DataBlk' class.</p>
+		/// arbitrary. See the 'DataBlk' class.
 		/// 
 		/// </summary>
 		/// <param name="c">The component for which to return the next code-block.

@@ -69,11 +69,11 @@ namespace CSJ2K.j2k.codestream.writer
 	/// <li> In bit-stream: SOP,EPH.</li>
 	/// <li> Pointer: TLM,PLM,PLT,PPM,PPT.</li> 
 	/// <li> Informational: CRG,COM.</li>
-	/// </ul></p>
+	/// </ul>
 	/// 
 	/// Main Header is written when Encoder instance calls encodeMainHeader
 	/// whereas tile-part headers are written when the EBCOTRateAllocator instance
-	/// calls encodeTilePartHeader.</p>
+	/// calls encodeTilePartHeader.
 	/// 
 	/// </summary>
 	/// <seealso cref="Encoder">
@@ -384,7 +384,7 @@ namespace CSJ2K.j2k.codestream.writer
 		/// layering) used for compressing all the components in an image.
 		/// 
 		/// The values can be overriden for an individual component by a COC
-		/// marker in either the main or the tile header.</p>
+		/// marker in either the main or the tile header.
 		/// 
 		/// </summary>
 		/// <param name="mh">Flag indicating whether this marker belongs to the main
@@ -662,7 +662,7 @@ namespace CSJ2K.j2k.codestream.writer
 		/// coding style for one component (coding style, decomposition, layering).
 		/// 
 		/// Its values overrides any value previously set in COD in the main
-		/// header or in the tile header.</p>
+		/// header or in the tile header.
 		/// 
 		/// </summary>
 		/// <param name="mh">Flag indicating whether the main header is to be written. 
@@ -1769,7 +1769,7 @@ namespace CSJ2K.j2k.codestream.writer
 		/// <summary> Write COM marker segment(s) to the codestream.
 		/// 
 		/// This marker is currently written in main header and indicates the
-		/// JJ2000 encoder's version that has created the codestream.</p>
+		/// JJ2000 encoder's version that has created the codestream.
 		/// 
 		/// </summary>
 		private void  writeCOM()
@@ -1830,7 +1830,7 @@ namespace CSJ2K.j2k.codestream.writer
 		/// 
 		/// May be used in tile or main header. If used in main header, it
 		/// refers to a ROI of the whole image, regardless of tiling. When used in
-		/// tile header, only the particular tile is affected.</p>
+		/// tile header, only the particular tile is affected.
 		/// 
 		/// </summary>
 		/// <param name="tIdx">The tile index 

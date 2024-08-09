@@ -79,7 +79,7 @@ namespace CSJ2K.j2k.codestream.reader
 	/// <li> Pointer: TLM, PLM, PLT, PPM, PPT.</li>
 	/// 
 	/// <li> Informational: CRG, COM.</li>
-	/// </ul></p>
+	/// </ul>
 	/// 
 	/// The main header is read when the constructor is called whereas tile-part
 	/// headers are read when the FileBitstreamReaderAgent instance is created. The
@@ -92,13 +92,13 @@ namespace CSJ2K.j2k.codestream.reader
 	/// <li>Buffered marker segment are analyzed in a logical way and
 	/// specifications are stored in appropriate member of DecoderSpecs instance
 	/// (readFoundMainMarkSeg and readFoundTilePartMarkSeg methods).</li>
-	/// </ol></p>
+	/// </ol>
 	/// 
 	/// Whenever a marker segment is not recognized a warning message is
-	/// displayed and its length parameter is used to skip it.</p>
+	/// displayed and its length parameter is used to skip it.
 	/// 
 	/// The information found in this header is stored in HeaderInfo and
-	/// DecoderSpecs instances.</p>
+	/// DecoderSpecs instances.
 	/// 
 	/// </summary>
 	/// <seealso cref="DecoderSpecs">
@@ -621,7 +621,7 @@ namespace CSJ2K.j2k.codestream.reader
 		/// 
 		/// SIZ is a fixed information marker segment containing informations
 		/// about image and tile sizes. It is required in the main header
-		/// immediately after SOC.</p>
+		/// immediately after SOC.
 		/// 
 		/// </summary>
 		/// <param name="ehs">The encoded header stream
@@ -2008,7 +2008,7 @@ namespace CSJ2K.j2k.codestream.reader
 		/// 
 		/// May be used in tile or main header. If used in main header, it
 		/// refers to the maxshift value of a component in all tiles. When used in
-		/// tile header, only the particular tile-component is affected.</p>
+		/// tile header, only the particular tile-component is affected.
 		/// 
 		/// </summary>
 		/// <param name="ehs">The encoder header stream.
@@ -2181,9 +2181,9 @@ namespace CSJ2K.j2k.codestream.reader
 		/// buffered into a byte array stored in an hashTable.
 		/// 
 		/// If the marker is not recognized, it prints a warning and skips it
-		/// according to its length.</p>
+		/// according to its length.
 		/// 
-		/// SIZ marker segment shall be the first encountered marker segment.</p>
+		/// SIZ marker segment shall be the first encountered marker segment.
 		/// 
 		/// </summary>
 		/// <param name="marker">The marker segment to process

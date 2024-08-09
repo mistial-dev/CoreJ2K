@@ -233,7 +233,7 @@ namespace CSJ2K.j2k.roi.encoder
 		/// 
 		/// The ROI Scaler creates a ROIMaskGenerator depending on what ROI
 		/// information is in the ParameterList. If only rectangular ROI are used,
-		/// the fast mask generator for rectangular ROI can be used.</p>
+		/// the fast mask generator for rectangular ROI can be used.
 		/// 
 		/// </summary>
 		/// <param name="src">The source of data to scale
@@ -310,13 +310,13 @@ namespace CSJ2K.j2k.roi.encoder
 		/// -Rroi. Currently only circular and rectangular ROIs are supported.
 		/// 
 		/// A rectangular ROI is indicated by a 'R' followed the coordinates for
-		/// the upper left corner of the ROI and then its width and height.</p>
+		/// the upper left corner of the ROI and then its width and height.
 		/// 
 		/// A circular ROI is indicated by a 'C' followed by the coordinates of
-		/// the circle center and then the radius.</p>
+		/// the circle center and then the radius.
 		/// 
 		/// Before the R and C values, the component that are affected by the
-		/// ROI are indicated.</p>
+		/// ROI are indicated.
 		/// 
 		/// </summary>
 		/// <param name="roiopt">The info on the ROIs
@@ -499,12 +499,12 @@ namespace CSJ2K.j2k.roi.encoder
 		/// are scaled by the values given for any ROIs specified.
 		/// 
 		/// The function calls on a ROIMaskGenerator to get the mask for scaling
-		/// the coefficients in the current block.</p>
+		/// the coefficients in the current block.
 		/// 
 		/// The data returned by this method is a copy of the orignal
 		/// data. Therfore it can be modified "in place" without any problems after
 		/// being returned. The 'offset' of the returned data is 0, and the 'scanw'
-		/// is the same as the code-block width. See the 'CBlkWTData' class.</p>
+		/// is the same as the code-block width. See the 'CBlkWTData' class.
 		/// 
 		/// </summary>
 		/// <param name="c">The component for which to return the next code-block.
@@ -533,7 +533,7 @@ namespace CSJ2K.j2k.roi.encoder
 		/// are scaled by the values given for any ROIs specified.
 		/// 
 		/// The function calls on a ROIMaskGenerator to get the mask for scaling
-		/// the coefficients in the current block.</p>
+		/// the coefficients in the current block.
 		/// 
 		/// </summary>
 		/// <param name="c">The component for which to return the next code-block.

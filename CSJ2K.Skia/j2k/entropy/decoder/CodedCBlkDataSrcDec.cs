@@ -53,10 +53,10 @@ namespace CSJ2K.j2k.entropy.decoder
 	/// 'geCodeBlock()' a specified coded code-block is returned.
 	/// 
 	/// This interface is the source of data for the entropy decoder. See the
-	/// 'EntropyDecoder' class.</p>
+	/// 'EntropyDecoder' class.
 	/// 
 	/// For each coded-code-block the entropy-coded data is returned along with
-	/// its truncation point information in a 'DecLyrdCBlk' object.</p>
+	/// its truncation point information in a 'DecLyrdCBlk' object.
 	/// 
 	/// </summary>
 	/// <seealso cref="EntropyDecoder">
@@ -80,22 +80,22 @@ namespace CSJ2K.j2k.entropy.decoder
 		/// for the same code-block. In this way supplamental data can be retrieved
 		/// at a later time. The fact that data from more than one layer can be
 		/// returned means that several packets from the same code-block, of the
-		/// same component, and the same tile, have been concatenated.</p>
+		/// same component, and the same tile, have been concatenated.
 		/// 
 		/// The returned compressed code-block can have its progressive
 		/// attribute set. If this attribute is set it means that more data can be
 		/// obtained by subsequent calls to this method (subject to transmission
 		/// delays, etc). If the progressive attribute is not set it means that the
 		/// returned data is all the data that can be obtained for the specified
-		/// subblock.</p>
+		/// subblock.
 		/// 
 		/// The compressed code-block is uniquely specified by the current tile,
 		/// the component (identified by 'c'), the subband (indentified by 'sb')
-		/// and the code-bock vertical and horizontal indexes 'm' and 'n'.</p>
+		/// and the code-bock vertical and horizontal indexes 'm' and 'n'.
 		/// 
 		/// The 'ulx' and 'uly' members of the returned 'DecLyrdCBlk' object
 		/// contain the coordinates of the top-left corner of the block, with
-		/// respect to the tile, not the subband.</p>
+		/// respect to the tile, not the subband.
 		/// 
 		/// </summary>
 		/// <param name="c">The index of the component, from 0 to N-1.

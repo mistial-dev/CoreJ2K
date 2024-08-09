@@ -55,20 +55,20 @@ namespace CSJ2K.j2k.wavelet.analysis
 	/// type (i.e. for 'int' it's an 'int[]'). The data should be stored in the
 	/// array in standard scan-line order. That is the samples go from the top-left
 	/// corner of the code-block to the lower-right corner by line and then
-	/// column.</p>
+	/// column.
 	/// 
 	/// The member variable 'offset' gives the index in the array of the first
 	/// data element (i.e. the top-left coefficient). The member variable 'scanw'
 	/// gives the width of the scan that is used to store the data, that can be
 	/// different from the width of the block. Element '(x,y)' of the code-block
 	/// (i.e. '(0,0)' is the top-left coefficient), will appear at position
-	/// 'offset+y*scanw+x' in the array of data.</p>
+	/// 'offset+y*scanw+x' in the array of data.
 	/// 
 	/// The classes <tt>CBlkWTDataInt</tt> and <tt>CBlkWTDataFloat</tt> provide
-	/// implementations for <tt>int</tt> and <tt>float</tt> types respectively.</p>
+	/// implementations for <tt>int</tt> and <tt>float</tt> types respectively.
 	/// 
 	/// The types of data are the same as those defined by the 'DataBlk'
-	/// class.</p>
+	/// class.
 	/// 
 	/// </summary>
 	/// <seealso cref="CBlkWTDataSrc">
@@ -103,7 +103,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// Each implementing class should provide a type specific equivalent
 		/// method (e.g., <tt>getDataInt()</tt> in <tt>DataBlkInt</tt>) which
 		/// returns an array of the correct type explicitely and not through an
-		/// <tt>Object</tt>.</p>
+		/// <tt>Object</tt>.
 		/// 
 		/// </summary>
 		/// <returns> The array containing the data, or <tt>null</tt> if there is no
@@ -119,12 +119,12 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// type of array is given a <tt>ClassCastException</tt> will be thrown.
 		/// 
 		/// The size of the array is not necessarily checked for consistency
-		/// with <tt>w</tt> and <tt>h</tt> or any other fields.</p>
+		/// with <tt>w</tt> and <tt>h</tt> or any other fields.
 		/// 
 		/// Each implementing class should provide a type specific equivalent
 		/// method (e.g., <tt>setDataInt()</tt> in <tt>DataBlkInt</tt>) which takes
 		/// an array of the correct type explicetely and not through an
-		/// <tt>Object</tt>.</p>
+		/// <tt>Object</tt>.
 		/// 
 		/// </summary>
 		/// <param name="arr">The new data array to use

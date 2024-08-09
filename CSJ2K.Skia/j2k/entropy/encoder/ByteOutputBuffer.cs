@@ -52,10 +52,10 @@ namespace CSJ2K.j2k.entropy.encoder
 	/// 
 	/// Once an array has been written to an output stream or to a byte array,
 	/// the object can be reused as a new stream if the reset() method is
-	/// called.</p>
+	/// called.
 	/// 
 	/// Unlike the ByteArrayOutputStream class, this class is not thread
-	/// safe.</p>
+	/// safe.
 	/// 
 	/// </summary>
 	/// <seealso cref="reset">

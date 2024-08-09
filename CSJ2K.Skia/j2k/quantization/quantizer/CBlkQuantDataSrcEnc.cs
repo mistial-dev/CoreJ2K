@@ -55,7 +55,7 @@ namespace CSJ2K.j2k.quantization.quantizer
 	/// returned. The code-blocks are returned in no specific order.
 	/// 
 	/// This class is the source of data for the entropy coder. See the
-	/// 'EntropyCoder' class.</p>
+	/// 'EntropyCoder' class.
 	/// 
 	/// Code-block data is returned in sign-magnitude representation, instead of
 	/// the normal two's complement one. Only integral types are used. The sign
@@ -65,11 +65,11 @@ namespace CSJ2K.j2k.quantization.quantizer
 	/// in the next M most significant bits. The rest of the bits (least
 	/// significant bits) can contain a fractional value of the quantized
 	/// coefficient. The number 'M' of magnitude bits is communicated in the
-	/// 'magbits' member variable of the 'CBlkWTData'.</p>
+	/// 'magbits' member variable of the 'CBlkWTData'.
 	/// 
 	/// Note that no more of one object may request data, otherwise one object
 	/// would get some of the data and another one another part, in no defined
-	/// manner.</p>
+	/// manner.
 	/// 
 	/// </summary>
 	/// <seealso cref="ForwWTDataProps">
@@ -94,17 +94,17 @@ namespace CSJ2K.j2k.quantization.quantizer
 		/// 
 		/// When changing the current tile (through 'setTile()' or 'nextTile()')
 		/// this method will always return the first code-block, as if this method
-		/// was never called before for the new current tile.</p>
+		/// was never called before for the new current tile.
 		/// 
 		/// The data returned by this method is always a copy of the internal
 		/// data of this object, if any, and it can be modified "in place" without
 		/// any problems after being returned. The 'offset' of the returned data is
 		/// 0, and the 'scanw' is the same as the code-block width. See the
-		/// 'CBlkWTData' class.</p>
+		/// 'CBlkWTData' class.
 		/// 
 		/// The 'ulx' and 'uly' members of the returned 'CBlkWTData' object
 		/// contain the coordinates of the top-left corner of the block, with
-		/// respect to the tile, not the subband.</p>
+		/// respect to the tile, not the subband.
 		/// 
 		/// </summary>
 		/// <param name="c">The component for which to return the next code-block.
@@ -135,16 +135,16 @@ namespace CSJ2K.j2k.quantization.quantizer
 		/// 
 		/// When changing the current tile (through 'setTile()' or 'nextTile()')
 		/// this method will always return the first code-block, as if this method
-		/// was never called before for the new current tile.</p>
+		/// was never called before for the new current tile.
 		/// 
 		/// The data returned by this method can be the data in the internal
 		/// buffer of this object, if any, and thus can not be modified by the
 		/// caller. The 'offset' and 'scanw' of the returned data can be
-		/// arbitrary. See the 'CBlkWTData' class.</p>
+		/// arbitrary. See the 'CBlkWTData' class.
 		/// 
 		/// The 'ulx' and 'uly' members of the returned 'CBlkWTData' object
 		/// contain the coordinates of the top-left corner of the block, with
-		/// respect to the tile, not the subband.</p>
+		/// respect to the tile, not the subband.
 		/// 
 		/// </summary>
 		/// <param name="c">The component for which to return the next code-block.

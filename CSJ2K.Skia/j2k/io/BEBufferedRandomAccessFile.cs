@@ -140,7 +140,7 @@ namespace CSJ2K.j2k.io
 		/// Signed or unsigned data can be written. To write a signed value just
 		/// pass the <tt>short</tt> value as an argument. To write unsigned data
 		/// pass the <tt>int</tt> value as an argument (it will be automatically
-		/// casted, and only the 16 least significant bits will be written).</p>
+		/// casted, and only the 16 least significant bits will be written).
 		/// 
 		/// </summary>
 		/// <param name="v">The value to write to the output

@@ -51,7 +51,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 	/// 
 	/// This class does not define the methods to transfer data, just the
 	/// specifics to forward wavelet transform. Different data transfer methods are 
-	/// evisageable for different transforms.</p>
+	/// evisageable for different transforms.
 	/// 
 	/// </summary>
 	public interface ForwWT:WaveletTransform, ForwWTDataProps
@@ -66,11 +66,11 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// levels, then the last one is assumed to repeat itself.
 		/// 
 		/// The returned filters are applicable only to the specified component
-		/// and in the current tile.</p>
+		/// and in the current tile.
 		/// 
 		/// The resolution level of a subband is the resolution level to which a
 		/// subband contributes, which is different from its decomposition
-		/// level.</p>
+		/// level.
 		/// 
 		/// </summary>
 		/// <param name="t">The index of the tile for which to return the filters.
@@ -93,11 +93,11 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// levels, then the last one is assumed to repeat itself.
 		/// 
 		/// The returned filters are applicable only to the specified component
-		/// and in the current tile.</p>
+		/// and in the current tile.
 		/// 
 		/// The resolution level of a subband is the resolution level to which a
 		/// subband contributes, which is different from its decomposition
-		/// level.</p>
+		/// level.
 		/// 
 		/// </summary>
 		/// <param name="t">The index of the tile for which to return the filters.

@@ -42,13 +42,13 @@ namespace CSJ2K.j2k.util
     /// methods, while possibly having different ones for different
     /// threads. Also a default facility exists that is used for threads
     /// for which no particular facility has been registerd registered.
-    /// Currently the only kind of facilities managed is MsgLogger.</p>
+    /// Currently the only kind of facilities managed is MsgLogger.
     /// An example use of this class is if 2 instances of a decoder are running
     /// in different threads and the messages of the 2 instances should be
-    /// separated.</p>
+    /// separated.
     /// The default MsgLogger is a StreamMsgLogger that uses System.out as
     /// the 'out' stream and System.err as the 'err' stream, and a line width of
-    /// 78. This can be changed using the registerMsgLogger() method.</p>
+    /// 78. This can be changed using the registerMsgLogger() method.
     /// </summary>
     /// <seealso cref="IMsgLogger">
     /// </seealso>

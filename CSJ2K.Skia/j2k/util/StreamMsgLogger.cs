@@ -43,7 +43,7 @@ namespace CSJ2K.j2k.util
     /// strings are formatted using the linewidth given to the constructor.
     /// Messages are printed to the 'err' stream if they are of severity WARNING
     /// or ERROR, otherwise they are printed to the 'out' stream. Simple strings
-    /// are always printed the 'out' stream.</p>
+    /// are always printed the 'out' stream.
     /// </summary>
     public abstract class StreamMsgLogger : IMsgLogger
     {

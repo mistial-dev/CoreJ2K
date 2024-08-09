@@ -49,11 +49,11 @@ namespace CSJ2K.j2k.io
 	/// 
 	/// Byte level input (i.e., for byte, int, long, float, etc.) should always
 	/// be byte aligned. For example, a request to read an <tt>int</tt> should
-	/// always realign the input at the byte level.</p>
+	/// always realign the input at the byte level.
 	/// 
 	/// The implementation of this interface should clearly define if multi-byte
 	/// input data is read in little- or big-endian byte ordering (least
-	/// significant byte first or most significant byte first, respectively).</p>
+	/// significant byte first or most significant byte first, respectively).
 	/// 
 	/// </summary>
 	/// <seealso cref="EndianType">

@@ -57,7 +57,7 @@ namespace CSJ2K.j2k.codestream
 	/// in any other class you can either use the fully qualified name (e.g.,
 	/// <tt>ProgressionType.LY_RES_COMP_POS_PROG</tt>) or declare this interface in
 	/// the implements clause of the class and then access the identifier
-	/// directly.</p>
+	/// directly.
 	/// 
 	/// </summary>
 	public struct ProgressionType

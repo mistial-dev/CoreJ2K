@@ -60,7 +60,7 @@ namespace CSJ2K.j2k
 	/// <li> Tile specific default attribute</li>
 	/// <li> Component main default attribute</li>
 	/// <li> Main default attribute</li>
-	/// </ul></p>
+	/// </ul>
 	/// 
 	/// </summary>
 	public class ModuleSpec

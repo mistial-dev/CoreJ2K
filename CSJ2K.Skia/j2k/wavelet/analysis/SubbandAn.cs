@@ -52,12 +52,12 @@ namespace CSJ2K.j2k.wavelet.analysis
 	/// 
 	/// The element can be either a node or a leaf of the tree. If it is a node
 	/// then ther are 4 descendants (LL, HL, LH and HH). If it is a leaf there are
-	/// no descendants.</p>
+	/// no descendants.
 	/// 
 	/// The tree is bidirectional. Each element in the tree structure has a
 	/// "parent", which is the subband from which the element was obtained by
 	/// decomposition. The only exception is the root element which has no parent
-	/// (i.e.it's null), for obvious reasons.</p>
+	/// (i.e.it's null), for obvious reasons.
 	/// 
 	/// </summary>
 	public class SubbandAn:Subband
@@ -190,11 +190,11 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// decomposition tree as specified.
 		/// 
 		/// This constructor just calls the same constructor of the super class,
-		/// and then calculates the L2-norm (or energy weight) of each leaf.</p>
+		/// and then calculates the L2-norm (or energy weight) of each leaf.
 		/// 
 		/// This constructor does not initialize the value of the magBits or
 		/// stepWMSE member variables. This variables are normally initialized by
-		/// the quantizer (see Quantizer).</p>
+		/// the quantizer (see Quantizer).
 		/// 
 		/// </summary>
 		/// <param name="w">The top-level width
@@ -240,7 +240,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// the childs and initializes them. An IllegalArgumentException is thrown
 		/// if this subband is not a leaf.
 		/// 
-		/// It uses the initChilds() method to initialize the childs.</p>
+		/// It uses the initChilds() method to initialize the childs.
 		/// 
 		/// </summary>
 		/// <param name="hfilter">The horizontal wavelet filter used to decompose this
@@ -297,10 +297,10 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// The wfs argument should be a size 2 array of float arrays (i.e. 2D
 		/// array) and it must be of length 2 (or more). When returning, wfs[0]
 		/// will contain the line waveform, and wfs[1] will contain the column
-		/// waveform.</p>
+		/// waveform.
 		/// 
 		/// This method can not be called on an element that ahs a non-negative
-		/// value in l2Norm, since that means that we are done.</p>
+		/// value in l2Norm, since that means that we are done.
 		/// 
 		/// </summary>
 		/// <param name="wfs">An size 2 array where the line and column waveforms will be
@@ -371,7 +371,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// previously computed waveforms.
 		/// 
 		/// This method can not be called on an element that ahs a non-negative
-		/// value in l2Norm, since that means that we are done.</p>
+		/// value in l2Norm, since that means that we are done.
 		/// 
 		/// </summary>
 		/// <param name="l2n">The L2-norm to assign.

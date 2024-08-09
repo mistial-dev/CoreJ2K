@@ -59,10 +59,10 @@ namespace CSJ2K.j2k.image
     /// covers all the image. However, the tiling may not be uniform, depending on
     /// the nominal tile size, tiling origin, component subsampling and other
     /// factors. Therefore it might not be assumed that all tiles are of the same
-    /// width and height.</p>
+    /// width and height.
     /// 
     /// The nominal dimension of the tiles is the maximal one, in the reference
-    /// grid. All the components of the image have the same number of tiles.</p>
+    /// grid. All the components of the image have the same number of tiles.
     /// 
     /// </summary>
     /// <seealso cref="ImgData">

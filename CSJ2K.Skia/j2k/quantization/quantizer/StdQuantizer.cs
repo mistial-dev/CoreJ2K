@@ -64,21 +64,21 @@ namespace CSJ2K.j2k.quantization.quantizer
 	/// significant bits) can contain a fractional value of the quantized
 	/// coefficient. This fractional value is not to be coded by the entropy
 	/// coder. However, it can be used to compute rate-distortion measures with
-	/// greater precision.</p>
+	/// greater precision.
 	/// 
 	/// The value of M is determined for each subband as the sum of the number
 	/// of guard bits G and the nominal range of quantized wavelet coefficients in
-	/// the corresponding subband (Rq), minus 1:</p>
+	/// the corresponding subband (Rq), minus 1:
 	/// 
-	/// M = G + Rq -1</p>
+	/// M = G + Rq -1
 	/// 
 	/// The value of G should be the same for all subbands. The value of Rq
 	/// depends on the quantization step size, the nominal range of the component
 	/// before the wavelet transform and the analysis gain of the subband (see
-	/// Subband).</p>
+	/// Subband).
 	/// 
 	/// The blocks of data that are requested should not cross subband
-	/// boundaries.</p>
+	/// boundaries.
 	/// 
 	/// </summary>
 	/// <seealso cref="Subband">
@@ -138,7 +138,7 @@ namespace CSJ2K.j2k.quantization.quantizer
 		/// 
 		/// After initializing member attributes, getAnSubbandTree is called for
 		/// all components setting the 'stepWMSE' for all subbands in the current
-		/// tile.</p>
+		/// tile.
 		/// 
 		/// </summary>
 		/// <param name="src">The source of wavelet transform coefficients.
@@ -219,16 +219,16 @@ namespace CSJ2K.j2k.quantization.quantizer
 		/// 
 		/// When changing the current tile (through 'setTile()' or 'nextTile()')
 		/// this method will always return the first code-block, as if this method
-		/// was never called before for the new current tile.</p>
+		/// was never called before for the new current tile.
 		/// 
 		/// The data returned by this method is always a copy of the
 		/// data. Therfore it can be modified "in place" without any problems after
 		/// being returned. The 'offset' of the returned data is 0, and the 'scanw'
-		/// is the same as the code-block width. See the 'CBlkWTData' class.</p>
+		/// is the same as the code-block width. See the 'CBlkWTData' class.
 		/// 
 		/// The 'ulx' and 'uly' members of the returned 'CBlkWTData' object
 		/// contain the coordinates of the top-left corner of the block, with
-		/// respect to the tile, not the subband.</p>
+		/// respect to the tile, not the subband.
 		/// 
 		/// </summary>
 		/// <param name="c">The component for which to return the next code-block.
@@ -262,16 +262,16 @@ namespace CSJ2K.j2k.quantization.quantizer
 		/// 
 		/// When changing the current tile (through 'setTile()' or 'nextTile()')
 		/// this method will always return the first code-block, as if this method
-		/// was never called before for the new current tile.</p>
+		/// was never called before for the new current tile.
 		/// 
 		/// The data returned by this method can be the data in the internal
 		/// buffer of this object, if any, and thus can not be modified by the
 		/// caller. The 'offset' and 'scanw' of the returned data can be
-		/// arbitrary. See the 'CBlkWTData' class.</p>
+		/// arbitrary. See the 'CBlkWTData' class.
 		/// 
 		/// The 'ulx' and 'uly' members of the returned 'CBlkWTData' object
 		/// contain the coordinates of the top-left corner of the block, with
-		/// respect to the tile, not the subband.</p>
+		/// respect to the tile, not the subband.
 		/// 
 		/// </summary>
 		/// <param name="c">The component for which to return the next code-block.

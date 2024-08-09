@@ -53,12 +53,12 @@ namespace CSJ2K.j2k.wavelet
 	/// 
 	/// The element can be either a node or a leaf of the tree. If it is a node,
 	/// it has 4 descendants (LL, HL, LH and HH). If it is a leaf, it has no
-	/// descendant.</p>
+	/// descendant.
 	/// 
 	/// The tree is bidirectional. Each element in the tree structure has a
 	/// "parent", which is the subband from which the element was obtained by
 	/// decomposition. The only exception is the root element which, for obvious
-	/// reasons, has no parent (i.e. it is null).</p>
+	/// reasons, has no parent (i.e. it is null).
 	/// 
 	/// </summary>
 	/// <seealso cref="jj2000.j2k.wavelet.analysis.SubbandAn">
@@ -212,7 +212,7 @@ namespace CSJ2K.j2k.wavelet
 		/// Using the base 2 exponent of the value contrains the possible gains
 		/// to powers of 2. However this is perfectly compatible to the filter
 		/// normalization policy assumed here. See the split() method for more
-		/// details.</p>
+		/// details.
 		/// 
 		/// </summary>
 		/// <seealso cref="split">
@@ -228,7 +228,7 @@ namespace CSJ2K.j2k.wavelet
 		/// It is defined recursively. The root node gets a value of 0. For a
 		/// given node, with a subband index 'b', its LL descendant gets 4*b, its
 		/// HL descendant 4*b+1, its LH descendant 4*b+2, and its HH descendant
-		/// 4*b+3, for their subband indexes.</p>
+		/// 4*b+3, for their subband indexes.
 		/// 
 		/// </summary>
 		public int sbandIdx = 0;
@@ -294,7 +294,7 @@ namespace CSJ2K.j2k.wavelet
 		/// 
 		/// For the analysis subband gain calculation it is assumed that
 		/// analysis filters are normalized with a DC gain of 1 and a Nyquist gain
-		/// of 2.</p>
+		/// of 2.
 		/// 
 		/// </summary>
 		protected internal virtual void  initChilds()
@@ -370,11 +370,11 @@ namespace CSJ2K.j2k.wavelet
 		/// 
 		/// For the analysis subband gain calculation it is assumed that
 		/// analysis filters are normalized with a DC gain of 1 and a Nyquist gain
-		/// of 2.</p>
+		/// of 2.
 		/// 
 		/// This constructor does not initialize the value of the magBits member
 		/// variable. This variable is normally initialized by the quantizer, on
-		/// the encoder side, or the bit stream reader, on the decoder side.</p>
+		/// the encoder side, or the bit stream reader, on the decoder side.
 		/// 
 		/// </summary>
 		/// <param name="w">The top-level width

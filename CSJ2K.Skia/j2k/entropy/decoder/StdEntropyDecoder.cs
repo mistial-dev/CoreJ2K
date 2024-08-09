@@ -55,13 +55,13 @@ namespace CSJ2K.j2k.entropy.decoder
 	/// 
 	/// The code-blocks are rectangular and their dimensions must be powers of
 	/// 2. Each dimension cannot be smaller than 4 and larger than 256. The product
-	/// of the two dimensions (i.e. area of the code-block) cannot exceed 4096.</p>
+	/// of the two dimensions (i.e. area of the code-block) cannot exceed 4096.
 	/// 
 	/// Context 0 of the MQ-coder is used as the uniform one (uniform,
 	/// non-adaptive probability distribution). Context 1 is used for RLC
 	/// coding. Contexts 2-10 are used for zero-coding (ZC), contexts 11-15 are
 	/// used for sign-coding (SC) and contexts 16-18 are used for
-	/// magnitude-refinement (MR).</p>
+	/// magnitude-refinement (MR).
 	/// 
 	/// This implementation also provides some timing features. They can be
 	/// enabled by setting the 'DO_TIMING' constant of this class to true and
@@ -72,7 +72,7 @@ namespace CSJ2K.j2k.entropy.decoder
 	/// to find the total used time (i.e. some time might be counted in several
 	/// places). When timing is disabled ('DO_TIMING' is false) there is no penalty
 	/// if the compiler performs some basic optimizations. Even if not the penalty
-	/// should be negligeable.</p>
+	/// should be negligeable.
 	/// 
 	/// </summary>
 	public class StdEntropyDecoder:EntropyDecoder
@@ -810,16 +810,16 @@ namespace CSJ2K.j2k.entropy.decoder
 		/// a better approximation, since meanwhile more data to decode for the
 		/// code-block could have been received. If the code-block is not
 		/// progressive then later calls to this method for the same code-block
-		/// will return the exact same data values.</p>
+		/// will return the exact same data values.
 		/// 
 		/// The data returned by this method can be the data in the internal
 		/// buffer of this object, if any, and thus can not be modified by the
 		/// caller. The 'offset' and 'scanw' of the returned data can be
-		/// arbitrary. See the 'DataBlk' class.</p>
+		/// arbitrary. See the 'DataBlk' class.
 		/// 
 		/// The 'ulx' and 'uly' members of the returned 'DataBlk' object contain
 		/// the coordinates of the top-left corner of the block, with respect to
-		/// the tile, not the subband.</p>
+		/// the tile, not the subband.
 		/// 
 		/// </summary>
 		/// <param name="c">The component for which to return the next code-block.
@@ -867,7 +867,7 @@ namespace CSJ2K.j2k.entropy.decoder
 		/// data. This data affects the whole last decoded bit-plane
 		/// (i.e. 'bp'). If 'true' is returned the 'conceal' method should be
 		/// called and no more passes should be decoded for this code-block's bit
-		/// stream.</p>
+		/// stream.
 		/// 
 		/// </summary>
 		/// <param name="cblk">The code-block data to decode
@@ -1177,7 +1177,7 @@ namespace CSJ2K.j2k.entropy.decoder
 		/// for all those samples.
 		/// 
 		/// This method bypasses the arithmetic coder and reads "raw" symbols
-		/// from the bit stream.</p>
+		/// from the bit stream.
 		/// 
 		/// This method also checks for segmentation markers if those are
 		/// present and returns true if an error is detected, or false
@@ -1185,7 +1185,7 @@ namespace CSJ2K.j2k.entropy.decoder
 		/// some erroneous bit that have led to the decoding of incorrect
 		/// data. This data affects the whole last decoded bit-plane (i.e. 'bp'). If
 		/// 'true' is returned the 'conceal' method should be called and no more
-		/// passes should be decoded for this code-block's bit stream.</p>
+		/// passes should be decoded for this code-block's bit stream.
 		/// 
 		/// </summary>
 		/// <param name="cblk">The code-block data to decode

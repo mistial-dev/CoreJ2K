@@ -48,7 +48,7 @@ namespace CSJ2K.j2k.image
 	/// bit integral data.
 	/// 
 	/// The methods in this class are declared final, so that they can be
-	/// inlined by inlining compilers.</p>
+	/// inlined by inlining compilers.
 	/// 
 	/// </summary>
 	/// <seealso cref="DataBlk">

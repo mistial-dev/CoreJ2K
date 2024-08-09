@@ -57,7 +57,7 @@ namespace CSJ2K.j2k.wavelet
 	/// each component and each tile. An implementation of this interface does not
 	/// need to support all this flexibility (e.g., it may provide the same
 	/// implementation type and decomposition levels for all tiles and
-	/// components).</p>
+	/// components).
 	/// 
 	/// </summary>
 	public struct WaveletTransform_Fields{

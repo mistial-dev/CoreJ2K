@@ -51,16 +51,16 @@ namespace CSJ2K.j2k.util
 	/// This class is built on the standard Java Properties class. Consequently,
 	/// it offers facilities to load and write parameters from/to a file. In the
 	/// meantime, a ParameterList object can also handle default parameters for
-	/// each option.</p>
+	/// each option.
 	/// 
 	/// Each parameter can be retrieved as a string or as an specific primitive
-	/// type (int, float, etc).</p>
+	/// type (int, float, etc).
 	/// 
-	/// For more details see the Properties class.</p>
+	/// For more details see the Properties class.
 	/// 
 	/// Note that this class does not support multiple occurrences of parameters
 	/// (for a parameter name, only one value is possible). Also there is no
-	/// particular order of the parameters.</p>
+	/// particular order of the parameters.
 	/// 
 	/// </summary>
 	/// <seealso cref="Properties">
@@ -121,10 +121,10 @@ namespace CSJ2K.j2k.util
 		/// can not precede any word which would be a value for an option unless
 		/// they are numeric values (otherwise it would be considered as a boolean
 		/// option). Note also that the name of an option can not start with a
-		/// number.</p>
+		/// number.
 		/// 
 		/// No option can appear more than once. If so happens an exception is
-		/// thrown.</p>
+		/// thrown.
 		/// 
 		/// For instance the string:
 		/// 
@@ -136,7 +136,7 @@ namespace CSJ2K.j2k.util
 		/// Ffilers  w5x3
 		/// Wlev     5
 		/// Qtype    reversible
-		/// </pre></p>
+		/// </pre>
 		/// 
 		/// </summary>
 		/// <param name="argv">The argument list.

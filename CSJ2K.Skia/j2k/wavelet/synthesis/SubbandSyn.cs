@@ -52,12 +52,12 @@ namespace CSJ2K.j2k.wavelet.synthesis
 	/// 
 	/// The element can be either a node or a leaf of the tree. If it is a node
 	/// then ther are 4 descendants (LL, HL, LH and HH). If it is a leaf there are
-	/// no descendants.</p>
+	/// no descendants.
 	/// 
 	/// The tree is bidirectional. Each element in the tree structure has a
 	/// "parent", which is the subband from which the element was obtained by
 	/// decomposition. The only exception is the root element which has no parent
-	/// (i.e.it's null), for obvious reasons.</p>
+	/// (i.e.it's null), for obvious reasons.
 	/// 
 	/// </summary>
 	public class SubbandSyn:Subband
@@ -176,7 +176,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// decomposition tree as specified.
 		/// 
 		/// This constructor just calls the same constructor of the super
-		/// class.</p>
+		/// class.
 		/// 
 		/// </summary>
 		/// <param name="w">The top-level width
@@ -217,7 +217,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// the childs and initializes them. An IllegalArgumentException is thrown
 		/// if this subband is not a leaf.
 		/// 
-		/// It uses the initChilds() method to initialize the childs.</p>
+		/// It uses the initChilds() method to initialize the childs.
 		/// 
 		/// </summary>
 		/// <param name="hfilter">The horizontal wavelet filter used to decompose this

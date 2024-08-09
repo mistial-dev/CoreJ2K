@@ -64,7 +64,7 @@ namespace CSJ2K.j2k.image.forwcomptransf
 		/// 
 		/// This constructor chose the component transformation type depending
 		/// on the wavelet filters : RCT with w5x3 filter and ICT with w9x7
-		/// filter. Note: All filters must use the same data type.</p>
+		/// filter. Note: All filters must use the same data type.
 		/// 
 		/// </summary>
 		/// <param name="nt">The number of tiles

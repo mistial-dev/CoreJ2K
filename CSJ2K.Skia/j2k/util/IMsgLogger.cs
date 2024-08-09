@@ -45,15 +45,15 @@ namespace CSJ2K.j2k.util
     /// of the program, and that have a severity code associated with them (see
     /// below). Simple strings is text (can be long) that has no severity code
     /// associated with it. Typical use of simple strings is to display help
-    /// texts.</p>
+    /// texts.
     /// Each message has a severity code, which can be one of the following:
     /// LOG, INFO, WARNING, ERROR. Each implementation should treat each severity
-    /// code in a way which corresponds to the type of diplay used.</p>
+    /// code in a way which corresponds to the type of diplay used.
     /// Messages are printed via the 'printmsg()' method. Simple strings are
     /// printed via the 'print()', 'println()' and 'flush()' methods, each simple
     /// string is considered to be terminated once the 'flush()' method has been
     /// called. The 'printmsg()' method should never be called before a previous
-    /// simple string has been terminated.</p>
+    /// simple string has been terminated.
     /// </summary>
     public struct MsgLogger_Fields
     {

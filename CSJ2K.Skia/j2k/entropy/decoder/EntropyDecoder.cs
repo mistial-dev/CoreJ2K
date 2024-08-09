@@ -54,7 +54,7 @@ namespace CSJ2K.j2k.entropy.decoder
 	/// tile.
 	/// 
 	/// Default implementations of the methods in 'MultiResImgData' are provided
-	/// through the 'MultiResImgDataAdapter' abstract class.</p>
+	/// through the 'MultiResImgDataAdapter' abstract class.
 	/// 
 	/// Sign magnitude representation is used (instead of two's complement) for
 	/// the output data. The most significant bit is used for the sign (0 if

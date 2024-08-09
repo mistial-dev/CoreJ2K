@@ -52,24 +52,24 @@ namespace CSJ2K.j2k.codestream.writer
 	/// procedure encodes the sufficient information to identify whether or not the
 	/// value is greater than or equal to the threshold.
 	/// 
-	/// The tag tree saves encoded information to a BitOutputBuffer.</p>
+	/// The tag tree saves encoded information to a BitOutputBuffer.
 	/// 
 	/// A particular and useful property of tag trees is that it is possible to
 	/// change a value of the matrix, provided both new and old values of the
 	/// element are both greater than or equal to the largest threshold which has
 	/// yet been supplied to the coding procedure 'encode()'. This property can be
-	/// exploited through the 'setValue()' method.</p>
+	/// exploited through the 'setValue()' method.
 	/// 
 	/// This class allows saving the state of the tree at any point and
-	/// restoring it at a later time, by calling save() and restore().</p>
+	/// restoring it at a later time, by calling save() and restore().
 	/// 
 	/// A tag tree can also be reused, or restarted, if one of the reset()
-	/// methods is called.</p>
+	/// methods is called.
 	/// 
-	/// The TagTreeDecoder class implements the tag tree decoder.</p>
+	/// The TagTreeDecoder class implements the tag tree decoder.
 	/// 
 	/// Tag trees that have one dimension, or both, as 0 are allowed for
-	/// convenience. Of course no values can be set or coded in such cases.</p>
+	/// convenience. Of course no values can be set or coded in such cases.
 	/// 
 	/// </summary>
 	/// <seealso cref="BitOutputBuffer">
@@ -105,7 +105,7 @@ namespace CSJ2K.j2k.codestream.writer
 		/// This method is more efficient than the setValue() method if a large
 		/// proportion of the leafs change their value. Note that for leafs which
 		/// don't have their value defined yet the value should be
-		/// Integer.MAX_VALUE (which is the default initialization value).</p>
+		/// Integer.MAX_VALUE (which is the default initialization value).
 		/// 
 		/// </summary>
 		/// <param name="val">The new values for the leafs, in lexicographical order.
@@ -183,7 +183,7 @@ namespace CSJ2K.j2k.codestream.writer
 		/// dimension and 'h' elements along the vertical direction. The total
 		/// number of elements is thus 'vdim' x 'hdim'.
 		/// 
-		/// The values of all elements are initialized to Integer.MAX_VALUE.</p>
+		/// The values of all elements are initialized to Integer.MAX_VALUE.
 		/// 
 		/// </summary>
 		/// <param name="h">The number of elements along the horizontal direction.
@@ -215,7 +215,7 @@ namespace CSJ2K.j2k.codestream.writer
 		/// the tag tree are initialized to the values of the 'val' array.
 		/// 
 		/// The values in the 'val' array are supposed to appear in
-		/// lexicographical order, starting at index 0.</p>
+		/// lexicographical order, starting at index 0.
 		/// 
 		/// </summary>
 		/// <param name="h">The number of elements along the horizontal direction.

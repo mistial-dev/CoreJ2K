@@ -48,7 +48,7 @@ namespace CSJ2K.j2k.entropy
 	/// the compressed data as well as the necessary side-information.
 	/// 
 	/// This class is normally not used. Instead the EncRDCBlk, EncLyrdCBlk and
-	/// the DecLyrdCBlk subclasses are used.</p>
+	/// the DecLyrdCBlk subclasses are used.
 	/// 
 	/// </summary>
 	/// <seealso cref="jj2000.j2k.entropy.encoder.CBlkRateDistStats">

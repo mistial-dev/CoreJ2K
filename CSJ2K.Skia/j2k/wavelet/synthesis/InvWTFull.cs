@@ -56,22 +56,22 @@ namespace CSJ2K.j2k.wavelet.synthesis
 	/// 
 	/// The image can be reconstructed at different (image) resolution levels
 	/// indexed from the lowest resolution available for each tile-component. This
-	/// is controlled by the setImgResLevel() method.</p>
+	/// is controlled by the setImgResLevel() method.
 	/// 
 	/// Note: Image resolution level indexes may differ from tile-component
 	/// resolution index. They are indeed indexed starting from the lowest number
-	/// of decomposition levels of each component of each tile.</p>
+	/// of decomposition levels of each component of each tile.
 	/// 
 	/// Example: For an image (1 tile) with 2 components (component 0 having 2
 	/// decomposition levels and component 1 having 3 decomposition levels), the
 	/// first (tile-) component has 3 resolution levels and the second one has 4
 	/// resolution levels, whereas the image has only 3 resolution levels
-	/// available.</p>
+	/// available.
 	/// 
 	/// This implementation does not support progressive data: Data is
 	/// considered to be non-progressive (i.e. "final" data) and the 'progressive'
 	/// attribute of the 'DataBlk' class is always set to false, see the 'DataBlk'
-	/// class.</p>
+	/// class.
 	/// 
 	/// </summary>
 	/// <seealso cref="DataBlk">
@@ -187,11 +187,11 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// The returned value corresponds to the nominal dynamic range of the
 		/// reconstructed image data, as long as the getNomRangeBits() method of
 		/// the source returns a value corresponding to the nominal dynamic range
-		/// of the image data and not not of the wavelet coefficients.</p>
+		/// of the image data and not not of the wavelet coefficients.
 		/// 
 		/// If this number is <i>b</b> then for unsigned data the nominal range
 		/// is between 0 and 2^b-1, and for signed data it is between -2^(b-1) and
-		/// 2^(b-1)-1.</p>
+		/// 2^(b-1)-1.
 		/// 
 		/// </summary>
 		/// <param name="compIndex">The index of the component.
@@ -216,7 +216,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// 
 		/// This default implementation assumes that the wavelet transform does
 		/// not modify the fixed point. If that were the case this method should be
-		/// overriden.</p>
+		/// overriden.
 		/// 
 		/// </summary>
 		/// <param name="compIndex">The index of the component.
@@ -238,15 +238,15 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// 
 		/// The area to return is specified by the 'ulx', 'uly', 'w' and 'h'
 		/// members of the 'blk' argument. These members are not modified by this
-		/// method.</p>
+		/// method.
 		/// 
 		/// The data returned by this method can be the data in the internal
 		/// buffer of this object, if any, and thus can not be modified by the
 		/// caller. The 'offset' and 'scanw' of the returned data can be
-		/// arbitrary. See the 'DataBlk' class.</p>
+		/// arbitrary. See the 'DataBlk' class.
 		/// 
 		/// The returned data has its 'progressive' attribute unset
-		/// (i.e. false).</p>
+		/// (i.e. false).
 		/// 
 		/// </summary>
 		/// <param name="blk">Its coordinates and dimensions specify the area to return.
@@ -312,20 +312,20 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// 
 		/// The area to return is specified by the 'ulx', 'uly', 'w' and 'h'
 		/// members of the 'blk' argument. These members are not modified by this
-		/// method.</p>
+		/// method.
 		/// 
 		/// The data returned by this method is always a copy of the internal
 		/// data of this object, if any, and it can be modified "in place" without
 		/// any problems after being returned. The 'offset' of the returned data is
 		/// 0, and the 'scanw' is the same as the block's width. See the 'DataBlk'
-		/// class.</p>
+		/// class.
 		/// 
 		/// If the data array in 'blk' is <tt>null</tt>, then a new one is
 		/// created. If the data array is not <tt>null</tt> then it must be big
-		/// enough to contain the requested area.</p>
+		/// enough to contain the requested area.
 		/// 
 		/// The returned data always has its 'progressive' attribute unset (i.e
-		/// false)</p>
+		/// false)
 		/// 
 		/// </summary>
 		/// <param name="blk">Its coordinates and dimensions specify the area to

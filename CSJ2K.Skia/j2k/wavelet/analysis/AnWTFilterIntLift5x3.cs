@@ -51,7 +51,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 	/// 
 	/// See the AnWTFilter class for details such as normalization, how to split
 	/// odd-length signals, etc. In particular, this method assumes that the
-	/// low-pass coefficient is computed first.</p>
+	/// low-pass coefficient is computed first.
 	/// 
 	/// </summary>
 	/// <seealso cref="AnWTFilter">
@@ -185,9 +185,9 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// general description of the analyze_lpf() method in the AnWTFilter class
 		/// for more details.
 		/// 
-		/// The coefficients of the first lifting step are [-1/2 1 -1/2].</p>
+		/// The coefficients of the first lifting step are [-1/2 1 -1/2].
 		/// 
-		/// The coefficients of the second lifting step are [1/4 1 1/4].</p>
+		/// The coefficients of the second lifting step are [1/4 1 1/4].
 		/// 
 		/// </summary>
 		/// <param name="inSig">This is the array that contains the input signal.
@@ -302,9 +302,9 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// general description of the analyze_hpf() method in the AnWTFilter class
 		/// for more details.
 		/// 
-		/// The coefficients of the first lifting step are [-1/2 1 -1/2].</p>
+		/// The coefficients of the first lifting step are [-1/2 1 -1/2].
 		/// 
-		/// The coefficients of the second lifting step are [1/4 1 1/4].</p>
+		/// The coefficients of the second lifting step are [1/4 1 1/4].
 		/// 
 		/// </summary>
 		/// <param name="inSig">This is the array that contains the input signal.
@@ -426,7 +426,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// 
 		/// The returned array may not be modified (i.e. a reference to the
 		/// internal array may be returned by the implementation of this
-		/// method).</p>
+		/// method).
 		/// 
 		/// </summary>
 		/// <returns> The time-reversed low-pass synthesis waveform of the filter.
@@ -445,7 +445,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// 
 		/// The returned array may not be modified (i.e. a reference to the
 		/// internal array may be returned by the implementation of this
-		/// method).</p>
+		/// method).
 		/// 
 		/// </summary>
 		/// <returns> The time-reversed high-pass synthesis waveform of the filter.
@@ -466,7 +466,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// 
 		/// The result depends on the length of the allowed overlap when
 		/// compared to the overlap required by the wavelet filter. It also depends
-		/// on how overlap processing is implemented in the wavelet filter.</p>
+		/// on how overlap processing is implemented in the wavelet filter.
 		/// 
 		/// </summary>
 		/// <param name="tailOvrlp">This is the number of samples in the input signal
@@ -506,7 +506,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// by the encodeFilterCode() method.
 		/// 
 		/// Currently the implementation of this method only tests if 'obj' is
-		/// also of the class AnWTFilterIntLift5x3.</p>
+		/// also of the class AnWTFilterIntLift5x3.
 		/// 
 		/// </summary>
 		/// <param name="The">object against which to test inequality.

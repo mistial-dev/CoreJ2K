@@ -51,11 +51,11 @@ namespace CSJ2K.j2k.wavelet.analysis
 	/// are returned in no specific order.
 	/// 
 	/// This class is the source of data for the quantizer. See the 'Quantizer'
-	/// class.</p>
+	/// class.
 	/// 
 	/// Note that no more of one object may request data, otherwise one object
 	/// would get some of the data and another one another part, in no defined
-	/// manner.</p>
+	/// manner.
 	/// 
 	/// </summary>
 	/// <seealso cref="ForwWTDataProps">
@@ -116,18 +116,18 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// 
 		/// When changing the current tile (through 'setTile()' or 'nextTile()')
 		/// this method will always return the first code-block, as if this method
-		/// was never called before for the new current tile.</p>
+		/// was never called before for the new current tile.
 		/// 
 		/// The data returned by this method is always a copy of the internal
 		/// data of this object, if any, and it can be modified "in place" without
 		/// any problems after being returned. The 'offset' of the returned data is
 		/// 0, and the 'scanw' is the same as the code-block width.  The 'magbits'
 		/// of the returned data is not set by this method and should be
-		/// ignored. See the 'CBlkWTData' class.</p>
+		/// ignored. See the 'CBlkWTData' class.
 		/// 
 		/// The 'ulx' and 'uly' members of the returned 'CBlkWTData' object
 		/// contain the coordinates of the top-left corner of the block, with
-		/// respect to the tile, not the subband.</p>
+		/// respect to the tile, not the subband.
 		/// 
 		/// </summary>
 		/// <param name="c">The component for which to return the next code-block.
@@ -158,17 +158,17 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// 
 		/// When changing the current tile (through 'setTile()' or 'nextTile()')
 		/// this method will always return the first code-block, as if this method
-		/// was never called before for the new current tile.</p>
+		/// was never called before for the new current tile.
 		/// 
 		/// The data returned by this method can be the data in the internal
 		/// buffer of this object, if any, and thus can not be modified by the
 		/// caller. The 'offset' and 'scanw' of the returned data can be
 		/// arbitrary. The 'magbits' of the returned data is not set by this method
-		/// and should be ignored. See the 'CBlkWTData' class.</p>
+		/// and should be ignored. See the 'CBlkWTData' class.
 		/// 
 		/// The 'ulx' and 'uly' members of the returned 'CBlkWTData' object
 		/// contain the coordinates of the top-left corner of the block, with
-		/// respect to the tile, not the subband.</p>
+		/// respect to the tile, not the subband.
 		/// 
 		/// </summary>
 		/// <param name="c">The component for which to return the next code-block.

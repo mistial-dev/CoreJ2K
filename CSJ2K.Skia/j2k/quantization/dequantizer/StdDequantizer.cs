@@ -61,22 +61,22 @@ namespace CSJ2K.j2k.quantization.dequantizer
 	/// the input data. The most significant bit is used for the sign (0 if
 	/// positive, 1 if negative). Then the magnitude of the quantized coefficient
 	/// is stored in the next most significat bits. The most significant magnitude
-	/// bit corresponds to the most significant bit-plane and so on.</p>
+	/// bit corresponds to the most significant bit-plane and so on.
 	/// 
 	/// When reversible quantization is used, this class only converts between
 	/// the sign-magnitude representation and the integer (or eventually
-	/// fixed-point) output, since there is no true quantization.</p>
+	/// fixed-point) output, since there is no true quantization.
 	/// 
 	/// The output data is fixed-point two's complement for 'int' output and
 	/// floating-point for 'float' output. The type of output and the number number
 	/// of fractional bits for 'int' output are defined at the constructor. Each
-	/// component may have a different number of fractional bits.</p>
+	/// component may have a different number of fractional bits.
 	/// 
 	/// The reconstruction levels used by the dequantizer are exactly what is
 	/// received from the entropy decoder. It is assumed that the entropy decoder
 	/// always returns codewords that are midways in the decoded intervals. In this
 	/// way the dequantized values will always lie midways in the quantization
-	/// intervals.</p>
+	/// intervals.
 	/// 
 	/// </summary>
 	public class StdDequantizer:Dequantizer
@@ -150,7 +150,7 @@ namespace CSJ2K.j2k.quantization.dequantizer
 		/// least significant bit in the data. If the output data is 'float' then 0
 		/// is always returned.
 		/// 
-		/// <u>Note:</u> Fractional bits are no more supported by JJ2000.</p>
+		/// <u>Note:</u> Fractional bits are no more supported by JJ2000.
 		/// 
 		/// </summary>
 		/// <param name="c">The index of the component.
@@ -175,13 +175,13 @@ namespace CSJ2K.j2k.quantization.dequantizer
 		/// a better approximation, since meanwhile more data to decode for the
 		/// code-block could have been received. If the code-block is not
 		/// progressive then later calls to this method for the same code-block
-		/// will return the exact same data values.</p>
+		/// will return the exact same data values.
 		/// 
 		/// The data returned by this method is always a copy of the internal
 		/// data of this object, if any, and it can be modified "in place" without
 		/// any problems after being returned. The 'offset' of the returned data is 
 		/// 0, and the 'scanw' is the same as the code-block width. See the
-		/// 'DataBlk' class.</p>
+		/// 'DataBlk' class.
 		/// 
 		/// </summary>
 		/// <param name="c">The component for which to return the next code-block.
@@ -226,12 +226,12 @@ namespace CSJ2K.j2k.quantization.dequantizer
 		/// which is a better approximation, since meanwhile more data to decode
 		/// for the code-block could have been received. If the code-block is not
 		/// progressive then later calls to this method for the same code-block
-		/// will return the exact same data values.</p>
+		/// will return the exact same data values.
 		/// 
 		/// The data returned by this method can be the data in the internal
 		/// buffer of this object, if any, and thus can not be modified by the
 		/// caller. The 'offset' and 'scanw' of the returned data can be
-		/// arbitrary. See the 'DataBlk' class.</p>
+		/// arbitrary. See the 'DataBlk' class.
 		/// 
 		/// </summary>
 		/// <param name="c">The component for which to return the next code-block.

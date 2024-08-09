@@ -54,10 +54,10 @@ namespace CSJ2K.j2k.entropy.encoder
 	/// retruned in no specific-order.
 	/// 
 	/// This interface is the source of data for the rate allocator. See the
-	/// 'PostCompRateAllocator' class.</p>
+	/// 'PostCompRateAllocator' class.
 	/// 
 	/// For each coded-code-block the entropy-coded data is returned along with
-	/// the rate-distortion statistics in a 'CBlkRateDistStats' object.</p>
+	/// the rate-distortion statistics in a 'CBlkRateDistStats' object.
 	/// 
 	/// </summary>
 	/// <seealso cref="PostCompRateAllocator">
@@ -80,11 +80,11 @@ namespace CSJ2K.j2k.entropy.encoder
 		/// 
 		/// When changing the current tile (through 'setTile()' or 'nextTile()')
 		/// this method will always return the first code-block, as if this method
-		/// was never called before for the new current tile.</p>
+		/// was never called before for the new current tile.
 		/// 
 		/// The data returned by this method is always a copy of the internal
 		/// data of this object, if any, and it can be modified "in place" without
-		/// any problems after being returned.</p>
+		/// any problems after being returned.
 		/// 
 		/// </summary>
 		/// <param name="c">The component for which to return the next code-block.

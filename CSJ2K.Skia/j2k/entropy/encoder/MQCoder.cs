@@ -72,7 +72,7 @@ namespace CSJ2K.j2k.entropy.encoder
 	/// decrease, probably due to the fact that often Q has to be negated. Also the
 	/// fact that a brach of the type "if (bit==mPS[li])" is replaced by two
 	/// simpler braches of the type "if (bit==0)" and "if (q<0)" may contribute to
-	/// that.</p>
+	/// that.
 	/// 
 	/// 2) Removing cT<br>
 	/// 
@@ -88,7 +88,7 @@ namespace CSJ2K.j2k.entropy.encoder
 	/// There is NO speed improvement in doing this. I don't really know why since
 	/// the number of operations whenever a renormalization occurs is
 	/// decreased. Maybe it is due to the number of extra operations in the
-	/// byteOut(), terminate() and getNumCodedBytes() procedures.</p>
+	/// byteOut(), terminate() and getNumCodedBytes() procedures.
 	/// 
 	/// 3) Change the convention of MPS and LPS.<br>
 	/// 
@@ -107,7 +107,7 @@ namespace CSJ2K.j2k.entropy.encoder
 	/// Since in the MPS path Q is guaranteed to be always greater than 0x4000
 	/// (decimal 0.375) it is never necessary to do more than 1 renormalization
 	/// shift. Therefore the test of the while loop, and the loop itself, can be
-	/// removed.</p>
+	/// removed.
 	/// 
 	/// 5) Simplifying test on A register<br>
 	/// 
@@ -116,7 +116,7 @@ namespace CSJ2K.j2k.entropy.encoder
 	/// Java since it involves only 1 operation (although the original test can be
 	/// converted to only one operation by  smart Just-In-Time compilers)<br>
 	/// 
-	/// This change has been integrated in the decoding procedures.</p>
+	/// This change has been integrated in the decoding procedures.
 	/// 
 	/// 6) Speedup mode<br>
 	/// 
@@ -126,7 +126,7 @@ namespace CSJ2K.j2k.entropy.encoder
 	/// the entropy coder implementation has to explicetely use it. The generated
 	/// bit stream is the same as if no speedup mode would have been used.<br>
 	/// 
-	/// Implemented but performance not tested yet.</p>
+	/// Implemented but performance not tested yet.
 	/// 
 	/// 7) Multiple-symbol coding<br>
 	/// 
@@ -135,7 +135,7 @@ namespace CSJ2K.j2k.entropy.encoder
 	/// decodeSymbols() method implements this. However, to take advantage of it,
 	/// the implementation of the entropy coder has to explicitely use it.<br>
 	/// 
-	/// Implemented but performance not tested yet.</p>
+	/// Implemented but performance not tested yet.
 	/// 
 	/// </summary>
 	public class MQCoder
@@ -210,13 +210,13 @@ namespace CSJ2K.j2k.entropy.encoder
 		/// The values returned by this method are then to be used in finishing
 		/// the length calculation with the 'finishLengthCalculation()' method,
 		/// after compensation of the offset in the number of bytes due to previous
-		/// terminated segments.</p>
+		/// terminated segments.
 		/// 
 		/// This method should not be called if the current coding pass is to be
-		/// terminated. The 'terminate()' method should be called instead.</p>
+		/// terminated. The 'terminate()' method should be called instead.
 		/// 
 		/// The calculation is done based on the type of length calculation
-		/// specified at the constructor.</p>
+		/// specified at the constructor.
 		/// 
 		/// </summary>
 		/// <returns> The number of bytes in the compressed output stream necessary
@@ -472,12 +472,12 @@ namespace CSJ2K.j2k.entropy.encoder
 		/// significantly improve the speed of arithmetic coding when several MPS
 		/// symbols, with a high probability distribution, must be coded with the
 		/// same context. The generated bit stream is the same as if the normal mode
-		/// was used.</p>
+		/// was used.
 		/// 
 		/// This method is also faster than the 'codeSymbols()' and
 		/// 'codeSymbol()' ones, for coding the same symbols with the same context
 		/// several times, when speedup mode can not be used, although not
-		/// significantly.</p>
+		/// significantly.
 		/// 
 		/// </summary>
 		/// <param name="bit">The symbol do code, 0 or 1.
@@ -669,11 +669,11 @@ namespace CSJ2K.j2k.entropy.encoder
 		/// encoded and an array containing the contexts with which to encode them.
 		/// 
 		/// The advantage of using this function is that the cost of the method
-		/// call is amortized by the number of coded symbols per method call.</p>
+		/// call is amortized by the number of coded symbols per method call.
 		/// 
 		/// Each context has a current MPS and an index describing what the 
 		/// current probability is for the LPS. Each bit is encoded and if the
-		/// probability of the LPS exceeds .5, the MPS and LPS are switched.</p>
+		/// probability of the LPS exceeds .5, the MPS and LPS are switched.
 		/// 
 		/// </summary>
 		/// <param name="bits">An array containing the symbols to be encoded. Valid
@@ -811,7 +811,7 @@ namespace CSJ2K.j2k.entropy.encoder
 		/// 
 		/// Each context has a current MPS and an index describing what the 
 		/// current probability is for the LPS. Each bit is encoded and if the
-		/// probability of the LPS exceeds .5, the MPS and LPS are switched.</p>
+		/// probability of the LPS exceeds .5, the MPS and LPS are switched.
 		/// 
 		/// </summary>
 		/// <param name="bit">The symbol to be encoded, must be 0 or 1.
@@ -1011,10 +1011,10 @@ namespace CSJ2K.j2k.entropy.encoder
 		/// After calling this method the 'finishLengthCalculation()' method
 		/// should be called, after compensating the returned length for the length
 		/// of previous coded segments, so that the length calculation is
-		/// finalized.</p>
+		/// finalized.
 		/// 
 		/// The type of termination used depends on the one specified at the
-		/// constructor.</p>
+		/// constructor.
 		/// 
 		/// </summary>
 		/// <returns> The length of the arithmetic codeword after termination, in
@@ -1370,7 +1370,7 @@ namespace CSJ2K.j2k.entropy.encoder
 		/// 
 		/// The values in 'rates' must have been compensated for any offset due
 		/// to previous terminated segments, so that the correct index to the
-		/// stored coded data is used.</p>
+		/// stored coded data is used.
 		/// 
 		/// </summary>
 		/// <param name="rates">The array containing the values returned by

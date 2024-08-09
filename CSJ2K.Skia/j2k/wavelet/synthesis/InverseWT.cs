@@ -56,14 +56,14 @@ namespace CSJ2K.j2k.wavelet.synthesis
     /// dimensions are relative the the resolution level being used. The number of
     /// resolution levels indicates the number of wavelet recompositions that will
     /// be used, if it is equal as the number of decomposition levels then the full
-    /// resolution image is reconstructed.</p>
+    /// resolution image is reconstructed.
     /// 
     /// It is assumed in this class that all tiles and components the same
     /// reconstruction resolution level. If that where not the case the
     /// implementing class should have additional data structures to store those
     /// values for each tile. However, the 'recResLvl' member variable always
     /// contain the values applicable to the current tile, since many methods
-    /// implemented here rely on them.</p>
+    /// implemented here rely on them.
     /// 
     /// </summary>
     public abstract class InverseWT : InvWTAdapter, BlkImgDataSrc
@@ -76,7 +76,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
         /// 
         /// It is assumed here that all tiles and components have the same
         /// reconstruction resolution level. If that was not the case it should be
-        /// the value for the current tile of the source.</p>
+        /// the value for the current tile of the source.
         /// 
         /// </summary>
         /// <param name="src">from where the wavelet coefficinets should be obtained.

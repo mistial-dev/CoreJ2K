@@ -83,7 +83,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// 
 		/// The subband tree for a component in the current tile is created on
 		/// the first call to getAnSubbandTree() for that component, in the current
-		/// tile. Before that, the element in 'subbTrees' is null.</p>
+		/// tile. Before that, the element in 'subbTrees' is null.
 		/// 
 		/// </summary>
 		private SubbandAn[][] subbTrees;
@@ -243,11 +243,11 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// levels, then the last one is assumed to repeat itself.
 		/// 
 		/// The returned filters are applicable only to the specified component
-		/// and in the current tile.</p>
+		/// and in the current tile.
 		/// 
 		/// The resolution level of a subband is the resolution level to which a
 		/// subband contributes, which is different from its decomposition
-		/// level.</p>
+		/// level.
 		/// 
 		/// </summary>
 		/// <param name="t">The index of the tile for which to return the filters.
@@ -273,11 +273,11 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// levels, then the last one is assumed to repeat itself.
 		/// 
 		/// The returned filters are applicable only to the specified component
-		/// and in the current tile.</p>
+		/// and in the current tile.
 		/// 
 		/// The resolution level of a subband is the resolution level to which a
 		/// subband contributes, which is different from its decomposition
-		/// level.</p>
+		/// level.
 		/// 
 		/// </summary>
 		/// <param name="t">The index of the tile for which to return the filters.
@@ -344,17 +344,17 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// 
 		/// When changing the current tile (through 'setTile()' or 'nextTile()')
 		/// this method will always return the first code-block, as if this method
-		/// was never called before for the new current tile.</p>
+		/// was never called before for the new current tile.
 		/// 
 		/// The data returned by this method is the data in the internal buffer
 		/// of this object, and thus can not be modified by the caller. The
 		/// 'offset' and 'scanw' of the returned data have, in general, some
 		/// non-zero value. The 'magbits' of the returned data is not set by this
-		/// method and should be ignored. See the 'CBlkWTData' class.</p>
+		/// method and should be ignored. See the 'CBlkWTData' class.
 		/// 
 		/// The 'ulx' and 'uly' members of the returned 'CBlkWTData' object
 		/// contain the coordinates of the top-left corner of the block, with
-		/// respect to the tile, not the subband.</p>
+		/// respect to the tile, not the subband.
 		/// 
 		/// </summary>
 		/// <param name="c">The component for which to return the next code-block.
@@ -585,18 +585,18 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// 
 		/// When changing the current tile (through 'setTile()' or 'nextTile()')
 		/// this method will always return the first code-block, as if this method
-		/// was never called before for the new current tile.</p>
+		/// was never called before for the new current tile.
 		/// 
 		/// The data returned by this method is always a copy of the internal
 		/// data of this object, and it can be modified "in place" without
 		/// any problems after being returned. The 'offset' of the returned data is
 		/// 0, and the 'scanw' is the same as the code-block width.  The 'magbits'
 		/// of the returned data is not set by this method and should be
-		/// ignored. See the 'CBlkWTData' class.</p>
+		/// ignored. See the 'CBlkWTData' class.
 		/// 
 		/// The 'ulx' and 'uly' members of the returned 'CBlkWTData' object
 		/// contain the coordinates of the top-left corner of the block, with
-		/// respect to the tile, not the subband.</p>
+		/// respect to the tile, not the subband.
 		/// 
 		/// </summary>
 		/// <param name="c">The component for which to return the next code-block.
@@ -1005,7 +1005,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// 
 		/// This method resets the 'subbTrees' array, and recalculates the
 		/// values of the 'reversible' array. It also resets the decomposed
-		/// component buffers.</p>
+		/// component buffers.
 		/// 
 		/// </summary>
 		/// <param name="x">The horizontal coordinate of the tile.
@@ -1038,7 +1038,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// 
 		/// This method resets the 'subbTrees' array, and recalculates the
 		/// values of the 'reversible' array. It also resets the decomposed
-		/// component buffers.</p>
+		/// component buffers.
 		/// 
 		/// </summary>
 		public override void  nextTile()

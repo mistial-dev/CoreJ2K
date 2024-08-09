@@ -51,7 +51,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 	/// 
 	/// See the SynWTFilter class for details such as normalization, how to
 	/// split odd-length signals, etc. In particular, this method assumes that the
-	/// low-pass coefficient is computed first.</p>
+	/// low-pass coefficient is computed first.
 	/// 
 	/// </summary>
 	/// <seealso cref="SynWTFilter">
@@ -165,9 +165,9 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// scheme. See the general description of the synthetize_lpf() method in
 		/// the SynWTFilter class for more details.
 		/// 
-		/// The coefficients of the first lifting step are [-1/4 1 -1/4].</p>
+		/// The coefficients of the first lifting step are [-1/4 1 -1/4].
 		/// 
-		/// The coefficients of the second lifting step are [1/2 1 1/2].</p>
+		/// The coefficients of the second lifting step are [1/2 1 1/2].
 		/// 
 		/// </summary>
 		/// <param name="lowSig">This is the array that contains the low-pass input
@@ -293,9 +293,9 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// scheme. See the general description of the synthetize_hpf() method in
 		/// the SynWTFilter class for more details.
 		/// 
-		/// The coefficients of the first lifting step are [-1/4 1 -1/4].</p>
+		/// The coefficients of the first lifting step are [-1/4 1 -1/4].
 		/// 
-		/// The coefficients of the second lifting step are [1/2 1 1/2].</p>
+		/// The coefficients of the second lifting step are [1/2 1 1/2].
 		/// 
 		/// </summary>
 		/// <param name="lowSig">This is the array that contains the low-pass input
@@ -423,7 +423,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// 
 		/// The result depends on the length of the allowed overlap when
 		/// compared to the overlap required by the wavelet filter. It also depends
-		/// on how overlap processing is implemented in the wavelet filter.</p>
+		/// on how overlap processing is implemented in the wavelet filter.
 		/// 
 		/// </summary>
 		/// <param name="tailOvrlp">This is the number of samples in the input signal

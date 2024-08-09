@@ -58,20 +58,20 @@ namespace CSJ2K.j2k.quantization.dequantizer
 	/// (wherever it makes sense), under the assumption that the image and
 	/// component dimensions, and the tiles, are not modifed by the dequantizer. If
 	/// that is not the case for a particular implementation then the methods
-	/// should be overriden.</p>
+	/// should be overriden.
 	/// 
 	/// Sign magnitude representation is used (instead of two's complement) for
 	/// the input data. The most significant bit is used for the sign (0 if
 	/// positive, 1 if negative). Then the magnitude of the quantized coefficient
 	/// is stored in the next most significat bits. The most significant magnitude
-	/// bit corresponds to the most significant bit-plane and so on.</p>
+	/// bit corresponds to the most significant bit-plane and so on.
 	/// 
 	/// The output data is either in floating-point, or in fixed-point two's
 	/// complement. In case of floating-point data the the value returned by
 	/// getFixedPoint() must be 0. If the case of fixed-point data the number of
 	/// fractional bits must be defined at the constructor of the implementing
 	/// class and all operations must be performed accordingly. Each component may
-	/// have a different number of fractional bits.</p>
+	/// have a different number of fractional bits.
 	/// 
 	/// </summary>
 	public abstract class Dequantizer:MultiResImgDataAdapter, CBlkWTDataSrcDec
@@ -167,11 +167,11 @@ namespace CSJ2K.j2k.quantization.dequantizer
 		/// thus different nominal ranges. To have an idea of the nominal range in
 		/// each subband the subband analysis gain value from the subband tree
 		/// structure, returned by the getSynSubbandTree() method, can be used. See
-		/// the Subband class for more details.</p>
+		/// the Subband class for more details.
 		/// 
 		/// If this number is <i>b</b> then for unsigned data the nominal range
 		/// is between 0 and 2^b-1, and for signed data it is between -2^(b-1) and
-		/// 2^(b-1)-1.</p>
+		/// 2^(b-1)-1.
 		/// 
 		/// </summary>
 		/// <param name="c">The index of the component

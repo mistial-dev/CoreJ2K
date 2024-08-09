@@ -90,17 +90,17 @@ namespace CSJ2K.j2k.quantization.dequantizer
 		/// a better approximation, since meanwhile more data to decode for the
 		/// code-block could have been received. If the code-block is not
 		/// progressive then later calls to this method for the same code-block
-		/// will return the exact same data values.</p>
+		/// will return the exact same data values.
 		/// 
 		/// The data returned by this method is always a copy of the internal
 		/// data of this object, if any, and it can be modified "in place" without
 		/// any problems after being returned. The 'offset' of the returned data is
 		/// 0, and the 'scanw' is the same as the code-block width. See the
-		/// 'DataBlk' class.</p>
+		/// 'DataBlk' class.
 		/// 
 		/// The 'ulx' and 'uly' members of the returned 'DataBlk' object contain
 		/// the coordinates of the top-left corner of the block, with respect to
-		/// the tile, not the subband.</p>
+		/// the tile, not the subband.
 		/// 
 		/// </summary>
 		/// <param name="c">The component for which to return the next code-block.
@@ -142,16 +142,16 @@ namespace CSJ2K.j2k.quantization.dequantizer
 		/// a better approximation, since meanwhile more data to decode for the
 		/// code-block could have been received. If the code-block is not
 		/// progressive then later calls to this method for the same code-block
-		/// will return the exact same data values.</p>
+		/// will return the exact same data values.
 		/// 
 		/// The data returned by this method can be the data in the internal
 		/// buffer of this object, if any, and thus can not be modified by the
 		/// caller. The 'offset' and 'scanw' of the returned data can be
-		/// arbitrary. See the 'DataBlk' class.</p>
+		/// arbitrary. See the 'DataBlk' class.
 		/// 
 		/// The 'ulx' and 'uly' members of the returned 'DataBlk' object contain
 		/// the coordinates of the top-left corner of the block, with respect to
-		/// the tile, not the subband.</p>
+		/// the tile, not the subband.
 		/// 
 		/// </summary>
 		/// <param name="c">The component for which to return the next code-block.

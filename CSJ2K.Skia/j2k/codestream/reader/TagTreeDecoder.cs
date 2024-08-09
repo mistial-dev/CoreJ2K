@@ -55,10 +55,10 @@ namespace CSJ2K.j2k.codestream.reader
 	/// 
 	/// In general the decoding procedure must follow the same sequence of
 	/// elements and thresholds as the encoding one. The encoder is implemented by
-	/// the TagTreeEncoder class.</p>
+	/// the TagTreeEncoder class.
 	/// 
 	/// Tag trees that have one dimension, or both, as 0 are allowed for
-	/// convenience. Of course no values can be set or coded in such cases.</p>
+	/// convenience. Of course no values can be set or coded in such cases.
 	/// 
 	/// </summary>
 	/// <seealso cref="jj2000.j2k.codestream.writer.TagTreeEncoder">
@@ -109,7 +109,7 @@ namespace CSJ2K.j2k.codestream.reader
 		/// 
 		/// The values of all elements are initialized to Integer.MAX_VALUE
 		/// (i.e. no information decoded so far). The states are initialized all to
-		/// 0.</p>
+		/// 0.
 		/// 
 		/// </summary>
 		/// <param name="h">The number of elements along the vertical direction.

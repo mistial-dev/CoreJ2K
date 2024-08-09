@@ -213,7 +213,7 @@ namespace CSJ2K.j2k.codestream.reader
 		/// This method should always be called when some data has been read
 		/// directly from the underlying byte based input since the last call to
 		/// 'readBits()' or 'readBit()' before a new call to any of those
-		/// methods.</p>
+		/// methods.
 		/// 
 		/// </summary>
 		internal virtual void  sync()
@@ -227,7 +227,7 @@ namespace CSJ2K.j2k.codestream.reader
 		/// bits from 'in'.
 		/// 
 		/// This method is equivalent to creating a new 'PktHeaderBitReader'
-		/// object.</p>
+		/// object.
 		/// 
 		/// </summary>
 		/// <param name="in">The source of byte data
@@ -245,7 +245,7 @@ namespace CSJ2K.j2k.codestream.reader
 		/// bits from 'in'.
 		/// 
 		/// This method is equivalent to creating a new 'PktHeaderBitReader'
-		/// object.</p>
+		/// object.
 		/// 
 		/// </summary>
 		/// <param name="bais">The source of byte data

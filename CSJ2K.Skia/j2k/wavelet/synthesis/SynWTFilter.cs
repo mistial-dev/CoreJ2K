@@ -53,7 +53,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 	/// those classes.
 	/// 
 	/// The length of the output signal is always the sum of the length of the
-	/// low-pass and high-pass input signals.</p>
+	/// low-pass and high-pass input signals.
 	/// 
 	/// All synthesis wavelet filters should follow the following conventions:
 	/// 
@@ -77,7 +77,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 	/// The synthetize method may seem very complicated, but is designed to
 	/// minimize the amount of data copying and redundant calculations when used
 	/// for block-based or line-based wavelet transform implementations, while
-	/// being applicable to full-frame transforms as well.</p>
+	/// being applicable to full-frame transforms as well.
 	/// 
 	/// </summary>
 	/// <seealso cref="SynWTFilterInt">
@@ -109,7 +109,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// the first (second) output sample). is given by lowOff (highOff). This
 		/// array must be of the same type as the one for which the particular
 		/// implementation works with (which is returned by the getDataType()
-		/// method).</p>
+		/// method).
 		/// 
 		/// The low-pass (high-pass) input signal can be interleaved with other
 		/// signals in the same lowSig (highSig) array, and this is determined by
@@ -122,12 +122,12 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// columns of a 2-D signal, when it is stored in a line by line order in
 		/// lowSig (highSig), without having to copy the data, in this case the
 		/// lowStep (highStep) argument should be the line width of the low-pass
-		/// (high-pass) signal.</p>
+		/// (high-pass) signal.
 		/// 
 		/// The output signal is placed in the outSig array. The outOff and
 		/// outStep arguments are analogous to the lowOff and lowStep ones, but
 		/// they apply to the outSig array. The outSig array must be long enough to
-		/// hold the low-pass output signal.</p>
+		/// hold the low-pass output signal.
 		/// 
 		/// </summary>
 		/// <param name="lowSig">This is the array that contains the low-pass input
@@ -189,7 +189,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// the first (second) output sample). is given by lowOff (highOff). This
 		/// array must be of the same type as the one for which the particular
 		/// implementation works with (which is returned by the getDataType()
-		/// method).</p>
+		/// method).
 		/// 
 		/// The low-pass (high-pass) input signal can be interleaved with other
 		/// signals in the same lowSig (highSig) array, and this is determined by
@@ -202,12 +202,12 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// columns of a 2-D signal, when it is stored in a line by line order in
 		/// lowSig (highSig), without having to copy the data, in this case the
 		/// lowStep (highStep) argument should be the line width of the low-pass
-		/// (high-pass) signal.</p>
+		/// (high-pass) signal.
 		/// 
 		/// The output signal is placed in the outSig array. The outOff and
 		/// outStep arguments are analogous to the lowOff and lowStep ones, but
 		/// they apply to the outSig array. The outSig array must be long enough to
-		/// hold the low-pass output signal.</p>
+		/// hold the low-pass output signal.
 		/// 
 		/// </summary>
 		/// <param name="lowSig">This is the array that contains the low-pass input

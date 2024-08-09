@@ -48,7 +48,7 @@ namespace CSJ2K.j2k.io
 	/// implements the <tt>BinaryDataInput</tt> and <tt>BinaryDataOutput</tt>
 	/// interfaces so that binary data input/output can be performed.
 	/// 
-	/// This interface supports streams of up to 2 GB in length.</p>
+	/// This interface supports streams of up to 2 GB in length.
 	/// 
 	/// </summary>
 	/// <seealso cref="BinaryDataInput">

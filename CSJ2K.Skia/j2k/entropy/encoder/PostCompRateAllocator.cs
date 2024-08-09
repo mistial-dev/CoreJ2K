@@ -60,7 +60,7 @@ namespace CSJ2K.j2k.entropy.encoder
 	/// layers, according to a rate allocation policy, and send the packets to a
 	/// CodestreamWriter. Since the rate allocator sends the packets to the bit
 	/// stream then it should output the packets to the bit stream in the order
-	/// imposed by the bit stream profiles.</p>
+	/// imposed by the bit stream profiles.
 	/// 
 	/// </summary>
 	/// <seealso cref="CodedCBlkDataSrcEnc">

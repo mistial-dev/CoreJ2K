@@ -48,7 +48,7 @@ namespace CSJ2K.j2k.wavelet
 	/// that are supported.
 	/// 
 	/// The identifier values are the same as those used in the codestream
-	/// syntax, for the filters that are defined in the standard.</p>
+	/// syntax, for the filters that are defined in the standard.
 	/// 
 	/// </summary>
 	public struct FilterTypes_Fields{

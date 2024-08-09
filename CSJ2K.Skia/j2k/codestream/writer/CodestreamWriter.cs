@@ -56,11 +56,11 @@ namespace CSJ2K.j2k.codestream.writer
 	/// Data writting to the codestream can be simulated. In this case, no byto
 	/// is effectively written to the codestream but the resulting number of bytes
 	/// is calculated and returned (although it is not accounted in the bit
-	/// stream). This can be used in rate control loops.</p>
+	/// stream). This can be used in rate control loops.
 	/// 
 	/// Implementing classes should write the header of the bit stream before
 	/// writing any packets. The bit stream header can be written with the help of
-	/// the HeaderEncoder class.</p>
+	/// the HeaderEncoder class.
 	/// 
 	/// </summary>
 	/// <seealso cref="HeaderEncoder">
@@ -122,7 +122,7 @@ namespace CSJ2K.j2k.codestream.writer
 		/// the data that does not exceed the allowed length is effectively written
 		/// and the rest is discarded. However the value returned by the method is
 		/// the total length of the packet, as if all of it was written to the bit
-		/// stream.</p>
+		/// stream.
 		/// 
 		/// If the codestream header has not been commited yet and if 'sim' is
 		/// false, then the bit stream header is automatically commited (see
@@ -171,7 +171,7 @@ namespace CSJ2K.j2k.codestream.writer
 		/// the data that does not exceed the allowed length is effectively written
 		/// and the rest is discarded. However the value returned by the method is
 		/// the total length of the packet, as if all of it was written to the bit
-		/// stream.</p>
+		/// stream.
 		/// 
 		/// </summary>
 		/// <param name="body">The packet body data.

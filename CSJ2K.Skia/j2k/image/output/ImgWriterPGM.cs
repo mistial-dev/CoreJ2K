@@ -56,13 +56,13 @@ namespace CSJ2K.j2k.image.output
 	/// "saturated" (they are limited to the nominal dynamic range).<br> <u>Ex:</u>
 	/// if the nominal range is 0-255, the following algorithm is applied:<br>
 	/// <tt>if coeff<0, output=0<br> if coeff>255, output=255<br> else
-	/// output=coeff</tt></p>
+	/// output=coeff</tt>
 	/// 
 	/// The write() methods of an object of this class may not be called
-	/// concurrently from different threads.</p>
+	/// concurrently from different threads.
 	/// 
 	/// NOTE: This class is not thread safe, for reasons of internal
-	/// buffering.</p>
+	/// buffering.
 	/// 
 	/// </summary>
 	public class ImgWriterPGM:ImgWriter
@@ -99,7 +99,7 @@ namespace CSJ2K.j2k.image.output
 		/// 
 		/// The size of the image that is written to the file is the size of the
 		/// component from which to get the data, specified by b, not the size of
-		/// the source image (they differ if there is some sub-sampling).</p>
+		/// the source image (they differ if there is some sub-sampling).
 		/// 
 		/// </summary>
 		/// <param name="out">The file where to write the data
@@ -211,11 +211,11 @@ namespace CSJ2K.j2k.image.output
 		/// coefficients are limited to the nominal range.
 		/// 
 		/// This method may not be called concurrently from different
-		/// threads.</p>
+		/// threads.
 		/// 
 		/// If the data returned from the BlkImgDataSrc source is progressive,
 		/// then it is requested over and over until it is not progressive
-		/// anymore.</p>
+		/// anymore.
 		/// 
 		/// </summary>
 		/// <param name="ulx">The horizontal coordinate of the upper-left corner of the
@@ -313,7 +313,7 @@ namespace CSJ2K.j2k.image.output
 		/// 
 		/// If the data returned from the BlkImgDataSrc source is progressive,
 		/// then it is requested over and over until it is not progressive
-		/// anymore.</p>
+		/// anymore.
 		/// 
 		/// </summary>
 		/// <exception cref="IOException">If an I/O error occurs.

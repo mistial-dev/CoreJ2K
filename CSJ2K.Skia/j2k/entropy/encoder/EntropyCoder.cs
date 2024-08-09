@@ -56,16 +56,16 @@ namespace CSJ2K.j2k.entropy.encoder
 	/// compressed code-block with rate-distortion information.
 	/// 
 	/// The source of data for objects of this class are 'CBlkQuantDataSrcEnc'
-	/// objects.</p>
+	/// objects.
 	/// 
 	/// For more details on the sign magnitude representation used see the
-	/// Quantizer class.</p>
+	/// Quantizer class.
 	/// 
 	/// This class provides default implemenations for most of the methods
 	/// (wherever it makes sense), under the assumption that the image and
 	/// component dimensions, and the tiles, are not modifed by the entropy
 	/// coder. If that is not the case for a particular implementation then the
-	/// methods should be overriden.</p>
+	/// methods should be overriden.
 	/// 
 	/// </summary>
 	/// <seealso cref="Quantizer">

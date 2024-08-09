@@ -53,7 +53,7 @@ namespace CSJ2K.j2k.wavelet
 	/// Both analysis and filters must be able to return the extent of the
 	/// negative and positive support for both synthesis and analysis sides. This
 	/// simplifies the sue of some functionalities that need extra information
-	/// about the filters.</p>
+	/// about the filters.
 	/// 
 	/// </summary>
 	/// <seealso cref="jj2000.j2k.wavelet.analysis.AnWTFilter">
@@ -221,7 +221,7 @@ namespace CSJ2K.j2k.wavelet
 		/// 
 		/// The result depends on the length of the allowed overlap when
 		/// compared to the overlap required by the wavelet filter. It also depends
-		/// on how overlap processing is implemented in the wavelet filter.</p>
+		/// on how overlap processing is implemented in the wavelet filter.
 		/// 
 		/// </summary>
 		/// <param name="tailOvrlp">This is the number of samples in the input signal

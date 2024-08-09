@@ -57,7 +57,7 @@ namespace CSJ2K.j2k.codestream.writer
 	/// 
 	/// Each time the encodePacket() method is called a new packet is encoded,
 	/// the packet header is returned by the method, and the packet body can be
-	/// obtained with the getLastBodyBuf() and getLastBodyLen() methods.</p>
+	/// obtained with the getLastBodyBuf() and getLastBodyLen() methods.
 	/// 
 	/// </summary>
 	public class PktEncoder
@@ -826,7 +826,7 @@ namespace CSJ2K.j2k.codestream.writer
 		/// Layers must be coded in increasing order, in consecutive manner, for
 		/// each tile, component and resolution level (e.g., layer 1, then layer 2,
 		/// etc.). For different tile, component and/or resolution level no
-		/// particular order must be followed.</p>
+		/// particular order must be followed.
 		/// 
 		/// </summary>
 		/// <param name="ly">The layer index (starts at 1).

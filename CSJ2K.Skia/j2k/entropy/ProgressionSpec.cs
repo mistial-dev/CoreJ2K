@@ -52,7 +52,7 @@ namespace CSJ2K.j2k.entropy
 	/// 
 	/// It stores  the progression type(s) used in the  codestream. There can be
 	/// several progression  type(s) if  progression order  changes are  used (POC
-	/// markers).</p>
+	/// markers).
 	/// 
 	/// </summary>
 	public sealed class ProgressionSpec:ModuleSpec

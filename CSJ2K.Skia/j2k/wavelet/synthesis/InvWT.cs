@@ -51,7 +51,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 	/// 
 	/// This class does not define the methods to transfer data, just the
 	/// specifics to inverse wavelet transform. Different data transfer methods are
-	/// envisageable for different transforms.</p>
+	/// envisageable for different transforms.
 	/// 
 	/// </summary>
 	public interface InvWT:WaveletTransform
@@ -62,13 +62,13 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// 
 		/// Note: Image resolution level indexes may differ from tile-component
 		/// resolution index. They are indeed indexed starting from the lowest
-		/// number of decomposition levels of each component of each tile.</p>
+		/// number of decomposition levels of each component of each tile.
 		/// 
 		/// Example: For an image (1 tile) with 2 components (component 0 having
 		/// 2 decomposition levels and component 1 having 3 decomposition levels),
 		/// the first (tile-) component has 3 resolution levels and the second one
 		/// has 4 resolution levels, whereas the image has only 3 resolution levels
-		/// available.</p>
+		/// available.
 		/// 
 		/// </summary>
 		/// <param name="rl">The image resolution level.
