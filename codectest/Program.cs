@@ -17,57 +17,78 @@ namespace codectest
         private static void Main(string[] args)
         {
             SKBitmapImageCreator.Register();
+
+            if (Directory.Exists("output"))
+            {
+                var di = new DirectoryInfo("output");
+                di.Delete(true);
+            }
+            Directory.CreateDirectory("output");
             
-            File.Delete("file11.jp2");
-            File.Delete("file12.jp2");
-            File.Delete("file13.jp2");
-            File.Delete("file14.jp2");
-            File.Delete("file15.jp2");
-            foreach (var f in Directory.EnumerateFiles(".",$"histogram*.png"))
-            {
-                File.Delete(f);
-            }
-            foreach (var f in Directory.EnumerateFiles(".",$"encoded*.png"))
-            {
-                File.Delete(f);
-            }
-            foreach (var f in Directory.EnumerateFiles(".",$"encoded*.png"))
-            {
-                File.Delete(f);
-            }
-
-            using (var ppm = File.OpenRead("a1_mono.ppm"))
+            using (var ppm = File.OpenRead(Path.Combine("samples", "a1_mono.ppm")))
             {
                 var enc = J2kImage.ToBytes(J2kImage.CreateEncodableSource(ppm));
-                File.WriteAllBytes("file11.jp2", enc);
+                File.WriteAllBytes(Path.Combine("output", "file11.jp2"), enc);
             }
 
-            using (var ppm = File.OpenRead("a2_colr.ppm"))
+            using (var ppm = File.OpenRead(Path.Combine("samples", "a2_colr.ppm")))
             {
                 var enc = J2kImage.ToBytes(J2kImage.CreateEncodableSource(ppm));
-                File.WriteAllBytes("file12.jp2", enc);
+                File.WriteAllBytes(Path.Combine("output", "file12.jp2"), enc);
             }
 
-            using (var pgx = File.OpenRead("c1p0_05_0.pgx"))
+            using (var pgx = File.OpenRead(Path.Combine("samples", "c1p0_05_0.pgx")))
             {
                 var enc = J2kImage.ToBytes(J2kImage.CreateEncodableSource(pgx));
-                File.WriteAllBytes("file13.jp2", enc);
+                File.WriteAllBytes(Path.Combine("output", "file13.jp2"), enc);
             }
             
-            using (var bitmap = SKBitmap.Decode("racoon.png"))
+            using (var bitmap = SKBitmap.Decode(Path.Combine("samples", "racoon.png")))
             {
                 var src = J2kImage.CreateEncodableSource(bitmap);
                 var enc = J2kImage.ToBytes(src);
-                File.WriteAllBytes("file14.jp2", enc);
+                File.WriteAllBytes(Path.Combine("output", "file14.jp2"), enc);
             }
-            using (var bitmap = SKBitmap.Decode("dog.jpeg"))
+            
+            using (var bitmap = SKBitmap.Decode(Path.Combine("samples", "basn0g01.png")))
             {
                 var src = J2kImage.CreateEncodableSource(bitmap);
                 var enc = J2kImage.ToBytes(src);
-                File.WriteAllBytes("file15.jp2", enc);
+                File.WriteAllBytes(Path.Combine("output", "file16.jp2"), enc);
             }
-
-            for (var i = 1; i <= 15; i++)
+            using (var bitmap = SKBitmap.Decode(Path.Combine("samples", "basn0g08.png")))
+            {
+                var src = J2kImage.CreateEncodableSource(bitmap);
+                var enc = J2kImage.ToBytes(src);
+                File.WriteAllBytes(Path.Combine("output", "file17.jp2"), enc);
+            }
+            using (var bitmap = SKBitmap.Decode(Path.Combine("samples", "basn3p02.png")))
+            {
+                var src = J2kImage.CreateEncodableSource(bitmap);
+                var enc = J2kImage.ToBytes(src);
+                File.WriteAllBytes(Path.Combine("output", "file18.jp2"), enc);
+            }
+            using (var bitmap = SKBitmap.Decode(Path.Combine("samples", "basn3p08.png")))
+            {
+                var src = J2kImage.CreateEncodableSource(bitmap);
+                var enc = J2kImage.ToBytes(src);
+                File.WriteAllBytes(Path.Combine("output", "file17.jp2"), enc);
+            }
+            using (var bitmap = SKBitmap.Decode(Path.Combine("samples", "basn4a08.png")))
+            {
+                var src = J2kImage.CreateEncodableSource(bitmap);
+                var enc = J2kImage.ToBytes(src);
+                File.WriteAllBytes(Path.Combine("output", "file18.jp2"), enc);
+            }
+            using (var bitmap = SKBitmap.Decode(Path.Combine("samples", "basn6a08.png")))
+            {
+                var src = J2kImage.CreateEncodableSource(bitmap);
+                var enc = J2kImage.ToBytes(src);
+                File.WriteAllBytes(Path.Combine("output", "file19.jp2"), enc);
+            }
+            
+            string[] files = Directory.GetFiles("output", "*.*", SearchOption.AllDirectories);
+            foreach (var file in files)
             {
                 try
                 {
@@ -76,24 +97,24 @@ namespace codectest
                     {
                         var timer = new HiPerfTimer();
                         timer.Start();
-                        image = J2kImage.FromFile($"file{i}.jp2").As<SKBitmap>();
+                        image = J2kImage.FromFile(file).As<SKBitmap>();
                         timer.Stop();
-                        Console.WriteLine($"file{i}: {timer.Duration} seconds");
+                        Console.WriteLine($"{file}: {timer.Duration} seconds");
                     }
                     else
                     {
-                        image = J2kImage.FromFile($"file{i}.jp2").As<SKBitmap>();
+                        image = J2kImage.FromFile(file).As<SKBitmap>();
                     }
 
                     var histogram = GenerateHistogram(image);
                     var encoded = histogram.Encode(SKEncodedImageFormat.Png, 100);
-                    File.WriteAllBytes($"histogram{i}.png", encoded.ToArray());
+                    File.WriteAllBytes(Path.Combine("output", $"{Path.GetFileNameWithoutExtension (file)}_histogram.png"), encoded.ToArray());
                     encoded = image.Encode(SKEncodedImageFormat.Png, 100);
-                    File.WriteAllBytes($"encoded{i}.png", encoded.ToArray());
+                    File.WriteAllBytes(Path.Combine("output", $"{Path.GetFileNameWithoutExtension (file)}_encoded.png"), encoded.ToArray());
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine($"file{i}:\r\n{e.Message}");
+                    Console.WriteLine($"{file}:\r\n{e.Message}");
                     if (e.InnerException != null)
                     {
                         Console.WriteLine(e.InnerException.Message);
