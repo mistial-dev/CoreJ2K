@@ -402,7 +402,11 @@ namespace CSJ2K
 
         public static byte[] ToBytes(object imageObject, ParameterList parameters = null)
         {
-            var imgsrc = ImageFactory.ToPortableImageSource(imageObject);
+            // HACK: Don't know why ImageFactory.ToPortableImageSource() doesn't work.
+            // Don't really care at this point.
+            var imgsrc = (imageObject is SKBitmap bitmap) 
+                ? CreateEncodableSource(bitmap) 
+                : ImageFactory.ToPortableImageSource(imageObject);
             return ToBytes(imgsrc, parameters);
         }
 

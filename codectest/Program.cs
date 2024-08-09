@@ -45,45 +45,38 @@ namespace codectest
             
             using (var bitmap = SKBitmap.Decode(Path.Combine("samples", "racoon.png")))
             {
-                var src = J2kImage.CreateEncodableSource(bitmap);
-                var enc = J2kImage.ToBytes(src);
+                var enc = J2kImage.ToBytes(bitmap);
                 File.WriteAllBytes(Path.Combine("output", "file14.jp2"), enc);
             }
             
             using (var bitmap = SKBitmap.Decode(Path.Combine("samples", "basn0g01.png")))
             {
-                var src = J2kImage.CreateEncodableSource(bitmap);
-                var enc = J2kImage.ToBytes(src);
+                var enc = J2kImage.ToBytes(bitmap);
                 File.WriteAllBytes(Path.Combine("output", "file16.jp2"), enc);
             }
             using (var bitmap = SKBitmap.Decode(Path.Combine("samples", "basn0g08.png")))
             {
-                var src = J2kImage.CreateEncodableSource(bitmap);
-                var enc = J2kImage.ToBytes(src);
+                var enc = J2kImage.ToBytes(bitmap);
                 File.WriteAllBytes(Path.Combine("output", "file17.jp2"), enc);
             }
             using (var bitmap = SKBitmap.Decode(Path.Combine("samples", "basn3p02.png")))
             {
-                var src = J2kImage.CreateEncodableSource(bitmap);
-                var enc = J2kImage.ToBytes(src);
+                var enc = J2kImage.ToBytes(bitmap);
                 File.WriteAllBytes(Path.Combine("output", "file18.jp2"), enc);
             }
             using (var bitmap = SKBitmap.Decode(Path.Combine("samples", "basn3p08.png")))
             {
-                var src = J2kImage.CreateEncodableSource(bitmap);
-                var enc = J2kImage.ToBytes(src);
+                var enc = J2kImage.ToBytes(bitmap);
                 File.WriteAllBytes(Path.Combine("output", "file17.jp2"), enc);
             }
             using (var bitmap = SKBitmap.Decode(Path.Combine("samples", "basn4a08.png")))
             {
-                var src = J2kImage.CreateEncodableSource(bitmap);
-                var enc = J2kImage.ToBytes(src);
+                var enc = J2kImage.ToBytes(bitmap);
                 File.WriteAllBytes(Path.Combine("output", "file18.jp2"), enc);
             }
             using (var bitmap = SKBitmap.Decode(Path.Combine("samples", "basn6a08.png")))
             {
-                var src = J2kImage.CreateEncodableSource(bitmap);
-                var enc = J2kImage.ToBytes(src);
+                var enc = J2kImage.ToBytes(bitmap);
                 File.WriteAllBytes(Path.Combine("output", "file19.jp2"), enc);
             }
             
