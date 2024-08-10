@@ -79,6 +79,11 @@ namespace codectest
                 var enc = J2kImage.ToBytes(bitmap);
                 File.WriteAllBytes(Path.Combine("output", "file19.jp2"), enc);
             }
+            using (var bitmap = SKBitmap.Decode(Path.Combine("samples", "dog.jpeg")))
+            {
+                var enc = J2kImage.ToBytes(bitmap);
+                File.WriteAllBytes(Path.Combine("output", "file20.jp2"), enc);
+            }
             
             string[] files = Directory.GetFiles("output", "*.*", SearchOption.AllDirectories);
             foreach (var file in files)
