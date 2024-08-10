@@ -86,11 +86,6 @@ namespace CSJ2K.Util
                         throw new NotSupportedException(
                             $"Colortype {nameof(image.ColorType)} not currently supported.");
                 }
-                
-                if (red != null) { barr[0] = red; }
-                if (green != null) { barr[1] = green; }
-                if (blue != null) { barr[2] = blue; }
-                if (alpha != null) { barr[3] = alpha; }
             }
             
             return barr;
