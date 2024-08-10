@@ -278,16 +278,20 @@ namespace CSJ2K
                                 case 1:
                                     rowvalues[offset + 0] = tmp[0];
                                     break;
-                                case 3:
-                                    rowvalues[offset + 0] = tmp[2];
+                                case 2:
+                                    rowvalues[offset + 0] = tmp[0];
                                     rowvalues[offset + 1] = tmp[1];
-                                    rowvalues[offset + 2] = tmp[0];
+                                    break;
+                                case 3:
+                                    rowvalues[offset + 0] = tmp[0];
+                                    rowvalues[offset + 1] = tmp[1];
+                                    rowvalues[offset + 2] = tmp[2];
                                     break;
                                 case 4:
-                                    rowvalues[offset + 0] = tmp[3];
-                                    rowvalues[offset + 1] = tmp[2];
-                                    rowvalues[offset + 2] = tmp[1];
-                                    rowvalues[offset + 3] = tmp[0];
+                                    rowvalues[offset + 0] = tmp[0];
+                                    rowvalues[offset + 1] = tmp[1];
+                                    rowvalues[offset + 2] = tmp[2];
+                                    rowvalues[offset + 3] = tmp[3];
                                     break;
                                 default:
                                     throw new InvalidOperationException($"Invalid number of components: {numComps}");
