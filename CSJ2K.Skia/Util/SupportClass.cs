@@ -1232,7 +1232,9 @@ internal class SupportClass
 			while (state != STATE_DONE);
 			
 			if (ttype == TT_WORD && lowerCaseMode)
-				sval = sval.ToLower();
+			{
+				sval = sval?.ToLower();
+			}
 
 			return ttype;
 		}

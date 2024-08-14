@@ -360,7 +360,7 @@ namespace CSJ2K.j2k.util
 			{
 				//UPGRADE_TODO: Method 'java.util.Enumeration.nextElement' was converted to 'System.Collections.IEnumerator.Current' which has a different behavior. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1073_javautilEnumerationnextElement'"
 				var val = (string) args.Current;
-				if (val.Length > 0 && val[0] == prfx)
+				if (!string.IsNullOrEmpty(val) && val[0] == prfx)
 				{
 					var isvalid = false;
 					if (plist != null)
@@ -404,7 +404,7 @@ namespace CSJ2K.j2k.util
 			while (args.MoveNext())
 			{
 				var val = ((string) args.Current);
-				if (val.Length > 0 && strprfxs.IndexOf(val[0]) == - 1)
+				if (!string.IsNullOrEmpty(val) && strprfxs.IndexOf(val[0]) == - 1)
 				{
 					var isvalid = false;
 					if (plist != null)
