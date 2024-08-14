@@ -351,14 +351,8 @@ namespace CSJ2K.j2k
 			{
 				throw new InvalidOperationException("Illegal use of ModuleSpec class");
 			}
-			if (compDef?[c] == null)
-			{
-				return getDefault();
-			}
-			else
-			{
-				return compDef[c];
-			}
+
+			return compDef?[c] == null ? getDefault() : compDef[c];
 		}
 		
 		/// <summary> Sets default value for specified tile and specValType tag if allowed by
