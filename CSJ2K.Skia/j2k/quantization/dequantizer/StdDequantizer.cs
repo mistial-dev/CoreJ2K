@@ -120,9 +120,7 @@ namespace CSJ2K.j2k.quantization.dequantizer
 		/// <param name="qsss">The dequantizer step sizes spec
 		/// 
 		/// </param>
-		/// <seealso cref="Dequantizer.getNomRangeBits">
-		/// 
-		/// </seealso>
+		/// <seealso cref="Dequantizer.getNomRangeBits" />
 		/// <exception cref="IllegalArgumentException">Thrown if 'outdt' is neither
 		/// TYPE_FLOAT nor TYPE_INT, or if 'param' specify reversible quantization
 		/// and 'outdt' is not TYPE_INT or 'fp' has non-zero values, or if 'outdt'
@@ -208,9 +206,7 @@ namespace CSJ2K.j2k.quantization.dequantizer
 		/// null if all code-blocks for the current tile have been returned.
 		/// 
 		/// </returns>
-		/// <seealso cref="DataBlk">
-		/// 
-		/// </seealso>
+		/// <seealso cref="DataBlk" />
 		public override DataBlk getCodeBlock(int c, int m, int n, SubbandSyn sb, DataBlk cblk)
 		{
 			return getInternCodeBlock(c, m, n, sb, cblk);
@@ -258,9 +254,7 @@ namespace CSJ2K.j2k.quantization.dequantizer
 		/// null if all code-blocks for the current tile have been returned.
 		/// 
 		/// </returns>
-		/// <seealso cref="DataBlk">
-		/// 
-		/// </seealso>
+		/// <seealso cref="DataBlk" />
 		public override DataBlk getInternCodeBlock(int c, int m, int n, SubbandSyn sb, DataBlk cblk)
 		{
 			// This method is declared final since getNextCodeBlock() relies on

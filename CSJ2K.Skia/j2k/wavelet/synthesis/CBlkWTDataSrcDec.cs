@@ -56,15 +56,10 @@ namespace CSJ2K.j2k.wavelet.synthesis
 	/// transforms. See the 'InverseWT' class.
 	/// 
 	/// </summary>
-	/// <seealso cref="InvWTData">
-	/// </seealso>
-	/// <seealso cref="WaveletTransform">
-	/// </seealso>
-	/// <seealso cref="jj2000.j2k.quantization.dequantizer.CBlkQuantDataSrcDec">
-	/// </seealso>
-	/// <seealso cref="InverseWT">
-	/// 
-	/// </seealso>
+	/// <seealso cref="InvWTData" />
+	/// <seealso cref="WaveletTransform" />
+	/// <seealso cref="j2k.quantization.dequantizer.CBlkQuantDataSrcDec" />
+	/// <seealso cref="InverseWT" />
 	public interface CBlkWTDataSrcDec:InvWTData
 	{
 		
@@ -92,9 +87,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// data.
 		/// 
 		/// </returns>
-		/// <seealso cref="Subband">
-		/// 
-		/// </seealso>
+		/// <seealso cref="Subband" />
 		int getNomRangeBits(int c);
 		
 		/// <summary> Returns the position of the fixed point in the specified component, or
@@ -159,9 +152,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// null if all code-blocks for the current tile have been returned.
 		/// 
 		/// </returns>
-		/// <seealso cref="DataBlk">
-		/// 
-		/// </seealso>
+		/// <seealso cref="DataBlk" />
 		DataBlk getCodeBlock(int c, int m, int n, SubbandSyn sb, DataBlk cblk);
 		
 		/// <summary> Returns the specified code-block in the current tile for the specified
@@ -206,9 +197,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// null if all code-blocks for the current tile have been returned.
 		/// 
 		/// </returns>
-		/// <seealso cref="DataBlk">
-		/// 
-		/// </seealso>
+		/// <seealso cref="DataBlk" />
 		DataBlk getInternCodeBlock(int c, int m, int n, SubbandSyn sb, DataBlk cblk);
 	}
 }

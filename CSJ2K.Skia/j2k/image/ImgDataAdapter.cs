@@ -60,9 +60,7 @@ namespace CSJ2K.j2k.image
 	/// can be overridden to implement the proper behavior.
 	/// 
 	/// </summary>
-	/// <seealso cref="ImgData">
-	/// 
-	/// </seealso>
+	/// <seealso cref="ImgData" />
 	public abstract class ImgDataAdapter : ImgData
 	{
 		/// <summary> Returns the overall width of the current tile in pixels. This is the
@@ -199,9 +197,7 @@ namespace CSJ2K.j2k.image
 		/// <returns> The horizontal subsampling factor of component 'c'
 		/// 
 		/// </returns>
-		/// <seealso cref="ImgData">
-		/// 
-		/// </seealso>
+		/// <seealso cref="ImgData" />
 		public virtual int getCompSubsX(int c)
 		{
 			return imgdatasrc.getCompSubsX(c);
@@ -221,9 +217,7 @@ namespace CSJ2K.j2k.image
 		/// <returns> The vertical subsampling factor of component 'c'
 		/// 
 		/// </returns>
-		/// <seealso cref="ImgData">
-		/// 
-		/// </seealso>
+		/// <seealso cref="ImgData" />
 		public virtual int getCompSubsY(int c)
 		{
 			return imgdatasrc.getCompSubsY(c);

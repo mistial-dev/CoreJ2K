@@ -50,8 +50,7 @@ namespace CSJ2K.j2k.roi.encoder
 	/// implementation only rectangles and circles are supported.
 	/// 
 	/// </summary>
-	/// <seealso cref="ROIMaskGenerator">
-	/// </seealso>
+	/// <seealso cref="ROIMaskGenerator" />
 	public class ROI
 	{
 		

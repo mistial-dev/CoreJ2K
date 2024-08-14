@@ -51,9 +51,7 @@ namespace CSJ2K.j2k.entropy.encoder
 	/// necessary layer information. It is used by EBCOTRateAllocator.
 	/// 
 	/// </summary>
-	/// <seealso cref="EBCOTRateAllocator">
-	/// 
-	/// </seealso>
+	/// <seealso cref="EBCOTRateAllocator" />
 	class EBCOTLayer
 	{
 		/// <summary> This is the maximum number of bytes that should be allocated for this

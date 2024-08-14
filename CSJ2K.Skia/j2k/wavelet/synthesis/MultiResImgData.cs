@@ -78,12 +78,8 @@ namespace CSJ2K.j2k.wavelet.synthesis
 	/// size in the reference grid by the subsampling factor.
 	/// 
 	/// </summary>
-	/// <seealso cref="jj2000.j2k.image.ImgData">
-	/// 
-	/// </seealso>
-	/// <seealso cref="jj2000.j2k.quantization.dequantizer.CBlkQuantDataSrcDec">
-	/// 
-	/// </seealso>
+	/// <seealso cref="j2k.image.ImgData" />
+	/// <seealso cref="j2k.quantization.dequantizer.CBlkQuantDataSrcDec" />
 	public interface MultiResImgData
 	{
 		/// <summary>Returns the nominal tiles width </summary>
@@ -204,9 +200,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// <returns> The horizontal subsampling factor of component 'c'
 		/// 
 		/// </returns>
-		/// <seealso cref="jj2000.j2k.image.ImgData">
-		/// 
-		/// </seealso>
+		/// <seealso cref="j2k.image.ImgData" />
 		int getCompSubsX(int c);
 		
 		/// <summary> Returns the component subsampling factor in the vertical direction, for
@@ -221,9 +215,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// <returns> The vertical subsampling factor of component 'c'
 		/// 
 		/// </returns>
-		/// <seealso cref="jj2000.j2k.image.ImgData">
-		/// 
-		/// </seealso>
+		/// <seealso cref="j2k.image.ImgData" />
 		int getCompSubsY(int c);
 		
 		/// <summary> Returns the width in pixels of the specified tile-component for the

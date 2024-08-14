@@ -71,17 +71,11 @@ namespace CSJ2K.j2k.wavelet.analysis
 	/// class.
 	/// 
 	/// </summary>
-	/// <seealso cref="CBlkWTDataSrc">
-	/// </seealso>
-	/// <seealso cref="jj2000.j2k.quantization.quantizer.CBlkQuantDataSrcEnc">
-	/// </seealso>
-	/// <seealso cref="DataBlk">
-	/// </seealso>
-	/// <seealso cref="CBlkWTDataInt">
-	/// </seealso>
-	/// <seealso cref="CBlkWTDataFloat">
-	/// 
-	/// </seealso>
+	/// <seealso cref="CBlkWTDataSrc" />
+	/// <seealso cref="j2k.quantization.quantizer.CBlkQuantDataSrcEnc" />
+	/// <seealso cref="DataBlk" />
+	/// <seealso cref="CBlkWTDataInt" />
+	/// <seealso cref="CBlkWTDataFloat" />
 	public abstract class CBlkWTData
 	{
 		/// <summary> Returns the data type of the <tt>CBlkWTData</tt> object, as defined in
@@ -91,9 +85,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// <returns> The data type of the object, as defined in the DataBlk class.
 		/// 
 		/// </returns>
-		/// <seealso cref="DataBlk">
-		/// 
-		/// </seealso>
+		/// <seealso cref="DataBlk" />
 		public abstract int DataType{get;}
 		//UPGRADE_NOTE: Respective javadoc comments were merged.  It should be changed in order to comply with .NET documentation conventions. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1199'"
 		/// <summary> Returns the array containing the data, or null if there is no data. The
@@ -110,9 +102,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// data.
 		/// 
 		/// </returns>
-		/// <seealso cref="getDataType">
-		/// 
-		/// </seealso>
+		/// <seealso cref="getDataType" />
 		/// <summary> Sets the data array to the specified one. The type of the specified
 		/// data array must match the one returned by <tt>getDataType()</tt> (e.g.,
 		/// for <tt>TYPE_INT</tt>, it should be a <tt>int[]</tt>). If the wrong
@@ -130,9 +120,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// <param name="arr">The new data array to use
 		/// 
 		/// </param>
-		/// <seealso cref="getDataType">
-		/// 
-		/// </seealso>
+		/// <seealso cref="getDataType" />
 		public abstract object Data{get;set;}
 		
 		/// <summary>The horizontal coordinate of the upper-left corner of the code-block </summary>

@@ -128,9 +128,7 @@ namespace CSJ2K.j2k.image.output
 		/// that will be written as the green channel.
 		/// 
 		/// </param>
-		/// <seealso cref="DataBlk">
-		/// 
-		/// </seealso>
+		/// <seealso cref="DataBlk" />
 		public ImgWriterPPM(IFileInfo out_Renamed, BlkImgDataSrc imgSrc, int n1, int n2, int n3)
 		{
 			// Check that imgSrc is of the correct type
@@ -196,9 +194,7 @@ namespace CSJ2K.j2k.image.output
 		/// that will be written as the green channel.
 		/// 
 		/// </param>
-		/// <seealso cref="DataBlk">
-		/// 
-		/// </seealso>
+		/// <seealso cref="DataBlk" />
 		public ImgWriterPPM(string fname, BlkImgDataSrc imgSrc, int n1, int n2, int n3):this(FileInfoFactory.New(fname), imgSrc, n1, n2, n3)
 		{
 		}

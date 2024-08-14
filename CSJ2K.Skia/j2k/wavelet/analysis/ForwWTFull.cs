@@ -56,9 +56,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 	/// approach to be used either with integer or floating-point filters
 	/// 
 	/// </summary>
-	/// <seealso cref="ForwardWT">
-	/// 
-	/// </seealso>
+	/// <seealso cref="ForwardWT" />
 	public class ForwWTFull:ForwardWT
 	{
 		/// <summary> Returns the horizontal offset of the code-block partition. Allowable
@@ -154,9 +152,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// on the reference grid.
 		/// 
 		/// </param>
-		/// <seealso cref="ForwardWT">
-		/// 
-		/// </seealso>
+		/// <seealso cref="ForwardWT" />
 		public ForwWTFull(BlkImgDataSrc src, EncoderSpecs encSpec, int cb0x, int cb0y):base(src)
 		{
 			this.src = src;
@@ -368,9 +364,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// null if all code-blocks for the current tile have been returned.
 		/// 
 		/// </returns>
-		/// <seealso cref="CBlkWTData">
-		/// 
-		/// </seealso>
+		/// <seealso cref="CBlkWTData" />
 		public override CBlkWTData getNextInternCodeBlock(int c, CBlkWTData cblk)
 		{
 			int cbm, cbn, cn, cm;
@@ -612,9 +606,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// null if all code-blocks for the current tile have been returned.
 		/// 
 		/// </returns>
-		/// <seealso cref="CBlkWTData">
-		/// 
-		/// </seealso>
+		/// <seealso cref="CBlkWTData" />
 		public override CBlkWTData getNextCodeBlock(int c, CBlkWTData cblk)
 		{
 			// We can not directly use getNextInternCodeBlock() since that returns
@@ -1073,9 +1065,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// </returns>
 		/// <seealso cref="SubbandAn">
 		/// </seealso>
-		/// <seealso cref="Subband">
-		/// 
-		/// </seealso>
+		/// <seealso cref="Subband" />
 		public override SubbandAn getAnSubbandTree(int t, int c)
 		{
 			if (subbTrees[t][c] == null)

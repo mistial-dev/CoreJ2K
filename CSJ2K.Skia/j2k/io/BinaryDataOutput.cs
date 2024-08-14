@@ -60,9 +60,7 @@ namespace CSJ2K.j2k.io
 	/// first, respectively).
 	/// 
 	/// </summary>
-	/// <seealso cref="EndianType">
-	/// 
-	/// </seealso>
+	/// <seealso cref="EndianType" />
 	public interface BinaryDataOutput
 	{
 		/// <summary> Returns the endianness (i.e., byte ordering) of the implementing

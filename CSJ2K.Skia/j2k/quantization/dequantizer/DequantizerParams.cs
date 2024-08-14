@@ -61,9 +61,7 @@ namespace CSJ2K.j2k.quantization.dequantizer
 		/// are.
 		/// 
 		/// </returns>
-		/// <seealso cref="Dequantizer">
-		/// 
-		/// </seealso>
+		/// <seealso cref="Dequantizer" />
 		public abstract int DequantizerType{get;}
 	}
 }

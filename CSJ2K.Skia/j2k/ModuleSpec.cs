@@ -344,9 +344,7 @@ namespace CSJ2K.j2k
 		/// use)
 		/// 
 		/// </returns>
-		/// <seealso cref="setCompDef">
-		/// 
-		/// </seealso>
+		/// <seealso cref="setCompDef" />
 		public virtual object getCompDef(int c)
 		{
 			if (specType == SPEC_TYPE_TILE)
@@ -403,9 +401,7 @@ namespace CSJ2K.j2k
 		/// <returns> The default value for this tile (Must be casted before use)
 		/// 
 		/// </returns>
-		/// <seealso cref="setTileDef">
-		/// 
-		/// </seealso>
+		/// <seealso cref="setTileDef" />
 		public virtual object getTileDef(int t)
 		{
 			if (specType == SPEC_TYPE_COMP)
@@ -469,12 +465,8 @@ namespace CSJ2K.j2k
 		/// <returns> The value of this tile-component (Must be casted before use)
 		/// 
 		/// </returns>
-		/// <seealso cref="setTileCompVal">
-		/// 
-		/// </seealso>
-		/// <seealso cref="getSpec">
-		/// 
-		/// </seealso>
+		/// <seealso cref="setTileCompVal" />
+		/// <seealso cref="getSpec" />
 		public virtual object getTileCompVal(int t, int c)
 		{
 			if (specType != SPEC_TYPE_TILE_COMP)

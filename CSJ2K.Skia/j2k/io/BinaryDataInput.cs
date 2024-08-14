@@ -56,9 +56,7 @@ namespace CSJ2K.j2k.io
 	/// significant byte first or most significant byte first, respectively).
 	/// 
 	/// </summary>
-	/// <seealso cref="EndianType">
-	/// 
-	/// </seealso>
+	/// <seealso cref="EndianType" />
 	public interface BinaryDataInput
 	{
 		/// <summary> Returns the endianess (i.e., byte ordering) of the implementing
@@ -70,9 +68,7 @@ namespace CSJ2K.j2k.io
 		/// <tt>EndianType.LITTLE_ENDIAN</tt>
 		/// 
 		/// </returns>
-		/// <seealso cref="EndianType">
-		/// 
-		/// </seealso>
+		/// <seealso cref="EndianType" />
 		int ByteOrdering
 		{
 			get;

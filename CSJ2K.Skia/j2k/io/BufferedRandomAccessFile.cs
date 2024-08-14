@@ -62,15 +62,10 @@ namespace CSJ2K.j2k.io
 	/// is then accessed for a new buffer containing the requested byte/bit.
 	/// 
 	/// </summary>
-	/// <seealso cref="RandomAccessIO">
-	/// </seealso>
-	/// <seealso cref="BinaryDataOutput">
-	/// </seealso>
-	/// <seealso cref="BinaryDataInput">
-	/// </seealso>
-	/// <seealso cref="BEBufferedRandomAccessFile">
-	/// 
-	/// </seealso>
+	/// <seealso cref="RandomAccessIO" />
+	/// <seealso cref="BinaryDataOutput" />
+	/// <seealso cref="BinaryDataInput" />
+	/// <seealso cref="BEBufferedRandomAccessFile" />
 	public abstract class BufferedRandomAccessFile : RandomAccessIO, EndianType
 	{
 		/// <summary> Returns the current offset in the file
@@ -88,9 +83,7 @@ namespace CSJ2K.j2k.io
 		/// <tt>EndianType.LITTLE_ENDIAN</tt>
 		/// 
 		/// </returns>
-		/// <seealso cref="EndianType">
-		/// 
-		/// </seealso>
+		/// <seealso cref="EndianType" />
 		public virtual int ByteOrdering => byte_Ordering;
 
 		/// <summary>The name of the current file </summary>

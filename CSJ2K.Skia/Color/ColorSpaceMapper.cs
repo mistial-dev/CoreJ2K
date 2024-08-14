@@ -22,7 +22,7 @@ namespace CSJ2K.Color
     /// and getInternCompData methods.
     /// 
     /// </summary>
-    /// <seealso cref="jj2000.j2k.colorspace.ColorSpace">
+    /// <seealso cref="j2k.colorspace.ColorSpace">
     /// </seealso>
     /// <version> 	1.0
     /// </version>
@@ -56,7 +56,7 @@ namespace CSJ2K.Color
         /// </summary>
         /// <param name="db">input DataBlk
         /// </param>
-        /// <seealso cref="jj2000.j2k.image.DataBlk">
+        /// <seealso cref="j2k.image.DataBlk">
         /// </seealso>
         protected internal static DataBlk InternalBuffer
         {

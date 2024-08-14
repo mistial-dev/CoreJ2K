@@ -48,9 +48,7 @@ namespace CSJ2K.j2k.codestream.reader
 	/// to which the current code-block belongs.
 	/// 
 	/// </summary>
-	/// <seealso cref="CBlkInfo">
-	/// 
-	/// </seealso>
+	/// <seealso cref="CBlkInfo" />
 	public class PktInfo
 	{
 		

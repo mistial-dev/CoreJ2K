@@ -80,19 +80,14 @@ namespace CSJ2K.j2k.wavelet.analysis
 	/// </ul>
 	/// 
 	/// </summary>
-	/// <seealso cref="AnWTFilterInt">
-	/// </seealso>
-	/// <seealso cref="AnWTFilterFloat">
-	/// 
-	/// </seealso>
+	/// <seealso cref="AnWTFilterInt" />
+	/// <seealso cref="AnWTFilterFloat" />
 	public abstract class AnWTFilter : WaveletFilter
 	{
 		/// <summary> Returns the type of filter used according to the FilterTypes interface.
 		/// 
 		/// </summary>
-		/// <seealso cref="FilterTypes">
-		/// 
-		/// </seealso>
+		/// <seealso cref="FilterTypes" />
 		/// <returns> The filter type.
 		/// 
 		/// </returns>
@@ -233,9 +228,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// high-pass output samples in the highSig array. See above.
 		/// 
 		/// </param>
-		/// <seealso cref="WaveletFilter.getDataType">
-		/// 
-		/// </seealso>
+		/// <seealso cref="WaveletFilter.getDataType" />
 		public abstract void  analyze_lpf(object inSig, int inOff, int inLen, int inStep, object lowSig, int lowOff, int lowStep, object highSig, int highOff, int highStep);
 		
 		/// <summary> Filters the input signal by this analysis filter, decomposing it in a
@@ -311,9 +304,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// high-pass output samples in the highSig array. See above.
 		/// 
 		/// </param>
-		/// <seealso cref="WaveletFilter.getDataType">
-		/// 
-		/// </seealso>
+		/// <seealso cref="WaveletFilter.getDataType" />
 		public abstract void  analyze_hpf(object inSig, int inOff, int inLen, int inStep, object lowSig, int lowOff, int lowStep, object highSig, int highOff, int highStep);
 		
 		/// <summary> Returns the time-reversed low-pass synthesis waveform of the filter,
@@ -369,9 +360,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// </param>
 		/// <seealso cref="getSynLowNegSupport">
 		/// </seealso>
-		/// <seealso cref="getSynLowPosSupport">
-		/// 
-		/// </seealso>
+		/// <seealso cref="getSynLowPosSupport" />
 		public virtual float[] getLPSynWaveForm(float[] in_Renamed, float[] out_Renamed)
 		{
 			return upsampleAndConvolve(in_Renamed, getLPSynthesisFilter(), out_Renamed);
@@ -398,9 +387,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// </param>
 		/// <seealso cref="getSynHighNegSupport">
 		/// </seealso>
-		/// <seealso cref="getSynHighPosSupport">
-		/// 
-		/// </seealso>
+		/// <seealso cref="getSynHighPosSupport" />
 		public virtual float[] getHPSynWaveForm(float[] in_Renamed, float[] out_Renamed)
 		{
 			return upsampleAndConvolve(in_Renamed, getHPSynthesisFilter(), out_Renamed);

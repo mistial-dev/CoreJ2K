@@ -14,8 +14,7 @@ namespace CSJ2K.Color
 	/// image contains an incorrect colorspace box
 	/// 
 	/// </summary>
-	/// <seealso cref="jj2000.j2k.colorspace.ColorSpaceMapper">
-	/// </seealso>
+	/// <seealso cref="j2k.colorspace.ColorSpaceMapper" />
 	/// <version> 	1.0
 	/// </version>
 	/// <author> 	Bruce A. Kern

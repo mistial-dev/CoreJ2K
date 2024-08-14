@@ -319,9 +319,7 @@ namespace CSJ2K.j2k.image.output
 		/// <exception cref="IOException">If an I/O error occurs.
 		/// 
 		/// </exception>
-		/// <seealso cref="DataBlk">
-		/// 
-		/// </seealso>
+		/// <seealso cref="DataBlk" />
 		public override void  write()
 		{
 			int i;

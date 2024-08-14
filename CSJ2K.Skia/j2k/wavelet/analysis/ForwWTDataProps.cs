@@ -101,12 +101,8 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// <returns> The root of the subband tree structure, see Subband.
 		/// 
 		/// </returns>
-		/// <seealso cref="SubbandAn">
-		/// 
-		/// </seealso>
-		/// <seealso cref="Subband">
-		/// 
-		/// </seealso>
+		/// <seealso cref="SubbandAn" />
+		/// <seealso cref="Subband" />
 		SubbandAn getAnSubbandTree(int t, int c);
 	}
 }

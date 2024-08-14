@@ -76,13 +76,9 @@ namespace CSJ2K.j2k.codestream.writer
 	/// calls encodeTilePartHeader.
 	/// 
 	/// </summary>
-	/// <seealso cref="Encoder">
-	/// </seealso>
-	/// <seealso cref="Markers">
-	/// </seealso>
-	/// <seealso cref="EBCOTRateAllocator">
-	/// 
-	/// </seealso>
+	/// <seealso cref="Encoder" />
+	/// <seealso cref="Markers" />
+	/// <seealso cref="EBCOTRateAllocator" />
 	public class HeaderEncoder
 	{
 		/// <summary> Returns the parameters that are used in this class and implementing
@@ -168,9 +164,7 @@ namespace CSJ2K.j2k.codestream.writer
 		/// parameter.
 		/// 
 		/// </summary>
-		/// <seealso cref="baos">
-		/// 
-		/// </seealso>
+		/// <seealso cref="baos" />
 		//UPGRADE_TODO: Class 'java.io.DataOutputStream' was converted to 'System.IO.BinaryWriter' which has a different behavior. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1073_javaioDataOutputStream'"
 		protected internal System.IO.BinaryWriter hbuf;
 		
@@ -394,9 +388,7 @@ namespace CSJ2K.j2k.codestream.writer
 		/// <param name="tileIdx">Tile index if the marker belongs to a tile-part header
 		/// 
 		/// </param>
-		/// <seealso cref="writeCOC">
-		/// 
-		/// </seealso>
+		/// <seealso cref="writeCOC" />
 		protected internal virtual void  writeCOD(bool mh, int tileIdx)
 		{
 			AnWTFilter[][] filt;
@@ -675,9 +667,7 @@ namespace CSJ2K.j2k.codestream.writer
 		/// segment.
 		/// 
 		/// </param>
-		/// <seealso cref="writeCOD">
-		/// 
-		/// </seealso>
+		/// <seealso cref="writeCOD" />
 		protected internal virtual void  writeCOC(bool mh, int tileIdx, int compIdx)
 		{
 			AnWTFilter[][] filt;

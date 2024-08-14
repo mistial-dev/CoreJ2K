@@ -101,15 +101,10 @@ namespace CSJ2K.j2k.codestream.reader
 	/// DecoderSpecs instances.
 	/// 
 	/// </summary>
-	/// <seealso cref="DecoderSpecs">
-	/// </seealso>
-	/// <seealso cref="HeaderInfo">
-	/// </seealso>
-	/// <seealso cref="Decoder">
-	/// </seealso>
-	/// <seealso cref="FileBitstreamReaderAgent">
-	/// 
-	/// </seealso>
+	/// <seealso cref="DecoderSpecs" />
+	/// <seealso cref="HeaderInfo" />
+	/// <seealso cref="Decoder" />
+	/// <seealso cref="FileBitstreamReaderAgent" />
 	public class HeaderDecoder
 	{
 		/// <summary> Return the maximum height among all components 
@@ -402,9 +397,7 @@ namespace CSJ2K.j2k.codestream.reader
 		/// the reference grid.
 		/// 
 		/// </returns>
-		/// <seealso cref="jj2000.j2k.image.ImgData">
-		/// 
-		/// </seealso>
+		/// <seealso cref="j2k.image.ImgData" />
 		public Coord getTilingOrigin(Coord co)
 		{
 			if (co != null)

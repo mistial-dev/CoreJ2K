@@ -60,13 +60,9 @@ namespace CSJ2K.j2k.entropy.encoder
 	/// the rate-distortion statistics in a 'CBlkRateDistStats' object.
 	/// 
 	/// </summary>
-	/// <seealso cref="PostCompRateAllocator">
-	/// </seealso>
-	/// <seealso cref="CBlkRateDistStats">
-	/// </seealso>
-	/// <seealso cref="EntropyCoder">
-	/// 
-	/// </seealso>
+	/// <seealso cref="PostCompRateAllocator" />
+	/// <seealso cref="CBlkRateDistStats" />
+	/// <seealso cref="EntropyCoder" />
 	public interface CodedCBlkDataSrcEnc:ForwWTDataProps
 	{
 		
@@ -101,9 +97,7 @@ namespace CSJ2K.j2k.entropy.encoder
 		/// returned.
 		/// 
 		/// </returns>
-		/// <seealso cref="CBlkRateDistStats">
-		/// 
-		/// </seealso>
+		/// <seealso cref="CBlkRateDistStats" />
 		CBlkRateDistStats getNextCodeBlock(int c, CBlkRateDistStats ccb);
 		
 		/// <summary> Returns the width of a packet for the specified tile-component and

@@ -50,11 +50,8 @@ namespace CSJ2K.j2k.codestream
 	/// (CBlkCoordInfo and PrecCoordInfo).
 	/// 
 	/// </summary>
-	/// <seealso cref="PrecCoordInfo">
-	/// </seealso>
-	/// <seealso cref="CBlkCoordInfo">
-	/// 
-	/// </seealso>
+	/// <seealso cref="PrecCoordInfo" />
+	/// <seealso cref="CBlkCoordInfo" />
 	public abstract class CoordInfo
 	{
 		

@@ -59,9 +59,7 @@ namespace CSJ2K.j2k.quantization
 	/// </ul>
 	/// 
 	/// </summary>
-	/// <seealso cref="ModuleSpec">
-	/// 
-	/// </seealso>
+	/// <seealso cref="ModuleSpec" />
 	public sealed class QuantTypeSpec:ModuleSpec
 	{
 		/// <summary> Check the reversibility of the whole image.

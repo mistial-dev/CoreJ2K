@@ -55,9 +55,7 @@ namespace CSJ2K.j2k.image.input
 	/// NOTE: This class is not thread safe, for reasons of internal buffering.
 	/// 
 	/// </summary>
-	/// <seealso cref="image.ImgData">
-	/// 
-	/// </seealso>
+	/// <seealso cref="image.ImgData" />
 	public class ImgReaderPGM:ImgReader
 	{
 		/// <summary>DC offset value used when reading image </summary>
@@ -242,12 +240,8 @@ namespace CSJ2K.j2k.image.input
 		/// <returns> The requested DataBlk
 		/// 
 		/// </returns>
-		/// <seealso cref="GetCompData">
-		/// 
-		/// </seealso>
-		/// <seealso cref="JJ2KExceptionHandler">
-		/// 
-		/// </seealso>
+		/// <seealso cref="GetCompData" />
+		/// <seealso cref="JJ2KExceptionHandler" />
 		public override DataBlk GetInternCompData(DataBlk blk, int compIndex)
 		{
 			int k, j, i, mi;
@@ -356,12 +350,8 @@ namespace CSJ2K.j2k.image.input
 		/// <returns> The requested DataBlk
 		/// 
 		/// </returns>
-		/// <seealso cref="GetInternCompData">
-		/// 
-		/// </seealso>
-		/// <seealso cref="JJ2KExceptionHandler">
-		/// 
-		/// </seealso>
+		/// <seealso cref="GetInternCompData" />
+		/// <seealso cref="JJ2KExceptionHandler" />
 		public override DataBlk GetCompData(DataBlk blk, int c)
 		{
 			return GetInternCompData(blk, c);

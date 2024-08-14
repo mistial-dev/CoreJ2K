@@ -87,9 +87,7 @@ namespace CSJ2K.j2k.quantization.quantizer
 	/// 'CBlkQuantDataSrcEnc' interface are supported.
 	/// 
 	/// </summary>
-	/// <seealso cref="Subband">
-	/// 
-	/// </seealso>
+	/// <seealso cref="Subband" />
 	public abstract class Quantizer:ImgDataAdapter, CBlkQuantDataSrcEnc
 	{
 		/// <summary> Returns the horizontal offset of the code-block partition. Allowable
@@ -185,9 +183,7 @@ namespace CSJ2K.j2k.quantization.quantizer
 		/// <param name="n">The component index.
 		/// 
 		/// </param>
-		/// <seealso cref="SubbandAn.stepWMSE">
-		/// 
-		/// </seealso>
+		/// <seealso cref="SubbandAn.stepWMSE" />
 		protected internal abstract void  calcSbParams(SubbandAn sb, int n);
 		
 		/// <summary> Returns a reference to the subband tree structure representing the
@@ -207,15 +203,9 @@ namespace CSJ2K.j2k.quantization.quantizer
 		/// <returns> The subband tree structure, see SubbandAn.
 		/// 
 		/// </returns>
-		/// <seealso cref="SubbandAn">
-		/// 
-		/// </seealso>
-		/// <seealso cref="Subband">
-		/// 
-		/// </seealso>
-		/// <seealso cref="calcSbParams">
-		/// 
-		/// </seealso>
+		/// <seealso cref="SubbandAn" />
+		/// <seealso cref="Subband" />
+		/// <seealso cref="calcSbParams" />
 		public virtual SubbandAn getAnSubbandTree(int t, int c)
 		{
 			SubbandAn sbba;

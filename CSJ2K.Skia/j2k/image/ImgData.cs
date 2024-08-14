@@ -54,9 +54,7 @@ namespace CSJ2K.j2k.image
 	/// other interfaces, such as 'BlkImgDataSrc'.
 	/// 
 	/// </summary>
-	/// <seealso cref="BlkImgDataSrc">
-	/// 
-	/// </seealso>
+	/// <seealso cref="BlkImgDataSrc" />
 	public interface ImgData
 	{
 		/// <summary> Returns the overall width of the current tile in pixels. This is the
@@ -195,9 +193,7 @@ namespace CSJ2K.j2k.image
 		/// <returns> The horizontal subsampling factor of component 'c'
 		/// 
 		/// </returns>
-		/// <seealso cref="ImgData">
-		/// 
-		/// </seealso>
+		/// <seealso cref="ImgData" />
 		int getCompSubsX(int c);
 		
 		/// <summary> Returns the component subsampling factor in the vertical direction, for
@@ -212,9 +208,7 @@ namespace CSJ2K.j2k.image
 		/// <returns> The vertical subsampling factor of component 'c'
 		/// 
 		/// </returns>
-		/// <seealso cref="ImgData">
-		/// 
-		/// </seealso>
+		/// <seealso cref="ImgData" />
 		int getCompSubsY(int c);
 		
 		/// <summary> Returns the width in pixels of the specified tile-component

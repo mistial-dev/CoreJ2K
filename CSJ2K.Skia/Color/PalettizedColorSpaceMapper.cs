@@ -18,8 +18,7 @@ namespace CSJ2K.Color
 	/// palette of triplet sRGB output values.
 	/// 
 	/// </summary>
-	/// <seealso cref="jj2000.j2k.colorspace.ColorSpace">
-	/// </seealso>
+	/// <seealso cref="j2k.colorspace.ColorSpace" />
 	/// <version> 	1.0
 	/// </version>
 	/// <author> 	Bruce A. Kern
@@ -114,9 +113,7 @@ namespace CSJ2K.Color
 		/// <returns> The requested DataBlk
 		/// 
 		/// </returns>
-		/// <seealso cref="GetInternCompData">
-		/// 
-		/// </seealso>
+		/// <seealso cref="GetInternCompData" />
 		public override DataBlk GetCompData(DataBlk out_Renamed, int c)
 		{
 			
@@ -337,9 +334,7 @@ namespace CSJ2K.Color
 		/// <returns> The horizontal subsampling factor of component 'c'
 		/// 
 		/// </returns>
-		/// <seealso cref="jj2000.j2k.image.ImgData">
-		/// 
-		/// </seealso>
+		/// <seealso cref="j2k.image.ImgData" />
 		public override int getCompSubsX(int c)
 		{
 			return imgdatasrc.getCompSubsX(srcChannel);
@@ -357,9 +352,7 @@ namespace CSJ2K.Color
 		/// <returns> The vertical subsampling factor of component 'c'
 		/// 
 		/// </returns>
-		/// <seealso cref="jj2000.j2k.image.ImgData">
-		/// 
-		/// </seealso>
+		/// <seealso cref="j2k.image.ImgData" />
 		public override int getCompSubsY(int c)
 		{
 			return imgdatasrc.getCompSubsY(srcChannel);

@@ -65,9 +65,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 	/// the other methods in this class return the correct values.
 	/// 
 	/// </summary>
-	/// <seealso cref="InvWT">
-	/// 
-	/// </seealso>
+	/// <seealso cref="InvWT" />
 	public abstract class InvWTAdapter : InvWT
 	{
 		/// <summary> Sets the image reconstruction resolution level. A value of 0 means
@@ -287,9 +285,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// <returns> The horizontal subsampling factor of component 'c'.
 		/// 
 		/// </returns>
-		/// <seealso cref="jj2000.j2k.image.ImgData">
-		/// 
-		/// </seealso>
+		/// <seealso cref="j2k.image.ImgData" />
 		public virtual int getCompSubsX(int c)
 		{
 			return mressrc.getCompSubsX(c);
@@ -308,9 +304,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// <returns> The vertical subsampling factor of component 'c'.
 		/// 
 		/// </returns>
-		/// <seealso cref="jj2000.j2k.image.ImgData">
-		/// 
-		/// </seealso>
+		/// <seealso cref="j2k.image.ImgData" />
 		public virtual int getCompSubsY(int c)
 		{
 			return mressrc.getCompSubsY(c);

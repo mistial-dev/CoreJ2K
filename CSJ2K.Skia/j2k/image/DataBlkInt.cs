@@ -51,9 +51,7 @@ namespace CSJ2K.j2k.image
 	/// inlined by inlining compilers.
 	/// 
 	/// </summary>
-	/// <seealso cref="DataBlk">
-	/// 
-	/// </seealso>
+	/// <seealso cref="DataBlk" />
 	public class DataBlkInt:DataBlk
 	{
 		/// <summary> Returns the identifier of this data type, <tt>TYPE_INT</tt>, as defined
@@ -63,9 +61,7 @@ namespace CSJ2K.j2k.image
 		/// <returns> The type of data stored. Always <tt>DataBlk.TYPE_INT</tt>
 		/// 
 		/// </returns>
-		/// <seealso cref="DataBlk.TYPE_INT">
-		/// 
-		/// </seealso>
+		/// <seealso cref="DataBlk.TYPE_INT" />
 		public override int DataType => TYPE_INT;
 
 		//UPGRADE_NOTE: Respective javadoc comments were merged.  It should be changed in order to comply with .NET documentation conventions. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1199'"

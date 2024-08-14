@@ -51,12 +51,8 @@ namespace CSJ2K.j2k.fileformat
 	/// <summary> This class contains all the markers used in the JPEG 2000 Part I file format
 	/// 
 	/// </summary>
-	/// <seealso cref="jj2000.j2k.fileformat.writer.FileFormatWriter">
-	/// 
-	/// </seealso>
-	/// <seealso cref="jj2000.j2k.fileformat.reader.FileFormatReader">
-	/// 
-	/// </seealso>
+	/// <seealso cref="j2k.fileformat.writer.FileFormatWriter" />
+	/// <seealso cref="j2k.fileformat.reader.FileFormatReader" />
 	public struct FileFormatBoxes {
 		/// <summary>* Main boxes ***</summary>
 

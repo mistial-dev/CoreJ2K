@@ -101,13 +101,9 @@ namespace CSJ2K.j2k.entropy.encoder
 	/// code-block's information in a CBlkRateDistStats instance.
 	/// 
 	/// </summary>
-	/// <seealso cref="CBlkQuantDataSrcEnc">
-	/// </seealso>
-	/// <seealso cref="CBlkWTData">
-	/// </seealso>
-	/// <seealso cref="CBlkRateDistStats">
-	/// 
-	/// </seealso>
+	/// <seealso cref="CBlkQuantDataSrcEnc" />
+	/// <seealso cref="CBlkWTData" />
+	/// <seealso cref="CBlkRateDistStats" />
 	public sealed class StdEntropyCoder:EntropyCoder
 	{
 #if DO_TIMING		
@@ -167,9 +163,7 @@ namespace CSJ2K.j2k.entropy.encoder
 		/// the StdEntropyCoderOptions interface
 		/// 
 		/// </summary>
-		/// <seealso cref="StdEntropyCoderOptions">
-		/// 
-		/// </seealso>
+		/// <seealso cref="StdEntropyCoderOptions" />
 		private int[][] opts = null;
 		
 		/// <summary>The length calculation type for each tile-component </summary>
@@ -624,9 +618,7 @@ namespace CSJ2K.j2k.entropy.encoder
 		/// <param name="tts">Termination type specifications
 		/// 
 		/// </param>
-		/// <seealso cref="MQCoder">
-		/// 
-		/// </seealso>
+		/// <seealso cref="MQCoder" />
 		public StdEntropyCoder(CBlkQuantDataSrcEnc src, CBlkSizeSpec cblks, PrecinctSizeSpec pss, StringSpec bms, StringSpec mqrs, StringSpec rts, StringSpec css, StringSpec sss, StringSpec lcs, StringSpec tts):base(src)
 		{
 			this.cblks = cblks;
@@ -813,9 +805,7 @@ namespace CSJ2K.j2k.entropy.encoder
 		/// returned.
 		/// 
 		/// </returns>
-		/// <seealso cref="CBlkRateDistStats">
-		/// 
-		/// </seealso>
+		/// <seealso cref="CBlkRateDistStats" />
 		public override CBlkRateDistStats getNextCodeBlock(int c, CBlkRateDistStats ccb)
 		{
 #if DO_TIMING
@@ -963,9 +953,7 @@ namespace CSJ2K.j2k.entropy.encoder
 		/// <param name="tType">The type of termination to use with the MQ coder.
 		/// 
 		/// </param>
-		/// <seealso cref="getNextCodeBlock">
-		/// 
-		/// </seealso>
+		/// <seealso cref="getNextCodeBlock" />
 		private static void  compressCodeBlock(int c, CBlkRateDistStats ccb, CBlkWTData srcblk, MQCoder mq, BitToByteOutput bout, ByteOutputBuffer out_Renamed, int[] state, double[] distbuf, int[] ratebuf, bool[] istermbuf, int[] symbuf, int[] ctxtbuf, int options, bool rev, int lcType, int tType)
 		{
 			// NOTE: This method should not access any non-final instance or

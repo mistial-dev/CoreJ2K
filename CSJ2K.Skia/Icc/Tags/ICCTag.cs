@@ -26,8 +26,7 @@ namespace CSJ2K.Icc.Tags
 	/// 
 	/// 
 	/// </summary>
-	/// <seealso cref="jj2000.j2k.icc.tags.ICCTagTable">
-	/// </seealso>
+	/// <seealso cref="j2k.icc.tags.ICCTagTable" />
 	/// <version> 	1.0
 	/// </version>
 	/// <author> 	Bruce A. Kern

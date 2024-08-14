@@ -67,11 +67,8 @@ namespace CSJ2K.j2k.roi.encoder
 	/// with thanks to CBlkWTData instances.
 	/// 
 	/// </summary>
-	/// <seealso cref="Quantizer">
-	/// </seealso>
-	/// <seealso cref="CBlkWTData">
-	/// 
-	/// </seealso>
+	/// <seealso cref="Quantizer" />
+	/// <seealso cref="CBlkWTData" />
 	public class ROIScaler:ImgDataAdapter, CBlkQuantDataSrcEnc
 	{
 		/// <summary> Returns the horizontal offset of the code-block partition. Allowable
@@ -217,12 +214,8 @@ namespace CSJ2K.j2k.roi.encoder
 		/// <returns> The subband tree structure, see SubbandAn.
 		/// 
 		/// </returns>
-		/// <seealso cref="SubbandAn">
-		/// 
-		/// </seealso>
-		/// <seealso cref="Subband">
-		/// 
-		/// </seealso>
+		/// <seealso cref="SubbandAn" />
+		/// <seealso cref="Subband" />
 		public virtual SubbandAn getAnSubbandTree(int t, int c)
 		{
 			return src.getAnSubbandTree(t, c);
@@ -520,9 +513,7 @@ namespace CSJ2K.j2k.roi.encoder
 		/// null if all code-blocks for the current tile have been returned.
 		/// 
 		/// </returns>
-		/// <seealso cref="CBlkWTData">
-		/// 
-		/// </seealso>
+		/// <seealso cref="CBlkWTData" />
 		public virtual CBlkWTData getNextCodeBlock(int c, CBlkWTData cblk)
 		{
 			return getNextInternCodeBlock(c, cblk);
@@ -549,9 +540,7 @@ namespace CSJ2K.j2k.roi.encoder
 		/// null if all code-blocks for the current tile have been returned.
 		/// 
 		/// </returns>
-		/// <seealso cref="CBlkWTData">
-		/// 
-		/// </seealso>
+		/// <seealso cref="CBlkWTData" />
 		public virtual CBlkWTData getNextInternCodeBlock(int c, CBlkWTData cblk)
 		{
 			int mi, i, j, k, wrap;

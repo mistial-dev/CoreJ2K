@@ -393,9 +393,7 @@ namespace CSJ2K.j2k.entropy
 		/// progression mode does not exist.
 		/// 
 		/// </returns>
-		/// <seealso cref="ProgressionType">
-		/// 
-		/// </seealso>
+		/// <seealso cref="ProgressionType" />
 		private int checkProgMode(string mode)
 		{
 			if (mode.Equals("res"))

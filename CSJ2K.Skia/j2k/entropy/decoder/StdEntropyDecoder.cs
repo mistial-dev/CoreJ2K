@@ -105,9 +105,7 @@ namespace CSJ2K.j2k.entropy.decoder
 		/// interface
 		/// 
 		/// </summary>
-		/// <seealso cref="StdEntropyCoderOptions">
-		/// 
-		/// </seealso>
+		/// <seealso cref="StdEntropyCoderOptions" />
 		private int options;
 		
 		/// <summary>Flag to indicate if we should try to detect errors or just ignore any
@@ -574,9 +572,7 @@ namespace CSJ2K.j2k.entropy.decoder
 		/// null if all code-blocks for the current tile have been returned.
 		/// 
 		/// </returns>
-		/// <seealso cref="DataBlk">
-		/// 
-		/// </seealso>
+		/// <seealso cref="DataBlk" />
 		public override DataBlk getCodeBlock(int c, int m, int n, SubbandSyn sb, DataBlk cblk)
 		{
 			//long stime = 0L; // Start time for timed sections
@@ -846,9 +842,7 @@ namespace CSJ2K.j2k.entropy.decoder
 		/// null if all code-blocks for the current tile have been returned.
 		/// 
 		/// </returns>
-		/// <seealso cref="DataBlk">
-		/// 
-		/// </seealso>
+		/// <seealso cref="DataBlk" />
 		public override DataBlk getInternCodeBlock(int c, int m, int n, SubbandSyn sb, DataBlk cblk)
 		{
 			return getCodeBlock(c, m, n, sb, cblk);

@@ -51,11 +51,8 @@ namespace CSJ2K.j2k.io
 	/// This interface supports streams of up to 2 GB in length.
 	/// 
 	/// </summary>
-	/// <seealso cref="BinaryDataInput">
-	/// </seealso>
-	/// <seealso cref="BinaryDataOutput">
-	/// 
-	/// </seealso>
+	/// <seealso cref="BinaryDataInput" />
+	/// <seealso cref="BinaryDataOutput" />
 	public interface RandomAccessIO:BinaryDataInput, BinaryDataOutput
 	{
 		/// <summary> Returns the current position in the stream, which is the position from

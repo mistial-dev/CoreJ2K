@@ -142,9 +142,7 @@ namespace CSJ2K.j2k.quantization.dequantizer
 		/// "range bits" see the getNomRangeBits() method.
 		/// 
 		/// </param>
-		/// <seealso cref="getNomRangeBits">
-		/// 
-		/// </seealso>
+		/// <seealso cref="getNomRangeBits" />
 		public Dequantizer(CBlkQuantDataSrcDec src, int[] utrb, DecoderSpecs decSpec):base(src)
 		{
 			if (utrb.Length != src.NumComps)
@@ -181,9 +179,7 @@ namespace CSJ2K.j2k.quantization.dequantizer
 		/// data.
 		/// 
 		/// </returns>
-		/// <seealso cref="Subband">
-		/// 
-		/// </seealso>
+		/// <seealso cref="Subband" />
 		public virtual int getNomRangeBits(int c)
 		{
 			return rb[c];

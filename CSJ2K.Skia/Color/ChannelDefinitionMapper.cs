@@ -16,8 +16,7 @@ namespace CSJ2K.Color
 	/// requested components and image channels.
 	/// 
 	/// </summary>
-	/// <seealso cref="jj2000.j2k.colorspace.ColorSpace">
-	/// </seealso>
+	/// <seealso cref="j2k.colorspace.ColorSpace" />
 	/// <version> 	1.0
 	/// </version>
 	/// <author> 	Bruce A. Kern
@@ -86,9 +85,7 @@ namespace CSJ2K.Color
 		/// <returns> The requested DataBlk
 		/// 
 		/// </returns>
-		/// <seealso cref="GetInternCompData">
-		/// 
-		/// </seealso>
+		/// <seealso cref="GetInternCompData" />
 		public override DataBlk GetCompData(DataBlk out_Renamed, int c)
 		{
 			return src.GetCompData(out_Renamed, csMap.getChannelDefinition(c));
@@ -129,9 +126,7 @@ namespace CSJ2K.Color
 		/// <param name="compIndex">The index of the component from which to get the data.
 		/// 
 		/// </param>
-		/// <seealso cref="GetCompData">
-		/// 
-		/// </seealso>
+		/// <seealso cref="GetCompData" />
 		public override DataBlk GetInternCompData(DataBlk out_Renamed, int compIndex)
 		{
 			return src.GetInternCompData(out_Renamed, csMap.getChannelDefinition(compIndex));

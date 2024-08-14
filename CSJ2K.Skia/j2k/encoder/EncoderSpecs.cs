@@ -59,9 +59,7 @@ namespace CSJ2K.j2k.encoder
 	/// members must be instance of ModuleSpec class (or its children).
 	/// 
 	/// </summary>
-	/// <seealso cref="ModuleSpec">
-	/// 
-	/// </seealso>
+	/// <seealso cref="ModuleSpec" />
 	public class EncoderSpecs
 	{
 		

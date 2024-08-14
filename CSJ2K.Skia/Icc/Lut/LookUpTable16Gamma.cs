@@ -14,8 +14,7 @@ namespace CSJ2K.Icc.Lut
 	/// <summary> A Gamma based 16 bit lut.
 	/// 
 	/// </summary>
-	/// <seealso cref="jj2000.j2k.icc.tags.ICCCurveType">
-	/// </seealso>
+	/// <seealso cref="j2k.icc.tags.ICCCurveType" />
 	/// <version> 	1.0
 	/// </version>
 	/// <author> 	Bruce A. Kern

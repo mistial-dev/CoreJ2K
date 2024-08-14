@@ -72,12 +72,8 @@ namespace CSJ2K.j2k.codestream.writer
 	/// convenience. Of course no values can be set or coded in such cases.
 	/// 
 	/// </summary>
-	/// <seealso cref="BitOutputBuffer">
-	/// 
-	/// </seealso>
-	/// <seealso cref="jj2000.j2k.codestream.reader.TagTreeDecoder">
-	/// 
-	/// </seealso>
+	/// <seealso cref="BitOutputBuffer" />
+	/// <seealso cref="j2k.codestream.reader.TagTreeDecoder" />
 	public class TagTreeEncoder
 	{
 		/// <summary> Returns the number of leafs along the horizontal direction.
@@ -111,9 +107,7 @@ namespace CSJ2K.j2k.codestream.writer
 		/// <param name="val">The new values for the leafs, in lexicographical order.
 		/// 
 		/// </param>
-		/// <seealso cref="setValue">
-		/// 
-		/// </seealso>
+		/// <seealso cref="setValue" />
 		public virtual int[] Values
 		{
 			set
@@ -479,9 +473,7 @@ namespace CSJ2K.j2k.codestream.writer
 		/// restores the tag tree the saved state.
 		/// 
 		/// </summary>
-		/// <seealso cref="restore">
-		/// 
-		/// </seealso>
+		/// <seealso cref="restore" />
 		public virtual void  save()
 		{
 			int k; // i removed
@@ -516,9 +508,7 @@ namespace CSJ2K.j2k.codestream.writer
 		/// not been saved yet.
 		/// 
 		/// </summary>
-		/// <seealso cref="save">
-		/// 
-		/// </seealso>
+		/// <seealso cref="save" />
 		public virtual void  restore()
 		{
 			int k; // i removed

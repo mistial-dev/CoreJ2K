@@ -54,11 +54,8 @@ namespace CSJ2K.j2k.wavelet.synthesis
 	/// low-pass coefficient is computed first.
 	/// 
 	/// </summary>
-	/// <seealso cref="SynWTFilter">
-	/// </seealso>
-	/// <seealso cref="SynWTFilterInt">
-	/// 
-	/// </seealso>
+	/// <seealso cref="SynWTFilter" />
+	/// <seealso cref="SynWTFilterInt" />
 	public class SynWTFilterIntLift5x3:SynWTFilterInt
 	{
 		/// <summary> Returns the negative support of the low-pass analysis filter. That is
@@ -214,9 +211,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// samples in the outSig array.
 		/// 
 		/// </param>
-		/// <seealso cref="SynWTFilter.synthetize_lpf">
-		/// 
-		/// </seealso>
+		/// <seealso cref="SynWTFilter.synthetize_lpf" />
 		public override void  synthetize_lpf(int[] lowSig, int lowOff, int lowLen, int lowStep, int[] highSig, int highOff, int highLen, int highStep, int[] outSig, int outOff, int outStep)
 		{
 			
@@ -342,9 +337,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// samples in the outSig array.
 		/// 
 		/// </param>
-		/// <seealso cref="SynWTFilter.synthetize_hpf">
-		/// 
-		/// </seealso>
+		/// <seealso cref="SynWTFilter.synthetize_hpf" />
 		public override void  synthetize_hpf(int[] lowSig, int lowOff, int lowLen, int lowStep, int[] highSig, int highOff, int highLen, int highStep, int[] outSig, int outOff, int outStep)
 		{
 			

@@ -52,9 +52,7 @@ namespace CSJ2K.j2k.image.forwcomptransf
 	/// aspects of CompTransfSpec.
 	/// 
 	/// </summary>
-	/// <seealso cref="CompTransfSpec">
-	/// 
-	/// </seealso>
+	/// <seealso cref="CompTransfSpec" />
 	public sealed class ForwCompTransfSpec:CompTransfSpec, FilterTypes
 	{
 		/// <summary> Constructs a new 'ForwCompTransfSpec' for the specified number of

@@ -62,9 +62,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 	/// the method can be overriden to implement the proper behaviour.
 	/// 
 	/// </summary>
-	/// <seealso cref="MultiResImgData">
-	/// 
-	/// </seealso>
+	/// <seealso cref="MultiResImgData" />
 	public abstract class MultiResImgDataAdapter : MultiResImgData
 	{
 		/// <summary>Returns the nominal tiles width </summary>
@@ -204,9 +202,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// <returns> The horizontal subsampling factor of component 'c'
 		/// 
 		/// </returns>
-		/// <seealso cref="jj2000.j2k.image.ImgData">
-		/// 
-		/// </seealso>
+		/// <seealso cref="j2k.image.ImgData" />
 		public virtual int getCompSubsX(int c)
 		{
 			return mressrc.getCompSubsX(c);
@@ -226,9 +222,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// <returns> The vertical subsampling factor of component 'c'
 		/// 
 		/// </returns>
-		/// <seealso cref="jj2000.j2k.image.ImgData">
-		/// 
-		/// </seealso>
+		/// <seealso cref="j2k.image.ImgData" />
 		public virtual int getCompSubsY(int c)
 		{
 			return mressrc.getCompSubsY(c);

@@ -80,11 +80,8 @@ namespace CSJ2K.j2k.wavelet.synthesis
 	/// being applicable to full-frame transforms as well.
 	/// 
 	/// </summary>
-	/// <seealso cref="SynWTFilterInt">
-	/// </seealso>
-	/// <seealso cref="SynWTFilterFloat">
-	/// 
-	/// </seealso>
+	/// <seealso cref="SynWTFilterInt" />
+	/// <seealso cref="SynWTFilterFloat" />
 	public abstract class SynWTFilter : WaveletFilter
 	{
 		public abstract int AnHighPosSupport{get;}

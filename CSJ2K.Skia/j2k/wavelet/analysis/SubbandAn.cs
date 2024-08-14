@@ -172,9 +172,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// contains valid data only after quantization 9See Quantizer).
 		/// 
 		/// </summary>
-		/// <seealso cref="jj2000.j2k.quantization.quantizer.Quantizer">
-		/// 
-		/// </seealso>
+		/// <seealso cref="j2k.quantization.quantizer.Quantizer" />
 		public float stepWMSE;
 		
 		/// <summary> Creates a SubbandAn element with all the default values. The dimensions
@@ -226,9 +224,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// WaveletFilter[],WaveletFilter[])
 		/// 
 		/// </seealso>
-		/// <seealso cref="jj2000.j2k.quantization.quantizer.Quantizer">
-		/// 
-		/// </seealso>
+		/// <seealso cref="j2k.quantization.quantizer.Quantizer" />
 		public SubbandAn(int w, int h, int ulcx, int ulcy, int lvls, WaveletFilter[] hfilters, WaveletFilter[] vfilters):base(w, h, ulcx, ulcy, lvls, hfilters, vfilters)
 		{
 			// Caculate the L2-norms
@@ -254,9 +250,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// <returns> A reference to the LL leaf (subb_LL).
 		/// 
 		/// </returns>
-		/// <seealso cref="Subband.initChilds">
-		/// 
-		/// </seealso>
+		/// <seealso cref="Subband.initChilds" />
 		protected internal override Subband split(WaveletFilter hfilter, WaveletFilter vfilter)
 		{
 			// Test that this is a node

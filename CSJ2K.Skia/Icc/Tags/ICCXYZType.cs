@@ -14,10 +14,8 @@ namespace CSJ2K.Icc.Tags
 	/// <summary> A tag containing a triplet.
 	/// 
 	/// </summary>
-	/// <seealso cref="jj2000.j2k.icc.tags.ICCXYZTypeReverse">
-	/// </seealso>
-	/// <seealso cref="jj2000.j2k.icc.types.XYZNumber">
-	/// </seealso>
+	/// <seealso cref="j2k.icc.tags.ICCXYZTypeReverse" />
+	/// <seealso cref="j2k.icc.types.XYZNumber" />
 	/// <version> 	1.0
 	/// </version>
 	/// <author> 	Bruce A. Kern

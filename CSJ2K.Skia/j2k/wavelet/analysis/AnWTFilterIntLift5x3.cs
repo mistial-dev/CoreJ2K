@@ -54,11 +54,8 @@ namespace CSJ2K.j2k.wavelet.analysis
 	/// low-pass coefficient is computed first.
 	/// 
 	/// </summary>
-	/// <seealso cref="AnWTFilter">
-	/// </seealso>
-	/// <seealso cref="AnWTFilterInt">
-	/// 
-	/// </seealso>
+	/// <seealso cref="AnWTFilter" />
+	/// <seealso cref="AnWTFilterInt" />
 	public class AnWTFilterIntLift5x3:AnWTFilterInt
 	{
 		/// <summary> Returns the negative support of the low-pass analysis filter. That is
@@ -164,9 +161,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// (W5x3).
 		/// 
 		/// </summary>
-		/// <seealso cref="FilterTypes">
-		/// 
-		/// </seealso>
+		/// <seealso cref="FilterTypes" />
 		/// <returns> The filter type.
 		/// 
 		/// </returns>
@@ -345,9 +340,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// high-pass output samples in the highSig array.
 		/// 
 		/// </param>
-		/// <seealso cref="AnWTFilter.analyze_hpf">
-		/// 
-		/// </seealso>
+		/// <seealso cref="AnWTFilter.analyze_hpf" />
 		public override void  analyze_hpf(int[] inSig, int inOff, int inLen, int inStep, int[] lowSig, int lowOff, int lowStep, int[] highSig, int highOff, int highStep)
 		{
 			int i;

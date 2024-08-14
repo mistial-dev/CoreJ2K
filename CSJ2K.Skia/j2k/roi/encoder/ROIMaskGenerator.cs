@@ -56,12 +56,8 @@ namespace CSJ2K.j2k.roi.encoder
 	/// coder to be used for scaling the distortion values.
 	/// 
 	/// </summary>
-	/// <seealso cref="RectROIMaskGenerator">
-	/// 
-	/// </seealso>
-	/// <seealso cref="ArbROIMaskGenerator">
-	/// 
-	/// </seealso>
+	/// <seealso cref="RectROIMaskGenerator" />
+	/// <seealso cref="ArbROIMaskGenerator" />
 	public abstract class ROIMaskGenerator
 	{
 		/// <summary> This function returns the ROIs in the image

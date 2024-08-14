@@ -51,15 +51,10 @@ namespace CSJ2K.j2k.io
 	/// <tt>BufferedRandomAccessFile</tt> class.
 	/// 
 	/// </summary>
-	/// <seealso cref="RandomAccessIO">
-	/// </seealso>
-	/// <seealso cref="BinaryDataOutput">
-	/// </seealso>
-	/// <seealso cref="BinaryDataInput">
-	/// </seealso>
-	/// <seealso cref="BufferedRandomAccessFile">
-	/// 
-	/// </seealso>
+	/// <seealso cref="RandomAccessIO" />
+	/// <seealso cref="BinaryDataOutput" />
+	/// <seealso cref="BinaryDataInput" />
+	/// <seealso cref="BufferedRandomAccessFile" />
 	public class BEBufferedRandomAccessFile:BufferedRandomAccessFile, RandomAccessIO, EndianType
 	{
 		/// <summary> Constructor. Always needs a size for the buffer.

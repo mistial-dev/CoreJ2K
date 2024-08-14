@@ -61,9 +61,7 @@ namespace CSJ2K.j2k.codestream.reader
 	/// convenience. Of course no values can be set or coded in such cases.
 	/// 
 	/// </summary>
-	/// <seealso cref="jj2000.j2k.codestream.writer.TagTreeEncoder">
-	/// 
-	/// </seealso>
+	/// <seealso cref="j2k.codestream.writer.TagTreeEncoder" />
 	public class TagTreeDecoder
 	{
 		/// <summary> Returns the number of leafs along the horizontal direction.
@@ -276,9 +274,7 @@ namespace CSJ2K.j2k.codestream.reader
 		/// <returns> The current value of the element.
 		/// 
 		/// </returns>
-		/// <seealso cref="update">
-		/// 
-		/// </seealso>
+		/// <seealso cref="update" />
 		public virtual int getValue(int m, int n)
 		{
 			// Check arguments

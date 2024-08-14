@@ -60,9 +60,7 @@ namespace CSJ2K.j2k.entropy.decoder
 	/// code-block.
 	/// 
 	/// </summary>
-	/// <seealso cref="CodedCBlk">
-	/// 
-	/// </seealso>
+	/// <seealso cref="CodedCBlk" />
 	public class DecLyrdCBlk:CodedCBlk
 	{
 		

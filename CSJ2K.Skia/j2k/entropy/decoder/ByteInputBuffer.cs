@@ -59,9 +59,7 @@ namespace CSJ2K.j2k.entropy.decoder
 	/// constructor, when the addByteArray() method is called.
 	/// 
 	/// </summary>
-	/// <seealso cref="InputStream">
-	/// 
-	/// </seealso>
+	/// <seealso cref="InputStream" />
 	public class ByteInputBuffer
 	{
 		

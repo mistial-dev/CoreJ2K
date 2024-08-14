@@ -56,12 +56,8 @@ namespace CSJ2K.j2k.wavelet
 	/// about the filters.
 	/// 
 	/// </summary>
-	/// <seealso cref="jj2000.j2k.wavelet.analysis.AnWTFilter">
-	/// 
-	/// </seealso>
-	/// <seealso cref="jj2000.j2k.wavelet.synthesis.SynWTFilter">
-	/// 
-	/// </seealso>
+	/// <seealso cref="j2k.wavelet.analysis.AnWTFilter" />
+	/// <seealso cref="j2k.wavelet.synthesis.SynWTFilter" />
 	public struct WaveletFilter_Fields{
 		/// <summary>The ID for integer lifting spteps implementations </summary>
 		public const int WT_FILTER_INT_LIFT = 0;
@@ -191,7 +187,7 @@ namespace CSJ2K.j2k.wavelet
 		/// <returns> The type of data as defined in the DataBlk interface.
 		/// 
 		/// </returns>
-		/// <seealso cref="jj2000.j2k.image.DataBlk">
+		/// <seealso cref="j2k.image.DataBlk">
 		/// </seealso>
 		int DataType
 		{

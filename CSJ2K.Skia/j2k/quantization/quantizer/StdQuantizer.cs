@@ -81,12 +81,8 @@ namespace CSJ2K.j2k.quantization.quantizer
 	/// boundaries.
 	/// 
 	/// </summary>
-	/// <seealso cref="Subband">
-	/// 
-	/// </seealso>
-	/// <seealso cref="Quantizer">
-	/// 
-	/// </seealso>
+	/// <seealso cref="Subband" />
+	/// <seealso cref="Quantizer" />
 	public class StdQuantizer:Quantizer
 	{
 		/// <summary> Returns the quantization type spec object associated to the quantizer.
@@ -244,9 +240,7 @@ namespace CSJ2K.j2k.quantization.quantizer
 		/// null if all code-blocks for the current tile have been returned.
 		/// 
 		/// </returns>
-		/// <seealso cref="CBlkWTData">
-		/// 
-		/// </seealso>
+		/// <seealso cref="CBlkWTData" />
 		public override CBlkWTData getNextCodeBlock(int c, CBlkWTData cblk)
 		{
 			return getNextInternCodeBlock(c, cblk);
@@ -287,9 +281,7 @@ namespace CSJ2K.j2k.quantization.quantizer
 		/// null if all code-blocks for the current tile have been returned.
 		/// 
 		/// </returns>
-		/// <seealso cref="CBlkWTData">
-		/// 
-		/// </seealso>
+		/// <seealso cref="CBlkWTData" />
 		public override CBlkWTData getNextInternCodeBlock(int c, CBlkWTData cblk)
 		{
 			// NOTE: this method is declared final since getNextCodeBlock() relies
@@ -468,9 +460,7 @@ namespace CSJ2K.j2k.quantization.quantizer
 		/// <param name="c">The component index
 		/// 
 		/// </param>
-		/// <seealso cref="SubbandAn.stepWMSE">
-		/// 
-		/// </seealso>
+		/// <seealso cref="SubbandAn.stepWMSE" />
 		protected internal override void  calcSbParams(SubbandAn sb, int c)
 		{
 			float baseStep;

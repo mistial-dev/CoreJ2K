@@ -51,9 +51,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 	/// holding purpose.
 	/// 
 	/// </summary>
-	/// <seealso cref="ModuleSpec">
-	/// 
-	/// </seealso>
+	/// <seealso cref="ModuleSpec" />
 	public sealed class AnWTFilterSpec:ModuleSpec
 	{
 		
@@ -416,9 +414,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// <returns> The data type of the filters in this object
 		/// 
 		/// </returns>
-		/// <seealso cref="jj2000.j2k.image.DataBlk">
-		/// 
-		/// </seealso>
+		/// <seealso cref="j2k.image.DataBlk" />
 		public int getWTDataType(int t, int c)
 		{
 			var an = (AnWTFilter[][]) getSpec(t, c);

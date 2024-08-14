@@ -57,9 +57,7 @@ namespace CSJ2K.j2k.entropy
 	/// defined, there is only Progression instance. 
 	/// 
 	/// </summary>
-	/// <seealso cref="ProgressionType">
-	/// 
-	/// </seealso>
+	/// <seealso cref="ProgressionType" />
 	public class Progression
 	{
 		

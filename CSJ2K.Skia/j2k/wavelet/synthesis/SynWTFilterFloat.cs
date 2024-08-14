@@ -61,9 +61,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 	/// are performed.
 	/// 
 	/// </summary>
-	/// <seealso cref="SynWTFilter">
-	/// 
-	/// </seealso>
+	/// <seealso cref="SynWTFilter" />
 	public abstract class SynWTFilterFloat:SynWTFilter
 	{
 		/// <summary> Returns the type of data on which this filter works, as defined
@@ -74,7 +72,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// <returns> The type of data as defined in the DataBlk interface.
 		/// 
 		/// </returns>
-		/// <seealso cref="jj2000.j2k.image.DataBlk">
+		/// <seealso cref="j2k.image.DataBlk">
 		/// 
 		/// 
 		/// 

@@ -67,11 +67,8 @@ namespace CSJ2K.j2k.codestream.reader
 	/// behaves like if it is a real truncated codestream).
 	/// 
 	/// </summary>
-	/// <seealso cref="HeaderDecoder">
-	/// </seealso>
-	/// <seealso cref="PktDecoder">
-	/// 
-	/// </seealso>
+	/// <seealso cref="HeaderDecoder" />
+	/// <seealso cref="PktDecoder" />
 	public class FileBitstreamReaderAgent:BitstreamReaderAgent
 	{
 		/// <summary>Gets the reference to the CBlkInfo array </summary>
@@ -223,9 +220,7 @@ namespace CSJ2K.j2k.codestream.reader
 		/// codestream. 
 		/// 
 		/// </param>
-		/// <seealso cref="allocateRate">
-		/// 
-		/// </seealso>
+		/// <seealso cref="allocateRate" />
 		public FileBitstreamReaderAgent(HeaderDecoder hd, RandomAccessIO ehs, DecoderSpecs decSpec, ParameterList pl, bool cdstrInfo, HeaderInfo hi):base(hd, decSpec)
 		{
 			
@@ -1943,9 +1938,7 @@ namespace CSJ2K.j2k.codestream.reader
 		/// <param name="t">Tile index
 		/// 
 		/// </param>
-		/// <seealso cref="PktDecoder">
-		/// 
-		/// </seealso>
+		/// <seealso cref="PktDecoder" />
 		private void  readTilePkts(int t)
 		{
 			pktHL = new List<int>(10);

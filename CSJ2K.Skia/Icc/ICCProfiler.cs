@@ -19,8 +19,7 @@ namespace CSJ2K.Icc
 	/// and getInternCompData methods.
 	/// 
 	/// </summary>
-	/// <seealso cref="jj2000.j2k.icc.ICCProfile">
-	/// </seealso>
+	/// <seealso cref="j2k.icc.ICCProfile" />
 	/// <version> 	1.0
 	/// </version>
 	/// <author> 	Bruce A. Kern
@@ -197,9 +196,7 @@ namespace CSJ2K.Icc
 		/// <returns> The requested DataBlk
 		/// 
 		/// </returns>
-		/// <seealso cref="GetInternCompData">
-		/// 
-		/// </seealso>
+		/// <seealso cref="GetInternCompData" />
 		public override DataBlk GetCompData(DataBlk outblk, int c)
 		{
 			
@@ -439,9 +436,7 @@ namespace CSJ2K.Icc
 		/// <returns> The requested DataBlk
 		/// 
 		/// </returns>
-		/// <seealso cref="GetCompData">
-		/// 
-		/// </seealso>
+		/// <seealso cref="GetCompData" />
 		public override DataBlk GetInternCompData(DataBlk out_Renamed, int compIndex)
 		{
 			return GetCompData(out_Renamed, compIndex);

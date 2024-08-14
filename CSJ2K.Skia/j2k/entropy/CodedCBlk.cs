@@ -51,11 +51,8 @@ namespace CSJ2K.j2k.entropy
 	/// the DecLyrdCBlk subclasses are used.
 	/// 
 	/// </summary>
-	/// <seealso cref="jj2000.j2k.entropy.encoder.CBlkRateDistStats">
-	/// </seealso>
-	/// <seealso cref="jj2000.j2k.entropy.decoder.DecLyrdCBlk">
-	/// 
-	/// </seealso>
+	/// <seealso cref="j2k.entropy.encoder.CBlkRateDistStats" />
+	/// <seealso cref="j2k.entropy.decoder.DecLyrdCBlk" />
 	public class CodedCBlk
 	{
 		

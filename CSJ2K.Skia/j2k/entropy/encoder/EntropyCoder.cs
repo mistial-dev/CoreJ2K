@@ -68,11 +68,8 @@ namespace CSJ2K.j2k.entropy.encoder
 	/// methods should be overriden.
 	/// 
 	/// </summary>
-	/// <seealso cref="Quantizer">
-	/// </seealso>
-	/// <seealso cref="CBlkQuantDataSrcEnc">
-	/// 
-	/// </seealso>
+	/// <seealso cref="Quantizer" />
+	/// <seealso cref="CBlkQuantDataSrcEnc" />
 	public abstract class EntropyCoder:ImgDataAdapter, CodedCBlkDataSrcEnc
 	{
 		/// <summary> Returns the horizontal offset of the code-block partition. Allowable
@@ -174,9 +171,7 @@ namespace CSJ2K.j2k.entropy.encoder
 		/// <returns> true is the data is reversible, false if not.
 		/// 
 		/// </returns>
-		/// <seealso cref="jj2000.j2k.roi.encoder.ROIScaler">
-		/// 
-		/// </seealso>
+		/// <seealso cref="j2k.roi.encoder.ROIScaler" />
 		public virtual bool isReversible(int t, int c)
 		{
 			return src.isReversible(t, c);
@@ -195,12 +190,8 @@ namespace CSJ2K.j2k.entropy.encoder
 		/// <returns> The root of the subband tree structure, see Subband.
 		/// 
 		/// </returns>
-		/// <seealso cref="SubbandAn">
-		/// 
-		/// </seealso>
-		/// <seealso cref="Subband">
-		/// 
-		/// </seealso>
+		/// <seealso cref="SubbandAn" />
+		/// <seealso cref="Subband" />
 		public virtual SubbandAn getAnSubbandTree(int t, int c)
 		{
 			return src.getAnSubbandTree(t, c);

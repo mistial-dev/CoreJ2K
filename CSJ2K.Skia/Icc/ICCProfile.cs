@@ -38,9 +38,9 @@ namespace CSJ2K.Icc
     /// is refered to these for further information on the structure and contents of the header and tag table.
     /// 
     /// </summary>
-    /// <seealso cref="jj2000.j2k.icc.types.ICCProfileHeader">
+    /// <seealso cref="j2k.icc.types.ICCProfileHeader">
     /// </seealso>
-    /// <seealso cref="jj2000.j2k.icc.tags.ICCTagTable">
+    /// <seealso cref="j2k.icc.tags.ICCTagTable">
     /// </seealso>
     /// <version> 	1.0
     /// </version>

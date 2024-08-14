@@ -68,15 +68,10 @@ namespace CSJ2K.j2k.quantization.dequantizer
 	/// 'magbits' member variable of the 'CBlkWTData'.
 	/// 
 	/// </summary>
-	/// <seealso cref="InvWTData">
-	/// </seealso>
-	/// <seealso cref="CBlkWTDataSrcDec">
-	/// </seealso>
-	/// <seealso cref="Dequantizer">
-	/// </seealso>
-	/// <seealso cref="EntropyDecoder">
-	/// 
-	/// </seealso>
+	/// <seealso cref="InvWTData" />
+	/// <seealso cref="CBlkWTDataSrcDec" />
+	/// <seealso cref="Dequantizer" />
+	/// <seealso cref="EntropyDecoder" />
 	public interface CBlkQuantDataSrcDec:InvWTData
 	{
 		
@@ -127,9 +122,7 @@ namespace CSJ2K.j2k.quantization.dequantizer
 		/// null if all code-blocks for the current tile have been returned.
 		/// 
 		/// </returns>
-		/// <seealso cref="DataBlk">
-		/// 
-		/// </seealso>
+		/// <seealso cref="DataBlk" />
 		DataBlk getCodeBlock(int c, int m, int n, SubbandSyn sb, DataBlk cblk);
 		
 		/// <summary> Returns the specified code-block in the current tile for the specified
@@ -178,9 +171,7 @@ namespace CSJ2K.j2k.quantization.dequantizer
 		/// null if all code-blocks for the current tile have been returned.
 		/// 
 		/// </returns>
-		/// <seealso cref="DataBlk">
-		/// 
-		/// </seealso>
+		/// <seealso cref="DataBlk" />
 		DataBlk getInternCodeBlock(int c, int m, int n, SubbandSyn sb, DataBlk cblk);
 	}
 }

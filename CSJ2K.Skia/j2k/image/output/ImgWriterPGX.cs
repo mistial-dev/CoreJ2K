@@ -85,12 +85,8 @@ namespace CSJ2K.j2k.image.output
 	/// buffering.
 	/// 
 	/// </summary>
-	/// <seealso cref="ImgWriter">
-	/// 
-	/// </seealso>
-	/// <seealso cref="BlkImgDataSrc">
-	/// 
-	/// </seealso>
+	/// <seealso cref="ImgWriter" />
+	/// <seealso cref="BlkImgDataSrc" />
 	public class ImgWriterPGX:ImgWriter
 	{
 		
@@ -167,9 +163,7 @@ namespace CSJ2K.j2k.image.output
 		/// writing header).
 		/// 
 		/// </param>
-		/// <seealso cref="DataBlk">
-		/// 
-		/// </seealso>
+		/// <seealso cref="DataBlk" />
 		public ImgWriterPGX(IFileInfo out_Renamed, BlkImgDataSrc imgSrc, int c, bool isSigned)
 		{
 			//Initialize
@@ -246,9 +240,7 @@ namespace CSJ2K.j2k.image.output
 		/// writing header).
 		/// 
 		/// </param>
-		/// <seealso cref="DataBlk">
-		/// 
-		/// </seealso>
+		/// <seealso cref="DataBlk" />
 		public ImgWriterPGX(string fname, BlkImgDataSrc imgSrc, int c, bool isSigned):this(FileInfoFactory.New(fname), imgSrc, c, isSigned)
 		{
 		}
@@ -488,9 +480,7 @@ namespace CSJ2K.j2k.image.output
 		/// <exception cref="IOException">If an I/O error occurs.
 		/// 
 		/// </exception>
-		/// <seealso cref="DataBlk">
-		/// 
-		/// </seealso>
+		/// <seealso cref="DataBlk" />
 		public override void  write()
 		{
 			int i;

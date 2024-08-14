@@ -51,7 +51,8 @@ using CSJ2K.j2k.util;
 namespace CSJ2K.j2k.entropy.encoder
 {
 	
-	/// <summary> This is the abstract class from which post-compression rate allocators
+	/// <summary>
+	/// This is the abstract class from which post-compression rate allocators
 	/// which generate layers should inherit. The source of data is a
 	/// 'CodedCBlkDataSrcEnc' which delivers entropy coded blocks with
 	/// rate-distortion statistics.
@@ -61,34 +62,22 @@ namespace CSJ2K.j2k.entropy.encoder
 	/// CodestreamWriter. Since the rate allocator sends the packets to the bit
 	/// stream then it should output the packets to the bit stream in the order
 	/// imposed by the bit stream profiles.
-	/// 
 	/// </summary>
-	/// <seealso cref="CodedCBlkDataSrcEnc">
-	/// </seealso>
-	/// <seealso cref="jj2000.j2k.codestream.writer.CodestreamWriter">
-	/// 
-	/// </seealso>
+	/// <seealso cref="CodedCBlkDataSrcEnc" />
+	/// <seealso cref="j2k.codestream.writer.CodestreamWriter" />
 	public abstract class PostCompRateAllocator:ImgDataAdapter
 	{
-		/// <summary> Keep a reference to the header encoder.
-		/// 
-		/// </summary>
-		/// <param name="headEnc">The header encoder
-		/// 
-		/// </param>
+		/// <summary> Keep a reference to the header encoder.</summary>
 		public virtual HeaderEncoder HeaderEncoder
 		{
 			set => headEnc = value;
 		}
-		/// <summary> Returns the number of layers that are actually generated.
-		/// 
-		/// </summary>
-		/// <returns> The number of layers generated.
-		/// 
-		/// </returns>
+		/// <summary> Returns the number of layers that are actually generated.</summary>
+		/// <returns> The number of layers generated.</returns>
 		public virtual int NumLayers => num_Layers;
 
-		/// <summary> Returns the parameters that are used in this class and implementing
+		/// <summary>
+		/// Returns the parameters that are used in this class and implementing
 		/// classes. It returns a 2D String array. Each of the 1D arrays is for a
 		/// different option, and they have 3 elements. The first element is the
 		/// option name, the second one is the synopsis, the third one is a long
@@ -96,57 +85,42 @@ namespace CSJ2K.j2k.entropy.encoder
 		/// value. The synopsis or description may be 'null', in which case it is
 		/// assumed that there is no synopsis or description of the option,
 		/// respectively. Null may be returned if no options are supported.
-		/// 
 		/// </summary>
 		/// <returns> the options name, their synopsis and their explanation, 
-		/// or null if no options are supported.
-		/// 
-		/// </returns>
+		/// or null if no options are supported.</returns>
 		public static string[][] ParameterInfo => pinfo;
 
-		/// <summary>The prefix for rate allocation options: 'A' </summary>
+		/// <summary>The prefix for rate allocation options: 'A'</summary>
 		public const char OPT_PREFIX = 'A';
 		
-		/// <summary>The list of parameters that is accepted for entropy coding. Options 
-		/// for entropy coding start with 'R'. 
+		/// <summary>
+		/// The list of parameters that is accepted for entropy coding. Options 
+		/// for entropy coding start with 'R'.
 		/// </summary>
-		//UPGRADE_NOTE: Final was removed from the declaration of 'pinfo'. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
 		private static readonly string[][] pinfo = new string[][]{new string[]{"Aptype", "[<tile idx>] res|layer|res-pos|" + "pos-comp|comp-pos [res_start comp_start layer_end res_end " + "comp_end " + "prog] [[res_start comp_start ly_end res_end comp_end prog] ...] [" + "[<tile-component idx>] ...]", "Specifies which type of progression should be used when " + "generating " + "the codestream. The 'res' value generates a resolution " + "progressive codestream with the number of layers specified by " + "'Alayers' option. The 'layer' value generates a layer progressive " + "codestream with multiple layers. In any case the rate-allocation " + "algorithm optimizes for best quality in each layer. The quality " + "measure is mean squared error (MSE) or a weighted version of it " + "(WMSE). If no progression type is specified or imposed by other " + "modules, the default value is 'layer'.\n" + "It is also possible to describe progression order changes. In " + "this case, 'res_start' is the index (from 0) of the first " + "resolution " + "level, 'comp_start' is the index (from 0) of the first component, " + "'ly_end' is the index (from 0) of the first layer not included, " + "'res_end' is the index (from 0) of the first resolution level not " + "included, 'comp_end' is index (from 0) of the first component not " + "included and 'prog' is the progression type to be used " + "for the rest of the tile/image. Several progression order changes " + "can be specified, one after the other.", null}, new string[]{"Alayers", "[<rate> [+<layers>] [<rate [+<layers>] [...]] | sl]", "Explicitly specifies the codestream layer formation parameters. " + "The <rate> parameter specifies the bitrate to which the first " + "layer should be optimized. The <layers> parameter, if present, " + "specifies the number of extra layers that should be added for " + "scalability. These extra layers are not optimized. " + "Any extra <rate> and <layers> parameters add more layers, in the " + 
 			"same way. An additional layer is always added at the end, which" + " is " + "optimized to the overall target bitrate of the bit stream. Any " + "layers (optimized or not) whose target bitrate is higher that the " + "overall target bitrate are silently ignored. The bitrates of the " + "extra layers that are added through the <layers> parameter are " + "approximately log-spaced between the other target bitrates. If " + "several <rate> [+<layers>] constructs appear the <rate>" + " parameters " + "must appear in increasing order. The rate allocation algorithm " + "ensures that all coded layers have a minimal reasonable size, if " + "not these layers are silently ignored.\n" + "If the 'sl' (i.e. 'single layer') argument is specified, the " + "generated codestream will" + " only contain one layer (with a bit rate specified thanks to the" + " '-rate' or 'nbytes' options).", "0.015 +20 2.0 +10"}};
 		
-		/// <summary>The source of entropy coded data </summary>
+		/// <summary>The source of entropy coded data</summary>
 		protected internal CodedCBlkDataSrcEnc src;
 		
-		/// <summary>The source of entropy coded data </summary>
+		/// <summary>The source of entropy coded data</summary>
 		protected internal EncoderSpecs encSpec;
 		
-		/// <summary>The number of layers. </summary>
+		/// <summary>The number of layers.</summary>
 		protected internal int num_Layers;
 		
-		/// <summary>The bit-stream writer </summary>
+		/// <summary>The bit-stream writer</summary>
 		internal CodestreamWriter bsWriter;
 		
-		/// <summary>The header encoder </summary>
+		/// <summary>The header encoder</summary>
 		internal HeaderEncoder headEnc;
 		
-		/// <summary> Initializes the source of entropy coded data.
-		/// 
-		/// </summary>
-		/// <param name="src">The source of entropy coded data.
-		/// 
-		/// </param>
-		/// <param name="ln">The number of layers to create
-		/// 
-		/// </param>
-		/// <param name="pt">The progressive type, as defined in 'ProgressionType'.
-		/// 
-		/// </param>
-		/// <param name="bw">The packet bit stream writer.
-		/// 
-		/// </param>
-		/// <seealso cref="ProgressionType">
-		/// 
-		/// </seealso>
+		/// <summary>Initializes the source of entropy coded data.</summary>
+		/// <param name="src">The source of entropy coded data.</param>
+		/// <param name="ln">The number of layers to create</param>
+		/// <param name="pt">The progressive type, as defined in 'ProgressionType'.</param>
+		/// <param name="bw">The packet bit stream writer.</param>
+		/// <seealso cref="ProgressionType" />
 		public PostCompRateAllocator(CodedCBlkDataSrcEnc src, int nl, CodestreamWriter bw, EncoderSpecs encSpec):base(src)
 		{
 			this.src = src;
@@ -155,49 +129,32 @@ namespace CSJ2K.j2k.entropy.encoder
 			bsWriter = bw;
 		}
 		
-		/// <summary> Initializes the rate allocation points, taking into account header
+		/// <summary>
+		/// Initializes the rate allocation points, taking into account header
 		/// overhead and such. This method must be called after the header has been
 		/// simulated but before calling the runAndWrite() one. The header must be
 		/// rewritten after a call to this method since the number of layers may
 		/// change.
-		/// 
 		/// </summary>
-		/// <param name="oldSyntax">Whether or not the old syntax is used.
-		/// 
-		/// </param>
-		/// <seealso cref="runAndWrite">
-		/// 
-		/// </seealso>
-		public abstract void  initialize();
+		/// <param name="oldSyntax">Whether the old syntax is used.</param>
+		/// <seealso cref="runAndWrite" />
+		public abstract void initialize();
 		
 		/// <summary> Runs the rate allocation algorithm and writes the data to the
-		/// bit stream. This must be called after the initialize() method.
-		/// 
-		/// </summary>
-		/// <seealso cref="initialize">
-		/// 
-		/// </seealso>
-		public abstract void  runAndWrite();
+		/// bit stream. This must be called after the initialize() method.</summary>
+		/// <seealso cref="initialize" />
+		public abstract void runAndWrite();
 		
-		/// <summary> Creates a PostCompRateAllocator object for the appropriate rate
+		/// <summary>
+		/// Creates a PostCompRateAllocator object for the appropriate rate
 		/// allocation parameters in the parameter list 'pl', having 'src' as the
 		/// source of entropy coded data, 'rate' as the target bitrate and 'bw' as
 		/// the bit stream writer object.
-		/// 
 		/// </summary>
-		/// <param name="src">The source of entropy coded data.
-		/// 
-		/// </param>
-		/// <param name="pl">The parameter lis (or options).
-		/// 
-		/// </param>
-		/// <param name="rate">The target bitrate for the rate allocation
-		/// 
-		/// </param>
-		/// <param name="bw">The bit stream writer object, where the bit stream data will
-		/// be written.
-		/// 
-		/// </param>
+		/// <param name="src">The source of entropy coded data.</param>
+		/// <param name="pl">The parameter lis (or options).</param>
+		/// <param name="rate">The target bitrate for the rate allocation</param>
+		/// <param name="bw">The bit stream writer object, where the bit stream data will be written.</param>
 		public static PostCompRateAllocator createInstance(CodedCBlkDataSrcEnc src, ParameterList pl, float rate, CodestreamWriter bw, EncoderSpecs encSpec)
 		{
 			// Check parameters
@@ -216,27 +173,14 @@ namespace CSJ2K.j2k.entropy.encoder
 			return new EBCOTRateAllocator(src, lyrs, bw, encSpec, pl);
 		}
 		
-		/// <summary> Convenience method that parses the 'Alayers' option.
-		/// 
-		/// </summary>
-		/// <param name="params">The parameters of the 'Alayers' option
-		/// 
-		/// </param>
-		/// <param name="rate">The overall target bitrate
-		/// 
-		/// </param>
-		/// <returns> The layer specification.
-		/// 
-		/// </returns>
+		/// <summary>Convenience method that parses the 'Alayers' option.</summary>
+		/// <param name="params">The parameters of the 'Alayers' option</param>
+		/// <param name="rate">The overall target bitrate</param>
+		/// <returns>The layer specification.</returns>
 		private static LayersInfo parseAlayers(string params_Renamed, float rate)
 		{
-			LayersInfo lyrs;
-			SupportClass.StreamTokenizerSupport stok;
-			bool islayer, ratepending;
-			float r;
-			
-			lyrs = new LayersInfo(rate);
-			stok = new SupportClass.StreamTokenizerSupport(new System.IO.StringReader(params_Renamed));
+			var lyrs = new LayersInfo(rate);
+			var stok = new SupportClass.StreamTokenizerSupport(new System.IO.StringReader(params_Renamed));
 			stok.EOLIsSignificant(false);
 			
 			try
@@ -245,11 +189,11 @@ namespace CSJ2K.j2k.entropy.encoder
 			}
 			catch (System.IO.IOException)
 			{
-				throw new InvalidOperationException("An IOException has ocurred where it " + "should never occur");
+				throw new InvalidOperationException("An IOException has occurred where it should never occur");
 			}
-			ratepending = false;
-			islayer = false;
-			r = 0; // to keep compiler happy
+			var ratepending = false;
+			var islayer = false;
+			float r = 0; // to keep compiler happy
 			while (stok.ttype != SupportClass.StreamTokenizerSupport.TT_EOF)
 			{
 				switch (stok.ttype)
@@ -261,12 +205,10 @@ namespace CSJ2K.j2k.entropy.encoder
 							// layer parameter
 							try
 							{
-								//UPGRADE_WARNING: Data types in Visual C# might be different.  Verify the accuracy of narrowing conversions. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1042'"
 								lyrs.addOptPoint(r, (int) stok.nval);
 							}
 							catch (ArgumentException e)
 							{
-								//UPGRADE_TODO: The equivalent in .NET for method 'java.lang.Throwable.getMessage' may return a different value. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1043'"
 								throw new ArgumentException($"Error in 'Alayers' option: {e.Message}");
 							}
 							ratepending = false;
@@ -284,12 +226,10 @@ namespace CSJ2K.j2k.entropy.encoder
 								}
 								catch (ArgumentException e)
 								{
-									//UPGRADE_TODO: The equivalent in .NET for method 'java.lang.Throwable.getMessage' may return a different value. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1043'"
 									throw new ArgumentException($"Error in 'Alayers' option: {e.Message}");
 								}
 							}
 							// Now store new rate parameter
-							//UPGRADE_WARNING: Data types in Visual C# might be different.  Verify the accuracy of narrowing conversions. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1042'"
 							r = (float) stok.nval;
 							ratepending = true;
 						}
@@ -298,7 +238,7 @@ namespace CSJ2K.j2k.entropy.encoder
 					case '+': 
 						if (!ratepending || islayer)
 						{
-							throw new ArgumentException("Layer parameter without " + "previous rate parameter " + "in 'Alayers' option");
+							throw new ArgumentException("Layer parameter without previous rate parameter in 'Alayers' option");
 						}
 						islayer = true; // Next number is layer parameter
 						break;
@@ -310,16 +250,16 @@ namespace CSJ2K.j2k.entropy.encoder
 						}
 						catch (System.IO.IOException)
 						{
-							throw new InvalidOperationException("An IOException has ocurred where it " + "should never occur");
+							throw new InvalidOperationException("An IOException has occurred where it should never occur");
 						}
 						if (stok.ttype != SupportClass.StreamTokenizerSupport.TT_EOF)
 						{
-							throw new ArgumentException("'sl' argument of " + "'-Alayers' option must be " + "used alone.");
+							throw new ArgumentException("'sl' argument of '-Alayers' option must be used alone.");
 						}
 						break;
 					
 					default: 
-						throw new ArgumentException("Error parsing 'Alayers' " + "option");
+						throw new ArgumentException("Error parsing 'Alayers' option");
 					
 				}
 				try
@@ -328,12 +268,12 @@ namespace CSJ2K.j2k.entropy.encoder
 				}
 				catch (System.IO.IOException)
 				{
-					throw new InvalidOperationException("An IOException has ocurred where it " + "should never occur");
+					throw new InvalidOperationException("An IOException has occurred where it should never occur");
 				}
 			}
 			if (islayer)
 			{
-				throw new ArgumentException("Error parsing 'Alayers' " + "option");
+				throw new ArgumentException("Error parsing 'Alayers' option");
 			}
 			if (ratepending)
 			{
@@ -343,7 +283,6 @@ namespace CSJ2K.j2k.entropy.encoder
 				}
 				catch (ArgumentException e)
 				{
-					//UPGRADE_TODO: The equivalent in .NET for method 'java.lang.Throwable.getMessage' may return a different value. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1043'"
 					throw new ArgumentException($"Error in 'Alayers' option: {e.Message}");
 				}
 			}

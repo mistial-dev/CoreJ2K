@@ -63,9 +63,7 @@ namespace CSJ2K.j2k.codestream.writer
 	/// the HeaderEncoder class.
 	/// 
 	/// </summary>
-	/// <seealso cref="HeaderEncoder">
-	/// 
-	/// </seealso>
+	/// <seealso cref="HeaderEncoder" />
 	public abstract class CodestreamWriter
 	{
 		/// <summary> Returns the number of bytes remaining available in the codestream. This
@@ -156,9 +154,7 @@ namespace CSJ2K.j2k.codestream.writer
 		/// output stream.
 		/// 
 		/// </exception>
-		/// <seealso cref="commitBitstreamHeader">
-		/// 
-		/// </seealso>
+		/// <seealso cref="commitBitstreamHeader" />
 		public abstract int writePacketHead(byte[] head, int hlen, bool sim, bool sop, bool eph);
 		
 		/// <summary> Writes a packet body to the codestream and returns the number of bytes
@@ -198,9 +194,7 @@ namespace CSJ2K.j2k.codestream.writer
 		/// output stream.
 		/// 
 		/// </exception>
-		/// <seealso cref="commitBitstreamHeader">
-		/// 
-		/// </seealso>
+		/// <seealso cref="commitBitstreamHeader" />
 		public abstract int writePacketBody(byte[] body, int blen, bool sim, bool roiInPkt, int roiLen);
 		
 		

@@ -56,9 +56,7 @@ namespace CSJ2K.j2k.decoder
 	/// members must be instance of ModuleSpec class (or its children).
 	/// 
 	/// </summary>
-	/// <seealso cref="ModuleSpec">
-	/// 
-	/// </seealso>
+	/// <seealso cref="ModuleSpec" />
 	public class DecoderSpecs
 	{
 		/// <summary> Returns a copy of the current object.

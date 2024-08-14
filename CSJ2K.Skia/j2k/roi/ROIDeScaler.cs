@@ -200,9 +200,7 @@ namespace CSJ2K.j2k.roi
 		/// null if all code-blocks for the current tile have been returned.
 		/// 
 		/// </returns>
-		/// <seealso cref="DataBlk">
-		/// 
-		/// </seealso>
+		/// <seealso cref="DataBlk" />
 		public virtual DataBlk getCodeBlock(int c, int m, int n, SubbandSyn sb, DataBlk cblk)
 		{
 			return getInternCodeBlock(c, m, n, sb, cblk);
@@ -253,9 +251,7 @@ namespace CSJ2K.j2k.roi
 		/// <returns> The requested code-block in the current tile for component 'c'.
 		/// 
 		/// </returns>
-		/// <seealso cref="DataBlk">
-		/// 
-		/// </seealso>
+		/// <seealso cref="DataBlk" />
 		public virtual DataBlk getInternCodeBlock(int c, int m, int n, SubbandSyn sb, DataBlk cblk)
 		{
 			int i, j, k, wrap; // mi removed

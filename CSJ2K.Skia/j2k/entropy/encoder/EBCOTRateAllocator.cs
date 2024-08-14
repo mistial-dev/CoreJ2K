@@ -70,13 +70,9 @@ namespace CSJ2K.j2k.entropy.encoder
 	/// should be negligeable.
 	/// 
 	/// </summary>
-	/// <seealso cref="PostCompRateAllocator">
-	/// </seealso>
-	/// <seealso cref="CodedCBlkDataSrcEnc">
-	/// </seealso>
-	/// <seealso cref="jj2000.j2k.codestream.writer.CodestreamWriter">
-	/// 
-	/// </seealso>
+	/// <seealso cref="PostCompRateAllocator" />
+	/// <seealso cref="CodedCBlkDataSrcEnc" />
+	/// <seealso cref="j2k.codestream.writer.CodestreamWriter" />
 	public sealed class EBCOTRateAllocator:PostCompRateAllocator
 	{
 
@@ -202,9 +198,7 @@ namespace CSJ2K.j2k.entropy.encoder
 		/// <param name="writer">The bit stream writer.
 		/// 
 		/// </param>
-		/// <seealso cref="ProgressionType">
-		/// 
-		/// </seealso>
+		/// <seealso cref="ProgressionType" />
 		public EBCOTRateAllocator(CodedCBlkDataSrcEnc src, LayersInfo lyrs, CodestreamWriter writer, EncoderSpecs encSpec, ParameterList pl):base(src, lyrs.TotNumLayers, writer, encSpec)
 		{
 			

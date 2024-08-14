@@ -54,9 +54,7 @@ namespace CSJ2K.j2k.fileformat.reader
 	/// finds the first valid codestream.
 	/// 
 	/// </summary>
-	/// <seealso cref="jj2000.j2k.fileformat.writer.FileFormatWriter">
-	/// 
-	/// </seealso>
+	/// <seealso cref="j2k.fileformat.writer.FileFormatWriter" />
 	public class FileFormatReader
 	{
 		/// <summary> This method creates and returns an array of positions to contiguous

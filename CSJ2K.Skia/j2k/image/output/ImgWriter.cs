@@ -107,9 +107,7 @@ namespace CSJ2K.j2k.image.output
 		/// finalization of the object, but is otherwise ignored.
 		/// 
 		/// </exception>
-		/// <seealso cref="Object.finalize">
-		/// 
-		/// </seealso>
+		/// <seealso cref="Object.finalize" />
 		~ImgWriter()
 		{
 			flush();
@@ -127,9 +125,7 @@ namespace CSJ2K.j2k.image.output
 		/// <exception cref="IOException">If an I/O error occurs.
 		/// 
 		/// </exception>
-		/// <seealso cref="DataBlk">
-		/// 
-		/// </seealso>
+		/// <seealso cref="DataBlk" />
 		public abstract void  write();
 		
 		/// <summary> Writes the entire image or only specified tiles to the output. The
@@ -141,9 +137,7 @@ namespace CSJ2K.j2k.image.output
 		/// <exception cref="IOException">If an I/O error occurs.
 		/// 
 		/// </exception>
-		/// <seealso cref="DataBlk">
-		/// 
-		/// </seealso>
+		/// <seealso cref="DataBlk" />
 		public virtual void  writeAll()
 		{
 			// Find the list of tile to decode.

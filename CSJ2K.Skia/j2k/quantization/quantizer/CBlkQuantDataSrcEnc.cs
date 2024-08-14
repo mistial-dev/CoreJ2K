@@ -72,15 +72,10 @@ namespace CSJ2K.j2k.quantization.quantizer
 	/// manner.
 	/// 
 	/// </summary>
-	/// <seealso cref="ForwWTDataProps">
-	/// </seealso>
-	/// <seealso cref="CBlkWTDataSrc">
-	/// </seealso>
-	/// <seealso cref="Quantizer">
-	/// </seealso>
-	/// <seealso cref="EntropyCoder">
-	/// 
-	/// </seealso>
+	/// <seealso cref="ForwWTDataProps" />
+	/// <seealso cref="CBlkWTDataSrc" />
+	/// <seealso cref="Quantizer" />
+	/// <seealso cref="EntropyCoder" />
 	public interface CBlkQuantDataSrcEnc:ForwWTDataProps
 	{
 		
@@ -120,9 +115,7 @@ namespace CSJ2K.j2k.quantization.quantizer
 		/// null if all code-blocks for the current tile have been returned.
 		/// 
 		/// </returns>
-		/// <seealso cref="CBlkWTData">
-		/// 
-		/// </seealso>
+		/// <seealso cref="CBlkWTData" />
 		CBlkWTData getNextCodeBlock(int c, CBlkWTData cblk);
 		
 		/// <summary> Returns the next code-block in the current tile for the specified
@@ -160,9 +153,7 @@ namespace CSJ2K.j2k.quantization.quantizer
 		/// null if all code-blocks for the current tile have been returned.
 		/// 
 		/// </returns>
-		/// <seealso cref="CBlkWTData">
-		/// 
-		/// </seealso>
+		/// <seealso cref="CBlkWTData" />
 		CBlkWTData getNextInternCodeBlock(int c, CBlkWTData cblk);
 	}
 }

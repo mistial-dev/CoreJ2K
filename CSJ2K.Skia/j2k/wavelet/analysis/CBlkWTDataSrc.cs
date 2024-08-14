@@ -58,15 +58,10 @@ namespace CSJ2K.j2k.wavelet.analysis
 	/// manner.
 	/// 
 	/// </summary>
-	/// <seealso cref="ForwWTDataProps">
-	/// </seealso>
-	/// <seealso cref="WaveletTransform">
-	/// </seealso>
-	/// <seealso cref="jj2000.j2k.quantization.quantizer.CBlkQuantDataSrcEnc">
-	/// </seealso>
-	/// <seealso cref="jj2000.j2k.quantization.quantizer.Quantizer">
-	/// 
-	/// </seealso>
+	/// <seealso cref="ForwWTDataProps" />
+	/// <seealso cref="WaveletTransform" />
+	/// <seealso cref="j2k.quantization.quantizer.CBlkQuantDataSrcEnc" />
+	/// <seealso cref="j2k.quantization.quantizer.Quantizer" />
 	public interface CBlkWTDataSrc:ForwWTDataProps
 	{
 		
@@ -143,9 +138,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// null if all code-blocks for the current tile have been returned.
 		/// 
 		/// </returns>
-		/// <seealso cref="CBlkWTData">
-		/// 
-		/// </seealso>
+		/// <seealso cref="CBlkWTData" />
 		CBlkWTData getNextCodeBlock(int c, CBlkWTData cblk);
 		
 		/// <summary> Returns the next code-block in the current tile for the specified
@@ -184,9 +177,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// null if all code-blocks for the current tile have been returned.
 		/// 
 		/// </returns>
-		/// <seealso cref="CBlkWTData">
-		/// 
-		/// </seealso>
+		/// <seealso cref="CBlkWTData" />
 		CBlkWTData getNextInternCodeBlock(int c, CBlkWTData cblk);
 	}
 }

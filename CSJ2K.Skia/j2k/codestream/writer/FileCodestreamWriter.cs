@@ -54,9 +54,7 @@ namespace CSJ2K.j2k.codestream.writer
 	/// are given by getMaxAvailableBytes() for rate allocation.
 	/// 
 	/// </summary>
-	/// <seealso cref="CodestreamWriter">
-	/// 
-	/// </seealso>
+	/// <seealso cref="CodestreamWriter" />
 	public class FileCodestreamWriter:CodestreamWriter
 	{
 		/// <summary> Returns the number of bytes remaining available in the bit stream. This
@@ -189,9 +187,7 @@ namespace CSJ2K.j2k.codestream.writer
 		/// output stream.
 		/// 
 		/// </exception>
-		/// <seealso cref="commitBitstreamHeader">
-		/// 
-		/// </seealso>
+		/// <seealso cref="commitBitstreamHeader" />
 		public override int writePacketHead(byte[] head, int hlen, bool sim, bool sop, bool eph)
 		{
             // CONVERSION PROBLEM?
@@ -277,9 +273,7 @@ namespace CSJ2K.j2k.codestream.writer
 		/// output stream.
 		/// 
 		/// </exception>
-		/// <seealso cref="commitBitstreamHeader">
-		/// 
-		/// </seealso>
+		/// <seealso cref="commitBitstreamHeader" />
 		public override int writePacketBody(byte[] body, int blen, bool sim, bool roiInPkt, int roiLen)
 		{
 			

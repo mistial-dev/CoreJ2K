@@ -14,10 +14,8 @@ namespace CSJ2K.Icc.Types
 	/// the header of the ICC Profile.
 	/// 
 	/// </summary>
-	/// <seealso cref="jj2000.j2k.icc.ICCProfile">
-	/// </seealso>
-	/// <seealso cref="jj2000.j2k.icc.types.ICCProfileHeader">
-	/// </seealso>
+	/// <seealso cref="j2k.icc.ICCProfile" />
+	/// <seealso cref="j2k.icc.types.ICCProfileHeader" />
 	/// <version> 	1.0
 	/// </version>
 	/// <author> 	Bruce A. Kern

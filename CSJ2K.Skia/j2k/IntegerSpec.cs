@@ -50,9 +50,7 @@ namespace CSJ2K.j2k
 	/// for each tile-component.
 	/// 
 	/// </summary>
-	/// <seealso cref="ModuleSpec">
-	/// 
-	/// </seealso>
+	/// <seealso cref="ModuleSpec" />
 	public sealed class IntegerSpec:ModuleSpec
 	{
 		/// <summary> Gets the maximum value of all tile-components.

@@ -96,9 +96,7 @@ namespace CSJ2K.j2k.util
 		/// <returns> Always EndianType.BIG_ENDIAN.
 		/// 
 		/// </returns>
-		/// <seealso cref="EndianType">
-		/// 
-		/// </seealso>
+		/// <seealso cref="EndianType" />
 		public virtual int ByteOrdering => EndianType_Fields.BIG_ENDIAN;
 
 		/// <summary>The InputStream that is wrapped </summary>

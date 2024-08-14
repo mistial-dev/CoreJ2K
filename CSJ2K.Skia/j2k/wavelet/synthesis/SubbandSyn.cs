@@ -231,9 +231,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// <returns> A reference to the LL leaf (subb_LL).
 		/// 
 		/// </returns>
-		/// <seealso cref="Subband.initChilds">
-		/// 
-		/// </seealso>
+		/// <seealso cref="Subband.initChilds" />
 		protected internal override Subband split(WaveletFilter hfilter, WaveletFilter vfilter)
 		{
 			// Test that this is a node

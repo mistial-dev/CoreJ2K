@@ -61,12 +61,8 @@ namespace CSJ2K.j2k.wavelet
 	/// At the moment tiles are not supported by this class.
 	/// 
 	/// </summary>
-	/// <seealso cref="jj2000.j2k.wavelet.analysis.AnWTFilterSpec">
-	/// 
-	/// </seealso>
-	/// <seealso cref="jj2000.j2k.wavelet.synthesis.SynWTFilterSpec">
-	/// 
-	/// </seealso>
+	/// <seealso cref="j2k.wavelet.analysis.AnWTFilterSpec" />
+	/// <seealso cref="j2k.wavelet.synthesis.SynWTFilterSpec" />
 	
 	public abstract class WTFilterSpec
 	{
@@ -77,7 +73,7 @@ namespace CSJ2K.j2k.wavelet
 		/// <returns> The data type of the filters in this object
 		/// 
 		/// </returns>
-		/// <seealso cref="jj2000.j2k.image.DataBlk">
+		/// <seealso cref="j2k.image.DataBlk">
 		/// 
 		/// 
 		/// 

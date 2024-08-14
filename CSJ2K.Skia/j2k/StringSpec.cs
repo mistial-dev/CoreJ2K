@@ -50,9 +50,7 @@ namespace CSJ2K.j2k
 	/// specifications using Strings.
 	/// 
 	/// </summary>
-	/// <seealso cref="ModuleSpec">
-	/// 
-	/// </seealso>
+	/// <seealso cref="ModuleSpec" />
 	public sealed class StringSpec:ModuleSpec
 	{
 		

@@ -61,11 +61,8 @@ namespace CSJ2K.j2k.wavelet
 	/// reasons, has no parent (i.e. it is null).
 	/// 
 	/// </summary>
-	/// <seealso cref="jj2000.j2k.wavelet.analysis.SubbandAn">
-	/// </seealso>
-	/// <seealso cref="jj2000.j2k.wavelet.synthesis.SubbandSyn">
-	/// 
-	/// </seealso>
+	/// <seealso cref="j2k.wavelet.analysis.SubbandAn" />
+	/// <seealso cref="j2k.wavelet.synthesis.SubbandSyn" />
 	public abstract class Subband
 	{
 		/// <summary> Returns the parent of this subband. The parent of a subband is the
@@ -215,9 +212,7 @@ namespace CSJ2K.j2k.wavelet
 		/// details.
 		/// 
 		/// </summary>
-		/// <seealso cref="split">
-		/// 
-		/// </seealso>
+		/// <seealso cref="split" />
 		public int anGainExp;
 		
 		/// <summary> The subband index within its resolution level. This value uniquely
@@ -406,9 +401,7 @@ namespace CSJ2K.j2k.wavelet
 		/// element is used for the remaining resolution levels.
 		/// 
 		/// </param>
-		/// <seealso cref="WaveletTransform">
-		/// 
-		/// </seealso>
+		/// <seealso cref="WaveletTransform" />
 		public Subband(int w, int h, int ulcx, int ulcy, int lvls, WaveletFilter[] hfilters, WaveletFilter[] vfilters)
 		{
 			int i, hi, vi;

@@ -50,9 +50,7 @@ namespace CSJ2K.j2k.image
 	/// specifications for multiple component transformation
 	/// 
 	/// </summary>
-	/// <seealso cref="ModuleSpec">
-	/// 
-	/// </seealso>
+	/// <seealso cref="ModuleSpec" />
 	public class CompTransfSpec:ModuleSpec
 	{
 		/// <summary> Check if component transformation is used in any of the tiles. This

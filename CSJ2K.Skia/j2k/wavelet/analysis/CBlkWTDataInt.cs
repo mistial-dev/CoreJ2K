@@ -52,9 +52,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 	/// inlined by inlining compilers.
 	/// 
 	/// </summary>
-	/// <seealso cref="CBlkWTData">
-	/// 
-	/// </seealso>
+	/// <seealso cref="CBlkWTData" />
 	public class CBlkWTDataInt:CBlkWTData
 	{
 		/// <summary> Returns the data type of this object, always DataBlk.TYPE_INT.

@@ -58,9 +58,7 @@ namespace CSJ2K.j2k.entropy.encoder
 	/// safe.
 	/// 
 	/// </summary>
-	/// <seealso cref="reset">
-	/// 
-	/// </seealso>
+	/// <seealso cref="reset" />
 	public class ByteOutputBuffer
 	{
 		

@@ -63,11 +63,8 @@ namespace CSJ2K.j2k.entropy.decoder
 	/// bit corresponds to the most significant bit-plane and so on.</p
 	/// 
 	/// </summary>
-	/// <seealso cref="MultiResImgData">
-	/// </seealso>
-	/// <seealso cref="MultiResImgDataAdapter">
-	/// 
-	/// </seealso>
+	/// <seealso cref="MultiResImgData" />
+	/// <seealso cref="MultiResImgDataAdapter" />
 	public abstract class EntropyDecoder:MultiResImgDataAdapter, CBlkQuantDataSrcDec
 	{
 		/// <summary> Returns the horizontal code-block partition origin. Allowable values

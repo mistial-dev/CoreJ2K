@@ -188,18 +188,14 @@ namespace CSJ2K.j2k.codestream.reader
 		/// FileBitstreamReaderAgent.
 		/// 
 		/// </summary>
-		/// <seealso cref="FileBitstreamReaderAgent.initSubbandsFields">
-		/// 
-		/// </seealso>
+		/// <seealso cref="FileBitstreamReaderAgent.initSubbandsFields" />
 		protected internal bool[] derived = null;
 		
 		/// <summary> Number of guard bits off all component in the current tile. This field
 		/// is actualized by the setTile method in FileBitstreamReaderAgent.
 		/// 
 		/// </summary>
-		/// <seealso cref="FileBitstreamReaderAgent.initSubbandsFields">
-		/// 
-		/// </seealso>
+		/// <seealso cref="FileBitstreamReaderAgent.initSubbandsFields" />
 		protected internal int[] gb = null;
 		
 		/// <summary> Dequantization parameters of all subbands and all components in the
@@ -207,9 +203,7 @@ namespace CSJ2K.j2k.codestream.reader
 		/// FileBitstreamReaderAgent.
 		/// 
 		/// </summary>
-		/// <seealso cref="FileBitstreamReaderAgent.initSubbandsFields">
-		/// 
-		/// </seealso>
+		/// <seealso cref="FileBitstreamReaderAgent.initSubbandsFields" />
 		protected internal StdDequantizerParams[] params_Renamed = null;
 		
 		/// <summary>The prefix for bit stream reader options: 'B' </summary>
@@ -402,9 +396,7 @@ namespace CSJ2K.j2k.codestream.reader
 		/// <returns> The horizontal subsampling factor of component 'c'
 		/// 
 		/// </returns>
-		/// <seealso cref="jj2000.j2k.image.ImgData">
-		/// 
-		/// </seealso>
+		/// <seealso cref="j2k.image.ImgData" />
 		public int getCompSubsX(int c)
 		{
 			return hd.getCompSubsX(c);
@@ -422,9 +414,7 @@ namespace CSJ2K.j2k.codestream.reader
 		/// <returns> The vertical subsampling factor of component 'c'
 		/// 
 		/// </returns>
-		/// <seealso cref="jj2000.j2k.image.ImgData">
-		/// 
-		/// </seealso>
+		/// <seealso cref="j2k.image.ImgData" />
 		public virtual int getCompSubsY(int c)
 		{
 			return hd.getCompSubsY(c);

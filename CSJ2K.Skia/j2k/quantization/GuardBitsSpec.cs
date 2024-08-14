@@ -51,9 +51,7 @@ namespace CSJ2K.j2k.quantization
 	/// number of guard bits in each tile-component.
 	/// 
 	/// </summary>
-	/// <seealso cref="ModuleSpec">
-	/// 
-	/// </seealso>
+	/// <seealso cref="ModuleSpec" />
 	public sealed class GuardBitsSpec:ModuleSpec
 	{
 		

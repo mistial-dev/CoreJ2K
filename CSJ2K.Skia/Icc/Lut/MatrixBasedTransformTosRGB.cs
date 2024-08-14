@@ -18,10 +18,8 @@ namespace CSJ2K.Icc.Lut
 	/// <summary> Transform for applying ICCProfiling to an input DataBlk
 	/// 
 	/// </summary>
-	/// <seealso cref="jj2000.j2k.image.DataBlkInt">
-	/// </seealso>
-	/// <seealso cref="jj2000.j2k.image.DataBlkFloat">
-	/// </seealso>
+	/// <seealso cref="j2k.image.DataBlkInt" />
+	/// <seealso cref="j2k.image.DataBlkFloat" />
 	/// <version> 	1.0
 	/// </version>
 	/// <author> 	Bruce A. Kern

@@ -83,9 +83,7 @@ namespace CSJ2K.j2k.entropy.encoder
 	/// class.
 	/// 
 	/// </summary>
-	/// <seealso cref="CodedCBlk">
-	/// 
-	/// </seealso>
+	/// <seealso cref="CodedCBlk" />
 	public sealed class CBlkRateDistStats:CodedCBlk
 	{
 		

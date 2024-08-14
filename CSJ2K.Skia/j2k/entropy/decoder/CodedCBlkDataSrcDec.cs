@@ -59,15 +59,9 @@ namespace CSJ2K.j2k.entropy.decoder
 	/// its truncation point information in a 'DecLyrdCBlk' object.
 	/// 
 	/// </summary>
-	/// <seealso cref="EntropyDecoder">
-	/// 
-	/// </seealso>
-	/// <seealso cref="DecLyrdCBlk">
-	/// 
-	/// </seealso>
-	/// <seealso cref="jj2000.j2k.codestream.reader.BitstreamReaderAgent">
-	/// 
-	/// </seealso>
+	/// <seealso cref="EntropyDecoder" />
+	/// <seealso cref="DecLyrdCBlk" />
+	/// <seealso cref="j2k.codestream.reader.BitstreamReaderAgent" />
 	public interface CodedCBlkDataSrcDec:InvWTData
 	{
 		

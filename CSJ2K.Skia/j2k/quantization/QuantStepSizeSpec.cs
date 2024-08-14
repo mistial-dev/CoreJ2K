@@ -50,9 +50,7 @@ namespace CSJ2K.j2k.quantization
 	/// the quantization base normalized step size to use in each tile-component.
 	/// 
 	/// </summary>
-	/// <seealso cref="ModuleSpec">
-	/// 
-	/// </seealso>
+	/// <seealso cref="ModuleSpec" />
 	public sealed class QuantStepSizeSpec:ModuleSpec
 	{
 		

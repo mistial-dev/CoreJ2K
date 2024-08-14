@@ -74,9 +74,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 	/// class.
 	/// 
 	/// </summary>
-	/// <seealso cref="DataBlk">
-	/// 
-	/// </seealso>
+	/// <seealso cref="DataBlk" />
 	public class InvWTFull:InverseWT
 	{
 		
@@ -258,9 +256,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// <returns> The requested DataBlk
 		/// 
 		/// </returns>
-		/// <seealso cref="GetInternCompData">
-		/// 
-		/// </seealso>
+		/// <seealso cref="GetInternCompData" />
 		public override DataBlk GetInternCompData(DataBlk blk, int compIndex)
 		{
 			var tIdx = TileIdx;
@@ -340,9 +336,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// <returns> The requested DataBlk
 		/// 
 		/// </returns>
-		/// <seealso cref="GetCompData">
-		/// 
-		/// </seealso>
+		/// <seealso cref="GetCompData" />
 		public override DataBlk GetCompData(DataBlk blk, int c)
 		{
 			//int j;
@@ -607,9 +601,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// <returns> WT_IMPL_FULL
 		/// 
 		/// </returns>
-		/// <seealso cref="WaveletTransform.WT_IMPL_FULL">
-		/// 
-		/// </seealso>
+		/// <seealso cref="WaveletTransform.WT_IMPL_FULL" />
 		public override int getImplementationType(int c)
 		{
 			return WaveletTransform_Fields.WT_IMPL_FULL;

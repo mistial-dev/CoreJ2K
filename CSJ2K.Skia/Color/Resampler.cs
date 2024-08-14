@@ -16,8 +16,7 @@ namespace CSJ2K.Color
 	/// only handles the case of 2:1 upsampling.
 	/// 
 	/// </summary>
-	/// <seealso cref="jj2000.j2k.colorspace.ColorSpace">
-	/// </seealso>
+	/// <seealso cref="j2k.colorspace.ColorSpace" />
 	/// <version> 	1.0
 	/// </version>
 	/// <author> 	Bruce A. Kern
@@ -374,9 +373,7 @@ namespace CSJ2K.Color
 		/// <returns> The requested DataBlk
 		/// 
 		/// </returns>
-		/// <seealso cref="GetInternCompData">
-		/// 
-		/// </seealso>
+		/// <seealso cref="GetInternCompData" />
 		public override DataBlk GetCompData(DataBlk outblk, int c)
 		{
 			return GetInternCompData(outblk, c);

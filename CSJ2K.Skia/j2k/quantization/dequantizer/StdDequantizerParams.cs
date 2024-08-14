@@ -51,9 +51,7 @@ namespace CSJ2K.j2k.quantization.dequantizer
 	/// parameters from the main header and tile headers.
 	/// 
 	/// </summary>
-	/// <seealso cref="StdDequantizer">
-	/// 
-	/// </seealso>
+	/// <seealso cref="StdDequantizer" />
 	public class StdDequantizerParams:DequantizerParams
 	{
 		/// <summary> Returns the type of the dequantizer for which the parameters are. The
@@ -64,9 +62,7 @@ namespace CSJ2K.j2k.quantization.dequantizer
 		/// are. Always Q_TYPE_SCALAR_DZ.
 		/// 
 		/// </returns>
-		/// <seealso cref="Dequantizer">
-		/// 
-		/// </seealso>
+		/// <seealso cref="Dequantizer" />
 		public override int DequantizerType => QuantizationType_Fields.Q_TYPE_SCALAR_DZ;
 
 		/// <summary> The quantization step "exponent" value, for each resolution level and
@@ -92,9 +88,7 @@ namespace CSJ2K.j2k.quantization.dequantizer
 		/// the exponent of the subband is exp[3][16], not exp[3][0].
 		/// 
 		/// </summary>
-		/// <seealso cref="Subband">
-		/// 
-		/// </seealso>
+		/// <seealso cref="Subband" />
 		public int[][] exp;
 		
 		/// <summary> The quantization step for non-reversible systems, normalized to a
@@ -119,9 +113,7 @@ namespace CSJ2K.j2k.quantization.dequantizer
 		/// of the subband is nStep[3][16], not nStep[3][0].
 		/// 
 		/// </summary>
-		/// <seealso cref="Subband">
-		/// 
-		/// </seealso>
+		/// <seealso cref="Subband" />
 		public float[][] nStep;
 	}
 }

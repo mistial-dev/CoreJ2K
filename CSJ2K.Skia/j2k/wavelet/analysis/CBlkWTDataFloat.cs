@@ -52,9 +52,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 	/// inlined by inlining compilers.
 	/// 
 	/// </summary>
-	/// <seealso cref="CBlkWTData">
-	/// 
-	/// </seealso>
+	/// <seealso cref="CBlkWTData" />
 	public class CBlkWTDataFloat:CBlkWTData
 	{
 		/// <summary> Returns the identifier of this data type, <tt>TYPE_FLOAT</tt>, as
@@ -64,9 +62,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// <returns> The type of data stored. Always <tt>DataBlk.TYPE_FLOAT</tt>
 		/// 
 		/// </returns>
-		/// <seealso cref="DataBlk.TYPE_FLOAT">
-		/// 
-		/// </seealso>
+		/// <seealso cref="DataBlk.TYPE_FLOAT" />
 		public override int DataType => DataBlk.TYPE_FLOAT;
 
 		//UPGRADE_NOTE: Respective javadoc comments were merged.  It should be changed in order to comply with .NET documentation conventions. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1199'"

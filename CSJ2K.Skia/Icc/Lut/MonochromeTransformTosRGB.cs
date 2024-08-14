@@ -22,10 +22,8 @@ namespace CSJ2K.Icc.Lut
 	/// are used to populate the output DataBlk.
 	/// 
 	/// </summary>
-	/// <seealso cref="jj2000.j2k.icc.RestrictedICCProfile">
-	/// </seealso>
-	/// <seealso cref="jj2000.j2k.icc.lut.LookUpTableFP">
-	/// </seealso>
+	/// <seealso cref="j2k.icc.RestrictedICCProfile" />
+	/// <seealso cref="j2k.icc.lut.LookUpTableFP" />
 	/// <version> 	1.0
 	/// </version>
 	/// <author> 	Bruce A. Kern

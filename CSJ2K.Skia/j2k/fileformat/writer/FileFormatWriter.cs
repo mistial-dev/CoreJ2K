@@ -51,9 +51,7 @@ namespace CSJ2K.j2k.fileformat.writer
 	/// fileformat
 	/// 
 	/// </summary>
-	/// <seealso cref="jj2000.j2k.fileformat.reader.FileFormatReader">
-	/// 
-	/// </seealso>
+	/// <seealso cref="j2k.fileformat.reader.FileFormatReader" />
 	public class FileFormatWriter
 	{
 		

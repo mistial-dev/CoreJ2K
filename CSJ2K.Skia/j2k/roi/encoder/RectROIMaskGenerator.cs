@@ -61,15 +61,9 @@ namespace CSJ2K.j2k.roi.encoder
 	/// component.
 	/// 
 	/// </summary>
-	/// <seealso cref="SubbandRectROIMask">
-	/// 
-	/// </seealso>
-	/// <seealso cref="ROIMaskGenerator">
-	/// 
-	/// </seealso>
-	/// <seealso cref="ArbROIMaskGenerator">
-	/// 
-	/// </seealso>
+	/// <seealso cref="SubbandRectROIMask" />
+	/// <seealso cref="ROIMaskGenerator" />
+	/// <seealso cref="ArbROIMaskGenerator" />
 	public class RectROIMaskGenerator:ROIMaskGenerator
 	{
 		

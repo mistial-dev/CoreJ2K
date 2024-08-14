@@ -75,9 +75,7 @@ namespace CSJ2K.j2k.codestream.writer
 		/// last reset(), last restore(), or object creation.
 		/// 
 		/// </exception>
-		/// <seealso cref="getLastBodyLen">
-		/// 
-		/// </seealso>
+		/// <seealso cref="getLastBodyLen" />
 		public virtual byte[] LastBodyBuf
 		{
 			get
@@ -98,9 +96,7 @@ namespace CSJ2K.j2k.codestream.writer
 		/// <returns> The length of the body of last encoded packet, in bytes.
 		/// 
 		/// </returns>
-		/// <seealso cref="getLastBodyBuf">
-		/// 
-		/// </seealso>
+		/// <seealso cref="getLastBodyBuf" />
 		public virtual int LastBodyLen => lblen;
 
 		/// <summary> Returns true if the current packet is writable i.e. should be written.
@@ -1264,9 +1260,7 @@ namespace CSJ2K.j2k.codestream.writer
 		/// can be restored with the restore() method.
 		/// 
 		/// </summary>
-		/// <seealso cref="restore">
-		/// 
-		/// </seealso>
+		/// <seealso cref="restore" />
 		public virtual void  save()
 		{
 			int maxsbi, minsbi;
@@ -1365,9 +1359,7 @@ namespace CSJ2K.j2k.codestream.writer
 		/// IllegalArgumentException is thrown if no state has been saved.
 		/// 
 		/// </summary>
-		/// <seealso cref="save">
-		/// 
-		/// </seealso>
+		/// <seealso cref="save" />
 		public virtual void  restore()
 		{
 			int maxsbi, minsbi;

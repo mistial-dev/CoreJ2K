@@ -48,9 +48,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 	/// holding purpose.
 	/// 
 	/// </summary>
-	/// <seealso cref="ModuleSpec">
-	/// 
-	/// </seealso>
+	/// <seealso cref="ModuleSpec" />
 	public class SynWTFilterSpec:ModuleSpec
 	{
 		
@@ -85,9 +83,7 @@ namespace CSJ2K.j2k.wavelet.synthesis
 		/// <returns> The data type of the filters in this object
 		/// 
 		/// </returns>
-		/// <seealso cref="jj2000.j2k.image.DataBlk">
-		/// 
-		/// </seealso>
+		/// <seealso cref="j2k.image.DataBlk" />
 		public virtual int getWTDataType(int t, int c)
 		{
 			var an = (SynWTFilter[][]) getSpec(t, c);
