@@ -2031,72 +2031,63 @@ namespace CSJ2K.j2k.codestream.reader
 			{
 				lys[c] = new int[((int) decSpec.dls.getTileCompVal(t, c)) + 1];
 			}
-			
-			try
+
+			for (var chg = 0; chg < nChg; chg++)
 			{
-				for (var chg = 0; chg < nChg; chg++)
+					
+				lye = change[chg][1];
+				ress = change[chg][2];
+				rese = change[chg][3];
+				comps = change[chg][4];
+				compe = change[chg][5];
+					
+				switch (change[chg][0])
 				{
-					
-					lye = change[chg][1];
-					ress = change[chg][2];
-					rese = change[chg][3];
-					comps = change[chg][4];
-					compe = change[chg][5];
-					
-					switch (change[chg][0])
-					{
 						
-						case ProgressionType.LY_RES_COMP_POS_PROG: 
-							status = readLyResCompPos(lys, lye, ress, rese, comps, compe);
-							break;
-						
-						case ProgressionType.RES_LY_COMP_POS_PROG: 
-							status = readResLyCompPos(lys, lye, ress, rese, comps, compe);
-							break;
-						
-						case ProgressionType.RES_POS_COMP_LY_PROG: 
-							status = readResPosCompLy(lys, lye, ress, rese, comps, compe);
-							break;
-						
-						case ProgressionType.POS_COMP_RES_LY_PROG: 
-							status = readPosCompResLy(lys, lye, ress, rese, comps, compe);
-							break;
-						
-						case ProgressionType.COMP_POS_RES_LY_PROG: 
-							status = readCompPosResLy(lys, lye, ress, rese, comps, compe);
-							break;
-						
-						default: 
-							throw new ArgumentException("Not recognized " + "progression type");
-						
-					}
-					
-					// Update next first layer index 
-					for (var c = comps; c < compe; c++)
-					{
-						if (c >= lys.Length)
-							continue;
-						for (var r = ress; r < rese; r++)
-						{
-							if (r >= lys[c].Length)
-								continue;
-							lys[c][r] = lye;
-						}
-					}
-					
-					if (status || usePOCQuit)
-					{
+					case ProgressionType.LY_RES_COMP_POS_PROG: 
+						status = readLyResCompPos(lys, lye, ress, rese, comps, compe);
 						break;
+						
+					case ProgressionType.RES_LY_COMP_POS_PROG: 
+						status = readResLyCompPos(lys, lye, ress, rese, comps, compe);
+						break;
+						
+					case ProgressionType.RES_POS_COMP_LY_PROG: 
+						status = readResPosCompLy(lys, lye, ress, rese, comps, compe);
+						break;
+						
+					case ProgressionType.POS_COMP_RES_LY_PROG: 
+						status = readPosCompResLy(lys, lye, ress, rese, comps, compe);
+						break;
+						
+					case ProgressionType.COMP_POS_RES_LY_PROG: 
+						status = readCompPosResLy(lys, lye, ress, rese, comps, compe);
+						break;
+						
+					default: 
+						throw new ArgumentException("Not recognized " + "progression type");
+						
+				}
+					
+				// Update next first layer index 
+				for (var c = comps; c < compe; c++)
+				{
+					if (c >= lys.Length)
+						continue;
+					for (var r = ress; r < rese; r++)
+					{
+						if (r >= lys[c].Length)
+							continue;
+						lys[c][r] = lye;
 					}
 				}
+					
+				if (status || usePOCQuit)
+				{
+					break;
+				}
 			}
-			catch (System.IO.EndOfStreamException e)
-			{
-				// Should never happen. Truncated codestream are normally found by
-				// the class constructor
-				throw;
-			}
-			
+
 			// In truncation mode, update the number of read bytes
 			if (isTruncMode)
 			{
