@@ -56,7 +56,6 @@ namespace CSJ2K.j2k.wavelet.analysis
 	/// </summary>
 	public interface ForwWT:WaveletTransform, ForwWTDataProps
 	{
-		
 		/// <summary> Returns the horizontal analysis wavelet filters used in each level, for
 		/// the specified tile-component. The first element in the array is the
 		/// filter used to obtain the lowest resolution (resolution level 0)
@@ -82,8 +81,8 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// <returns> The horizontal analysis wavelet filters used in each level.
 		/// 
 		/// </returns>
-		AnWTFilter[] getHorAnWaveletFilters(int t, int c);
-		
+		WaveletFilter[] getHorAnWaveletFilters(int t, int c);
+
 		/// <summary> Returns the vertical analysis wavelet filters used in each level, for
 		/// the specified tile-component. The first element in the array is the
 		/// filter used to obtain the lowest resolution (resolution level 0)
@@ -109,7 +108,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// <returns> The vertical analysis wavelet filters used in each level.
 		/// 
 		/// </returns>
-		AnWTFilter[] getVertAnWaveletFilters(int t, int c);
+		WaveletFilter[] getVertAnWaveletFilters(int t, int c);
 		
 		/// <summary> Returns the number of decomposition levels that are applied to obtain
 		/// the LL band, in the specified tile-component. A value of 0 means that

@@ -193,8 +193,8 @@ namespace CSJ2K.j2k.wavelet.analysis
 		public abstract bool isReversible(int param1, int param2);
 		public abstract CBlkWTData getNextInternCodeBlock(int param1, CBlkWTData param2);
 		public abstract int getFixedPoint(int param1);
-		public abstract AnWTFilter[] getHorAnWaveletFilters(int param1, int param2);
-		public abstract AnWTFilter[] getVertAnWaveletFilters(int param1, int param2);
+		public abstract WaveletFilter[] getHorAnWaveletFilters(int param1, int param2);
+		public abstract WaveletFilter[] getVertAnWaveletFilters(int param1, int param2);
 		public abstract SubbandAn getAnSubbandTree(int param1, int param2);
 		public abstract int getDecompLevels(int param1, int param2);
 		public abstract CBlkWTData getNextCodeBlock(int param1, CBlkWTData param2);

@@ -229,7 +229,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		{
 			return WT_DECOMP_DYADIC;
 		}
-		
+
 		/// <summary> Returns the horizontal analysis wavelet filters used in each level, for
 		/// the specified component and tile. The first element in the array is the
 		/// filter used to obtain the lowest resolution (resolution level 0)
@@ -255,11 +255,11 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// <returns> The horizontal analysis wavelet filters used in each level.
 		/// 
 		/// </returns>
-		public override AnWTFilter[] getHorAnWaveletFilters(int t, int c)
+		public override WaveletFilter[] getHorAnWaveletFilters(int t, int c)
 		{
 			return filters.getHFilters(t, c);
 		}
-		
+
 		/// <summary> Returns the vertical analysis wavelet filters used in each level, for
 		/// the specified component and tile. The first element in the array is the
 		/// filter used to obtain the lowest resolution (resolution level 0)
@@ -285,7 +285,7 @@ namespace CSJ2K.j2k.wavelet.analysis
 		/// <returns> The vertical analysis wavelet filters used in each level.
 		/// 
 		/// </returns>
-		public override AnWTFilter[] getVertAnWaveletFilters(int t, int c)
+		public override WaveletFilter[] getVertAnWaveletFilters(int t, int c)
 		{
 			return filters.getVFilters(t, c);
 		}
