@@ -351,7 +351,7 @@ namespace CSJ2K.j2k
 			{
 				throw new InvalidOperationException("Illegal use of ModuleSpec class");
 			}
-			if (compDef == null || compDef[c] == null)
+			if (compDef?[c] == null)
 			{
 				return getDefault();
 			}
@@ -408,14 +408,8 @@ namespace CSJ2K.j2k
 			{
 				throw new InvalidOperationException("Illegal use of ModuleSpec class");
 			}
-			if (tileDef == null || tileDef[t] == null)
-			{
-				return getDefault();
-			}
-			else
-			{
-				return tileDef[t];
-			}
+
+			return tileDef?[t] == null ? getDefault() : tileDef[t];
 		}
 		
 		/// <summary> Sets value for specified tile-component.
@@ -541,7 +535,7 @@ namespace CSJ2K.j2k
 		/// </returns>
 		public virtual bool isCompSpecified(int c)
 		{
-			return compDef != null && compDef[c] != null;
+			return compDef?[c] != null;
 		}
 		
 		/// <summary> Whether or not specifications have been entered for the given tile.
@@ -555,7 +549,7 @@ namespace CSJ2K.j2k
 		/// </returns>
 		public virtual bool isTileSpecified(int t)
 		{
-			return tileDef != null && tileDef[t] != null;
+			return tileDef?[t] != null;
 		}
 		
 		/// <summary> Whether or not a tile-component specification has been defined
@@ -572,7 +566,7 @@ namespace CSJ2K.j2k
 		/// </returns>
 		public virtual bool isTileCompSpecified(int t, int c)
 		{
-			return tileCompVal != null && tileCompVal[$"t{t}c{c}"] != null;
+			return tileCompVal?[$"t{t}c{c}"] != null;
 		}
 
 		/// <summary> This method is responsible for parsing tile indexes set and component

@@ -100,7 +100,7 @@ namespace CSJ2K.j2k.codestream.reader
 		/// </param>
 		public virtual int getNumTileParts(int t)
 		{
-			if (firstPackOff == null || firstPackOff[t] == null)
+			if (firstPackOff?[t] == null)
 			{
 				throw new InvalidOperationException($"Tile {t} not found in input codestream.");
 			}

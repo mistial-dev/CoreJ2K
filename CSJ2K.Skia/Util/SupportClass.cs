@@ -340,7 +340,7 @@ internal class SupportClass
 		/// Position over the string
 		private long currentPos = 0;
 
-		/// Include demiliters in the results.
+		/// Include delimiters in the results.
 		private bool includeDelims = false;
 
 		/// Char representation of the String to tokenize.

@@ -264,7 +264,7 @@ namespace CSJ2K.j2k.roi
 			cblk = src.getInternCodeBlock(c, m, n, sb, cblk);
 			
 			// If there are no ROIs in the tile, Or if we already got all blocks
-			var noRoiInTile = false || (mss == null || mss.getTileCompVal(TileIdx, c) == null);
+			var noRoiInTile = false || mss?.getTileCompVal(TileIdx, c) == null;
 
 			if (noRoiInTile || cblk == null)
 			{

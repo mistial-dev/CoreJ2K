@@ -158,7 +158,7 @@ namespace CSJ2K.j2k.codestream.reader
 				for (var i = 0; i < len.Length; i++)
 				{
 					string_Renamed += ("\tl:" + i + ", start:" + off[i] + ", len:" + len[i] + ", ntp:" + ntp[i] + ", pktIdx=" + pktIdx[i]);
-					if (segLen != null && segLen[i] != null)
+					if (segLen?[i] != null)
 					{
 						string_Renamed += " { ";
 						for (var j = 0; j < segLen[i].Length; j++)
