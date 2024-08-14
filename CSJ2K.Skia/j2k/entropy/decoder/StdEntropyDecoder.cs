@@ -182,7 +182,7 @@ namespace CSJ2K.j2k.entropy.decoder
 		
 		/// <summary>The initial states for the MQ coder </summary>
 		//UPGRADE_NOTE: Final was removed from the declaration of 'MQ_INIT'. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
-		private static readonly int[] MQ_INIT = new int[]{46, 3, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		private static readonly int[] MQ_INIT = {46, 3, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		
 		/// <summary>The 4 bits of the error resilience segmentation symbol (decimal 10,
 		/// which is binary sequence 1010) 

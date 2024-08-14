@@ -234,17 +234,17 @@ namespace CSJ2K.j2k.entropy.encoder
 		
 		/// <summary>The initial states for the MQ coder </summary>
 		//UPGRADE_NOTE: Final was removed from the declaration of 'MQ_INIT'. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
-		private static readonly int[] MQ_INIT = new int[]{46, 3, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		private static readonly int[] MQ_INIT = {46, 3, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		
 		/// <summary>The 4 bits of the error resilience segmentation symbol (1010) </summary>
 		//UPGRADE_NOTE: Final was removed from the declaration of 'SEG_SYMBOLS'. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
-		private static readonly int[] SEG_SYMBOLS = new int[]{1, 0, 1, 0};
+		private static readonly int[] SEG_SYMBOLS = {1, 0, 1, 0};
 		
 		/// <summary>The 4 contexts for the error resilience segmentation symbol (always
 		/// the UNIFORM context, UNIF_CTXT) 
 		/// </summary>
 		//UPGRADE_NOTE: Final was removed from the declaration of 'SEG_SYMB_CTXTS '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
-		private static readonly int[] SEG_SYMB_CTXTS = new int[]{UNIF_CTXT, UNIF_CTXT, UNIF_CTXT, UNIF_CTXT};
+		private static readonly int[] SEG_SYMB_CTXTS = {UNIF_CTXT, UNIF_CTXT, UNIF_CTXT, UNIF_CTXT};
 		
 		/// <summary> The state array for each thread. Each element of the state array stores
 		/// the state of two coefficients. The lower 16 bits store the state of a

@@ -186,11 +186,11 @@ namespace CSJ2K.j2k.wavelet.analysis
 
 		/// <summary>The low-pass synthesis filter of the 9x7 wavelet transform </summary>
 		//UPGRADE_NOTE: Final was removed from the declaration of 'LPSynthesisFilter'. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
-		private static readonly float[] LPSynthesisFilter = new float[]{- 0.091272f, - 0.057544f, 0.591272f, 1.115087f, 0.591272f, - 0.057544f, - 0.091272f};
+		private static readonly float[] LPSynthesisFilter = {- 0.091272f, - 0.057544f, 0.591272f, 1.115087f, 0.591272f, - 0.057544f, - 0.091272f};
 		
 		/// <summary>The high-pass synthesis filter of the 9x7 wavelet transform </summary>
 		//UPGRADE_NOTE: Final was removed from the declaration of 'HPSynthesisFilter'. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
-		private static readonly float[] HPSynthesisFilter = new float[]{0.026749f, 0.016864f, - 0.078223f, - 0.266864f, 0.602949f, - 0.266864f, - 0.078223f, 0.016864f, 0.026749f};
+		private static readonly float[] HPSynthesisFilter = {0.026749f, 0.016864f, - 0.078223f, - 0.266864f, 0.602949f, - 0.266864f, - 0.078223f, 0.016864f, 0.026749f};
 		
 		/// <summary>The value of the first lifting step coefficient </summary>
 		public const float ALPHA = - 1.586134342f;

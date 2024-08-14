@@ -152,7 +152,7 @@ namespace CSJ2K.j2k.image.forwcomptransf
 		
 		/// <summary>The list of parameters that is accepted by the forward component
 		/// transformation module. Options start with an 'M'.</summary>
-		private static readonly string[][] pinfo = new string[][]{new string[]{"Mct", "[<tile index>] [on|off] ...", "Specifies in which tiles to use a multiple component transform. " + "Note that this multiple component transform can only be applied " + "in tiles that contain at least three components and whose " + "components are processed with the same wavelet filters and " + "quantization type. " + "If the wavelet transform is reversible (w5x3 filter), the " + "Reversible Component Transformation (RCT) is applied. If not " + "(w9x7 filter), the Irreversible Component Transformation (ICT)" + " is used.", null}};
+		private static readonly string[][] pinfo = {new string[]{"Mct", "[<tile index>] [on|off] ...", "Specifies in which tiles to use a multiple component transform. " + "Note that this multiple component transform can only be applied " + "in tiles that contain at least three components and whose " + "components are processed with the same wavelet filters and " + "quantization type. " + "If the wavelet transform is reversible (w5x3 filter), the " + "Reversible Component Transformation (RCT) is applied. If not " + "(w9x7 filter), the Irreversible Component Transformation (ICT)" + " is used.", null}};
 		
 		/// <summary> Returns the position of the fixed point in the specified
 		/// component. This is the position of the least significant integral
