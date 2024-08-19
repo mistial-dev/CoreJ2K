@@ -21,7 +21,7 @@ dotnet_csproj:
   package_version: '{version}'
 
 build:
-  project: CSJ2K.sln
+  project: CoreJ2K.sln
   parallel: true
   verbosity: minimal
   publish_nuget: true
@@ -32,14 +32,14 @@ cache:
   - '%LocalAppData%\NuGet\Cache'
 
 before_build:
-  - nuget restore CSJ2K.sln
+  - nuget restore CoreJ2K.sln
     
 deploy:
   - provider: NuGet
     name: nuget_release
     api_key:
       secure: f3xILJA18TcwhGA0Xe+VDpLUwOi5aIRZl0vv0jJv0XkDfISTz0DxhzZaCUiDkq5a
-    artifact: /.*CSJ2K.Skia.*(\.|\.s)nupkg/
+    artifact: /.*CoreJ2K.*(\.|\.s)nupkg/
     skip_symbols: false
     draft: false
     prerelease: false
@@ -51,7 +51,7 @@ deploy:
     tag: $(appveyor_build_version)
     auth_token:
       secure: KPXQ74CJ+1aD3/H12JeVwMedPvcyr4aL9O/CFL8sGJHN/WZCYjKw92m8CodgO90D
-    artifact: /.*CSJ2K.Skia.*(\.|\.s)nupkg/
+    artifact: /.*CoreJ2K.*(\.|\.s)nupkg/
     skip_symbols: false
     draft: false
     prerelease: false

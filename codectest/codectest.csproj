@@ -30,7 +30,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CSJ2K.Skia\CSJ2K.Skia.csproj" />
+    <ProjectReference Include="..\CoreJ2K\CoreJ2K.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="SkiaSharp" Version="2.88.8" />

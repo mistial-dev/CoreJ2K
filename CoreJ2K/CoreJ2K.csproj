@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <AssemblyName>CSJ2K</AssemblyName>
-    <PackageId>CSJ2K.Skia</PackageId>
+    <AssemblyName>CoreJ2K</AssemblyName>
+    <PackageId>CoreJ2K</PackageId>
     <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     <DefineConstants>$(DefineConstants);NETSTANDARD</DefineConstants>
@@ -9,9 +9,6 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
-  <ItemGroup>
-    <Compile Include="..\CSJ2K\**\*.cs" Exclude="bin\**;obj\**;**\*.xproj;packages\**" />
-  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="SkiaSharp" Version="2.88.8" />
   </ItemGroup>
