@@ -2,7 +2,6 @@
 // Licensed under the BSD 3-Clause License.
 
 using System.Linq;
-using SkiaSharp;
 
 namespace CSJ2K
 {
@@ -375,41 +374,9 @@ namespace CSJ2K
             return imgsrc;
         }
 
-        public static BlkImgDataSrc CreateEncodableSource(SKBitmap bitmap)
-        {
-            if (bitmap == null)
-            {
-                throw new ArgumentNullException(nameof(bitmap));
-            }
-            
-            BlkImgDataSrc imgsrc;
-            
-            var imageReaders = new List<ImgReader> { new ImgReaderSkia(bitmap) };
-            imgsrc = imageReaders[0];
-            return imgsrc;
-        }
-        
-        public static BlkImgDataSrc CreateEncodableSource(SKPixmap pixmap)
-        {
-            if (pixmap == null)
-            {
-                throw new ArgumentNullException(nameof(pixmap));
-            }
-            
-            BlkImgDataSrc imgsrc;
-            
-            var imageReaders = new List<ImgReader> { new ImgReaderSkia(pixmap) };
-            imgsrc = imageReaders[0];
-            return imgsrc;
-        }
-
         public static byte[] ToBytes(object imageObject, ParameterList parameters = null)
         {
-            // HACK: Don't know why ImageFactory.ToPortableImageSource() doesn't work.
-            // Don't really care at this point.
-            var imgsrc = (imageObject is SKBitmap bitmap) 
-                ? CreateEncodableSource(bitmap) 
-                : ImageFactory.ToPortableImageSource(imageObject);
+            var imgsrc = ImageFactory.ToPortableImageSource(imageObject);
             return ToBytes(imgsrc, parameters);
         }
 

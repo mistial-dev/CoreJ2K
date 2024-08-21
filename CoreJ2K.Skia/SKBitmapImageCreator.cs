@@ -3,6 +3,8 @@
 // Licensed under the BSD 3-Clause License.
 
 using CSJ2K.j2k.image;
+using CSJ2K.j2k.image.input;
+using SkiaSharp;
 
 namespace CSJ2K.Util
 {
@@ -34,7 +36,15 @@ namespace CSJ2K.Util
 
         public BlkImgDataSrc ToPortableImageSource(object imageObject)
         {
-            return SKBitmapImageSource.Create(imageObject);
+            switch (imageObject)
+            {
+                case SKBitmap bmp:
+                    return new ImgReaderSkia(bmp);
+                case SKPixmap pmp:
+                    return new ImgReaderSkia(pmp);
+                default:
+                    return null;
+            }
         }
 
         #endregion

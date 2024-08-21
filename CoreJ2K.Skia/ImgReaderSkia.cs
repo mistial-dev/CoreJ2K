@@ -2,7 +2,7 @@
  *
  * Class:                   ImgReaderSkia
  *
- * Description:             Image writer for SKBitmap
+ * Description:             Image reader for SKBitmap
  *
  **/
 
@@ -13,7 +13,7 @@ namespace CSJ2K.j2k.image.input
 {
     public class ImgReaderSkia:ImgReader
     {
-        /// <summary>DC offset value used when reading image </summary>
+        /// <summary>DC offset value used when reading image</summary>
         private const int DC_OFFSET = 128;
         
         /// <summary>Buffer for the components of each pixel(in the current block)</summary>

@@ -30,6 +30,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CoreJ2K.Skia\CoreJ2K.Skia.csproj" />
     <ProjectReference Include="..\CoreJ2K\CoreJ2K.csproj" />
   </ItemGroup>
   <ItemGroup>

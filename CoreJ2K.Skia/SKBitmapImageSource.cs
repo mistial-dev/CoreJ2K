@@ -29,12 +29,6 @@ namespace CSJ2K.Util
 
         #region METHODS
 
-
-        internal static BlkImgDataSrc Create(object imageObject)
-        {
-            return !(imageObject is SKBitmap bitmap) ? null : new SKBitmapImageSource(bitmap);
-        }
-
         public static int[][] GetComponents(SKBitmap image)
         {
             var w = image.Width;
