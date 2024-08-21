@@ -10,4 +10,9 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
+  <ItemGroup>
+    <None Include="..\README.md" Pack="true" PackagePath="\" />
+    <None Include="..\LICENSE" Pack="true" PackagePath="\" />
+    <None Include="..\COPYRIGHT-JJ2000-5.1" Pack="true" PackagePath="\" />
+  </ItemGroup>
 </Project>

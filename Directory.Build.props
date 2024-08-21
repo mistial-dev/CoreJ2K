@@ -9,6 +9,7 @@
 	<PropertyGroup>
 		<PackageVersion>1.0.0.0</PackageVersion>
 		<PackageLicenseExpression>BSD-3-Clause</PackageLicenseExpression>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageProjectUrl>https://github.com/cinderblocks/csj2k</PackageProjectUrl>
 		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
 		<PackageTags>jpeg2000 j2k jpm jp2 codec skia image-processing wavelet-compression .NETStandard</PackageTags>
