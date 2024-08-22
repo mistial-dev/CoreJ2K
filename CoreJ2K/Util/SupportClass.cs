@@ -10,8 +10,8 @@
 //
 
 using System;
-using CSJ2K.Util;
-using CSJ2K.j2k.util;
+using CoreJ2K.Util;
+using CoreJ2K.j2k.util;
 
 /// <summary>
 	/// This interface should be implemented by any class whose instances are intended 

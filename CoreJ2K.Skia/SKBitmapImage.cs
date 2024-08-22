@@ -5,7 +5,7 @@
 using System.Runtime.InteropServices;
 using SkiaSharp;
 
-namespace CSJ2K.Util
+namespace CoreJ2K.Util
 {
     internal class SKBitmapImage : ImageBase<SKBitmap>
     {

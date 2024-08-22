@@ -45,7 +45,7 @@
 * 
 */
 using System;
-namespace CSJ2K.j2k.util
+namespace CoreJ2K.j2k.util
 {
 	
 	/// <summary> Thrown to indicate that the application has attempted to parse a

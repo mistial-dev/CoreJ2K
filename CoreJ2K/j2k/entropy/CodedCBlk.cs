@@ -41,7 +41,7 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 
-namespace CSJ2K.j2k.entropy
+namespace CoreJ2K.j2k.entropy
 {
 	
 	/// <summary> This is the generic class to store coded (compressed) code-block. It stores

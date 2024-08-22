@@ -42,9 +42,10 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 using System;
-using CSJ2K.Util;
-using CSJ2K.j2k.util;
-namespace CSJ2K.j2k.image.output
+using CoreJ2K.j2k.util;
+using CoreJ2K.Util;
+
+namespace CoreJ2K.j2k.image.output
 {
 	
 	/// <summary> This class writes a component from an image in 8 bit unsigned data to a

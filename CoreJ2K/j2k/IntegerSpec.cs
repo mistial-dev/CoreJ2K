@@ -41,9 +41,9 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 using System;
-using CSJ2K.j2k.util;
+using CoreJ2K.j2k.util;
 
-namespace CSJ2K.j2k
+namespace CoreJ2K.j2k
 {
 	
 	/// <summary> This class extends ModuleSpec and is responsible of Integer specifications

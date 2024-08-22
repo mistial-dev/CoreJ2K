@@ -41,9 +41,9 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 
-using CSJ2K.j2k.wavelet;
+using CoreJ2K.j2k.wavelet;
 
-namespace CSJ2K.j2k.roi.encoder
+namespace CoreJ2K.j2k.roi.encoder
 {
 	
 	/// <summary> This class describes the ROI mask for a single subband. Each object of the

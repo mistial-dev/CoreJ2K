@@ -43,7 +43,7 @@
 * */
 using System;
 
-namespace CSJ2K.j2k.wavelet.synthesis
+namespace CoreJ2K.j2k.wavelet.synthesis
 {
 	
 	/// <summary> This class represents a subband in a tree structure that describes the

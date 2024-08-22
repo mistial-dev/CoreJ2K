@@ -44,7 +44,7 @@
 * 
 */
 
-namespace CSJ2K.j2k.fileformat
+namespace CoreJ2K.j2k.fileformat
 {
 	
 	

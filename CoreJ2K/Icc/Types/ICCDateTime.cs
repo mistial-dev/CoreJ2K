@@ -8,7 +8,7 @@
 /// </summary>
 using System;
 
-namespace CSJ2K.Icc.Types
+namespace CoreJ2K.Icc.Types
 {
 	
 	/// <summary> Date Time format for tags

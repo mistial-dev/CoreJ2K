@@ -42,7 +42,7 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 
-namespace CSJ2K.j2k
+namespace CoreJ2K.j2k
 {
 	
 	/// <summary> This class holds general JJ2000 information, such as the version number,

@@ -41,11 +41,11 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 
-using CSJ2K.j2k.quantization.dequantizer;
-using CSJ2K.j2k.wavelet.synthesis;
-using CSJ2K.j2k.image;
+using CoreJ2K.j2k.image;
+using CoreJ2K.j2k.quantization.dequantizer;
+using CoreJ2K.j2k.wavelet.synthesis;
 
-namespace CSJ2K.j2k.entropy.decoder
+namespace CoreJ2K.j2k.entropy.decoder
 {
 	
 	/// <summary> This is the abstract class from which all entropy decoders must

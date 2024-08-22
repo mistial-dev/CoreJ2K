@@ -41,10 +41,10 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 using System;
-using CSJ2K.j2k.quantization;
-using CSJ2K.j2k.util;
+using CoreJ2K.j2k.quantization;
+using CoreJ2K.j2k.util;
 
-namespace CSJ2K.j2k.wavelet.analysis
+namespace CoreJ2K.j2k.wavelet.analysis
 {
 	
 	/// <summary> This class extends ModuleSpec class for analysis filters specification

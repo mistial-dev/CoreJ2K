@@ -7,7 +7,7 @@
 /// ***************************************************************************
 /// </summary>
 using System;
-namespace CSJ2K.Icc.Lut
+namespace CoreJ2K.Icc.Lut
 {
 	
 	/// <summary> Thrown by MatrixBasedTransformTosRGB

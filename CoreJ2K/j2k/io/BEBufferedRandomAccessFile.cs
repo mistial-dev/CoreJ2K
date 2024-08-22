@@ -42,7 +42,7 @@
 * */
 using System;
 
-namespace CSJ2K.j2k.io
+namespace CoreJ2K.j2k.io
 {
 	using System.IO;
 

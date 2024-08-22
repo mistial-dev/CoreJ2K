@@ -7,7 +7,7 @@
 /// ***************************************************************************
 /// </summary>
 
-namespace CSJ2K.Icc
+namespace CoreJ2K.Icc
 {
 	
 	/// <summary> This exception is thrown when an image contains no icc profile.

@@ -41,13 +41,13 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 
-using CSJ2K.j2k.quantization.quantizer;
-using CSJ2K.j2k.wavelet.analysis;
-using CSJ2K.j2k.wavelet;
-using CSJ2K.j2k.image;
-using CSJ2K.j2k.util;
+using CoreJ2K.j2k.image;
+using CoreJ2K.j2k.quantization.quantizer;
+using CoreJ2K.j2k.util;
+using CoreJ2K.j2k.wavelet;
+using CoreJ2K.j2k.wavelet.analysis;
 
-namespace CSJ2K.j2k.entropy.encoder
+namespace CoreJ2K.j2k.entropy.encoder
 {
 	
 	/// <summary> This abstract class provides the general interface for block-based entropy

@@ -44,8 +44,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using CSJ2K.j2k.wavelet;
-namespace CSJ2K.j2k.codestream
+using CoreJ2K.j2k.wavelet;
+
+namespace CoreJ2K.j2k.codestream
 {
 	
 	/// <summary> Classe that holds information found in the marker segments of the main and

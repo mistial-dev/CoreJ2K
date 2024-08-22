@@ -44,7 +44,7 @@
 * 
 */
 
-namespace CSJ2K.j2k.wavelet
+namespace CoreJ2K.j2k.wavelet
 {
 	
 	/// <summary> This is the generic class from which the ones that hold the analysis or

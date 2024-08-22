@@ -41,9 +41,9 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 using System;
-using CSJ2K.j2k.util;
+using CoreJ2K.j2k.util;
 
-namespace CSJ2K.j2k.codestream.writer
+namespace CoreJ2K.j2k.codestream.writer
 {
 	
 	/// <summary> This class implements the tag tree encoder. A tag tree codes a 2D matrix of

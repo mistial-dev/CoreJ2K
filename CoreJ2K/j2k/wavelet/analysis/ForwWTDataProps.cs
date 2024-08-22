@@ -42,9 +42,9 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 
-using CSJ2K.j2k.image;
+using CoreJ2K.j2k.image;
 
-namespace CSJ2K.j2k.wavelet.analysis
+namespace CoreJ2K.j2k.wavelet.analysis
 {
 	
 	/// <summary> This interface extends the ImgData interface with methods that are

@@ -41,8 +41,9 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 
-using CSJ2K.j2k.io;
-namespace CSJ2K.j2k.codestream.reader
+using CoreJ2K.j2k.io;
+
+namespace CoreJ2K.j2k.codestream.reader
 {
 	
 	/// <summary> This class provides a bit based reading facility from a byte based one,

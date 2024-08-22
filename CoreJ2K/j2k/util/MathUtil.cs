@@ -41,7 +41,7 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 using System;
-namespace CSJ2K.j2k.util
+namespace CoreJ2K.j2k.util
 {
 	
 	/// <summary> This class contains a collection of utility methods fro mathematical

@@ -42,9 +42,9 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 
-using CSJ2K.j2k.image;
+using CoreJ2K.j2k.image;
 
-namespace CSJ2K.j2k.wavelet.synthesis
+namespace CoreJ2K.j2k.wavelet.synthesis
 {
 	
 	/// <summary> This abstract class defines methods to transfer wavelet data in a

@@ -44,7 +44,7 @@
 
 using System.Linq;
 
-namespace CSJ2K.j2k.entropy.decoder
+namespace CoreJ2K.j2k.entropy.decoder
 {
 	
 	/// <summary> This class stores coded (compressed) code-blocks that are organized in

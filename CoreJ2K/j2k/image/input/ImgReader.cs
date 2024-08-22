@@ -42,7 +42,7 @@
 
 using System;
 
-namespace CSJ2K.j2k.image.input
+namespace CoreJ2K.j2k.image.input
 {
 	
 	/// <summary> This is the generic interface to be implemented by all image file (or other

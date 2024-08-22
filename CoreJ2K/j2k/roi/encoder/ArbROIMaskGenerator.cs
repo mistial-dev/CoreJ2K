@@ -41,12 +41,12 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 using System;
-using CSJ2K.j2k.quantization.quantizer;
-using CSJ2K.j2k.image.input;
-using CSJ2K.j2k.wavelet;
-using CSJ2K.j2k.image;
+using CoreJ2K.j2k.image;
+using CoreJ2K.j2k.image.input;
+using CoreJ2K.j2k.quantization.quantizer;
+using CoreJ2K.j2k.wavelet;
 
-namespace CSJ2K.j2k.roi.encoder
+namespace CoreJ2K.j2k.roi.encoder
 {
 	
 	/// <summary> This class generates the ROI bit-mask when, at least, one ROI is not

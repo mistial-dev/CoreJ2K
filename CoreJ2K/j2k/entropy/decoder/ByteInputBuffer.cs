@@ -44,7 +44,7 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 using System;
-namespace CSJ2K.j2k.entropy.decoder
+namespace CoreJ2K.j2k.entropy.decoder
 {
 	
 	/// <summary> This class provides a byte input facility from byte buffers. It is similar

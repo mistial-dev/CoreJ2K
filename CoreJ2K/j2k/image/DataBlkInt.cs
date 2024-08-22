@@ -41,7 +41,7 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 using System;
-namespace CSJ2K.j2k.image
+namespace CoreJ2K.j2k.image
 {
 	
 	/// <summary> This is an implementation of the <tt>DataBlk</tt> interface for signed 32

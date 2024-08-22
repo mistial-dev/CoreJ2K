@@ -41,8 +41,9 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 
-using CSJ2K.j2k.image;
-namespace CSJ2K.j2k.wavelet.analysis
+using CoreJ2K.j2k.image;
+
+namespace CoreJ2K.j2k.wavelet.analysis
 {
 	
 	/// <summary> This is an implementation of the 'CBlkWTData' abstract class for 32 bit

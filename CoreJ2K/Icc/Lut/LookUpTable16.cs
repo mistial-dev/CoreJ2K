@@ -7,8 +7,10 @@
 /// ***************************************************************************
 /// </summary>
 using System;
-using ICCCurveType = CSJ2K.Icc.Tags.ICCCurveType;
-namespace CSJ2K.Icc.Lut
+using ICCCurveType = CoreJ2K.Icc.Tags.ICCCurveType;
+using Tags_ICCCurveType = CoreJ2K.Icc.Tags.ICCCurveType;
+
+namespace CoreJ2K.Icc.Lut
 {
 	
 	/// <summary> Toplevel class for a short [] lut.
@@ -75,7 +77,7 @@ namespace CSJ2K.Icc.Lut
 		/// </param>
 		/// <returns> the lookup table
 		/// </returns>
-		public static LookUpTable16 createInstance(ICCCurveType curve, int dwNumInput, int dwMaxOutput)
+		public static LookUpTable16 createInstance(Tags_ICCCurveType curve, int dwNumInput, int dwMaxOutput)
 		{
 			
 			if (curve.count == 1)
@@ -102,7 +104,7 @@ namespace CSJ2K.Icc.Lut
 		/// </param>
 		/// <param name="dwMaxOutput">max output value of the lut
 		/// </param>
-		protected internal LookUpTable16(ICCCurveType curve, int dwNumInput, int dwMaxOutput):base(curve, dwNumInput)
+		protected internal LookUpTable16(Tags_ICCCurveType curve, int dwNumInput, int dwMaxOutput):base(curve, dwNumInput)
 		{
 			this.dwMaxOutput = dwMaxOutput;
 			lut = new short[dwNumInput];

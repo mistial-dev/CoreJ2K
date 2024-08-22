@@ -1,4 +1,4 @@
-namespace CSJ2K.Icc.Tags
+namespace CoreJ2K.Icc.Tags
 {
     public class ICCSignatureType : ICCTag
     {

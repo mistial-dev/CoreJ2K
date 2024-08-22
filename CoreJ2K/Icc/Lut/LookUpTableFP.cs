@@ -7,8 +7,10 @@
 /// ***************************************************************************
 /// </summary>
 
-using ICCCurveType = CSJ2K.Icc.Tags.ICCCurveType;
-namespace CSJ2K.Icc.Lut
+using ICCCurveType = CoreJ2K.Icc.Tags.ICCCurveType;
+using Tags_ICCCurveType = CoreJ2K.Icc.Tags.ICCCurveType;
+
+namespace CoreJ2K.Icc.Lut
 {
 	
 	/// <summary> Toplevel class for a float [] lut.
@@ -33,7 +35,7 @@ namespace CSJ2K.Icc.Lut
 		/// <returns> the lookup table
 		/// </returns>
 		
-		public static LookUpTableFP createInstance(ICCCurveType curve, int dwNumInput)
+		public static LookUpTableFP createInstance(Tags_ICCCurveType curve, int dwNumInput)
 		{
 			
 			if (curve.nEntries == 1)
@@ -47,7 +49,7 @@ namespace CSJ2K.Icc.Lut
 		/// </param>
 		/// <param name="dwMaxOutput">max output value of the lut
 		/// </param>
-		protected internal LookUpTableFP(ICCCurveType curve, int dwNumInput):base(curve, dwNumInput)
+		protected internal LookUpTableFP(Tags_ICCCurveType curve, int dwNumInput):base(curve, dwNumInput)
 		{
 			lut = new float[dwNumInput];
 		}

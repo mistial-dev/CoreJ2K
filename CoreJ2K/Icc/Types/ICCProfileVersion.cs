@@ -7,7 +7,7 @@
 /// ***************************************************************************
 /// </summary>
 
-namespace CSJ2K.Icc.Types
+namespace CoreJ2K.Icc.Types
 {
 	
 	/// <summary> This class describes the ICCProfile Version as contained in

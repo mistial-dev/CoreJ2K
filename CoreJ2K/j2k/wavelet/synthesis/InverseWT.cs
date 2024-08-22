@@ -42,10 +42,10 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 
-using CSJ2K.j2k.decoder;
-using CSJ2K.j2k.image;
+using CoreJ2K.j2k.decoder;
+using CoreJ2K.j2k.image;
 
-namespace CSJ2K.j2k.wavelet.synthesis
+namespace CoreJ2K.j2k.wavelet.synthesis
 {
 
     /// <summary> This abstract class extends the WaveletTransform one with the specifics of

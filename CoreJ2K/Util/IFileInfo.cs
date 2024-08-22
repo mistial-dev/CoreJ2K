@@ -1,4 +1,4 @@
-﻿namespace CSJ2K.Util
+﻿namespace CoreJ2K.Util
 {
 	public interface IFileInfo
 	{

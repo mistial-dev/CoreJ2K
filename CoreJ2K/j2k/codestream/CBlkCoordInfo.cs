@@ -41,8 +41,9 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 
-using CSJ2K.j2k.image;
-namespace CSJ2K.j2k.codestream
+using CoreJ2K.j2k.image;
+
+namespace CoreJ2K.j2k.codestream
 {
 	
 	/// <summary> This class is used to store the coordinates of code-blocks.

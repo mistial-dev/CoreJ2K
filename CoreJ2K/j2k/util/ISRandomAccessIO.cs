@@ -42,8 +42,9 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 using System;
-using CSJ2K.j2k.io;
-namespace CSJ2K.j2k.util
+using CoreJ2K.j2k.io;
+
+namespace CoreJ2K.j2k.util
 {
 	
 	/// <summary> This class implements a wrapper to turn an InputStream into a

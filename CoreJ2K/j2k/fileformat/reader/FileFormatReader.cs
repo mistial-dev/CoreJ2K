@@ -42,10 +42,11 @@
 * */
 using System;
 using System.Collections.Generic;
-using CSJ2K.j2k.codestream;
-using CSJ2K.j2k.util;
-using CSJ2K.j2k.io;
-namespace CSJ2K.j2k.fileformat.reader
+using CoreJ2K.j2k.codestream;
+using CoreJ2K.j2k.io;
+using CoreJ2K.j2k.util;
+
+namespace CoreJ2K.j2k.fileformat.reader
 {
 	
 	/// <summary> This class reads the file format wrapper that may or may not exist around a

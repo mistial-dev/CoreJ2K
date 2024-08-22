@@ -42,10 +42,10 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 using System;
-using CSJ2K.Util;
-using CSJ2K.j2k.io;
+using CoreJ2K.j2k.io;
+using CoreJ2K.Util;
 
-namespace CSJ2K.j2k.image.input
+namespace CoreJ2K.j2k.image.input
 {
 	
 	/// <summary> This class extends the ImgReader abstract class for reading PGX files. PGX

@@ -41,7 +41,7 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 
-namespace CSJ2K.j2k.codestream.writer
+namespace CoreJ2K.j2k.codestream.writer
 {
 	
 	/// <summary> This class implements a CodestreamWriter for Java streams. The streams can

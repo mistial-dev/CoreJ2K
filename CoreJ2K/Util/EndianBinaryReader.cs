@@ -2,7 +2,7 @@ using System;
 using System.Text;
 using System.IO;
 
-namespace CSJ2K.Util
+namespace CoreJ2K.Util
 {
     internal class EndianBinaryReader : BinaryReader
     {

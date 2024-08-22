@@ -7,8 +7,10 @@
 /// ***************************************************************************
 /// </summary>
 using System;
-using ICCCurveType = CSJ2K.Icc.Tags.ICCCurveType;
-namespace CSJ2K.Icc.Lut
+using ICCCurveType = CoreJ2K.Icc.Tags.ICCCurveType;
+using Tags_ICCCurveType = CoreJ2K.Icc.Tags.ICCCurveType;
+
+namespace CoreJ2K.Icc.Lut
 {
 	
 	/// <summary> Class Description
@@ -24,11 +26,11 @@ namespace CSJ2K.Icc.Lut
 		
 		internal double dfE = - 1;
 		
-		public LookUpTableFPGamma(ICCCurveType curve, int dwNumInput):base(curve, dwNumInput)
+		public LookUpTableFPGamma(Tags_ICCCurveType curve, int dwNumInput):base(curve, dwNumInput)
 		{
 			
 			// Gamma exponent for inverse transformation
-			dfE = ICCCurveType.CurveGammaToDouble(curve.entry(0));
+			dfE = Tags_ICCCurveType.CurveGammaToDouble(curve.entry(0));
 			for (var i = 0; i < dwNumInput; i++)
 			{
 				//UPGRADE_WARNING: Data types in Visual C# might be different.  Verify the accuracy of narrowing conversions. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1042'"

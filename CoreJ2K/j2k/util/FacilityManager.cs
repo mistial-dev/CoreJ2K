@@ -34,7 +34,7 @@
  * Copyright (c) 1999/2000 JJ2000 Partners.
  */
 
-namespace CSJ2K.j2k.util
+namespace CoreJ2K.j2k.util
 {
     /// <summary> This class manages common facilities for multi-threaded
     /// environments, It can register different facilities for each thread,

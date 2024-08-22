@@ -43,10 +43,11 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 
-using CSJ2K.j2k.wavelet.synthesis;
-using CSJ2K.j2k.entropy.decoder;
-using CSJ2K.j2k.image;
-namespace CSJ2K.j2k.quantization.dequantizer
+using CoreJ2K.j2k.entropy.decoder;
+using CoreJ2K.j2k.image;
+using CoreJ2K.j2k.wavelet.synthesis;
+
+namespace CoreJ2K.j2k.quantization.dequantizer
 {
 	
 	/// <summary> This interface defines a source of quantized wavelet coefficients and

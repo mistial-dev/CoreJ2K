@@ -42,9 +42,9 @@
 * 
 */
 using System;
-using CSJ2K.j2k.util;
+using CoreJ2K.j2k.util;
 
-namespace CSJ2K.j2k.quantization
+namespace CoreJ2K.j2k.quantization
 {
 	
 	/// <summary> This class extends ModuleSpec class in order to hold specifications about

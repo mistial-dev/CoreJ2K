@@ -41,11 +41,11 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 using System;
-using CSJ2K.j2k.wavelet.analysis;
-using CSJ2K.j2k.wavelet;
-using CSJ2K.j2k.util;
+using CoreJ2K.j2k.util;
+using CoreJ2K.j2k.wavelet;
+using CoreJ2K.j2k.wavelet.analysis;
 
-namespace CSJ2K.j2k.image.forwcomptransf
+namespace CoreJ2K.j2k.image.forwcomptransf
 {
 	
 	/// <summary> This class extends CompTransfSpec class in order to hold encoder specific

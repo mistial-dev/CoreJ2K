@@ -42,9 +42,9 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 using System;
-using CSJ2K.Util;
+using CoreJ2K.Util;
 
-namespace CSJ2K.j2k.image.output
+namespace CoreJ2K.j2k.image.output
 {
 	
 	/// <summary> This class extends the ImgWriter abstract class for writing PGX files.  PGX

@@ -43,7 +43,7 @@
 * */
 using System;
 
-namespace CSJ2K.j2k.wavelet.analysis
+namespace CoreJ2K.j2k.wavelet.analysis
 {
 	
 	/// <summary> This class represents a subband in a bidirectional tree structure that

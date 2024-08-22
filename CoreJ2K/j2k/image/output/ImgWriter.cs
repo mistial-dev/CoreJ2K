@@ -43,7 +43,7 @@
 *  */
 using System;
 
-namespace CSJ2K.j2k.image.output
+namespace CoreJ2K.j2k.image.output
 {
 	
 	/// <summary> This is the generic interface to be implemented by all image file (or other

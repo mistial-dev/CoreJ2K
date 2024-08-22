@@ -3,7 +3,7 @@
 
 using System.Linq;
 
-namespace CSJ2K
+namespace CoreJ2K
 {
     using System;
     using System.Collections.Generic;

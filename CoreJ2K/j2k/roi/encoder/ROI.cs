@@ -41,9 +41,9 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 */
 
-using CSJ2K.j2k.image.input;
+using CoreJ2K.j2k.image.input;
 
-namespace CSJ2K.j2k.roi.encoder
+namespace CoreJ2K.j2k.roi.encoder
 {
 	
 	/// <summary> This class contains the shape of a single ROI. In the current 

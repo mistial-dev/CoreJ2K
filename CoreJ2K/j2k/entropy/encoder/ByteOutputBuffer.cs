@@ -44,7 +44,7 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 using System;
-namespace CSJ2K.j2k.entropy.encoder
+namespace CoreJ2K.j2k.entropy.encoder
 {
 	
 	/// <summary> This class provides a buffering output stream similar to

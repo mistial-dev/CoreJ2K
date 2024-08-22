@@ -45,10 +45,10 @@
 * */
 using System;
 using System.Collections.Generic;
-using CSJ2K.j2k.decoder;
-using CSJ2K.j2k.image;
+using CoreJ2K.j2k.decoder;
+using CoreJ2K.j2k.image;
 
-namespace CSJ2K.j2k.wavelet.synthesis
+namespace CoreJ2K.j2k.wavelet.synthesis
 {
 	
 	/// <summary> This class implements the InverseWT with the full-page approach for int and

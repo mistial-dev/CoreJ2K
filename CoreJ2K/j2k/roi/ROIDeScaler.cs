@@ -42,13 +42,13 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 
-using CSJ2K.j2k.quantization.dequantizer;
-using CSJ2K.j2k.wavelet.synthesis;
-using CSJ2K.j2k.decoder;
-using CSJ2K.j2k.image;
-using CSJ2K.j2k.util;
+using CoreJ2K.j2k.decoder;
+using CoreJ2K.j2k.image;
+using CoreJ2K.j2k.quantization.dequantizer;
+using CoreJ2K.j2k.util;
+using CoreJ2K.j2k.wavelet.synthesis;
 
-namespace CSJ2K.j2k.roi
+namespace CoreJ2K.j2k.roi
 {
 	
 	/// <summary> This class takes care of the de-scaling of ROI coefficients. The de-scaler

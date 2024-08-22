@@ -42,9 +42,9 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 using System;
-using CSJ2K.j2k.wavelet.analysis;
+using CoreJ2K.j2k.wavelet.analysis;
 
-namespace CSJ2K.j2k.entropy.encoder
+namespace CoreJ2K.j2k.entropy.encoder
 {
 	
 	/// <summary> This class stores coded (compressed) code-blocks with their associated

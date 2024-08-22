@@ -8,11 +8,16 @@
 /// </summary>
 using System;
 using System.Globalization;
-using ColorSpace = CSJ2K.Color.ColorSpace;
-using ICCXYZType = CSJ2K.Icc.Tags.ICCXYZType;
-using DataBlkInt = CSJ2K.j2k.image.DataBlkInt;
-using DataBlkFloat = CSJ2K.j2k.image.DataBlkFloat;
-namespace CSJ2K.Icc.Lut
+using CoreJ2K.Color;
+using CoreJ2K.Icc.Tags;
+using ColorSpace = CoreJ2K.Color.ColorSpace;
+using ICCXYZType = CoreJ2K.Icc.Tags.ICCXYZType;
+using DataBlkInt = CoreJ2K.j2k.image.DataBlkInt;
+using DataBlkFloat = CoreJ2K.j2k.image.DataBlkFloat;
+using image_DataBlkFloat = CoreJ2K.j2k.image.DataBlkFloat;
+using image_DataBlkInt = CoreJ2K.j2k.image.DataBlkInt;
+
+namespace CoreJ2K.Icc.Lut
 {
 	
 	/// <summary> Transform for applying ICCProfiling to an input DataBlk
@@ -216,7 +221,7 @@ namespace CSJ2K.Icc.Lut
 		/// </param>
 		/// <exception cref="MatrixBasedTransformException">
 		/// </exception>
-		public virtual void  apply(DataBlkInt[] inb, DataBlkInt[] outb)
+		public virtual void  apply(image_DataBlkInt[] inb, image_DataBlkInt[] outb)
 		{
 			int[][] in_Renamed = new int[3][], out_Renamed = new int[3][]; // data references.
 			
@@ -328,7 +333,7 @@ namespace CSJ2K.Icc.Lut
 		/// </param>
 		/// <exception cref="MatrixBasedTransformException">
 		/// </exception>
-		public virtual void  apply(DataBlkFloat[] inb, DataBlkFloat[] outb)
+		public virtual void  apply(image_DataBlkFloat[] inb, image_DataBlkFloat[] outb)
 		{
 			
 			float[][] in_Renamed = new float[3][], out_Renamed = new float[3][]; // data references.
@@ -413,7 +418,7 @@ namespace CSJ2K.Icc.Lut
 			}
 		}
 		
-		private static void  standardizeMatrixLineThroughLut(DataBlkInt inb, float[] out_Renamed, int dwInputMaxValue, LookUpTableFP lut)
+		private static void  standardizeMatrixLineThroughLut(image_DataBlkInt inb, float[] out_Renamed, int dwInputMaxValue, LookUpTableFP lut)
 		{
 			int wTemp, j = 0;
 			var in_Renamed = (int[]) inb.Data; // input pixel reference
@@ -435,7 +440,7 @@ namespace CSJ2K.Icc.Lut
 		}
 		
 		
-		private static void  standardizeMatrixLineThroughLut(DataBlkFloat inb, float[] out_Renamed, float dwInputMaxValue, LookUpTableFP lut)
+		private static void  standardizeMatrixLineThroughLut(image_DataBlkFloat inb, float[] out_Renamed, float dwInputMaxValue, LookUpTableFP lut)
 		{
 			var j = 0;
 			float wTemp;

@@ -45,8 +45,9 @@
 * 
 */
 
-using CSJ2K.j2k.image;
-namespace CSJ2K.j2k.wavelet.synthesis
+using CoreJ2K.j2k.image;
+
+namespace CoreJ2K.j2k.wavelet.synthesis
 {
 	
 	/// <summary> This extends the synthesis wavelet filter general definitions of

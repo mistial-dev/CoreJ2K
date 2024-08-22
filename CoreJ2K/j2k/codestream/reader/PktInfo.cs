@@ -41,7 +41,7 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 
-namespace CSJ2K.j2k.codestream.reader
+namespace CoreJ2K.j2k.codestream.reader
 {
 	
 	/// <summary> This class defines an object used to countain informations about a packet

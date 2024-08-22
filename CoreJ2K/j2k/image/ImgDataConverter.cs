@@ -43,7 +43,7 @@
 * */
 using System;
 
-namespace CSJ2K.j2k.image
+namespace CoreJ2K.j2k.image
 {
 
     /// <summary> This class is responsible of all data type conversions. It should be used,

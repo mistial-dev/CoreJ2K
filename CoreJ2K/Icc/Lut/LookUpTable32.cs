@@ -7,8 +7,10 @@
 /// ***************************************************************************
 /// </summary>
 using System;
-using ICCCurveType = CSJ2K.Icc.Tags.ICCCurveType;
-namespace CSJ2K.Icc.Lut
+using ICCCurveType = CoreJ2K.Icc.Tags.ICCCurveType;
+using Tags_ICCCurveType = CoreJ2K.Icc.Tags.ICCCurveType;
+
+namespace CoreJ2K.Icc.Lut
 {
 	
 	/// <summary> Toplevel class for a int [] lut.
@@ -75,7 +77,7 @@ namespace CSJ2K.Icc.Lut
 		/// </param>
 		/// <returns> the lookup table
 		/// </returns>
-		public static LookUpTable32 createInstance(ICCCurveType curve, int dwNumInput, int dwMaxOutput)
+		public static LookUpTable32 createInstance(Tags_ICCCurveType curve, int dwNumInput, int dwMaxOutput)
 		{
 			if (curve.count == 1)
 				return new LookUpTable32Gamma(curve, dwNumInput, dwMaxOutput);
@@ -101,7 +103,7 @@ namespace CSJ2K.Icc.Lut
 		/// </param>
 		/// <param name="dwMaxOutput">max output value of the lut
 		/// </param>
-		protected internal LookUpTable32(ICCCurveType curve, int dwNumInput, int dwMaxOutput):base(curve, dwNumInput)
+		protected internal LookUpTable32(Tags_ICCCurveType curve, int dwNumInput, int dwMaxOutput):base(curve, dwNumInput)
 		{
 			this.dwMaxOutput = dwMaxOutput;
 			lut = new int[dwNumInput];

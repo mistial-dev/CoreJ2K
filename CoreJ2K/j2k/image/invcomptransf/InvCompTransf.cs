@@ -41,11 +41,11 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 using System;
-using CSJ2K.j2k.wavelet.synthesis;
-using CSJ2K.j2k.decoder;
-using CSJ2K.j2k.util;
+using CoreJ2K.j2k.decoder;
+using CoreJ2K.j2k.util;
+using CoreJ2K.j2k.wavelet.synthesis;
 
-namespace CSJ2K.j2k.image.invcomptransf
+namespace CoreJ2K.j2k.image.invcomptransf
 {
 
     /// <summary> This class apply inverse component transformations to the tiles depending

@@ -7,7 +7,7 @@
 /// ***************************************************************************
 /// </summary>
 using System;
-namespace CSJ2K.Icc
+namespace CoreJ2K.Icc
 {
 	
 	/// <summary> This exception is thrown when the content of a profile

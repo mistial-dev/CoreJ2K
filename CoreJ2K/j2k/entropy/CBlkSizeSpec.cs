@@ -41,9 +41,9 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 using System;
-using CSJ2K.j2k.util;
+using CoreJ2K.j2k.util;
 
-namespace CSJ2K.j2k.entropy
+namespace CoreJ2K.j2k.entropy
 {
 	
 	/// <summary> This class extends ModuleSpec class for code-blocks sizes holding purposes.

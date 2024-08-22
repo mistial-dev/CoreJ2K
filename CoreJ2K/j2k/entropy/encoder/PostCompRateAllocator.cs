@@ -42,13 +42,13 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 using System;
-using CSJ2K.j2k.codestream.writer;
-using CSJ2K.j2k.codestream;
-using CSJ2K.j2k.encoder;
-using CSJ2K.j2k.image;
-using CSJ2K.j2k.util;
+using CoreJ2K.j2k.codestream;
+using CoreJ2K.j2k.codestream.writer;
+using CoreJ2K.j2k.encoder;
+using CoreJ2K.j2k.image;
+using CoreJ2K.j2k.util;
 
-namespace CSJ2K.j2k.entropy.encoder
+namespace CoreJ2K.j2k.entropy.encoder
 {
 	
 	/// <summary>

@@ -2,7 +2,7 @@
 // Licensed under the BSD 3-Clause License.
 
 using System.Runtime.InteropServices;
-using CSJ2K.Util;
+using CoreJ2K.Util;
 
 namespace codectest
 {
@@ -10,7 +10,7 @@ namespace codectest
     using System.IO;
     using SkiaSharp;
 
-    using CSJ2K;
+    using CoreJ2K;
 
     internal class Program
     {

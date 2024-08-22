@@ -9,7 +9,7 @@
 using System;
 using System.Text;
 
-namespace CSJ2K.Icc.Tags
+namespace CoreJ2K.Icc.Tags
 {
 	
 	/// <summary> An ICC profile contains a 128-byte header followed by a variable

@@ -7,8 +7,9 @@
 /// ***************************************************************************
 /// </summary>
 using System;
-using CSJ2K.j2k.image;
-namespace CSJ2K.Color
+using CoreJ2K.j2k.image;
+
+namespace CoreJ2K.Color
 {
 	
 	/// <summary> This class resamples the components of an image so that

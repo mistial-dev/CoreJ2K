@@ -42,7 +42,7 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 
-namespace CSJ2K.j2k.entropy
+namespace CoreJ2K.j2k.entropy
 {
 	
 	/// <summary> This interface define the constants that identify the possible options for

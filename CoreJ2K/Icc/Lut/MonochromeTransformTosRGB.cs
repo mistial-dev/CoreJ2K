@@ -8,10 +8,14 @@
 /// </summary>
 using System;
 using System.Globalization;
-using ColorSpace = CSJ2K.Color.ColorSpace;
-using DataBlkInt = CSJ2K.j2k.image.DataBlkInt;
-using DataBlkFloat = CSJ2K.j2k.image.DataBlkFloat;
-namespace CSJ2K.Icc.Lut
+using CoreJ2K.Color;
+using ColorSpace = CoreJ2K.Color.ColorSpace;
+using DataBlkInt = CoreJ2K.j2k.image.DataBlkInt;
+using DataBlkFloat = CoreJ2K.j2k.image.DataBlkFloat;
+using image_DataBlkFloat = CoreJ2K.j2k.image.DataBlkFloat;
+using image_DataBlkInt = CoreJ2K.j2k.image.DataBlkInt;
+
+namespace CoreJ2K.Icc.Lut
 {
 	
 	/// <summary> 
@@ -122,7 +126,7 @@ namespace CSJ2K.Icc.Lut
 		/// </param>
 		/// <exception cref="MonochromeTransformException">
 		/// </exception>
-		public virtual void  apply(DataBlkInt inb, DataBlkInt outb)
+		public virtual void  apply(image_DataBlkInt inb, image_DataBlkInt outb)
 		{
 
             int i, j, o; //  x, y removed
@@ -164,7 +168,7 @@ namespace CSJ2K.Icc.Lut
 		/// </param>
 		/// <exception cref="MonochromeTransformException">
 		/// </exception>
-		public virtual void  apply(DataBlkFloat inb, DataBlkFloat outb)
+		public virtual void  apply(image_DataBlkFloat inb, image_DataBlkFloat outb)
 		{
 
             int i, j, o; // x, y removed

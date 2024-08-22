@@ -42,7 +42,7 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 
-namespace CSJ2K.j2k.entropy.encoder
+namespace CoreJ2K.j2k.entropy.encoder
 {
 	
 	/// <summary> This class provides an adapter to perform bit based output on byte based

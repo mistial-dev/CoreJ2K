@@ -7,10 +7,12 @@
 /// ***************************************************************************
 /// </summary>
 
-using ColorSpace = CSJ2K.Color.ColorSpace;
-using ColorSpaceException = CSJ2K.Color.ColorSpaceException;
+using CoreJ2K.Color;
+using Color_ColorSpace = CoreJ2K.Color.ColorSpace;
+using ColorSpace = CoreJ2K.Color.ColorSpace;
+using ColorSpaceException = CoreJ2K.Color.ColorSpaceException;
 
-namespace CSJ2K.Icc
+namespace CoreJ2K.Icc
 {
 	
 	/// <summary> The monochrome ICCProfile.
@@ -32,7 +34,7 @@ namespace CSJ2K.Icc
 		/// </exception>
 		/// <exception cref="">
 		/// </exception>
-		public static ICCMonochromeInputProfile createInstance(ColorSpace csm)
+		public static ICCMonochromeInputProfile createInstance(Color_ColorSpace csm)
 		{
 			return new ICCMonochromeInputProfile(csm);
 		}
@@ -46,7 +48,7 @@ namespace CSJ2K.Icc
 		/// </exception>
 		/// <exception cref="ICCProfileInvalidException">
 		/// </exception>
-		protected internal ICCMonochromeInputProfile(ColorSpace csm):base(csm)
+		protected internal ICCMonochromeInputProfile(Color_ColorSpace csm):base(csm)
 		{
 		}
 		

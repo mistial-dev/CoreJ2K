@@ -41,10 +41,10 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 
-using CSJ2K.j2k.wavelet;
-using CSJ2K.j2k.image;
+using CoreJ2K.j2k.image;
+using CoreJ2K.j2k.wavelet;
 
-namespace CSJ2K.j2k.roi.encoder
+namespace CoreJ2K.j2k.roi.encoder
 {
 	
 	/// <summary> This class generates the ROI masks when there are only rectangular ROIs in

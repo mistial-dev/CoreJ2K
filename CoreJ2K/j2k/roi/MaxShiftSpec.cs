@@ -41,7 +41,7 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 */
 
-namespace CSJ2K.j2k.roi
+namespace CoreJ2K.j2k.roi
 {
 	
 	/// <summary> This class contains the maxshift scaling value for each tile-component.

@@ -42,16 +42,16 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 using System;
-using CSJ2K.j2k.quantization.dequantizer;
-using CSJ2K.j2k.wavelet.synthesis;
-using CSJ2K.j2k.entropy.decoder;
-using CSJ2K.j2k.wavelet;
-using CSJ2K.j2k.decoder;
-using CSJ2K.j2k.image;
-using CSJ2K.j2k.util;
-using CSJ2K.j2k.io;
+using CoreJ2K.j2k.decoder;
+using CoreJ2K.j2k.entropy.decoder;
+using CoreJ2K.j2k.image;
+using CoreJ2K.j2k.io;
+using CoreJ2K.j2k.quantization.dequantizer;
+using CoreJ2K.j2k.util;
+using CoreJ2K.j2k.wavelet;
+using CoreJ2K.j2k.wavelet.synthesis;
 
-namespace CSJ2K.j2k.codestream.reader
+namespace CoreJ2K.j2k.codestream.reader
 {
 	
 	/// <summary> This is the generic interface for bit stream reader agents. A bit stream

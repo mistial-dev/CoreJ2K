@@ -45,7 +45,7 @@
 */
 using System;
 
-namespace CSJ2K.j2k.wavelet
+namespace CoreJ2K.j2k.wavelet
 {
 	
 	/// <summary> This class holds the decomposition type to be used in each part of the

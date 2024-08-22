@@ -41,7 +41,7 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 
-namespace CSJ2K.j2k.image
+namespace CoreJ2K.j2k.image
 {
     /// <summary> This interface defines the methods to transfer image data in blocks,
     /// without following any particular order (random access). This interface does

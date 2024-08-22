@@ -43,8 +43,9 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 
-using CSJ2K.j2k.image;
-namespace CSJ2K.j2k.wavelet
+using CoreJ2K.j2k.image;
+
+namespace CoreJ2K.j2k.wavelet
 {
 	
 	/// <summary> This interface defines how a forward or inverse wavelet transform should

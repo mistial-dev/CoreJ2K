@@ -44,9 +44,9 @@
 * 
 */
 using System;
-using CSJ2K.j2k.util;
+using CoreJ2K.j2k.util;
 
-namespace CSJ2K.j2k
+namespace CoreJ2K.j2k
 {
 	
 	/// <summary> This class handles exceptions. It should be used in places where it

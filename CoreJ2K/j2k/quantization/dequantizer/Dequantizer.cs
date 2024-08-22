@@ -41,13 +41,13 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 using System;
-using CSJ2K.j2k.image.invcomptransf;
-using CSJ2K.j2k.wavelet.synthesis;
-using CSJ2K.j2k.decoder;
-using CSJ2K.j2k.wavelet;
-using CSJ2K.j2k.image;
+using CoreJ2K.j2k.decoder;
+using CoreJ2K.j2k.image;
+using CoreJ2K.j2k.image.invcomptransf;
+using CoreJ2K.j2k.wavelet;
+using CoreJ2K.j2k.wavelet.synthesis;
 
-namespace CSJ2K.j2k.quantization.dequantizer
+namespace CoreJ2K.j2k.quantization.dequantizer
 {
 	
 	/// <summary> This is the abstract class from which all dequantizers must inherit. This

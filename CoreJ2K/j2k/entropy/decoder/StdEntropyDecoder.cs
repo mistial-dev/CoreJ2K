@@ -41,13 +41,13 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 using System;
-using CSJ2K.j2k.wavelet.synthesis;
-using CSJ2K.j2k.wavelet;
-using CSJ2K.j2k.decoder;
-using CSJ2K.j2k.image;
-using CSJ2K.j2k.util;
+using CoreJ2K.j2k.decoder;
+using CoreJ2K.j2k.image;
+using CoreJ2K.j2k.util;
+using CoreJ2K.j2k.wavelet;
+using CoreJ2K.j2k.wavelet.synthesis;
 
-namespace CSJ2K.j2k.entropy.decoder
+namespace CoreJ2K.j2k.entropy.decoder
 {
 	
 	/// <summary> This class implements the JPEG 2000 entropy decoder, which codes stripes in

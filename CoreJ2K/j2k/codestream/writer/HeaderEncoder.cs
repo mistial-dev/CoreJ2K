@@ -41,17 +41,17 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 using System;
-using CSJ2K.j2k.quantization.quantizer;
-using CSJ2K.j2k.wavelet.analysis;
-using CSJ2K.j2k.entropy.encoder;
-using CSJ2K.j2k.roi.encoder;
-using CSJ2K.j2k.encoder;
-using CSJ2K.j2k.entropy;
-using CSJ2K.j2k.image;
-using CSJ2K.j2k.util;
-using CSJ2K.j2k.io;
+using CoreJ2K.j2k.encoder;
+using CoreJ2K.j2k.entropy;
+using CoreJ2K.j2k.entropy.encoder;
+using CoreJ2K.j2k.image;
+using CoreJ2K.j2k.io;
+using CoreJ2K.j2k.quantization.quantizer;
+using CoreJ2K.j2k.roi.encoder;
+using CoreJ2K.j2k.util;
+using CoreJ2K.j2k.wavelet.analysis;
 
-namespace CSJ2K.j2k.codestream.writer
+namespace CoreJ2K.j2k.codestream.writer
 {
 	
 	/// <summary> This class writes almost of the markers and marker segments in main header

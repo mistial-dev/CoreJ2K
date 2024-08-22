@@ -39,7 +39,7 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 
-namespace CSJ2K.j2k.codestream
+namespace CoreJ2K.j2k.codestream
 {
 	
 	/// <summary> This interface defines the values of the different markers in the JPEG 2000

@@ -42,7 +42,7 @@
 *  */
 using System;
 
-namespace CSJ2K.j2k.roi.encoder
+namespace CoreJ2K.j2k.roi.encoder
 {
 	
 	/// <summary> This abstract class describes the ROI mask for a single subband. Each

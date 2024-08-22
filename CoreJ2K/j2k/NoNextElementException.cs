@@ -45,7 +45,7 @@
 * 
 */
 using System;
-namespace CSJ2K.j2k
+namespace CoreJ2K.j2k
 {
 	
 	/// <summary> This exception is thrown whenever a next???? method is called and

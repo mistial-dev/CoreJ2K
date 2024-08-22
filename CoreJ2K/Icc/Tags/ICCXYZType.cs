@@ -8,7 +8,7 @@
 /// </summary>
 using System;
 
-namespace CSJ2K.Icc.Tags
+namespace CoreJ2K.Icc.Tags
 {
 	
 	/// <summary> A tag containing a triplet.

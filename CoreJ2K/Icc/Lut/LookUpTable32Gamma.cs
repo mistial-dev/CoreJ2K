@@ -7,8 +7,10 @@
 /// ***************************************************************************
 /// </summary>
 using System;
-using ICCCurveType = CSJ2K.Icc.Tags.ICCCurveType;
-namespace CSJ2K.Icc.Lut
+using ICCCurveType = CoreJ2K.Icc.Tags.ICCCurveType;
+using Tags_ICCCurveType = CoreJ2K.Icc.Tags.ICCCurveType;
+
+namespace CoreJ2K.Icc.Lut
 {
 	
 	/// <summary> A Gamma based 32 bit lut.
@@ -29,9 +31,9 @@ namespace CSJ2K.Icc.Lut
 		*   @param dwNumInput size of lut  
 		*   @param dwMaxOutput max value of lut   
 		*/
-		public LookUpTable32Gamma(ICCCurveType curve, int dwNumInput, int dwMaxOutput):base(curve, dwNumInput, dwMaxOutput)
+		public LookUpTable32Gamma(Tags_ICCCurveType curve, int dwNumInput, int dwMaxOutput):base(curve, dwNumInput, dwMaxOutput)
 		{
-			var dfE = ICCCurveType.CurveGammaToDouble(curve.entry(0)); // Gamma exponent for inverse transformation
+			var dfE = Tags_ICCCurveType.CurveGammaToDouble(curve.entry(0)); // Gamma exponent for inverse transformation
 			for (var i = 0; i < dwNumInput; i++)
 			{
 				//UPGRADE_WARNING: Data types in Visual C# might be different.  Verify the accuracy of narrowing conversions. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1042'"

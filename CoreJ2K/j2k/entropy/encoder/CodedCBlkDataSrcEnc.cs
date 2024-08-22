@@ -43,9 +43,9 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 
-using CSJ2K.j2k.wavelet.analysis;
+using CoreJ2K.j2k.wavelet.analysis;
 
-namespace CSJ2K.j2k.entropy.encoder
+namespace CoreJ2K.j2k.entropy.encoder
 {
 	
 	/// <summary> This interface defines a source of entropy coded data and methods to

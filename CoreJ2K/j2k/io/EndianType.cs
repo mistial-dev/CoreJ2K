@@ -45,7 +45,7 @@
 * 
 */
 
-namespace CSJ2K.j2k.io
+namespace CoreJ2K.j2k.io
 {
 	
 	/// <summary> This interface defines constants for the two types of byte

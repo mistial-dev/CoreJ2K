@@ -7,11 +7,13 @@
 /// ***************************************************************************
 /// </summary>
 using System;
-using ICCCurveType = CSJ2K.Icc.Tags.ICCCurveType;
-using ICCXYZType = CSJ2K.Icc.Tags.ICCXYZType;
-namespace CSJ2K.Icc
+using ICCCurveType = CoreJ2K.Icc.Tags.ICCCurveType;
+using ICCXYZType = CoreJ2K.Icc.Tags.ICCXYZType;
+namespace CoreJ2K.Icc
 {
-	
+	using ICCCurveType = Tags.ICCCurveType;
+	using ICCXYZType = Tags.ICCXYZType;
+
 	/// <summary> This class is a 3 component RestrictedICCProfile
 	/// 
 	/// </summary>

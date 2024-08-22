@@ -7,8 +7,10 @@
 /// ***************************************************************************
 /// </summary>
 using System;
-using ICCCurveType = CSJ2K.Icc.Tags.ICCCurveType;
-namespace CSJ2K.Icc.Lut
+using ICCCurveType = CoreJ2K.Icc.Tags.ICCCurveType;
+using Tags_ICCCurveType = CoreJ2K.Icc.Tags.ICCCurveType;
+
+namespace CoreJ2K.Icc.Lut
 {
 	
 	/// <summary> Toplevel class for a byte [] lut.
@@ -63,7 +65,7 @@ namespace CSJ2K.Icc.Lut
 		/// <summary> Create the string representation of a 16 bit lut.</summary>
 		/// <returns> the lut as a String
 		/// </returns>
-		protected internal LookUpTable8(ICCCurveType curve, int dwNumInput, byte dwMaxOutput):base(curve, dwNumInput)
+		protected internal LookUpTable8(Tags_ICCCurveType curve, int dwNumInput, byte dwMaxOutput):base(curve, dwNumInput)
 		{
 			this.dwMaxOutput = dwMaxOutput;
 			lut = new byte[dwNumInput];

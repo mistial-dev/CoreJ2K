@@ -4,11 +4,11 @@
 
 using System;
 using System.Linq;
-using CSJ2K.j2k.image;
-using CSJ2K.j2k.image.input;
+using CoreJ2K.j2k.image.input;
+using CoreJ2K.j2k.image;
 using SkiaSharp;
 
-namespace CSJ2K.Util
+namespace CoreJ2K.Util
 {
     public class SKBitmapImageSource : PortableImageSource
     {

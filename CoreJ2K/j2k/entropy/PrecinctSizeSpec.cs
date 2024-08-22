@@ -42,11 +42,11 @@
 * */
 using System;
 using System.Collections.Generic;
-using CSJ2K.j2k.codestream;
-using CSJ2K.j2k.image;
-using CSJ2K.j2k.util;
+using CoreJ2K.j2k.codestream;
+using CoreJ2K.j2k.image;
+using CoreJ2K.j2k.util;
 
-namespace CSJ2K.j2k.entropy
+namespace CoreJ2K.j2k.entropy
 {
 	
 	/// <summary> This class extends ModuleSpec class for precinct partition sizes holding

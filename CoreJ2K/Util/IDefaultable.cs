@@ -1,7 +1,7 @@
 // Copyright (c) 2012-2016 fo-dicom contributors.
 // Licensed under the Microsoft Public License (MS-PL).
 
-namespace CSJ2K.Util
+namespace CoreJ2K.Util
 {
     /// <summary>
     /// Interface for default classification of manager types.

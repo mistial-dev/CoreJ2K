@@ -41,9 +41,9 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 */
 
-using CSJ2K.j2k.wavelet;
+using CoreJ2K.j2k.wavelet;
 
-namespace CSJ2K.j2k.quantization.dequantizer
+namespace CoreJ2K.j2k.quantization.dequantizer
 {
 	
 	/// <summary> This class holds the parameters for the scalar deadzone dequantizer

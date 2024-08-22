@@ -41,9 +41,9 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 *  */
 
-using CSJ2K.j2k.image.invcomptransf;
+using CoreJ2K.j2k.image.invcomptransf;
 
-namespace CSJ2K.j2k.image
+namespace CoreJ2K.j2k.image
 {
 	
 	/// <summary> This class extends the ModuleSpec class in order to hold tile

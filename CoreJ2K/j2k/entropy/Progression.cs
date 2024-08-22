@@ -45,8 +45,9 @@
 * 
 */
 using System;
-using CSJ2K.j2k.codestream;
-namespace CSJ2K.j2k.entropy
+using CoreJ2K.j2k.codestream;
+
+namespace CoreJ2K.j2k.entropy
 {
 	
 	/// <summary> This class holds one of the different progression orders defined in

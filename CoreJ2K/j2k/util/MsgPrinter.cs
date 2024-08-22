@@ -45,7 +45,7 @@
 * 
 */
 using System;
-namespace CSJ2K.j2k.util
+namespace CoreJ2K.j2k.util
 {
 	
 	/// <summary> This utility class formats messages to the specified line width, by

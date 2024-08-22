@@ -42,7 +42,7 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 */
 
-namespace CSJ2K.j2k.wavelet
+namespace CoreJ2K.j2k.wavelet
 {
 	
 	/// <summary> This interface defines how a wavelet filter implementation should present

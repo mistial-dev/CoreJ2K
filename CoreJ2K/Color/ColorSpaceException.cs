@@ -7,7 +7,7 @@
 /// ***************************************************************************
 /// </summary>
 using System;
-namespace CSJ2K.Color
+namespace CoreJ2K.Color
 {
 	
 	/// <summary> This exception is thrown when the content of an

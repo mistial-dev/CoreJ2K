@@ -7,13 +7,19 @@
 /// ***************************************************************************
 /// </summary>
 using System;
-using BlkImgDataSrc = CSJ2K.j2k.image.BlkImgDataSrc;
-using DataBlk = CSJ2K.j2k.image.DataBlk;
-using DataBlkInt = CSJ2K.j2k.image.DataBlkInt;
-using DataBlkFloat = CSJ2K.j2k.image.DataBlkFloat;
-using FacilityManager = CSJ2K.j2k.util.FacilityManager;
+using CoreJ2K.j2k.image;
+using CoreJ2K.j2k.util;
+using BlkImgDataSrc = CoreJ2K.j2k.image.BlkImgDataSrc;
+using DataBlk = CoreJ2K.j2k.image.DataBlk;
+using DataBlkInt = CoreJ2K.j2k.image.DataBlkInt;
+using DataBlkFloat = CoreJ2K.j2k.image.DataBlkFloat;
+using FacilityManager = CoreJ2K.j2k.util.FacilityManager;
+using image_BlkImgDataSrc = CoreJ2K.j2k.image.BlkImgDataSrc;
+using image_DataBlk = CoreJ2K.j2k.image.DataBlk;
+using image_DataBlkFloat = CoreJ2K.j2k.image.DataBlkFloat;
+using image_DataBlkInt = CoreJ2K.j2k.image.DataBlkInt;
 
-namespace CSJ2K.Color
+namespace CoreJ2K.Color
 {
 	
 	
@@ -36,7 +42,7 @@ namespace CSJ2K.Color
 		/// </param>
 		/// <returns> SYccColorSpaceMapper instance
 		/// </returns>
-		public new static BlkImgDataSrc createInstance(BlkImgDataSrc src, ColorSpace csMap)
+		public new static image_BlkImgDataSrc createInstance(image_BlkImgDataSrc src, ColorSpace csMap)
 		{
 			return new EsRgbColorSpaceMapper(src, csMap);
 		}
@@ -49,7 +55,7 @@ namespace CSJ2K.Color
 		/// </param>
 		/// <param name="csm">-- provides colorspace info
 		/// </param>
-		protected internal EsRgbColorSpaceMapper(BlkImgDataSrc src, ColorSpace csMap):base(src, csMap)
+		protected internal EsRgbColorSpaceMapper(image_BlkImgDataSrc src, ColorSpace csMap):base(src, csMap)
 		{
 			initialize();
 		}
@@ -101,15 +107,15 @@ namespace CSJ2K.Color
 		/// <returns> The requested DataBlk
 		/// </returns>
 		/// <seealso cref="GetInternCompData" />
-		public override DataBlk GetCompData(DataBlk outblk, int c)
+		public override image_DataBlk GetCompData(image_DataBlk outblk, int c)
 		{
 			
 			var type = outblk.DataType;
             var colors = Math.Pow(2, src.getNomRangeBits(c));
 	        var bitoff=colors*0.375D;
-            if (type == DataBlk.TYPE_INT)
+            if (type == image_DataBlk.TYPE_INT)
             {
-                var intblk=(DataBlkInt)src.GetInternCompData(outblk, c);
+                var intblk=(image_DataBlkInt)src.GetInternCompData(outblk, c);
 
                 for (var i = 0; i < intblk.data_array.Length; i++)
                 {
@@ -128,7 +134,7 @@ namespace CSJ2K.Color
             {
                 FacilityManager.getMsgLogger().printmsg(j2k.util.MsgLogger_Fields.WARNING, "Unsupported e-sRGB DataType (float)");
 
-                var fltblk = (DataBlkFloat)src.GetInternCompData(outblk, c);
+                var fltblk = (image_DataBlkFloat)src.GetInternCompData(outblk, c);
                 outblk = fltblk;
             }
 			return outblk;
@@ -180,7 +186,7 @@ namespace CSJ2K.Color
 		/// </returns>
 		/// <seealso cref="GetCompData">
 		/// </seealso>
-		public override DataBlk GetInternCompData(DataBlk out_Renamed, int compIndex)
+		public override image_DataBlk GetInternCompData(image_DataBlk out_Renamed, int compIndex)
 		{
 			return GetCompData(out_Renamed, compIndex);
 		}

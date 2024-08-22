@@ -45,7 +45,7 @@
 * 
 */
 
-namespace CSJ2K.j2k.quantization
+namespace CoreJ2K.j2k.quantization
 {
 	
 	/// <summary> This interface defines the IDs of the possible quantization types. JPEG

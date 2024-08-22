@@ -8,9 +8,11 @@
 /// </summary>
 using System;
 using System.IO;
-using ColorSpace = CSJ2K.Color.ColorSpace;
-using ICCProfileHeader = CSJ2K.Icc.Types.ICCProfileHeader;
-namespace CSJ2K.Icc.Tags
+using CoreJ2K.Color;
+using CoreJ2K.Icc.Types;
+using ColorSpace = CoreJ2K.Color.ColorSpace;
+using ICCProfileHeader = CoreJ2K.Icc.Types.ICCProfileHeader;
+namespace CoreJ2K.Icc.Tags
 {
 	
 	/// <summary> This class models an ICCTagTable as a HashTable which maps 

@@ -41,16 +41,16 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 
-using CSJ2K.j2k.quantization.quantizer;
-using CSJ2K.j2k.image.forwcomptransf;
-using CSJ2K.j2k.wavelet.analysis;
-using CSJ2K.j2k.quantization;
-using CSJ2K.j2k.entropy;
-using CSJ2K.j2k.util;
-using CSJ2K.j2k.image;
-using CSJ2K.j2k.roi;
+using CoreJ2K.j2k.entropy;
+using CoreJ2K.j2k.image;
+using CoreJ2K.j2k.image.forwcomptransf;
+using CoreJ2K.j2k.quantization;
+using CoreJ2K.j2k.quantization.quantizer;
+using CoreJ2K.j2k.roi;
+using CoreJ2K.j2k.util;
+using CoreJ2K.j2k.wavelet.analysis;
 
-namespace CSJ2K.j2k.encoder
+namespace CoreJ2K.j2k.encoder
 {
 	
 	/// <summary> This class holds references to each module specifications used in the

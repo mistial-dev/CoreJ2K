@@ -41,9 +41,10 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 using System;
-using CSJ2K.j2k.decoder;
-using CSJ2K.j2k.image;
-namespace CSJ2K.j2k.wavelet.synthesis
+using CoreJ2K.j2k.decoder;
+using CoreJ2K.j2k.image;
+
+namespace CoreJ2K.j2k.wavelet.synthesis
 {
 	
 	/// <summary> This class provides default implementation of the methods in the 'InvWT'

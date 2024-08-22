@@ -2,11 +2,11 @@
 // Copyright (c) 2024 Sjofn LLC.
 // Licensed under the BSD 3-Clause License.
 
-using CSJ2K.j2k.image;
-using CSJ2K.j2k.image.input;
+using CoreJ2K.j2k.image;
+using CoreJ2K.j2k.image.input;
 using SkiaSharp;
 
-namespace CSJ2K.Util
+namespace CoreJ2K.Util
 {
     public class SKBitmapImageCreator : IImageCreator
     {

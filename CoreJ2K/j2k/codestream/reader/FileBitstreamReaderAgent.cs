@@ -42,15 +42,15 @@
 * */
 using System;
 using System.Collections.Generic;
-using CSJ2K.j2k.quantization.dequantizer;
-using CSJ2K.j2k.wavelet.synthesis;
-using CSJ2K.j2k.entropy.decoder;
-using CSJ2K.j2k.decoder;
-using CSJ2K.j2k.entropy;
-using CSJ2K.j2k.util;
-using CSJ2K.j2k.io;
+using CoreJ2K.j2k.decoder;
+using CoreJ2K.j2k.entropy;
+using CoreJ2K.j2k.entropy.decoder;
+using CoreJ2K.j2k.io;
+using CoreJ2K.j2k.quantization.dequantizer;
+using CoreJ2K.j2k.util;
+using CoreJ2K.j2k.wavelet.synthesis;
 
-namespace CSJ2K.j2k.codestream.reader
+namespace CoreJ2K.j2k.codestream.reader
 {
 	
 	/// <summary> This class reads the bit stream (with the help of HeaderDecoder for tile
@@ -384,7 +384,7 @@ namespace CSJ2K.j2k.codestream.reader
 							tilePartLen[t][tp] = in_Renamed.length() - 2 - tilePartStart;
 						}
 					}
-					catch (System.IO.EndOfStreamException e)
+					catch (System.IO.EndOfStreamException)
 					{
 						firstPackOff[t][tp] = in_Renamed.length();
 						throw;

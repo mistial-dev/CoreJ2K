@@ -7,19 +7,28 @@
 /// ***************************************************************************
 /// </summary>
 using System;
-using FileFormatBoxes = CSJ2K.j2k.fileformat.FileFormatBoxes;
-using ParameterList = CSJ2K.j2k.util.ParameterList;
-using HeaderDecoder = CSJ2K.j2k.codestream.reader.HeaderDecoder;
-using RandomAccessIO = CSJ2K.j2k.io.RandomAccessIO;
-using PaletteBox = CSJ2K.Color.Boxes.PaletteBox;
-using ComponentMappingBox = CSJ2K.Color.Boxes.ComponentMappingBox;
-using ColorSpecificationBox = CSJ2K.Color.Boxes.ColorSpecificationBox;
-using ChannelDefinitionBox = CSJ2K.Color.Boxes.ChannelDefinitionBox;
-using ImageHeaderBox = CSJ2K.Color.Boxes.ImageHeaderBox;
+using CoreJ2K.j2k.fileformat;
+using FileFormatBoxes = CoreJ2K.j2k.fileformat.FileFormatBoxes;
+using ParameterList = CoreJ2K.j2k.util.ParameterList;
+using HeaderDecoder = CoreJ2K.j2k.codestream.reader.HeaderDecoder;
+using RandomAccessIO = CoreJ2K.j2k.io.RandomAccessIO;
+using PaletteBox = CoreJ2K.Color.Boxes.PaletteBox;
+using ComponentMappingBox = CoreJ2K.Color.Boxes.ComponentMappingBox;
+using ColorSpecificationBox = CoreJ2K.Color.Boxes.ColorSpecificationBox;
+using ChannelDefinitionBox = CoreJ2K.Color.Boxes.ChannelDefinitionBox;
+using ImageHeaderBox = CoreJ2K.Color.Boxes.ImageHeaderBox;
+using io_RandomAccessIO = CoreJ2K.j2k.io.RandomAccessIO;
+using reader_HeaderDecoder = CoreJ2K.j2k.codestream.reader.HeaderDecoder;
+using util_ParameterList = CoreJ2K.j2k.util.ParameterList;
 
-namespace CSJ2K.Color
+namespace CoreJ2K.Color
 {
-	
+	using ChannelDefinitionBox = Boxes.ChannelDefinitionBox;
+	using ColorSpecificationBox = Boxes.ColorSpecificationBox;
+	using ComponentMappingBox = Boxes.ComponentMappingBox;
+	using ImageHeaderBox = Boxes.ImageHeaderBox;
+	using PaletteBox = Boxes.PaletteBox;
+
 	/// <summary> This class analyzes the image to provide colorspace
 	/// information for the decoding chain.  It does this by
 	/// examining the box structure of the JP2 image.
@@ -60,10 +69,10 @@ namespace CSJ2K.Color
 		internal const int BLUE = 3;
 		
 		/// <summary>Parameter Specs </summary>
-		public ParameterList pl;
+		public util_ParameterList pl;
 		
 		/// <summary>Parameter Specs </summary>
-		public HeaderDecoder hd;
+		public reader_HeaderDecoder hd;
 		
 		/* Image box structure as pertains to colorspacees. */
 		private PaletteBox pbox = null;
@@ -73,7 +82,7 @@ namespace CSJ2K.Color
 		private ImageHeaderBox ihbox = null;
 		
 		/// <summary>Input image </summary>
-		private RandomAccessIO in_Renamed = null;
+		private io_RandomAccessIO in_Renamed = null;
 		
 		/// <summary>Indent a String that contains newlines. </summary>
 		public static string indent(string ident, System.Text.StringBuilder instr)
@@ -106,7 +115,7 @@ namespace CSJ2K.Color
 		/// </param>
 		/// <exception cref="IOException,">ColorSpaceException
 		/// </exception>
-		public ColorSpace(RandomAccessIO in_Renamed, HeaderDecoder hd, ParameterList pl)
+		public ColorSpace(io_RandomAccessIO in_Renamed, reader_HeaderDecoder hd, util_ParameterList pl)
 		{
 			this.pl = pl;
 			this.in_Renamed = in_Renamed;
@@ -133,11 +142,11 @@ namespace CSJ2K.Color
 				in_Renamed.readFully(boxHeader, 0, 16);
                 // CONVERSION PROBLEM?
 
-                len = CSJ2K.Icc.ICCProfile.getInt(boxHeader, 0);
+                len = Icc.ICCProfile.getInt(boxHeader, 0);
 				if (len == 1)
-                    len = CSJ2K.Icc.ICCProfile.getLong(boxHeader, 8); // Extended
+                    len = Icc.ICCProfile.getLong(boxHeader, 8); // Extended
 				// length
-                type = CSJ2K.Icc.ICCProfile.getInt(boxHeader, 4);
+                type = Icc.ICCProfile.getInt(boxHeader, 4);
 				
 				// Verify the contents of the file so far.
 				if (i == 0 && type != FileFormatBoxes.JP2_SIGNATURE_BOX)
@@ -173,10 +182,10 @@ namespace CSJ2K.Color
 			{
 				in_Renamed.seek(boxStart);
 				in_Renamed.readFully(boxHeader, 0, 16);
-                len = CSJ2K.Icc.ICCProfile.getInt(boxHeader, 0);
+                len = Icc.ICCProfile.getInt(boxHeader, 0);
 				if (len == 1)
 					throw new ColorSpaceException("Extended length boxes " + "not supported");
-                type = CSJ2K.Icc.ICCProfile.getInt(boxHeader, 4);
+                type = Icc.ICCProfile.getInt(boxHeader, 4);
 				
 				switch (type)
 				{

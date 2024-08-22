@@ -41,8 +41,9 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 *  */
 using System;
-using CSJ2K.j2k.io;
-namespace CSJ2K.j2k.fileformat.writer
+using CoreJ2K.j2k.io;
+
+namespace CoreJ2K.j2k.fileformat.writer
 {
 	using System.IO;
 

@@ -43,15 +43,15 @@
 * */
 using System;
 using System.Collections.Generic;
-using CSJ2K.j2k.quantization.quantizer;
-using CSJ2K.j2k.wavelet.analysis;
-using CSJ2K.j2k.image.input;
-using CSJ2K.j2k.wavelet;
-using CSJ2K.j2k.encoder;
-using CSJ2K.j2k.image;
-using CSJ2K.j2k.util;
+using CoreJ2K.j2k.encoder;
+using CoreJ2K.j2k.image;
+using CoreJ2K.j2k.image.input;
+using CoreJ2K.j2k.quantization.quantizer;
+using CoreJ2K.j2k.util;
+using CoreJ2K.j2k.wavelet;
+using CoreJ2K.j2k.wavelet.analysis;
 
-namespace CSJ2K.j2k.roi.encoder
+namespace CoreJ2K.j2k.roi.encoder
 {
 	
 	/// <summary> This class deals with the ROI functionality.

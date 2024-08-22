@@ -42,8 +42,9 @@
 * */
 using System;
 using System.Collections.Generic;
-using CSJ2K.j2k.image;
-namespace CSJ2K.j2k
+using CoreJ2K.j2k.image;
+
+namespace CoreJ2K.j2k
 {
 	
 	/// <summary> This generic class is used to handle values to be used by a module for each

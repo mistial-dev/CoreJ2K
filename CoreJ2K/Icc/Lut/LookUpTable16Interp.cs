@@ -7,8 +7,11 @@
 /// ***************************************************************************
 /// </summary>
 using System;
-using ICCCurveType = CSJ2K.Icc.Tags.ICCCurveType;
-namespace CSJ2K.Icc.Lut
+using CoreJ2K.Icc.Tags;
+using ICCCurveType = CoreJ2K.Icc.Tags.ICCCurveType;
+using Tags_ICCCurveType = CoreJ2K.Icc.Tags.ICCCurveType;
+
+namespace CoreJ2K.Icc.Lut
 {
 	
 	/// <summary> An interpolated 16 bit lut
@@ -25,7 +28,7 @@ namespace CSJ2K.Icc.Lut
 		/// <oaram>   curve the data </oaram>
 		/// <oaram>   dwNumInput the lut size </oaram>
 		/// <oaram>   dwMaxOutput the lut max value </oaram>
-		public LookUpTable16Interp(ICCCurveType curve, int dwNumInput, int dwMaxOutput):base(curve, dwNumInput, dwMaxOutput)
+		public LookUpTable16Interp(Tags_ICCCurveType curve, int dwNumInput, int dwMaxOutput):base(curve, dwNumInput, dwMaxOutput)
 		{
 			
 			int dwLowIndex, dwHighIndex; // Indices of interpolation points
@@ -48,7 +51,7 @@ namespace CSJ2K.Icc.Lut
 				dwHighIndex = (int) dfHighIndex;
 				
 				if (dwLowIndex == dwHighIndex)
-					dfOut = ICCCurveType.CurveToDouble(curve.entry(dwLowIndex));
+					dfOut = Tags_ICCCurveType.CurveToDouble(curve.entry(dwLowIndex));
 				else
 				{
 					dfLow = ICCCurveType.CurveToDouble(curve.entry(dwLowIndex));

@@ -7,13 +7,19 @@
 /// ***************************************************************************
 /// </summary>
 using System;
-using BlkImgDataSrc = CSJ2K.j2k.image.BlkImgDataSrc;
-using DataBlk = CSJ2K.j2k.image.DataBlk;
-using DataBlkInt = CSJ2K.j2k.image.DataBlkInt;
-using DataBlkFloat = CSJ2K.j2k.image.DataBlkFloat;
-using FacilityManager = CSJ2K.j2k.util.FacilityManager;
+using CoreJ2K.j2k.image;
+using CoreJ2K.j2k.util;
+using BlkImgDataSrc = CoreJ2K.j2k.image.BlkImgDataSrc;
+using DataBlk = CoreJ2K.j2k.image.DataBlk;
+using DataBlkInt = CoreJ2K.j2k.image.DataBlkInt;
+using DataBlkFloat = CoreJ2K.j2k.image.DataBlkFloat;
+using FacilityManager = CoreJ2K.j2k.util.FacilityManager;
+using image_BlkImgDataSrc = CoreJ2K.j2k.image.BlkImgDataSrc;
+using image_DataBlk = CoreJ2K.j2k.image.DataBlk;
+using image_DataBlkFloat = CoreJ2K.j2k.image.DataBlkFloat;
+using image_DataBlkInt = CoreJ2K.j2k.image.DataBlkInt;
 
-namespace CSJ2K.Color
+namespace CoreJ2K.Color
 {
 	
 	
@@ -59,7 +65,7 @@ namespace CSJ2K.Color
 		/// </param>
 		/// <returns> SYccColorSpaceMapper instance
 		/// </returns>
-		public new static BlkImgDataSrc createInstance(BlkImgDataSrc src, ColorSpace csMap)
+		public new static image_BlkImgDataSrc createInstance(image_BlkImgDataSrc src, ColorSpace csMap)
 		{
 			return new SYccColorSpaceMapper(src, csMap);
 		}
@@ -72,7 +78,7 @@ namespace CSJ2K.Color
 		/// </param>
 		/// <param name="csm">-- provides colorspace info
 		/// </param>
-		protected internal SYccColorSpaceMapper(BlkImgDataSrc src, ColorSpace csMap):base(src, csMap)
+		protected internal SYccColorSpaceMapper(image_BlkImgDataSrc src, ColorSpace csMap):base(src, csMap)
 		{
 			initialize();
 			/* end SYccColorSpaceMapper ctor */
@@ -124,7 +130,7 @@ namespace CSJ2K.Color
 		/// <returns> The requested DataBlk
 		/// </returns>
 		/// <seealso cref="GetInternCompData" />
-		public override DataBlk GetCompData(DataBlk outblk, int c)
+		public override image_DataBlk GetCompData(image_DataBlk outblk, int c)
 		{
 			
 			var type = outblk.DataType;
@@ -142,10 +148,10 @@ namespace CSJ2K.Color
 				copyGeometry(inFloat[i], outblk);
 				
 				// Request data from the source.
-				inInt[i] = (DataBlkInt) src.GetInternCompData(inInt[i], i);
+				inInt[i] = (image_DataBlkInt) src.GetInternCompData(inInt[i], i);
 			}
 			
-			if (type == DataBlk.TYPE_INT)
+			if (type == image_DataBlk.TYPE_INT)
 			{
 				if (ncomps == 1)
 					workInt[c] = inInt[c];
@@ -220,7 +226,7 @@ namespace CSJ2K.Color
 		/// </returns>
 		/// <seealso cref="GetCompData">
 		/// </seealso>
-		public override DataBlk GetInternCompData(DataBlk out_Renamed, int compIndex)
+		public override image_DataBlk GetInternCompData(image_DataBlk out_Renamed, int compIndex)
 		{
 			return GetCompData(out_Renamed, compIndex);
 		}
@@ -234,7 +240,7 @@ namespace CSJ2K.Color
 		/// </param>
 		/// <returns> output DataBlkFloat array
 		/// </returns>
-		private static DataBlkFloat[] mult(DataBlkFloat[] inblk)
+		private static image_DataBlkFloat[] mult(image_DataBlkFloat[] inblk)
 		{
 			
 			if (inblk.Length != 3)
@@ -242,14 +248,14 @@ namespace CSJ2K.Color
 			
 			int i, j;
 			var length = inblk[0].h * inblk[0].w;
-			var outblk = new DataBlkFloat[3];
+			var outblk = new image_DataBlkFloat[3];
 			var out_Renamed = new float[3][];
 			var in_Renamed = new float[3][];
 			
 			for (i = 0; i < 3; ++i)
 			{
 				in_Renamed[i] = inblk[i].DataFloat;
-				outblk[i] = new DataBlkFloat();
+				outblk[i] = new image_DataBlkFloat();
 				copyGeometry(outblk[i], inblk[i]);
 				outblk[i].offset = inblk[i].offset;
 				out_Renamed[i] = new float[length];
@@ -278,7 +284,7 @@ namespace CSJ2K.Color
 		/// </param>
 		/// <returns> output DataBlkInt array
 		/// </returns>
-		private static DataBlkInt[] mult(DataBlkInt[] inblk)
+		private static image_DataBlkInt[] mult(image_DataBlkInt[] inblk)
 		{
 			
 			if (inblk.Length != 3)
@@ -287,14 +293,14 @@ namespace CSJ2K.Color
 			
 			int i, j;
 			var length = inblk[0].h * inblk[0].w;
-			var outblk = new DataBlkInt[3];
+			var outblk = new image_DataBlkInt[3];
 			var out_Renamed = new int[3][];
 			var in_Renamed = new int[3][];
 			
 			for (i = 0; i < 3; ++i)
 			{
 				in_Renamed[i] = inblk[i].DataInt;
-				outblk[i] = new DataBlkInt();
+				outblk[i] = new image_DataBlkInt();
 				copyGeometry(outblk[i], inblk[i]);
 				outblk[i].offset = inblk[i].offset;
 				out_Renamed[i] = new int[length];

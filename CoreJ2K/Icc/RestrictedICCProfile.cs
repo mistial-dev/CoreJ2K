@@ -7,12 +7,14 @@
 /// ***************************************************************************
 /// </summary>
 
-using ICCCurveType = CSJ2K.Icc.Tags.ICCCurveType;
-using ICCXYZType = CSJ2K.Icc.Tags.ICCXYZType;
+using ICCCurveType = CoreJ2K.Icc.Tags.ICCCurveType;
+using ICCXYZType = CoreJ2K.Icc.Tags.ICCXYZType;
 
-namespace CSJ2K.Icc
+namespace CoreJ2K.Icc
 {
-	
+	using ICCCurveType = Tags.ICCCurveType;
+	using ICCXYZType = Tags.ICCXYZType;
+
 	/// <summary> This profile is constructed by parsing an ICCProfile and
 	/// is the profile actually applied to the image.
 	/// 

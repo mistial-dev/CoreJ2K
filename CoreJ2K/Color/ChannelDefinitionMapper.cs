@@ -7,9 +7,9 @@
 /// ***************************************************************************
 /// </summary>
 using System;
-using CSJ2K.j2k.image;
+using CoreJ2K.j2k.image;
 
-namespace CSJ2K.Color
+namespace CoreJ2K.Color
 {
 	
 	/// <summary> This class is responsible for the mapping between

@@ -7,10 +7,12 @@
 /// ***************************************************************************
 /// </summary>
 using System;
-using BlkImgDataSrc = CSJ2K.j2k.image.BlkImgDataSrc;
-using DataBlk = CSJ2K.j2k.image.DataBlk;
+using BlkImgDataSrc = CoreJ2K.j2k.image.BlkImgDataSrc;
+using DataBlk = CoreJ2K.j2k.image.DataBlk;
+using image_BlkImgDataSrc = CoreJ2K.j2k.image.BlkImgDataSrc;
+using image_DataBlk = CoreJ2K.j2k.image.DataBlk;
 
-namespace CSJ2K.Color
+namespace CoreJ2K.Color
 {
 	
 	/// <summary> This class provides Enumerated ColorSpace API for the jj2000.j2k imaging chain
@@ -32,7 +34,7 @@ namespace CSJ2K.Color
 		/// </param>
 		/// <returns> EnumeratedColorSpaceMapper instance
 		/// </returns>
-		public new static BlkImgDataSrc createInstance(BlkImgDataSrc src, ColorSpace csMap)
+		public new static image_BlkImgDataSrc createInstance(image_BlkImgDataSrc src, ColorSpace csMap)
 		{
 			return new EnumeratedColorSpaceMapper(src, csMap);
 		}
@@ -45,7 +47,7 @@ namespace CSJ2K.Color
 		/// </param>
 		/// <param name="csm">-- provides colorspace info
 		/// </param>
-		protected internal EnumeratedColorSpaceMapper(BlkImgDataSrc src, ColorSpace csMap):base(src, csMap)
+		protected internal EnumeratedColorSpaceMapper(image_BlkImgDataSrc src, ColorSpace csMap):base(src, csMap)
 		{
 			/* end EnumeratedColorSpaceMapper ctor */
 		}
@@ -85,7 +87,7 @@ namespace CSJ2K.Color
 		/// 
 		/// </returns>
 		/// <seealso cref="GetInternCompData" />
-		public override DataBlk GetCompData(DataBlk out_Renamed, int c)
+		public override image_DataBlk GetCompData(image_DataBlk out_Renamed, int c)
 		{
 			return src.GetCompData(out_Renamed, c);
 		}
@@ -135,7 +137,7 @@ namespace CSJ2K.Color
 		/// 
 		/// </returns>
 		/// <seealso cref="GetCompData" />
-		public override DataBlk GetInternCompData(DataBlk out_Renamed, int compIndex)
+		public override image_DataBlk GetInternCompData(image_DataBlk out_Renamed, int compIndex)
 		{
 			return src.GetInternCompData(out_Renamed, compIndex);
 		}

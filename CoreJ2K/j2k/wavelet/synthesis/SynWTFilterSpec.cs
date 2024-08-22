@@ -41,7 +41,7 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 
-namespace CSJ2K.j2k.wavelet.synthesis
+namespace CoreJ2K.j2k.wavelet.synthesis
 {
 	
 	/// <summary> This class extends ModuleSpec class for synthesis filters specification

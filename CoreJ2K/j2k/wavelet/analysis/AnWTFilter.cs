@@ -41,7 +41,7 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 
-namespace CSJ2K.j2k.wavelet.analysis
+namespace CoreJ2K.j2k.wavelet.analysis
 {
 	
 	/// <summary> This abstract class defines the methods of all analysis wavelet

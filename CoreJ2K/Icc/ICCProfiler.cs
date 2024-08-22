@@ -7,11 +7,12 @@
 /// ***************************************************************************
 /// </summary>
 using System;
-using CSJ2K.j2k.image;
-using CSJ2K.j2k.util;
-using CSJ2K.Color;
-using CSJ2K.Icc.Lut;
-namespace CSJ2K.Icc
+using CoreJ2K.Color;
+using CoreJ2K.Icc.Lut;
+using CoreJ2K.j2k.image;
+using CoreJ2K.j2k.util;
+
+namespace CoreJ2K.Icc
 {
 	
 	/// <summary> This class provides ICC Profiling API for the jj2000.j2k imaging chain

@@ -9,7 +9,7 @@
 using System;
 using SkiaSharp;
 
-namespace CSJ2K.j2k.image.input
+namespace CoreJ2K.j2k.image.input
 {
     public class ImgReaderSkia:ImgReader
     {

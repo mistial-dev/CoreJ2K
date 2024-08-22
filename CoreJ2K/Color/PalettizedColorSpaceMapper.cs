@@ -7,10 +7,11 @@
 /// ***************************************************************************
 /// </summary>
 using System;
-using CSJ2K.j2k.image;
-using CSJ2K.j2k.util;
-using CSJ2K.Color.Boxes;
-namespace CSJ2K.Color
+using CoreJ2K.Color.Boxes;
+using CoreJ2K.j2k.image;
+using CoreJ2K.j2k.util;
+
+namespace CoreJ2K.Color
 {
 	
 	/// <summary> This class provides decoding of images with palettized colorspaces.

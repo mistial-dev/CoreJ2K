@@ -42,19 +42,20 @@
 * */
 using System;
 using System.Collections.Generic;
-using CSJ2K.j2k.quantization.dequantizer;
-using CSJ2K.j2k.wavelet.synthesis;
-using CSJ2K.j2k.entropy.decoder;
-using CSJ2K.j2k.wavelet;
-using CSJ2K.j2k.entropy;
-using CSJ2K.j2k.decoder;
-using CSJ2K.j2k.image;
-using CSJ2K.j2k.util;
-using CSJ2K.j2k.roi;
-using CSJ2K.j2k.io;
-using CSJ2K.Color;
-using CSJ2K.Icc;
-namespace CSJ2K.j2k.codestream.reader
+using CoreJ2K.Color;
+using CoreJ2K.Icc;
+using CoreJ2K.j2k.decoder;
+using CoreJ2K.j2k.entropy;
+using CoreJ2K.j2k.entropy.decoder;
+using CoreJ2K.j2k.image;
+using CoreJ2K.j2k.io;
+using CoreJ2K.j2k.quantization.dequantizer;
+using CoreJ2K.j2k.roi;
+using CoreJ2K.j2k.util;
+using CoreJ2K.j2k.wavelet;
+using CoreJ2K.j2k.wavelet.synthesis;
+
+namespace CoreJ2K.j2k.codestream.reader
 {
 	
 	/// <summary> This class reads main and tile-part headers from the codestream given a

@@ -41,7 +41,7 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 
-namespace CSJ2K.j2k.image
+namespace CoreJ2K.j2k.image
 {
 	
 	/// <summary> This class represents 2-D coordinates.

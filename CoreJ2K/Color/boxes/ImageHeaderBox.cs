@@ -7,9 +7,12 @@
 /// ***************************************************************************
 /// </summary>
 using System;
-using RandomAccessIO = CSJ2K.j2k.io.RandomAccessIO;
-using ICCProfile = CSJ2K.Icc.ICCProfile;
-namespace CSJ2K.Color.Boxes
+using CoreJ2K.Icc;
+using RandomAccessIO = CoreJ2K.j2k.io.RandomAccessIO;
+using ICCProfile = CoreJ2K.Icc.ICCProfile;
+using io_RandomAccessIO = CoreJ2K.j2k.io.RandomAccessIO;
+
+namespace CoreJ2K.Color.Boxes
 {
 	
 	/// <summary> This class models the Image Header box contained in a JP2
@@ -40,7 +43,7 @@ namespace CSJ2K.Color.Boxes
 		/// </param>
 		/// <exception cref="IOException,">ColorSpaceException
 		/// </exception>
-		public ImageHeaderBox(RandomAccessIO in_Renamed, int boxStart):base(in_Renamed, boxStart)
+		public ImageHeaderBox(io_RandomAccessIO in_Renamed, int boxStart):base(in_Renamed, boxStart)
 		{
 			readBox();
 		}

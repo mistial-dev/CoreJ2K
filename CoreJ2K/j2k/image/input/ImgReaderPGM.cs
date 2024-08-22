@@ -39,9 +39,9 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 using System;
-using CSJ2K.Util;
+using CoreJ2K.Util;
 
-namespace CSJ2K.j2k.image.input
+namespace CoreJ2K.j2k.image.input
 {
 	
 	/// <summary> This class implements the ImgData interface for reading 8 bit unsigned data

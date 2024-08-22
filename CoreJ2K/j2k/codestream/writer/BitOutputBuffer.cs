@@ -41,8 +41,9 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 using System;
-using CSJ2K.j2k.util;
-namespace CSJ2K.j2k.codestream.writer
+using CoreJ2K.j2k.util;
+
+namespace CoreJ2K.j2k.codestream.writer
 {
 	
 	/// <summary> This class implements a buffer for writing bits, with the required bit

@@ -41,13 +41,13 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 using System;
-using CSJ2K.j2k.wavelet.synthesis;
-using CSJ2K.j2k.quantization;
-using CSJ2K.j2k.entropy;
-using CSJ2K.j2k.image;
-using CSJ2K.j2k.roi;
+using CoreJ2K.j2k.entropy;
+using CoreJ2K.j2k.image;
+using CoreJ2K.j2k.quantization;
+using CoreJ2K.j2k.roi;
+using CoreJ2K.j2k.wavelet.synthesis;
 
-namespace CSJ2K.j2k.decoder
+namespace CoreJ2K.j2k.decoder
 {
 	
 	/// <summary> This class holds references to each module specifications used in the

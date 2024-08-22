@@ -45,8 +45,9 @@
 * 
 */
 
-using CSJ2K.j2k.image;
-namespace CSJ2K.j2k.wavelet.analysis
+using CoreJ2K.j2k.image;
+
+namespace CoreJ2K.j2k.wavelet.analysis
 {
 	
 	/// <summary> This extends the analysis wavelet filter general definitions of

@@ -8,10 +8,13 @@
 /// </summary>
 
 using System.Collections.Generic;
-using FileFormatBoxes = CSJ2K.j2k.fileformat.FileFormatBoxes;
-using ICCProfile = CSJ2K.Icc.ICCProfile;
-using RandomAccessIO = CSJ2K.j2k.io.RandomAccessIO;
-namespace CSJ2K.Color.Boxes
+using CoreJ2K.Icc;
+using CoreJ2K.j2k.fileformat;
+using FileFormatBoxes = CoreJ2K.j2k.fileformat.FileFormatBoxes;
+using ICCProfile = CoreJ2K.Icc.ICCProfile;
+using io_RandomAccessIO = CoreJ2K.j2k.io.RandomAccessIO;
+using RandomAccessIO = CoreJ2K.j2k.io.RandomAccessIO;
+namespace CoreJ2K.Color.Boxes
 {
 	
 	/// <summary> The abstract super class modeling the aspects of
@@ -36,7 +39,7 @@ namespace CSJ2K.Color.Boxes
 		/// <summary>Length of the box.             </summary>
 		public int length;
 		/// <summary>input file                     </summary>
-		protected internal RandomAccessIO in_Renamed;
+		protected internal io_RandomAccessIO in_Renamed;
 		/// <summary>offset to start of box         </summary>
 		protected internal int boxStart;
 		/// <summary>offset to end of box           </summary>
@@ -51,7 +54,7 @@ namespace CSJ2K.Color.Boxes
 		/// </param>
 		/// <exception cref="IOException,">ColorSpaceException 
 		/// </exception>
-		public JP2Box(RandomAccessIO in_Renamed, int boxStart)
+		public JP2Box(io_RandomAccessIO in_Renamed, int boxStart)
 		{
 			var boxHeader = new byte[16];
 			

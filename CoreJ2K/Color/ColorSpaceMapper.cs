@@ -7,11 +7,11 @@
 /// ***************************************************************************
 /// </summary>
 using System;
-using CSJ2K.j2k.image;
-using CSJ2K.j2k.util;
-using CSJ2K.Icc;
+using CoreJ2K.Icc;
+using CoreJ2K.j2k.image;
+using CoreJ2K.j2k.util;
 
-namespace CSJ2K.Color
+namespace CoreJ2K.Color
 {
 
     /// <summary> This is the base class for all modules in the colorspace and icc

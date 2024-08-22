@@ -4,7 +4,7 @@
 using System;
 using System.Linq;
 
-namespace CSJ2K.Util
+namespace CoreJ2K.Util
 {
     public sealed class PortableImage : IImage
     {

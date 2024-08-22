@@ -7,9 +7,11 @@
 /// ***************************************************************************
 /// </summary>
 using System;
-using ICCProfile = CSJ2K.Icc.ICCProfile;
-using RandomAccessIO = CSJ2K.j2k.io.RandomAccessIO;
-namespace CSJ2K.Color.Boxes
+using CoreJ2K.Icc;
+using ICCProfile = CoreJ2K.Icc.ICCProfile;
+using io_RandomAccessIO = CoreJ2K.j2k.io.RandomAccessIO;
+using RandomAccessIO = CoreJ2K.j2k.io.RandomAccessIO;
+namespace CoreJ2K.Color.Boxes
 {
 	
 	/// <summary> This class models the palette box contained in a JP2
@@ -38,7 +40,7 @@ namespace CSJ2K.Color.Boxes
 		/// </param>
 		/// <exception cref="IOException,">ColorSpaceException 
 		/// </exception>
-		public PaletteBox(RandomAccessIO in_Renamed, int boxStart):base(in_Renamed, boxStart)
+		public PaletteBox(io_RandomAccessIO in_Renamed, int boxStart):base(in_Renamed, boxStart)
 		{
 			readBox();
 		}

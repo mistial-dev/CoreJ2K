@@ -7,8 +7,11 @@
 /// ***************************************************************************
 /// </summary>
 using System;
-using ICCCurveType = CSJ2K.Icc.Tags.ICCCurveType;
-namespace CSJ2K.Icc.Lut
+using CoreJ2K.Icc.Tags;
+using ICCCurveType = CoreJ2K.Icc.Tags.ICCCurveType;
+using Tags_ICCCurveType = CoreJ2K.Icc.Tags.ICCCurveType;
+
+namespace CoreJ2K.Icc.Lut
 {
 	
 	/// <summary> An interpolated floating point lut
@@ -34,7 +37,7 @@ namespace CSJ2K.Icc.Lut
 		/// <summary> Construct the lut from the curve data</summary>
 		/// <oaram>   curve the data </oaram>
 		/// <oaram>   dwNumInput the lut size </oaram>
-		public LookUpTableFPInterp(ICCCurveType curve, int dwNumInput):base(curve, dwNumInput)
+		public LookUpTableFPInterp(Tags_ICCCurveType curve, int dwNumInput):base(curve, dwNumInput)
 		{
 			
 			int dwLowIndex, dwHighIndex; // Indices of interpolation points
@@ -57,7 +60,7 @@ namespace CSJ2K.Icc.Lut
 				if (dwLowIndex == dwHighIndex)
 				{
 					//UPGRADE_WARNING: Data types in Visual C# might be different.  Verify the accuracy of narrowing conversions. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1042'"
-					lut[i] = (float) ICCCurveType.CurveToDouble(curve.entry(dwLowIndex));
+					lut[i] = (float) Tags_ICCCurveType.CurveToDouble(curve.entry(dwLowIndex));
 				}
 				else
 				{

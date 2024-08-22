@@ -41,7 +41,7 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 
-namespace CSJ2K.j2k.io
+namespace CoreJ2K.j2k.io
 {
 	
 	/// <summary> This abstract class defines the interface to perform random access I/O. It

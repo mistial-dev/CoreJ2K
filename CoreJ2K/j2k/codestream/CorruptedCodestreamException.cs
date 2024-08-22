@@ -43,7 +43,7 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 
-namespace CSJ2K.j2k.codestream
+namespace CoreJ2K.j2k.codestream
 {
 	
 	/// <summary> This exception is thrown whenever an illegal value is read from a bit

@@ -42,7 +42,7 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 
-namespace CSJ2K.j2k.io
+namespace CoreJ2K.j2k.io
 {
 	
 	/// <summary> This interface defines the input of binary data from streams and/or files.
