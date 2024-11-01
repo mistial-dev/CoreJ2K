@@ -1216,7 +1216,7 @@ namespace CoreJ2K
         /**
      * Prints the error message 'msg' to standard err, prepending "ERROR" to
      * it, and sets the exitCode to 'code'. An exit code different than 0
-     * indicates that there where problems.
+     * indicates that there were problems.
      *
      * @param msg The error message
      *

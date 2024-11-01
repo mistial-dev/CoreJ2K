@@ -14,19 +14,6 @@ using CoreJ2K.Util;
 using CoreJ2K.j2k.util;
 
 /// <summary>
-	/// This interface should be implemented by any class whose instances are intended 
-	/// to be executed by a thread.
-	/// </summary>
-	public interface IThreadRunnable
-	{
-		/// <summary>
-		/// This method has to be implemented in order that starting of the thread causes the object's 
-		/// run method to be called in that separately executing thread.
-		/// </summary>
-		void Run();
-	}
-
-/// <summary>
 /// Contains conversion support elements such as classes, interfaces and static methods.
 /// </summary>
 internal class SupportClass
