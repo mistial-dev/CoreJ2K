@@ -40,7 +40,8 @@
 * 
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
-#define DO_TIMING
+
+//#define DO_TIMING
 
 using CoreJ2K.j2k.image;
 using CoreJ2K.j2k.quantization.quantizer;
