@@ -102,7 +102,7 @@ namespace CoreJ2K.j2k.image.invcomptransf
                         return false;
 
                     default:
-                        throw new ArgumentException("Non JPEG 2000 part I" + " component transformation");
+                        throw new ArgumentException("Non JPEG 2000 part I component transformation");
 
                 }
             }
@@ -223,7 +223,7 @@ namespace CoreJ2K.j2k.image.invcomptransf
                     return "No component transformation";
 
                 default:
-                    throw new ArgumentException("Non JPEG 2000 part I" + " component transformation");
+                    throw new ArgumentException("Non JPEG 2000 part I component transformation");
 
             }
         }
@@ -466,7 +466,7 @@ namespace CoreJ2K.j2k.image.invcomptransf
                     return invICT(blk, compIndex);
 
                 default:
-                    throw new ArgumentException("Non JPEG 2000 part I" + " component transformation");
+                    throw new ArgumentException("Non JPEG 2000 part I component transformation");
 
             }
         }

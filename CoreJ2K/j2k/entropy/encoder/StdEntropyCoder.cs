@@ -727,7 +727,7 @@ namespace CoreJ2K.j2k.entropy.encoder
             System.Text.StringBuilder sb;
 
             // Single threaded implementation
-            sb = new System.Text.StringBuilder("StdEntropyCoder compression wall " + "clock time:");
+            sb = new System.Text.StringBuilder("StdEntropyCoder compression wall clock time:");
             for (c = 0; c < time.Length; c++)
             {
                 sb.Append("\n  component ");

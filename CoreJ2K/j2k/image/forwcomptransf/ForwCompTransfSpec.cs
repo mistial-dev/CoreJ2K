@@ -188,7 +188,7 @@ namespace CoreJ2K.j2k.image.forwcomptransf
 						break;
 					
 					case 'c':  // Components specification
-						throw new ArgumentException("Component specific " + " parameters" + " not allowed with " + "'-Mct' option");
+						throw new ArgumentException("Component specific  parameters not allowed with '-Mct' option");
 					
 					default: 
 						switch (word)

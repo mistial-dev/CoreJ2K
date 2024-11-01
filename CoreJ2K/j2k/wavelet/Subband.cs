@@ -529,7 +529,7 @@ namespace CoreJ2K.j2k.wavelet
 			// Find the root subband for the resolution level
 			if (rl > sb.resLvl || rl < 0)
 			{
-				throw new ArgumentException("Resolution level index " + "out of range");
+				throw new ArgumentException("Resolution level index out of range");
 			}
 			
 			// Returns directly if it is itself

@@ -270,7 +270,7 @@ namespace CoreJ2K.j2k.image
             if (x0siz < 0 || y0siz < 0 || xt0siz < 0 || yt0siz < 0 || xtsiz < 0 || ytsiz < 0 || xt0siz > x0siz
                 || yt0siz > y0siz)
             {
-                throw new ArgumentException("Invalid image origin, " + "tiling origin or nominal " + "tile size");
+                throw new ArgumentException("Invalid image origin, tiling origin or nominal tile size");
             }
 
             // If no tiling has been specified, creates a unique tile with maximum
@@ -320,7 +320,7 @@ namespace CoreJ2K.j2k.image
             if (t != TileIdx)
             {
                 throw new InvalidOperationException(
-                    "Asking the width of a tile-component which is " + "not in the current tile (call setTile() or "
+                    "Asking the width of a tile-component which is not in the current tile (call setTile() or "
                     + "nextTile() methods before).");
             }
             return compW[c];
@@ -343,7 +343,7 @@ namespace CoreJ2K.j2k.image
             if (t != TileIdx)
             {
                 throw new InvalidOperationException(
-                    "Asking the width of a tile-component which is " + "not in the current tile (call setTile() or "
+                    "Asking the width of a tile-component which is not in the current tile (call setTile() or "
                     + "nextTile() methods before).");
             }
             return compH[c];

@@ -194,7 +194,7 @@ namespace CoreJ2K.j2k.quantization
 						
 						if (pl.getBooleanParameter("lossless") && (word.ToUpper().Equals("derived".ToUpper()) || word.ToUpper().Equals("expounded".ToUpper())))
 						{
-							throw new ArgumentException("Cannot use non " + "reversible " + "quantization with " + "'-lossless' option");
+							throw new ArgumentException("Cannot use non reversible quantization with '-lossless' option");
 						}
 						
 						switch (curSpecValType)

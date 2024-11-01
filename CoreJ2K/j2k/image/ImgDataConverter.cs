@@ -443,7 +443,7 @@ namespace CoreJ2K.j2k.image
                     break; // End cast FLOAT -> INT
 
                 default:
-                    throw new ArgumentException("Only integer and float data " + "are " + "supported by JJ2000");
+                    throw new ArgumentException("Only integer and float data are supported by JJ2000");
 
             }
             return blk;

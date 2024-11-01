@@ -538,7 +538,7 @@ namespace CoreJ2K.j2k.image.input
 					
 					
 					default: 
-						throw new System.IO.IOException("PGX supports only bit-depth between" + " 1 and 31");
+						throw new System.IO.IOException("PGX supports only bit-depth between 1 and 31");
 					
 				}
 			}

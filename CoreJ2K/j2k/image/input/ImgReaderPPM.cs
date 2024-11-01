@@ -434,7 +434,7 @@ namespace CoreJ2K.j2k.image.input
 					if (i == 1 && b == 51)
 					{
 						// i.e 'P3'
-						throw new ArgumentException("JJ2000 does not support" + " ascii-PPM files. Use " + " raw-PPM file instead. ");
+						throw new ArgumentException("JJ2000 does not support ascii-PPM files. Use  raw-PPM file instead. ");
 					}
 					else
 					{

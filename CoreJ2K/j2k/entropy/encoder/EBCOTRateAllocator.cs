@@ -632,7 +632,7 @@ namespace CoreJ2K.j2k.entropy.encoder
 				{
 					if (newbytes <= 0)
 					{
-						throw new ArgumentException("Overall target bitrate too " + "low, given the current " + "bit stream header overhead");
+						throw new ArgumentException("Overall target bitrate too low, given the current bit stream header overhead");
 					}
 					break;
 				}

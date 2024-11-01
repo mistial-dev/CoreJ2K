@@ -96,7 +96,7 @@ namespace CoreJ2K.j2k.quantization
 			var param = pl.getParameter("Qguard_bits");
 			if (param == null)
 			{
-				throw new ArgumentException("Qguard_bits option not " + "specified");
+				throw new ArgumentException("Qguard_bits option not specified");
 			}
 			
 			// Parse argument

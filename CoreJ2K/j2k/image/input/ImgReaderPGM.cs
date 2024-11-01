@@ -399,7 +399,7 @@ namespace CoreJ2K.j2k.image.input
 					if (i == 1 && b == 50)
 					{
 						//i.e 'P2'
-						throw new ArgumentException("JJ2000 does not support" + " ascii-PGM files. Use " + " raw-PGM file instead. ");
+						throw new ArgumentException("JJ2000 does not support ascii-PGM files. Use  raw-PGM file instead. ");
 					}
 					else
 					{

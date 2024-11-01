@@ -197,7 +197,7 @@ namespace CoreJ2K.j2k.image.input
 		{
 			if (t != 0)
 			{
-				throw new InvalidOperationException("Asking a tile-component width for a tile index" + " greater than 0 whereas there is only one tile");
+				throw new InvalidOperationException("Asking a tile-component width for a tile index greater than 0 whereas there is only one tile");
 			}
 			return w;
 		}
@@ -214,7 +214,7 @@ namespace CoreJ2K.j2k.image.input
 		{
 			if (t != 0)
 			{
-				throw new InvalidOperationException("Asking a tile-component width for a tile index" + " greater than 0 whereas there is only one tile");
+				throw new InvalidOperationException("Asking a tile-component width for a tile index greater than 0 whereas there is only one tile");
 			}
 			return h;
 		}

@@ -706,7 +706,7 @@ namespace CoreJ2K.j2k.io
 		public virtual int skipBytes(int n)
 		{
 			if (n < 0)
-				throw new ArgumentException("Can not skip negative number " + "of bytes");
+				throw new ArgumentException("Can not skip negative number of bytes");
 			if (n <= (maxByte - position))
 			{
 				position += n;

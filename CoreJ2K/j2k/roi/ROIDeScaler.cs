@@ -107,7 +107,7 @@ namespace CoreJ2K.j2k.roi
 		/// start with 'R'. 
 		/// </summary>
 		//UPGRADE_NOTE: Final was removed from the declaration of 'pinfo'. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
-		private static readonly string[][] pinfo = {new string[]{"Rno_roi", null, "This argument makes sure that the no ROI de-scaling is performed. " + "Decompression is done like there is no ROI in the image", null}};
+		private static readonly string[][] pinfo = {new string[]{"Rno_roi", null, "This argument makes sure that the no ROI de-scaling is performed. Decompression is done like there is no ROI in the image", null}};
 		
 		/// <summary>The entropy decoder from where to get the compressed data (the source)
 		/// 

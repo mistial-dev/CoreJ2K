@@ -234,7 +234,7 @@ namespace CoreJ2K.j2k.roi.encoder
 						var maskPGM = rois[r].maskPGM; // Local copy
 						
 						if ((src.ImgWidth != maskPGM.ImgWidth) || (src.ImgHeight != maskPGM.ImgHeight))
-							throw new ArgumentException("Input image and" + " ROI mask must " + "have the same " + "size");
+							throw new ArgumentException("Input image and ROI mask must have the same size");
 						x = src.ImgULX;
 						y = src.ImgULY;
 						lrx = x + src.ImgWidth - 1;

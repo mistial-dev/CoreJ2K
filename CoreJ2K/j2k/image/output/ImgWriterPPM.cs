@@ -143,7 +143,7 @@ namespace CoreJ2K.j2k.image.output
 			// Check that all components have same width and height
 			if (w != imgSrc.getCompImgWidth(n2) || w != imgSrc.getCompImgWidth(n3) || h != imgSrc.getCompImgHeight(n2) || h != imgSrc.getCompImgHeight(n3))
 			{
-				throw new ArgumentException("All components must have the" + " same dimensions and no" + " subsampling");
+				throw new ArgumentException("All components must have the same dimensions and no subsampling");
 			}
 			w = imgSrc.ImgWidth;
 			h = imgSrc.ImgHeight;

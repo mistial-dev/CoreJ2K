@@ -953,7 +953,7 @@ namespace CoreJ2K.j2k.codestream
 				}
 				else if (rcom == 1)
 				{
-					str += (" Registration : General use (IS 8859-15:1999 " + "(Latin) values)\n");
+					str += (" Registration : General use (IS 8859-15:1999 (Latin) values)\n");
 					str += (" Text         : " + System.Text.Encoding.UTF8.GetString(ccom, 0, ccom.Length) + "\n");
 				}
 				else

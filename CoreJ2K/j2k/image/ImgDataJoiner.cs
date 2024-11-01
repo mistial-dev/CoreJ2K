@@ -215,7 +215,7 @@ namespace CoreJ2K.j2k.image
             imageData = imD;
             compIdx = cIdx;
             if (imageData.Count != compIdx.Count)
-                throw new System.ArgumentException("imD and cIdx must have the" + " same length");
+                throw new System.ArgumentException("imD and cIdx must have the same length");
             
             nc = imD.Count;
             
@@ -228,7 +228,7 @@ namespace CoreJ2K.j2k.image
             {
                 if (imD[i].getNumTiles() != 1 || imD[i].getCompULX(cIdx[i]) != 0 || imD[i].getCompULY(cIdx[i]) != 0)
                 {
-                    throw new System.ArgumentException("All input components must, " + "not use tiles and must " + "have " + "the origin at the canvas " + "origin");
+                    throw new System.ArgumentException("All input components must, not use tiles and must have the origin at the canvas origin");
                 }
             }
             
@@ -266,7 +266,7 @@ namespace CoreJ2K.j2k.image
                 subsY[i] = (maxH + imD[i].getCompImgHeight(cIdx[i]) - 1) / imD[i].getCompImgHeight(cIdx[i]);
                 if ((maxW + subsX[i] - 1) / subsX[i] != imD[i].getCompImgWidth(cIdx[i]) || (maxH + subsY[i] - 1) / subsY[i] != imD[i].getCompImgHeight(cIdx[i]))
                 {
-                    throw new System.InvalidOperationException("Can not compute component subsampling " + "factors: strange subsampling.");
+                    throw new System.InvalidOperationException("Can not compute component subsampling factors: strange subsampling.");
                 }
             }
         }

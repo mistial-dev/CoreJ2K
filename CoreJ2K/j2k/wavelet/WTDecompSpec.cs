@@ -199,7 +199,7 @@ namespace CoreJ2K.j2k.wavelet
 			compMainDefLevels[n] = (lev >= 0)?lev:mainDefLevels;
 			// For the moment disable it since other parts of JJ2000 do not
 			// support this
-			throw new NotImplementedException("Currently, in JJ2000, all components " + "and tiles must have the same " + "decomposition type and number of " + "levels");
+			throw new NotImplementedException("Currently, in JJ2000, all components and tiles must have the same decomposition type and number of levels");
 		}
 		
 		/// <summary> Returns the type of specification for the decomposition in the

@@ -182,7 +182,7 @@ namespace CoreJ2K.j2k.image.output
 			bitDepth = src.getNomRangeBits(this.c);
 			if ((bitDepth <= 0) || (bitDepth > 31))
 			{
-				throw new System.IO.IOException("PGX supports only bit-depth between " + "1 and 31");
+				throw new System.IO.IOException("PGX supports only bit-depth between 1 and 31");
 			}
 			if (bitDepth <= 8)
 			{
@@ -463,7 +463,7 @@ namespace CoreJ2K.j2k.image.output
 				
 				
 				default: 
-					throw new System.IO.IOException("PGX supports only bit-depth between " + "1 and 31");
+					throw new System.IO.IOException("PGX supports only bit-depth between 1 and 31");
 				
 			}
 		}
