@@ -58,14 +58,11 @@ namespace CoreJ2K
         {
             RandomAccessIO in_stream = new ISRandomAccessIO(stream);
 
-            // Initialize default parameters
-            var defpl = GetDefaultDecoderParameterList(decoder_pinfo);
-
             // Create parameter list using defaults
-            var pl = parameters ?? new ParameterList(defpl);
+            var pl = parameters ?? new ParameterList(GetDefaultDecoderParameterList(decoder_pinfo));
 
             // **** File Format ****
-            // If the codestream is wrapped in the jp2 fileformat, Read the
+            // If the codestream is wrapped in the jp2 file format, Read the
             // file format wrapper
             var ff = new FileFormatReader(in_stream);
             ff.readFileFormat();
@@ -832,6 +829,11 @@ namespace CoreJ2K
             return pl;
         }
 
+        public static ParameterList GetDefaultDecoderParameterList()
+        {
+            return GetDefaultDecoderParameterList(decoder_pinfo);
+        }
+        
         public static ParameterList GetDefaultEncoderParameterList(string[][] pinfo)
         {
             var pl = new ParameterList();
@@ -870,6 +872,11 @@ namespace CoreJ2K
             return pl;
         }
 
+        public static ParameterList GetDefaultEncoderParameterList()
+        {
+            return GetDefaultEncoderParameterList(encoder_pinfo);
+        }
+        
         #endregion
 
         #region Decoder Parameters
