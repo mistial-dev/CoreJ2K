@@ -4,7 +4,7 @@
 Copyright (c) 1999-2000 JJ2000 Partners;  
 Copyright (c) 2007-2012 Jason S. Clary; 
 Copyright (c) 2013-2016 Anders Gustafsson, Cureos AB;  
-Copyright (c) 2024 Sjofn LLC.   
+Copyright (c) 2024-2025 Sjofn LLC.   
 
 Licensed and distributable under the terms of the [BSD license](http://www.opensource.org/licenses/bsd-license.php)
 
