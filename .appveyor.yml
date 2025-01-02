@@ -47,8 +47,7 @@ deploy:
       APPVEYOR_REPO_TAG: true
   - provider: GitHub
     name: github_releases
-    description: Release v$(appveyor_build_version)
-    tag: $(appveyor_repo_tag_name)
+    description: Release v$(TAG_VERSION)
     auth_token:
       secure: KPXQ74CJ+1aD3/H12JeVwMedPvcyr4aL9O/CFL8sGJHN/WZCYjKw92m8CodgO90D
     artifact: /.*CoreJ2K.*(\.|\.s)nupkg/
