@@ -1767,7 +1767,7 @@ namespace CoreJ2K.j2k.codestream.writer
 			// JJ2000 COM marker segment
 			if (enJJ2KMarkSeg)
 			{
-				var str = $"Created by: CSJ2K version {JJ2KInfo.version}";
+				var str = $"Created by: CoreJ2K version {JJ2KInfo.version}";
 				int markSegLen; // the marker segment length
 				
 				// COM marker

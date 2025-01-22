@@ -438,7 +438,7 @@ namespace CoreJ2K.j2k.entropy.encoder
             sb.Append("  final writing:  ");
             sb.Append(writeTime);
             sb.Append(" ms");
-            FacilityManager.getMsgLogger().printmsg(CSJ2K.j2k.util.MsgLogger_Fields.INFO, sb.ToString());
+            FacilityManager.getMsgLogger().printmsg(CoreJ2K.j2k.util.MsgLogger_Fields.INFO, sb.ToString());
             //UPGRADE_NOTE: Call to 'super.finalize()' was removed. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1124'"
         }
 #endif

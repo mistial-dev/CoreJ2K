@@ -2604,7 +2604,7 @@ namespace CoreJ2K.j2k.codestream.reader
 		{
 			
 			//UPGRADE_TODO: Class 'java.io.DataInputStream' was converted to 'System.IO.BinaryReader' which has a different behavior. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1073_javaioDataInputStream'"
-			//CSJ2K.EndianBinaryReader dis;
+			//CoreJ2K.EndianBinaryReader dis;
 			System.IO.MemoryStream bais;
 			
 			// COD marker segment
