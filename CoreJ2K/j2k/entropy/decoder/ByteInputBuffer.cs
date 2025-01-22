@@ -180,7 +180,6 @@ namespace CoreJ2K.j2k.entropy.decoder
 		/// <param name="len">The number of elements to add to the array.
 		/// 
 		/// </param>
-		//UPGRADE_NOTE: Synchronized keyword was removed from method 'addByteArray'. Lock expression was added. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1027'"
 		public virtual void  addByteArray(byte[] data, int off, int len)
 		{
 			lock (this)

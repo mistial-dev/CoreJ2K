@@ -24,17 +24,11 @@ namespace CoreJ2K.Color
 	/// </author>
 	public class Resampler:ColorSpaceMapper
 	{
-		//UPGRADE_NOTE: Final was removed from the declaration of 'minCompSubsX '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
 		private int minCompSubsX;
-		//UPGRADE_NOTE: Final was removed from the declaration of 'minCompSubsY '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
 		private int minCompSubsY;
-		//UPGRADE_NOTE: Final was removed from the declaration of 'maxCompSubsX '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
 		private int maxCompSubsX;
-		//UPGRADE_NOTE: Final was removed from the declaration of 'maxCompSubsY '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
 		private int maxCompSubsY;
 		
-		//UPGRADE_NOTE: Final was removed from the declaration of 'wspan '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
-		//UPGRADE_NOTE: Final was removed from the declaration of 'hspan '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
 		internal int wspan = 0;
 		internal int hspan = 0;
 		

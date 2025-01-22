@@ -95,7 +95,6 @@ namespace CoreJ2K.j2k.codestream
 		/// <summary>Returns the number of found COM marker segments </summary>
 		public virtual int NumCOM => ncom;
 
-		//UPGRADE_NOTE: Field 'EnclosingInstance' was added to class 'SIZ' to access its enclosing instance. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1019'"
 		/// <summary>Internal class holding information found in the SIZ marker segment </summary>
 		public class SIZ
 		{
@@ -105,10 +104,10 @@ namespace CoreJ2K.j2k.codestream
 			}
 			private void  InitBlock(HeaderInfo enclosingInstance)
 			{
-				this.enclosingInstance = enclosingInstance;
+				this.Enclosing_Instance = enclosingInstance;
 			}
-			private HeaderInfo enclosingInstance;
-			public virtual int MaxCompWidth
+
+            public virtual int MaxCompWidth
 			{
 				get
 				{
@@ -183,7 +182,6 @@ namespace CoreJ2K.j2k.codestream
 					{
 						ms = (SIZ) Clone();
 					}
-					//UPGRADE_NOTE: Exception 'java.lang.CloneNotSupportedException' was converted to 'System.Exception' which has different behavior. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1100'"
 					catch (Exception)
 					{
 						throw new InvalidOperationException("Cannot clone SIZ marker segment");
@@ -192,8 +190,9 @@ namespace CoreJ2K.j2k.codestream
 				}
 				
 			}
-			public HeaderInfo Enclosing_Instance => enclosingInstance;
-			public int lsiz;
+			public HeaderInfo Enclosing_Instance { get; private set; }
+
+            public int lsiz;
 			public int rsiz;
 			public int xsiz;
 			public int ysiz;
@@ -307,14 +306,13 @@ namespace CoreJ2K.j2k.codestream
 				str += "\n";
 				return str;
 			}
-			//UPGRADE_TODO: The following method was automatically generated and it must be implemented in order to preserve the class logic. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1232'"
+			//UPGRADE_TODO: The following method was automatically generated, and it must be implemented in order to preserve the class logic. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1232'"
 			public virtual object Clone()
 			{
 				return null;
 			}
 		}
 		
-		//UPGRADE_NOTE: Field 'EnclosingInstance' was added to class 'SOT' to access its enclosing instance. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1019'"
 		/// <summary>Internal class holding information found in the SOt marker segments </summary>
 		public class SOT
 		{
@@ -324,11 +322,12 @@ namespace CoreJ2K.j2k.codestream
 			}
 			private void  InitBlock(HeaderInfo enclosingInstance)
 			{
-				this.enclosingInstance = enclosingInstance;
+				this.Enclosing_Instance = enclosingInstance;
 			}
-			private HeaderInfo enclosingInstance;
-			public HeaderInfo Enclosing_Instance => enclosingInstance;
-			public int lsot;
+
+            public HeaderInfo Enclosing_Instance { get; private set; }
+
+            public int lsot;
 			public int isot;
 			public int psot;
 			public int tpsot;
@@ -347,7 +346,6 @@ namespace CoreJ2K.j2k.codestream
 			}
 		}
 		
-		//UPGRADE_NOTE: Field 'EnclosingInstance' was added to class 'COD' to access its enclosing instance. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1019'"
 		/// <summary>Internal class holding information found in the COD marker segments </summary>
 		public class COD
 		{
@@ -357,10 +355,10 @@ namespace CoreJ2K.j2k.codestream
 			}
 			private void  InitBlock(HeaderInfo enclosingInstance)
 			{
-				this.enclosingInstance = enclosingInstance;
+				this.Enclosing_Instance = enclosingInstance;
 			}
-			private HeaderInfo enclosingInstance;
-			public virtual COD Copy
+
+            public virtual COD Copy
 			{
 				get
 				{
@@ -369,7 +367,6 @@ namespace CoreJ2K.j2k.codestream
 					{
 						ms = (COD) Clone();
 					}
-					//UPGRADE_NOTE: Exception 'java.lang.CloneNotSupportedException' was converted to 'System.Exception' which has different behavior. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1100'"
 					catch (Exception)
 					{
 						throw new InvalidOperationException("Cannot clone SIZ marker segment");
@@ -378,8 +375,9 @@ namespace CoreJ2K.j2k.codestream
 				}
 				
 			}
-			public HeaderInfo Enclosing_Instance => enclosingInstance;
-			public int lcod;
+			public HeaderInfo Enclosing_Instance { get; private set; }
+
+            public int lcod;
 			public int scod;
 			public int sgcod_po; // Progression order
 			public int sgcod_nl; // Number of layers
@@ -484,14 +482,13 @@ namespace CoreJ2K.j2k.codestream
 				str += "\n";
 				return str;
 			}
-			//UPGRADE_TODO: The following method was automatically generated and it must be implemented in order to preserve the class logic. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1232'"
+			//UPGRADE_TODO: The following method was automatically generated, and it must be implemented in order to preserve the class logic. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1232'"
 			public virtual object Clone()
 			{
 				return null;
 			}
 		}
 		
-		//UPGRADE_NOTE: Field 'EnclosingInstance' was added to class 'COC' to access its enclosing instance. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1019'"
 		/// <summary>Internal class holding information found in the COC marker segments </summary>
 		public class COC
 		{
@@ -501,11 +498,12 @@ namespace CoreJ2K.j2k.codestream
 			}
 			private void  InitBlock(HeaderInfo enclosingInstance)
 			{
-				this.enclosingInstance = enclosingInstance;
+				this.Enclosing_Instance = enclosingInstance;
 			}
-			private HeaderInfo enclosingInstance;
-			public HeaderInfo Enclosing_Instance => enclosingInstance;
-			public int lcoc;
+
+            public HeaderInfo Enclosing_Instance { get; private set; }
+
+            public int lcoc;
 			public int ccoc;
 			public int scoc;
 			public int spcoc_ndl; // Number of decomposition levels
@@ -579,7 +577,6 @@ namespace CoreJ2K.j2k.codestream
 			}
 		}
 		
-		//UPGRADE_NOTE: Field 'EnclosingInstance' was added to class 'RGN' to access its enclosing instance. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1019'"
 		/// <summary>Internal class holding information found in the RGN marker segments </summary>
 		public class RGN
 		{
@@ -589,11 +586,12 @@ namespace CoreJ2K.j2k.codestream
 			}
 			private void  InitBlock(HeaderInfo enclosingInstance)
 			{
-				this.enclosingInstance = enclosingInstance;
+				this.Enclosing_Instance = enclosingInstance;
 			}
-			private HeaderInfo enclosingInstance;
-			public HeaderInfo Enclosing_Instance => enclosingInstance;
-			public int lrgn;
+
+            public HeaderInfo Enclosing_Instance { get; private set; }
+
+            public int lrgn;
 			public int crgn;
 			public int srgn;
 			public int sprgn;
@@ -616,7 +614,6 @@ namespace CoreJ2K.j2k.codestream
 			}
 		}
 		
-		//UPGRADE_NOTE: Field 'EnclosingInstance' was added to class 'QCD' to access its enclosing instance. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1019'"
 		/// <summary>Internal class holding information found in the QCD marker segments </summary>
 		public class QCD
 		{
@@ -626,10 +623,10 @@ namespace CoreJ2K.j2k.codestream
 			}
 			private void  InitBlock(HeaderInfo enclosingInstance)
 			{
-				this.enclosingInstance = enclosingInstance;
+				this.Enclosing_Instance = enclosingInstance;
 			}
-			private HeaderInfo enclosingInstance;
-			public virtual int QuantType
+
+            public virtual int QuantType
 			{
 				get
 				{
@@ -653,8 +650,9 @@ namespace CoreJ2K.j2k.codestream
 				}
 				
 			}
-			public HeaderInfo Enclosing_Instance => enclosingInstance;
-			public int lqcd;
+			public HeaderInfo Enclosing_Instance { get; private set; }
+
+            public int lqcd;
 			public int sqcd;
 			public int[][] spqcd;
 			
@@ -726,7 +724,6 @@ namespace CoreJ2K.j2k.codestream
 			}
 		}
 		
-		//UPGRADE_NOTE: Field 'EnclosingInstance' was added to class 'QCC' to access its enclosing instance. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1019'"
 		/// <summary>Internal class holding information found in the QCC marker segments </summary>
 		public class QCC
 		{
@@ -736,10 +733,10 @@ namespace CoreJ2K.j2k.codestream
 			}
 			private void  InitBlock(HeaderInfo enclosingInstance)
 			{
-				this.enclosingInstance = enclosingInstance;
+				this.Enclosing_Instance = enclosingInstance;
 			}
-			private HeaderInfo enclosingInstance;
-			public virtual int QuantType
+
+            public virtual int QuantType
 			{
 				get
 				{
@@ -763,8 +760,9 @@ namespace CoreJ2K.j2k.codestream
 				}
 				
 			}
-			public HeaderInfo Enclosing_Instance => enclosingInstance;
-			public int lqcc;
+			public HeaderInfo Enclosing_Instance { get; private set; }
+
+            public int lqcc;
 			public int cqcc;
 			public int sqcc;
 			public int[][] spqcc;
@@ -838,7 +836,6 @@ namespace CoreJ2K.j2k.codestream
 			}
 		}
 		
-		//UPGRADE_NOTE: Field 'EnclosingInstance' was added to class 'POC' to access its enclosing instance. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1019'"
 		/// <summary>Internal class holding information found in the POC marker segments </summary>
 		public class POC
 		{
@@ -848,11 +845,12 @@ namespace CoreJ2K.j2k.codestream
 			}
 			private void  InitBlock(HeaderInfo enclosingInstance)
 			{
-				this.enclosingInstance = enclosingInstance;
+				this.Enclosing_Instance = enclosingInstance;
 			}
-			private HeaderInfo enclosingInstance;
-			public HeaderInfo Enclosing_Instance => enclosingInstance;
-			public int lpoc;
+
+            public HeaderInfo Enclosing_Instance { get; private set; }
+
+            public int lpoc;
 			public int[] rspoc;
 			public int[] cspoc;
 			public int[] lyepoc;
@@ -896,7 +894,6 @@ namespace CoreJ2K.j2k.codestream
 			}
 		}
 		
-		//UPGRADE_NOTE: Field 'EnclosingInstance' was added to class 'CRG' to access its enclosing instance. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1019'"
 		/// <summary>Internal class holding information found in the CRG marker segment </summary>
 		public class CRG
 		{
@@ -906,11 +903,12 @@ namespace CoreJ2K.j2k.codestream
 			}
 			private void  InitBlock(HeaderInfo enclosingInstance)
 			{
-				this.enclosingInstance = enclosingInstance;
+				this.Enclosing_Instance = enclosingInstance;
 			}
-			private HeaderInfo enclosingInstance;
-			public HeaderInfo Enclosing_Instance => enclosingInstance;
-			public int lcrg;
+
+            public HeaderInfo Enclosing_Instance { get; private set; }
+
+            public int lcrg;
 			public int[] xcrg;
 			public int[] ycrg;
 			/// <summary>Display information found in the CRG marker segment </summary>
@@ -926,7 +924,6 @@ namespace CoreJ2K.j2k.codestream
 			}
 		}
 		
-		//UPGRADE_NOTE: Field 'EnclosingInstance' was added to class 'COM' to access its enclosing instance. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1019'"
 		/// <summary>Internal class holding information found in the COM marker segments </summary>
 		public class COM
 		{
@@ -936,11 +933,12 @@ namespace CoreJ2K.j2k.codestream
 			}
 			private void  InitBlock(HeaderInfo enclosingInstance)
 			{
-				this.enclosingInstance = enclosingInstance;
+				this.Enclosing_Instance = enclosingInstance;
 			}
-			private HeaderInfo enclosingInstance;
-			public HeaderInfo Enclosing_Instance => enclosingInstance;
-			public int lcom;
+
+            public HeaderInfo Enclosing_Instance { get; private set; }
+
+            public int lcom;
 			public int rcom;
 			public byte[] ccom;
 			/// <summary>Display information found in the COM marker segment </summary>
@@ -1206,7 +1204,6 @@ namespace CoreJ2K.j2k.codestream
 			{
 				nhi = (HeaderInfo) Clone();
 			}
-			//UPGRADE_NOTE: Exception 'java.lang.CloneNotSupportedException' was converted to 'System.Exception' which has different behavior. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1100'"
 			catch (Exception)
 			{
 				throw new InvalidOperationException("Cannot clone HeaderInfo instance");

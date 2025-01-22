@@ -77,9 +77,7 @@ namespace CoreJ2K.j2k.codestream.reader
 		private HeaderDecoder hd;
 		
 		/// <summary>Initial value of the state variable associated with code-block
-		/// length. 
-		/// </summary>
-		//UPGRADE_NOTE: Final was removed from the declaration of 'INIT_LBLOCK '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
+		/// length.</summary>
 		private int INIT_LBLOCK = 3;
 		
 		/// <summary>The wrapper to read bits for the packet heads </summary>

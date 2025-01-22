@@ -8,10 +8,7 @@
 /// </summary>
 using System;
 using System.Globalization;
-using CoreJ2K.Color;
 using ColorSpace = CoreJ2K.Color.ColorSpace;
-using DataBlkInt = CoreJ2K.j2k.image.DataBlkInt;
-using DataBlkFloat = CoreJ2K.j2k.image.DataBlkFloat;
 using image_DataBlkFloat = CoreJ2K.j2k.image.DataBlkFloat;
 using image_DataBlkInt = CoreJ2K.j2k.image.DataBlkInt;
 

@@ -111,35 +111,30 @@ namespace CoreJ2K.j2k.entropy.decoder
 		/// <summary>Flag to indicate if we should try to detect errors or just ignore any
 		/// error resilient information 
 		/// </summary>
-		//UPGRADE_NOTE: Final was removed from the declaration of 'doer '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
 		private bool doer;
 		
 		/// <summary>Flag to indicate if we should be verbose about bit stream errors
 		/// detected with the error resilience options 
 		/// </summary>
-		//UPGRADE_NOTE: Final was removed from the declaration of 'verber '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
 		private bool verber;
 		
 		/// <summary>Number of bits used for the Zero Coding lookup table </summary>
 		private const int ZC_LUT_BITS = 8;
 		
 		/// <summary>Zero Coding context lookup tables for the LH global orientation </summary>
-		//UPGRADE_NOTE: Final was removed from the declaration of 'ZC_LUT_LH '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
 		private static readonly int[] ZC_LUT_LH = new int[1 << ZC_LUT_BITS];
 		
 		/// <summary>Zero Coding context lookup tables for the HL global orientation </summary>
-		//UPGRADE_NOTE: Final was removed from the declaration of 'ZC_LUT_HL '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
 		private static readonly int[] ZC_LUT_HL = new int[1 << ZC_LUT_BITS];
 		
 		/// <summary>Zero Coding context lookup tables for the HH global orientation </summary>
-		//UPGRADE_NOTE: Final was removed from the declaration of 'ZC_LUT_HH '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
 		private static readonly int[] ZC_LUT_HH = new int[1 << ZC_LUT_BITS];
 		
 		/// <summary>Number of bits used for the Sign Coding lookup table </summary>
 		private const int SC_LUT_BITS = 9;
 		
 		/// <summary>Sign Coding context lookup table. The index into the table is a 9 bit
-		/// index, which correspond the the value in the 'state' array shifted by
+		/// index, which correspond to the value in the 'state' array shifted by
 		/// 'SC_SHIFT'. Bits 8-5 are the signs of the horizontal-left,
 		/// horizontal-right, vertical-up and vertical-down neighbors,
 		/// respectively. Bit 4 is not used (0 or 1 makes no difference). Bits 3-0

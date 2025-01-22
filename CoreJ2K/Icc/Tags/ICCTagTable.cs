@@ -8,8 +8,6 @@
 /// </summary>
 using System;
 using System.IO;
-using CoreJ2K.Color;
-using CoreJ2K.Icc.Types;
 using ColorSpace = CoreJ2K.Color.ColorSpace;
 using ICCProfileHeader = CoreJ2K.Icc.Types.ICCProfileHeader;
 namespace CoreJ2K.Icc.Tags
@@ -34,14 +32,9 @@ namespace CoreJ2K.Icc.Tags
 	/// </author>
 	public class ICCTagTable:System.Collections.Generic.Dictionary<int, ICCTag>
 	{
-		//UPGRADE_NOTE: Final was removed from the declaration of 'offTagCount '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
-		//UPGRADE_NOTE: The initialization of  'offTagCount' was moved to static method 'icc.tags.ICCTagTable'. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1005'"
 		private static readonly int offTagCount;
-		//UPGRADE_NOTE: Final was removed from the declaration of 'offTags '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
-		//UPGRADE_NOTE: The initialization of  'offTags' was moved to static method 'icc.tags.ICCTagTable'. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1005'"
 		private static readonly int offTags;
 		
-		//UPGRADE_NOTE: Final was removed from the declaration of 'trios '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
 		private System.Collections.Generic.List<Triplet> trios = new System.Collections.Generic.List<Triplet>(10);
 		
 		private int tagCount;
@@ -56,8 +49,6 @@ namespace CoreJ2K.Icc.Tags
 			/// <summary>length of tag data          </summary>
 			internal int count;
 			/// <summary>size of an entry            </summary>
-			//UPGRADE_NOTE: Final was removed from the declaration of 'size '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
-			//UPGRADE_NOTE: The initialization of  'size' was moved to static method 'icc.tags.ICCTagTable.Triplet'. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1005'"
 			public static readonly int size;
 			
 			
@@ -74,9 +65,6 @@ namespace CoreJ2K.Icc.Tags
 		}
 		
 		/// <summary> Representation of a tag table</summary>
-		/// <returns> String
-		/// </returns>
-		//UPGRADE_NOTE: The equivalent of method 'java.util.Hashtable.toString' is not an override method. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1143'"
 		public override string ToString()
 		{
 			var rep = new System.Text.StringBuilder($"[ICCTagTable containing {tagCount} tags:");

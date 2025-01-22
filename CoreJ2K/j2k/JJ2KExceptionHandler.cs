@@ -73,7 +73,6 @@ namespace CoreJ2K.j2k
 		/// 
 		/// 
 		/// </param>
-		//UPGRADE_NOTE: Exception 'java.lang.Throwable' was converted to 'System.Exception' which has different behavior. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1100'"
 		public static void  handleException(Exception e)
 		{
 			// Test if there is an special action (not implemented yet)

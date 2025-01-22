@@ -257,7 +257,6 @@ namespace CoreJ2K.j2k.codestream.reader
 		/// <summary>The list of parameters that is accepted for quantization. Options 
 		/// for quantization start with 'Q'. 
 		/// </summary>
-		//UPGRADE_NOTE: Final was removed from the declaration of 'pinfo'. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
 		private static readonly string[][] pinfo = null;
 		
 		/// <summary>The reference to the HeaderInfo instance holding the information found
@@ -350,7 +349,6 @@ namespace CoreJ2K.j2k.codestream.reader
 		public const int CRG_FOUND = 1 << 16;
 		
 		/// <summary>The reset mask for new tiles </summary>
-		//UPGRADE_NOTE: Final was removed from the declaration of 'TILE_RESET '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
 		//private static readonly int TILE_RESET = ~ (PLM_FOUND | SIZ_FOUND | RGN_FOUND);
 		
 		/// <summary>HashTable used to store temporary marker segment byte buffers </summary>

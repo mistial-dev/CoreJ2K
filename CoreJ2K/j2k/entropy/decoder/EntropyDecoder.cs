@@ -91,18 +91,14 @@ namespace CoreJ2K.j2k.entropy.decoder
 		/// 
 		/// </summary>
 		/// <returns> the options name, their synopsis and their explanation, 
-		/// or null if no options are supported.
-		/// 
-		/// </returns>
+		/// or null if no options are supported.</returns>
 		public static string[][] ParameterInfo => pinfo;
 
 		/// <summary>The prefix for entropy decoder optiojns: 'C' </summary>
 		public const char OPT_PREFIX = 'C';
 		
 		/// <summary>The list of parameters that is accepted by the entropy
-		/// decoders. They start with 'C'. 
-		/// </summary>
-		//UPGRADE_NOTE: Final was removed from the declaration of 'pinfo'. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
+		/// decoders. They start with 'C'.</summary>
 		private static readonly string[][] pinfo = {new string[]{"Cverber", "[on|off]", "Specifies if the entropy decoder should be verbose about detected errors. If 'on' a message is printed whenever an error is detected.", "on"}, new string[]{"Cer", "[on|off]", "Specifies if error detection should be performed by the entropy decoder engine. If errors are detected they will be concealed and " + "the resulting distortion will be less important. Note that errors " + "can only be detected if the encoder that generated the data " + "included error resilience information.", "on"}};
 		
 		/// <summary>The bit stream transport from where to get the compressed data

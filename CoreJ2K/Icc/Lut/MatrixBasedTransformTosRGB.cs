@@ -8,12 +8,8 @@
 /// </summary>
 using System;
 using System.Globalization;
-using CoreJ2K.Color;
-using CoreJ2K.Icc.Tags;
 using ColorSpace = CoreJ2K.Color.ColorSpace;
 using ICCXYZType = CoreJ2K.Icc.Tags.ICCXYZType;
-using DataBlkInt = CoreJ2K.j2k.image.DataBlkInt;
-using DataBlkFloat = CoreJ2K.j2k.image.DataBlkFloat;
 using image_DataBlkFloat = CoreJ2K.j2k.image.DataBlkFloat;
 using image_DataBlkInt = CoreJ2K.j2k.image.DataBlkInt;
 
@@ -33,12 +29,6 @@ namespace CoreJ2K.Icc.Lut
 	{
 		// Start of constant definitions:
 		
-		//UPGRADE_NOTE: Final was removed from the declaration of 'RED '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
-		//UPGRADE_NOTE: The initialization of  'RED' was moved to static method 'icc.lut.MatrixBasedTransformTosRGB'. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1005'"
-		//UPGRADE_NOTE: Final was removed from the declaration of 'GREEN '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
-		//UPGRADE_NOTE: The initialization of  'GREEN' was moved to static method 'icc.lut.MatrixBasedTransformTosRGB'. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1005'"
-		//UPGRADE_NOTE: Final was removed from the declaration of 'BLUE '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
-		//UPGRADE_NOTE: The initialization of  'BLUE' was moved to static method 'icc.lut.MatrixBasedTransformTosRGB'. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1005'"
 		private static readonly int RED;
 		private static readonly int GREEN;
 		private static readonly int BLUE;
@@ -72,15 +62,12 @@ namespace CoreJ2K.Icc.Lut
 		
 		// End of contant definitions:
 		
-		//UPGRADE_NOTE: Final was removed from the declaration of 'matrix '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
 		private double[] matrix; // Matrix coefficients 
 		
 		private LookUpTableFP[] fLut = new LookUpTableFP[3];
 		private LookUpTable32LinearSRGBtoSRGB lut; // Linear sRGB to sRGB LUT
 		
-		//UPGRADE_NOTE: Final was removed from the declaration of 'dwMaxValue '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
 		private int[] dwMaxValue;
-		//UPGRADE_NOTE: Final was removed from the declaration of 'dwShiftValue '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
 		private int[] dwShiftValue;
 		
 		//private int dwMaxCols = 0; // Maximum number of columns that can be processed

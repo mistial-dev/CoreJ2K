@@ -7,9 +7,6 @@
 /// ***************************************************************************
 /// </summary>
 
-using ICCCurveType = CoreJ2K.Icc.Tags.ICCCurveType;
-using ICCXYZType = CoreJ2K.Icc.Tags.ICCXYZType;
-
 namespace CoreJ2K.Icc
 {
 	using ICCCurveType = Tags.ICCCurveType;
@@ -65,20 +62,12 @@ namespace CoreJ2K.Icc
 		}
 		
 		/// <summary>Component index       </summary>
-		//UPGRADE_NOTE: Final was removed from the declaration of 'GRAY '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
-		//UPGRADE_NOTE: The initialization of  'GRAY' was moved to static method 'icc.RestrictedICCProfile'. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1005'"
 		protected internal static readonly int GRAY;
 		/// <summary>Component index       </summary>
-		//UPGRADE_NOTE: Final was removed from the declaration of 'RED '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
-		//UPGRADE_NOTE: The initialization of  'RED' was moved to static method 'icc.RestrictedICCProfile'. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1005'"
 		protected internal static readonly int RED;
 		/// <summary>Component index       </summary>
-		//UPGRADE_NOTE: Final was removed from the declaration of 'GREEN '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
-		//UPGRADE_NOTE: The initialization of  'GREEN' was moved to static method 'icc.RestrictedICCProfile'. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1005'"
 		protected internal static readonly int GREEN;
 		/// <summary>Component index       </summary>
-		//UPGRADE_NOTE: Final was removed from the declaration of 'BLUE '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
-		//UPGRADE_NOTE: The initialization of  'BLUE' was moved to static method 'icc.RestrictedICCProfile'. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1005'"
 		protected internal static readonly int BLUE;
 		/// <summary>input type enumerator </summary>
 		public const int kMonochromeInput = 0;

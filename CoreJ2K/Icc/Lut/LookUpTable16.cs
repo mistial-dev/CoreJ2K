@@ -7,7 +7,6 @@
 /// ***************************************************************************
 /// </summary>
 using System;
-using ICCCurveType = CoreJ2K.Icc.Tags.ICCCurveType;
 using Tags_ICCCurveType = CoreJ2K.Icc.Tags.ICCCurveType;
 
 namespace CoreJ2K.Icc.Lut
@@ -24,10 +23,8 @@ namespace CoreJ2K.Icc.Lut
 	{
 		
 		/// <summary>Maximum output value of the LUT </summary>
-		//UPGRADE_NOTE: Final was removed from the declaration of 'dwMaxOutput '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
 		protected internal int dwMaxOutput;
 		/// <summary>The lut values.                 </summary>
-		//UPGRADE_NOTE: Final was removed from the declaration of 'lut '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
 		protected internal short[] lut;
 		
 		/// <summary> Create an abbreviated string representation of a 16 bit lut.</summary>

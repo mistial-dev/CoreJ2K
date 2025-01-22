@@ -50,7 +50,6 @@ namespace CoreJ2K.j2k.codestream.reader
 	/// applying the bit unstuffing procedure as required by the packet headers.
 	/// 
 	/// </summary>
-	//UPGRADE_NOTE: The access modifier for this class or class field has been changed in order to prevent compilation errors due to the visibility level. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1296'"
 	public class PktHeaderBitReader
 	{
 		

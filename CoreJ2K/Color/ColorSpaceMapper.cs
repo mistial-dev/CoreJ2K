@@ -117,7 +117,6 @@ namespace CoreJ2K.Color
         protected internal int[] fixedPtBitsArray = null;
 
         /// <summary>The list of parameters that are accepted for ICC profiling.</summary>
-        //UPGRADE_NOTE: Final was removed from the declaration of 'pinfo'. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
         private static readonly string[][] pinfo = {
                                                                   new string[]
                                                                       {
@@ -143,7 +142,6 @@ namespace CoreJ2K.Color
         protected internal DataBlk[] srcBlk = null;
 
 
-        //UPGRADE_NOTE: Field 'EnclosingInstance' was added to class 'ComputedComponents' to access its enclosing instance. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1019'"
         protected internal sealed class ComputedComponents
         {
             private void InitBlock(ColorSpaceMapper enclosingInstance)
@@ -202,7 +200,6 @@ namespace CoreJ2K.Color
             /* end class ComputedComponents */
         }
 
-        //UPGRADE_NOTE: The initialization of  'computed' was moved to method 'InitBlock'. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1005'"
         protected internal ComputedComponents computed;
 
         /// <summary> Copy the DataBlk geometry from source to target

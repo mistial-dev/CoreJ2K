@@ -7,8 +7,6 @@
 /// ***************************************************************************
 /// </summary>
 using System;
-using CoreJ2K.Icc;
-using RandomAccessIO = CoreJ2K.j2k.io.RandomAccessIO;
 using ICCProfile = CoreJ2K.Icc.ICCProfile;
 using io_RandomAccessIO = CoreJ2K.j2k.io.RandomAccessIO;
 

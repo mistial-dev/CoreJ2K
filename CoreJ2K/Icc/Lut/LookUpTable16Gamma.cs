@@ -7,7 +7,6 @@
 /// ***************************************************************************
 /// </summary>
 using System;
-using ICCCurveType = CoreJ2K.Icc.Tags.ICCCurveType;
 using Tags_ICCCurveType = CoreJ2K.Icc.Tags.ICCCurveType;
 
 namespace CoreJ2K.Icc.Lut

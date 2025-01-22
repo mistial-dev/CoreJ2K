@@ -23,8 +23,6 @@ namespace CoreJ2K.Icc.Types
 	public class ICCProfileVersion
 	{
 		/// <summary>Field size </summary>
-		//UPGRADE_NOTE: Final was removed from the declaration of 'size '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
-		//UPGRADE_NOTE: The initialization of  'size' was moved to static method 'icc.types.ICCProfileVersion'. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1005'"
 		public static readonly int size;
 		
 		/// <summary>Major revision number in binary coded decimal </summary>

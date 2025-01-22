@@ -7,8 +7,6 @@
 /// ***************************************************************************
 /// </summary>
 using System;
-using BlkImgDataSrc = CoreJ2K.j2k.image.BlkImgDataSrc;
-using DataBlk = CoreJ2K.j2k.image.DataBlk;
 using image_BlkImgDataSrc = CoreJ2K.j2k.image.BlkImgDataSrc;
 using image_DataBlk = CoreJ2K.j2k.image.DataBlk;
 

@@ -7,16 +7,7 @@
 /// ***************************************************************************
 /// </summary>
 using System;
-using CoreJ2K.j2k.fileformat;
 using FileFormatBoxes = CoreJ2K.j2k.fileformat.FileFormatBoxes;
-using ParameterList = CoreJ2K.j2k.util.ParameterList;
-using HeaderDecoder = CoreJ2K.j2k.codestream.reader.HeaderDecoder;
-using RandomAccessIO = CoreJ2K.j2k.io.RandomAccessIO;
-using PaletteBox = CoreJ2K.Color.Boxes.PaletteBox;
-using ComponentMappingBox = CoreJ2K.Color.Boxes.ComponentMappingBox;
-using ColorSpecificationBox = CoreJ2K.Color.Boxes.ColorSpecificationBox;
-using ChannelDefinitionBox = CoreJ2K.Color.Boxes.ChannelDefinitionBox;
-using ImageHeaderBox = CoreJ2K.Color.Boxes.ImageHeaderBox;
 using io_RandomAccessIO = CoreJ2K.j2k.io.RandomAccessIO;
 using reader_HeaderDecoder = CoreJ2K.j2k.codestream.reader.HeaderDecoder;
 using util_ParameterList = CoreJ2K.j2k.util.ParameterList;
@@ -314,26 +305,19 @@ namespace CoreJ2K.Color
 		/* Enumeration Class */
         /*
 		/// <summary>method enumeration </summary>
-		//UPGRADE_NOTE: Final was removed from the declaration of 'ICC_PROFILED '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
 		public const MethodEnum ICC_PROFILED = new MethodEnum("profiled");
 		/// <summary>method enumeration </summary>
-		//UPGRADE_NOTE: Final was removed from the declaration of 'ENUMERATED '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
 		public const MethodEnum ENUMERATED = new MethodEnum("enumerated");
 		
 		/// <summary>colorspace enumeration </summary>
-		//UPGRADE_NOTE: Final was removed from the declaration of 'sRGB '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
 		public const CSEnum sRGB = new CSEnum("sRGB");
 		/// <summary>colorspace enumeration </summary>
-		//UPGRADE_NOTE: Final was removed from the declaration of 'GreyScale '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
 		public const CSEnum GreyScale = new CSEnum("GreyScale");
 		/// <summary>colorspace enumeration </summary>
-		//UPGRADE_NOTE: Final was removed from the declaration of 'sYCC '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
 		public const CSEnum sYCC = new CSEnum("sYCC");
 		/// <summary>colorspace enumeration </summary>
-		//UPGRADE_NOTE: Final was removed from the declaration of 'Illegal '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
 		public const CSEnum Illegal = new CSEnum("Illegal");
 		/// <summary>colorspace enumeration </summary>
-		//UPGRADE_NOTE: Final was removed from the declaration of 'Unknown '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
 		public const CSEnum Unknown = new CSEnum("Unknown");
 		
 		/// <summary> Typesafe enumeration class</summary>
@@ -343,7 +327,6 @@ namespace CoreJ2K.Color
 		/// </author>
 		public class Enumeration
 		{
-			//UPGRADE_NOTE: Final was removed from the declaration of 'value '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
 			public System.String value_Renamed;
 			public Enumeration(System.String value_Renamed)
 			{

@@ -118,7 +118,6 @@ namespace CoreJ2K.j2k.image.invcomptransf
         /// <summary>The list of parameters that is accepted by the inverse
         /// component transformation module. They start with 'M'. 
         /// </summary>
-        //UPGRADE_NOTE: Final was removed from the declaration of 'pinfo'. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
         private static readonly string[][] pinfo = null;
 
         /// <summary>Identifier for the Inverse Reversible Component Transformation

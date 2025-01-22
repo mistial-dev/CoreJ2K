@@ -7,7 +7,6 @@
 /// ***************************************************************************
 /// </summary>
 using System;
-using CoreJ2K.Icc.Tags;
 using ICCCurveType = CoreJ2K.Icc.Tags.ICCCurveType;
 using Tags_ICCCurveType = CoreJ2K.Icc.Tags.ICCCurveType;
 

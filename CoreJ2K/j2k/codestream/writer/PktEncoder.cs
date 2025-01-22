@@ -135,7 +135,6 @@ namespace CoreJ2K.j2k.codestream.writer
 		public const char OPT_PREFIX = 'P';
 		
 		/// <summary>The list of parameters that is accepted for packet encoding.</summary>
-		//UPGRADE_NOTE: Final was removed from the declaration of 'pinfo'. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
 		private static readonly string[][] pinfo = {new string[]{"Psop", "[<tile idx>] on|off" + "[ [<tile idx>] on|off ...]", "Specifies whether start of packet (SOP) markers should be used. " + "'on' enables, 'off' disables it.", "off"}, new string[]{"Peph", "[<tile idx>] on|off" + "[ [<tile  idx>] on|off ...]", "Specifies whether end of packet header (EPH) markers should be " + " used. 'on' enables, 'off' disables it.", "off"}};
 		
 		/// <summary>The initial value for the lblock </summary>

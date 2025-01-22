@@ -21,16 +21,12 @@ namespace CoreJ2K.Icc.Tags
 	public class ICCCurveTypeReverse:ICCTag
 	{
 		/// <summary>Tag fields </summary>
-		//UPGRADE_NOTE: Final was removed from the declaration of 'type '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
 		public new int type;
 		/// <summary>Tag fields </summary>
-		//UPGRADE_NOTE: Final was removed from the declaration of 'reserved '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
 		public int reserved;
 		/// <summary>Tag fields </summary>
-		//UPGRADE_NOTE: Final was removed from the declaration of 'nEntries '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
 		public int nEntries;
 		/// <summary>Tag fields </summary>
-		//UPGRADE_NOTE: Final was removed from the declaration of 'entry '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
 		public int[] entry_Renamed_Field;
 		
 		

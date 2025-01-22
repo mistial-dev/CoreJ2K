@@ -5,7 +5,6 @@
 using System;
 using System.Linq;
 using CoreJ2K.j2k.image.input;
-using CoreJ2K.j2k.image;
 using SkiaSharp;
 
 namespace CoreJ2K.Util

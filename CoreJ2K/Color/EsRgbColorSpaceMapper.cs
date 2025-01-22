@@ -7,12 +7,7 @@
 /// ***************************************************************************
 /// </summary>
 using System;
-using CoreJ2K.j2k.image;
-using CoreJ2K.j2k.util;
-using BlkImgDataSrc = CoreJ2K.j2k.image.BlkImgDataSrc;
 using DataBlk = CoreJ2K.j2k.image.DataBlk;
-using DataBlkInt = CoreJ2K.j2k.image.DataBlkInt;
-using DataBlkFloat = CoreJ2K.j2k.image.DataBlkFloat;
 using FacilityManager = CoreJ2K.j2k.util.FacilityManager;
 using image_BlkImgDataSrc = CoreJ2K.j2k.image.BlkImgDataSrc;
 using image_DataBlk = CoreJ2K.j2k.image.DataBlk;

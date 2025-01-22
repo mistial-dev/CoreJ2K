@@ -57,7 +57,7 @@ namespace CoreJ2K.Util
                 case PixelFormat.Format64bppPArgb:
                 case PixelFormat.Format64bppArgb:
                 default:
-                    throw new ArgumentOutOfRangeException("pixelFormat");
+                    throw new ArgumentOutOfRangeException(nameof(pixelFormat));
             }
         }
 
@@ -84,7 +84,7 @@ namespace CoreJ2K.Util
                 case PixelFormat.Format64bppPArgb:
                 case PixelFormat.Format64bppArgb:
                 default:
-                    throw new ArgumentOutOfRangeException("pixelFormat");
+                    throw new ArgumentOutOfRangeException(nameof(pixelFormat));
             }
         }
 

@@ -7,7 +7,6 @@
 /// ***************************************************************************
 /// </summary>
 
-using ICCCurveType = CoreJ2K.Icc.Tags.ICCCurveType;
 using Tags_ICCCurveType = CoreJ2K.Icc.Tags.ICCCurveType;
 
 namespace CoreJ2K.Icc.Lut
@@ -24,7 +23,6 @@ namespace CoreJ2K.Icc.Lut
 	{
 		
 		/// <summary>The lut values. </summary>
-		//UPGRADE_NOTE: Final was removed from the declaration of 'lut '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
 		public float[] lut;
 		
 		/// <summary> Factory method for getting a lut from a given curve.</summary>

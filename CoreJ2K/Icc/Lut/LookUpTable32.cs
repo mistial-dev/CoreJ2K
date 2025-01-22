@@ -7,7 +7,6 @@
 /// ***************************************************************************
 /// </summary>
 using System;
-using ICCCurveType = CoreJ2K.Icc.Tags.ICCCurveType;
 using Tags_ICCCurveType = CoreJ2K.Icc.Tags.ICCCurveType;
 
 namespace CoreJ2K.Icc.Lut
@@ -20,20 +19,16 @@ namespace CoreJ2K.Icc.Lut
 	/// </version>
 	/// <author> 	Bruce A. Kern
 	/// </author>
-	//UPGRADE_NOTE: The access modifier for this class or class field has been changed in order to prevent compilation errors due to the visibility level. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1296'"
 	public abstract class LookUpTable32:LookUpTable
 	{
 		
 		/// <summary>Maximum output value of the LUT </summary>
-		//UPGRADE_NOTE: Final was removed from the declaration of 'dwMaxOutput '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
 		protected internal int dwMaxOutput;
 		/// <summary>the lut values.                 </summary>
-		//UPGRADE_NOTE: Final was removed from the declaration of 'lut '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
 		public int[] lut;
 		
 		/// <summary> Create an abbreviated string representation of a 16 bit lut.</summary>
-		/// <returns> the lut as a String
-		/// </returns>
+		/// <returns> the lut as a String</returns>
 		public override string ToString()
 		{
 			var rep = new System.Text.StringBuilder("[LookUpTable32 ");

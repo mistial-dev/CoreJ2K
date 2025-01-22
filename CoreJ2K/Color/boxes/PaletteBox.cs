@@ -7,10 +7,9 @@
 /// ***************************************************************************
 /// </summary>
 using System;
-using CoreJ2K.Icc;
 using ICCProfile = CoreJ2K.Icc.ICCProfile;
 using io_RandomAccessIO = CoreJ2K.j2k.io.RandomAccessIO;
-using RandomAccessIO = CoreJ2K.j2k.io.RandomAccessIO;
+
 namespace CoreJ2K.Color.Boxes
 {
 	

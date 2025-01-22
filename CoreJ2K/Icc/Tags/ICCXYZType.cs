@@ -24,13 +24,10 @@ namespace CoreJ2K.Icc.Tags
 	{
 		
 		/// <summary>x component </summary>
-		//UPGRADE_NOTE: Final was removed from the declaration of 'x '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
 		public long x;
 		/// <summary>y component </summary>
-		//UPGRADE_NOTE: Final was removed from the declaration of 'y '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
 		public long y;
 		/// <summary>z component </summary>
-		//UPGRADE_NOTE: Final was removed from the declaration of 'z '. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
 		public long z;
 		
 		/// <summary>Normalization utility </summary>

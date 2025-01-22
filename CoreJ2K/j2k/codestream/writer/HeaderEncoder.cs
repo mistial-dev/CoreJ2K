@@ -127,7 +127,6 @@ namespace CoreJ2K.j2k.codestream.writer
 		/// <summary>The list of parameters that are accepted for the header encoder
 		/// module. Options for this modules start with 'H'. 
 		/// </summary>
-		//UPGRADE_NOTE: Final was removed from the declaration of 'pinfo'. "ms-help://MS.VSCC.v80/dv_commoner/local/redirect.htm?index='!DefaultContextWindowIndex'&keyword='jlca1003'"
 		private static readonly string[][] pinfo = {new string[]{"Hjj2000_COM", null, "Writes or not the JJ2000 COM marker in the " + "codestream", "off"}, new string[]{"HCOM", "<Comment 1>[#<Comment 2>[#<Comment3...>]]", "Adds COM marker segments in the codestream. Comments must be " + "separated with '#' and are written into distinct maker segments.", null}};
 		
 		/// <summary>Nominal range bit of the component defining default values in QCD for

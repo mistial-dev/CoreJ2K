@@ -7,9 +7,7 @@
 /// ***************************************************************************
 /// </summary>
 
-using CoreJ2K.Color;
 using Color_ColorSpace = CoreJ2K.Color.ColorSpace;
-using ColorSpace = CoreJ2K.Color.ColorSpace;
 using ColorSpaceException = CoreJ2K.Color.ColorSpaceException;
 
 namespace CoreJ2K.Icc
