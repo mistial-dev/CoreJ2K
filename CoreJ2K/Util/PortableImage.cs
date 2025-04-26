@@ -140,6 +140,25 @@ namespace CoreJ2K.Util
                         }
                     }
                     break;
+                // HACK: Linden Lab RGBHM case. Problematic for any other format. In the future,
+                // consider verifying RGBHM from the comment found in the header.
+                case 5:
+                {
+                    var scale0 = byteScaling[0];
+                    var scale1 = byteScaling[1];
+                    var scale2 = byteScaling[2];
+                    //var scale3 = byteScaling[3];
+                    var scale4 = byteScaling[4];
+                        for (int i = 0, j = 0; i < count;)
+                    {
+                        bytes[j++] = (byte)(scale0 * data[i++]);
+                        bytes[j++] = (byte)(scale1 * data[i++]);
+                        bytes[j++] = (byte)(scale2 * data[i++]);
+                        i++;
+                        bytes[j++] = (byte)(scale4 * data[i++]);
+                    }
+                }
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(numberOfComponents), $"Invalid number of components: {numberOfComponents}");
             }

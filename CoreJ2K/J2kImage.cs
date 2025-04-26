@@ -268,6 +268,7 @@ namespace CoreJ2K
 
                             }
                             var offset = i * numComps;
+                            // FIXME: We don't do anything special here anymore. Simplify at some point.
                             switch (numComps)
                             {
                                 case 1:
@@ -287,6 +288,13 @@ namespace CoreJ2K
                                     rowvalues[offset + 1] = tmp[1];
                                     rowvalues[offset + 2] = tmp[2];
                                     rowvalues[offset + 3] = tmp[3];
+                                    break;
+                                case 5:
+                                    rowvalues[offset + 0] = tmp[0];
+                                    rowvalues[offset + 1] = tmp[1];
+                                    rowvalues[offset + 2] = tmp[2];
+                                    rowvalues[offset + 3] = tmp[3];
+                                    rowvalues[offset + 4] = tmp[4];
                                     break;
                                 default:
                                     throw new InvalidOperationException($"Invalid number of components: {numComps}");
