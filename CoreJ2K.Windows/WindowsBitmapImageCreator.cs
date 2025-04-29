@@ -36,9 +36,9 @@ namespace CoreJ2K.Util
             }
         }
 
-        public IImage Create(int width, int height, byte[] bytes)
+        public IImage Create(int width, int height, int numComponents, byte[] bytes)
         {
-            return new WindowsBitmapImage(width, height, bytes);
+            return new WindowsBitmapImage(width, height, numComponents, bytes);
         }
 
         public BlkImgDataSrc ToPortableImageSource(object imageObject)

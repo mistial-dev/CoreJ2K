@@ -29,9 +29,9 @@ namespace CoreJ2K.Util
             _creator = creator;
         }
 
-        internal static IImage New(int width, int height, byte[] bytes)
+        internal static IImage New(int width, int height, int numComponents, byte[] bytes)
         {
-            return _creator.Create(width, height, bytes);
+            return _creator.Create(width, height, numComponents, bytes);
         }
 
         internal static BlkImgDataSrc ToPortableImageSource(object imageObject)

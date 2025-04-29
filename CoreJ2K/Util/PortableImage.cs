@@ -1,7 +1,9 @@
 ﻿// Copyright (c) 2007-2016 CSJ2K contributors.
+// Copyright (c) 2025 Sjofn LLC.
 // Licensed under the BSD 3-Clause License.
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace CoreJ2K.Util
@@ -10,15 +12,13 @@ namespace CoreJ2K.Util
     {
         #region FIELDS
 
-        private const int SIZE_OF_ARGB = 4;
-
         private readonly double[] byteScaling;
 
         #endregion
 
         #region CONSTRUCTORS
 
-        internal PortableImage(int width, int height, int numberOfComponents, int[] bitsUsed)
+        internal PortableImage(int width, int height, int numberOfComponents, IEnumerable<int> bitsUsed)
         {
             Width = width;
             Height = height;
@@ -46,7 +46,8 @@ namespace CoreJ2K.Util
 
         public T As<T>()
         {
-            var image = ImageFactory.New(Width, Height, ToBytes(Width, Height, NumberOfComponents, byteScaling, Data));
+            var image = ImageFactory.New(Width, Height, NumberOfComponents, 
+                ToBytes(Width, Height, NumberOfComponents, byteScaling, Data));
             return image.As<T>();
         }
 
@@ -78,89 +79,19 @@ namespace CoreJ2K.Util
                 rowValues.Length);
         }
 
-        private static byte[] ToBytes(int width, int height, int numberOfComponents, double[] byteScaling, int[] data)
+        private static byte[] ToBytes(int width, int height, int numberOfComponents, 
+            IReadOnlyList<double> byteScaling, IReadOnlyList<int> data)
         {
             var count = numberOfComponents * width * height;
-            var bytes = new byte[SIZE_OF_ARGB * width * height];
+            var bytes = new byte[count];
 
-            switch (numberOfComponents)
+            for (var component = 0; component < numberOfComponents; ++component)
             {
-                case 1:
-                    {
-                        var scale = byteScaling[0];
-                        for (int i = 0, j = 0; i < count; ++i)
-                        {
-                            var b = (byte)(scale * data[i]);
-                            bytes[j++] = b;
-                            bytes[j++] = b;
-                            bytes[j++] = b;
-                            bytes[j++] = 0xff;
-                        }
-                    }
-                    break;
-                case 2:
-                    {
-                        var scale0 = byteScaling[0];
-                        var scale1 = byteScaling[1];
-                        for (int i = 0, j = 0; i < count;)
-                        {
-                            bytes[j++] = (byte)(scale0 * data[i++]);
-                            bytes[j++] = (byte)(scale1 * data[i++]);
-                            bytes[j++] = 0xff;
-                            bytes[j++] = 0xff;
-                        }
-                    }
-                    break;
-                case 3:
-                    {
-                        var scale0 = byteScaling[0];
-                        var scale1 = byteScaling[1];
-                        var scale2 = byteScaling[2];
-                        for (int i = 0, j = 0; i < count;)
-                        {
-                            bytes[j++] = (byte)(scale0 * data[i++]);
-                            bytes[j++] = (byte)(scale1 * data[i++]);
-                            bytes[j++] = (byte)(scale2 * data[i++]);
-                            bytes[j++] = 0xff;
-                        }
-                    }
-                    break;
-                case 4:
-                    {
-                        var scale0 = byteScaling[0];
-                        var scale1 = byteScaling[1];
-                        var scale2 = byteScaling[2];
-                        var scale3 = byteScaling[3];
-                        for (int i = 0, j = 0; i < count;)
-                        {
-                            bytes[j++] = (byte)(scale0 * data[i++]);
-                            bytes[j++] = (byte)(scale1 * data[i++]);
-                            bytes[j++] = (byte)(scale2 * data[i++]);
-                            bytes[j++] = (byte)(scale3 * data[i++]);
-                        }
-                    }
-                    break;
-                // HACK: Linden Lab RGBHM case. Problematic for any other format. In the future,
-                // consider verifying RGBHM from the comment found in the header.
-                case 5:
+                for (int i = 0, j = 0; i < count; ++i)
                 {
-                    var scale0 = byteScaling[0];
-                    var scale1 = byteScaling[1];
-                    var scale2 = byteScaling[2];
-                    //var scale3 = byteScaling[3];
-                    var scale4 = byteScaling[4];
-                        for (int i = 0, j = 0; i < count;)
-                    {
-                        bytes[j++] = (byte)(scale0 * data[i++]);
-                        bytes[j++] = (byte)(scale1 * data[i++]);
-                        bytes[j++] = (byte)(scale2 * data[i++]);
-                        i++;
-                        bytes[j++] = (byte)(scale4 * data[i++]);
-                    }
+                    var b = (byte)(byteScaling[component] * data[i]);
+                    bytes[j++] = b;
                 }
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(numberOfComponents), $"Invalid number of components: {numberOfComponents}");
             }
 
             return bytes;

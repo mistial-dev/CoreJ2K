@@ -7,7 +7,7 @@ namespace CoreJ2K.Util
 
     public interface IImageCreator : IDefaultable
     {
-        IImage Create(int width, int height, byte[] bytes);
+        IImage Create(int width, int height, int numComponents, byte[] bytes);
 
         BlkImgDataSrc ToPortableImageSource(object imageObject);
     }

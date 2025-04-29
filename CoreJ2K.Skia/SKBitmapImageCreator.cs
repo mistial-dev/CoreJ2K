@@ -29,9 +29,9 @@ namespace CoreJ2K.Util
             ImageFactory.Register(Instance);
         }
 
-        public IImage Create(int width, int height, byte[] bytes)
+        public IImage Create(int width, int height, int numComponents, byte[] bytes)
         {
-            return new SKBitmapImage(width, height, bytes);
+            return new SKBitmapImage(width, height, numComponents, bytes);
         }
 
         public BlkImgDataSrc ToPortableImageSource(object imageObject)

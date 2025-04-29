@@ -9,18 +9,13 @@ namespace CoreJ2K.Util
 
     public abstract class ImageBase<TBase> : IImage
     {
-        #region FIELDS
-
-        protected const int SizeOfArgb = 4;
-
-        #endregion
-
         #region CONSTRUCTORS
 
-        protected ImageBase(int width, int height, byte[] bytes)
+        protected ImageBase(int width, int height, int numComponents, byte[] bytes)
         {
             Width = width;
             Height = height;
+            NumComponents = numComponents;
             Bytes = bytes;
         }
 
@@ -31,6 +26,8 @@ namespace CoreJ2K.Util
         protected int Width { get; }
 
         protected int Height { get; }
+
+        protected int NumComponents { get; }
 
         protected byte[] Bytes { get; }
 
