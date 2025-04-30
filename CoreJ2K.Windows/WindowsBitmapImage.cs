@@ -62,7 +62,7 @@ namespace CoreJ2K.Util
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static unsafe byte[] ConvertRGBHM88888toRGBA8888(int width, int height, byte[] input)
         {
-            var ret = new byte[width * height];
+            var ret = new byte[width * height * 4];
             var destPos = 0;
             var srcPos = 0;
             fixed (byte* srcPtr = input)
