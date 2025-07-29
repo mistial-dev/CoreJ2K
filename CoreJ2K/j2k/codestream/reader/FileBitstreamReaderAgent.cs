@@ -49,6 +49,7 @@ using CoreJ2K.j2k.io;
 using CoreJ2K.j2k.quantization.dequantizer;
 using CoreJ2K.j2k.util;
 using CoreJ2K.j2k.wavelet.synthesis;
+using CoreJ2K.Util;
 
 namespace CoreJ2K.j2k.codestream.reader
 {

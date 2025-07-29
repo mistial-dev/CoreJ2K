@@ -1,68 +1,111 @@
-# CoreJ2K - A Managed and Portable JPEG2000 Codec
+# CoreJ2K.ImageSharp - A Cross-Platform JPEG2000 Codec
 
-
-Copyright (c) 1999-2000 JJ2000 Partners;  
-Copyright (c) 2007-2012 Jason S. Clary; 
-Copyright (c) 2013-2016 Anders Gustafsson, Cureos AB;  
-Copyright (c) 2024-2025 Sjofn LLC.   
+Copyright (c) 1999-2000 JJ2000 Partners;
+Copyright (c) 2007-2012 Jason S. Clary;
+Copyright (c) 2013-2016 Anders Gustafsson, Cureos AB;
+Copyright (c) 2024-2025 Sjofn LLC;
+Copyright (c) 2025 Mistial Developer.
 
 Licensed and distributable under the terms of the [BSD license](http://www.opensource.org/licenses/bsd-license.php)
 
 ## Summary
 
-This is an adaptation of [CSJ2K](http://csj2k.codeplex.com/), which provides JPEG 2000 decoding and encoding functionality to .NET based platforms. *CSJ2K* is by itself a C# port of the Java 
-package *jj2000*, version 5.1. This is a fork of *CSJ2K* for .NET Standard 2.1 making it possible to implement JPEG decoding and encoding on any platform.
+CoreJ2K.ImageSharp is a cross-platform JPEG2000 codec for .NET Standard 2.0/2.1 applications. Originally based on CSJ2K (a C# port of the Java jj2000 package), this implementation exclusively uses SixLabors.ImageSharp for image handling, providing consistent behavior across all platforms without Windows-specific dependencies.
 
 ## Installation
 
-Apart from building the relevant class libraries from source, pre-built packages for the supported platforms can also be obtained via [NuGet](https://nuget.org/packages/CSJ2K.Skia/).
+Install via NuGet Package Manager:
+
+```
+Install-Package CoreJ2K.ImageSharp
+```
+
+Or using the .NET CLI:
+
+```
+dotnet add package CoreJ2K.ImageSharp
+```
 
 ## Usage
 
-The Library provides interfaces for image rendering, file I/O and logging.
+### Setup
+
+First, register ImageSharp support in your application:
+
+```csharp
+using CoreJ2K.ImageSharp;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.PixelFormats;
+
+// Register ImageSharp support (call once at startup)
+ImageSharpImageCreator.Register();
+```
 
 ### Decoding
 
-To decode a JPEG 2000 encoded image, call one of the following methods:
+To decode a JPEG 2000 encoded image:
 
 ```csharp
-public class J2kImage
-{
-	public static PortableImage FromStream(Stream, ParameterList = null);
-	public static PortableImage FromBytes(byte[], ParameterList = null);
-	public static PortableImage FromFile(string, ParameterList = null);
-}
+using CoreJ2K;
+
+// From file
+var decodedImage = J2kImage.FromFile("image.jp2");
+
+// From stream
+var decodedImage = J2kImage.FromStream(stream);
+
+// From byte array
+var decodedImage = J2kImage.FromBytes(jpegData);
 ```
 
-The returned `PortableImage` offers a "cast" method `As<T>()` to obtain an image in the type relevant for the platform. When using the `SKBitmapImageCreator` on .NET, a cast to `SKBitmap` or `SKPixmap` would suffice:
+The returned `PortableImage` can be cast to ImageSharp types:
 
-    var bitmap = decodedImage.As<SKBitmap>();
+```csharp
+// Cast to specific ImageSharp pixel formats
+var rgbaImage = decodedImage.As<Image<Rgba32>>();
+var rgbImage = decodedImage.As<Image<Rgb24>>();
+var grayImage = decodedImage.As<Image<L8>>();
+var grayAlphaImage = decodedImage.As<Image<La16>>();
+```
 
 ### Encoding
 
-To encode an image, the following overloads are available:
+To encode an ImageSharp image to JPEG2000:
 
 ```csharp
-public class J2kImage
-{
-	public static byte[] ToBytes(object, ParameterList = null);
-	public static byte[] ToBytes(BlkImgDataSrc, ParameterList = null);
-}
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.PixelFormats;
+
+// Load or create an ImageSharp image
+var image = Image.Load<Rgba32>("input.png");
+
+// Encode to JPEG2000 bytes
+byte[] jp2Data = J2kImage.ToBytes(image);
+
+// Encode with custom parameters
+var parameters = new ParameterList();
+parameters["rate"] = "2.0"; // Compression ratio
+byte[] jp2Data = J2kImage.ToBytes(image, parameters);
 ```
 
-The first overload takes an platform-specific image `object`. This is still works-in-progress, but an implementation is available for `SKBitmap` objects.
+### Alternative Input Sources
 
-The second overload takes an *CSJ2K* specific object implementing the `BlkImgDataSrc` interface. When *Portable Graymap* (PGM), *Portable Pixelmap* (PPM) or JPEG2000 conformance testing format (PGX) objects are available as `Stream`s, 
-it is possible to create `BlkImgDataSrc` objects using either of the following methods:
+For specialized formats, you can also create encodable sources from streams:
 
-    J2kImage.CreateEncodableSource(Stream);
-	J2kImage.CreateEncodableSource(IList<Stream>);
-	
-For *PGM* and *PPM* images, you would normally use the single `Stream` overload, whereas for *PGX* images, you may enter one `Stream` object per color component.
+```csharp
+// From PGM/PPM streams
+var source = J2kImage.CreateEncodableSource(stream);
+byte[] jp2Data = J2kImage.ToBytes(source);
+
+// From multiple PGX component streams
+var componentStreams = new List<Stream> { stream1, stream2, stream3 };
+var source = J2kImage.CreateEncodableSource(componentStreams);
+byte[] jp2Data = J2kImage.ToBytes(source);
+```
 
 ### ROI (Region of Interest) Support
 
-CoreJ2K supports ROI encoding using the Maxshift method, allowing you to prioritize specific regions of an image during compression. This ensures that important areas maintain higher quality even at lower bitrates.
+CoreJ2K.ImageSharp supports ROI encoding using the Maxshift method, allowing you to prioritize specific regions of an image during compression. This ensures that important areas maintain higher quality even at lower bitrates.
 
 Basic ROI encoding example:
 ```csharp
@@ -78,7 +121,7 @@ byte[] encodedData = J2kImage.ToBytes(image, parameters);
 Facial detection ROI example (68-point landmarks):
 ```csharp
 // Define 3 regions for facial encoding
-// Region 1: Eyes & eyebrows (highest priority)  
+// Region 1: Eyes & eyebrows (highest priority)
 // Region 2: Nose, mouth & jaw (medium priority)
 // Region 3: Full face with context (standard compression)
 parameters["Rroi"] = "R 180 190 150 60 R 170 250 170 150 R 120 150 280 300";
@@ -88,14 +131,7 @@ parameters["Ralign"] = "on"; // Better performance with aligned blocks
 For detailed ROI documentation including all supported shapes and parameters, see [docs/ROI_ENCODING.md](docs/ROI_ENCODING.md).
 For complete facial detection examples, see [Examples/FacialDetectionROIExample.cs](Examples/FacialDetectionROIExample.cs).
 
-## Links
+## Resources
 
 * [Guide to the practical implementation of JPEG2000](http://www.jpeg.org/jpeg2000guide/guide/contents.html)
-
-[![CoreJ2K NuGet-Release](https://img.shields.io/nuget/v/CoreJ2K.svg?label=CoreJ2K)](https://www.nuget.org/packages/CoreJ2K/) 
-[![CoreJ2K.Skia NuGet-Release](https://img.shields.io/nuget/v/CoreJ2K.Skia.svg?label=CoreJ2K.Skia)](https://www.nuget.org/packages/CoreJ2K.Skia/)  
-[![NuGet Downloads](https://img.shields.io/nuget/dt/CoreJ2K?label=NuGet%20downloads)](https://www.nuget.org/packages/CoreJ2K/)  
-[![Commits per month](https://img.shields.io/github/commit-activity/m/cinderblocks/CoreJ2K/master)](https://www.github.com/cinderblocks/CoreJ2K/)  
-[![Build status](https://ci.appveyor.com/api/projects/status/9fr2467p5wxt6qxx?svg=true)](https://ci.appveyor.com/project/cinderblocks57647/corej2k)  
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/5704c7b134b249b3ac8ba3ca9a76dbbb)](https://app.codacy.com/gh/cinderblocks/CoreJ2K/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)  
-[![ZEC](https://img.shields.io/keybase/zec/cinder)](https://keybase.io/cinder) [![BTC](https://img.shields.io/keybase/btc/cinder)](https://keybase.io/cinder)  
+* [SixLabors.ImageSharp Documentation](https://docs.sixlabors.com/index.html)

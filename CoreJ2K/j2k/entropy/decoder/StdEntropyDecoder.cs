@@ -46,6 +46,7 @@ using CoreJ2K.j2k.image;
 using CoreJ2K.j2k.util;
 using CoreJ2K.j2k.wavelet;
 using CoreJ2K.j2k.wavelet.synthesis;
+using CoreJ2K.Util;
 
 namespace CoreJ2K.j2k.entropy.decoder
 {

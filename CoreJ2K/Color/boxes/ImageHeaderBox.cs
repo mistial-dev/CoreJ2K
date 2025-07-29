@@ -6,11 +6,12 @@
 /// $Date $
 /// ***************************************************************************
 /// </summary>
+
 using System;
 using ICCProfile = CoreJ2K.Icc.ICCProfile;
 using io_RandomAccessIO = CoreJ2K.j2k.io.RandomAccessIO;
 
-namespace CoreJ2K.Color.Boxes
+namespace CoreJ2K.Color.boxes
 {
 	
 	/// <summary> This class models the Image Header box contained in a JP2

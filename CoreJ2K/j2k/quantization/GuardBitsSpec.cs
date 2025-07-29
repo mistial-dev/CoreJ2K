@@ -43,6 +43,7 @@
 */
 using System;
 using CoreJ2K.j2k.util;
+using CoreJ2K.Util;
 
 namespace CoreJ2K.j2k.quantization
 {

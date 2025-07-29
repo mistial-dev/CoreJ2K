@@ -50,6 +50,7 @@ using CoreJ2K.j2k.quantization.quantizer;
 using CoreJ2K.j2k.util;
 using CoreJ2K.j2k.wavelet;
 using CoreJ2K.j2k.wavelet.analysis;
+using CoreJ2K.Util;
 
 namespace CoreJ2K.j2k.roi.encoder
 {

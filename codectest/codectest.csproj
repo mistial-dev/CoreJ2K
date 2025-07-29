@@ -29,10 +29,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CoreJ2K.Skia\CoreJ2K.Skia.csproj" />
+    <ProjectReference Include="..\CoreJ2K.ImageSharp\CoreJ2K.ImageSharp.csproj" />
     <ProjectReference Include="..\CoreJ2K\CoreJ2K.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="SkiaSharp" Version="3.119.0" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="2.1.10" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="output\" />
   </ItemGroup>
 </Project>

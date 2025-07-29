@@ -1,17 +1,21 @@
 /*
  *
- * Class:                   ImgReaderSkia
+ * Class: ImgReaderImageSharp
  *
- * Description:             Image reader for SKBitmap
+ * Description: Image reader for ImageSharp Image types
  *
  **/
 
 using System;
-using SkiaSharp;
+using CoreJ2K.j2k;
+using CoreJ2K.j2k.image;
+using CoreJ2K.j2k.image.input;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.PixelFormats;
 
-namespace CoreJ2K.j2k.image.input
+namespace CoreJ2K.ImageSharp
 {
-    public class ImgReaderSkia:ImgReader
+    public class ImgReaderImageSharp : ImgReader
     {
         /// <summary>DC offset value used when reading image</summary>
         private const int DC_OFFSET = 128;
@@ -26,28 +30,48 @@ namespace CoreJ2K.j2k.image.input
         /// filters). This avoids allocating new DataBlk at each time.</summary>
         private DataBlkInt intBlk;
 
-        private SKPixmap image;
+        private readonly Image image;
+        private readonly int numComponents;
         
-        public ImgReaderSkia(SKBitmap image)
-        {
-            this.image = image.PeekPixels();
-            w = image.Width;
-            h = image.Height;
-            nc = GetNumberOfComponents(image.Info);
-        }
-
-        public ImgReaderSkia(SKPixmap image)
+        public ImgReaderImageSharp(Image<Rgba32> image)
         {
             this.image = image;
             w = image.Width;
             h = image.Height;
-            nc = GetNumberOfComponents(image.Info);
+            nc = 4;
+            numComponents = 4;
+        }
+
+        public ImgReaderImageSharp(Image<Rgb24> image)
+        {
+            this.image = image;
+            w = image.Width;
+            h = image.Height;
+            nc = 3;
+            numComponents = 3;
+        }
+
+        public ImgReaderImageSharp(Image<L8> image)
+        {
+            this.image = image;
+            w = image.Width;
+            h = image.Height;
+            nc = 1;
+            numComponents = 1;
+        }
+
+        public ImgReaderImageSharp(Image<La16> image)
+        {
+            this.image = image;
+            w = image.Width;
+            h = image.Height;
+            nc = 2;
+            numComponents = 2;
         }
         
         public override void Close()
         {
-            image.Dispose();
-            image = null;
+            image?.Dispose();
             barr = null;
         }
 
@@ -64,62 +88,15 @@ namespace CoreJ2K.j2k.image.input
         /// <param name="compIndex">The index of the component.</param>
         /// <returns>The number of bits corresponding to the nominal range of the
         /// data.</returns>
-        /// <exception cref="ArgumentException">Unsupported <seealso cref="SKColorType" /></exception>
         /// <exception cref="ArgumentOutOfRangeException">Component index outside range</exception>
         public override int getNomRangeBits(int compIndex)
         {
             // Check component index
-            if (compIndex < 0 || compIndex > this.nc)
+            if (compIndex < 0 || compIndex >= this.nc)
                 throw new ArgumentOutOfRangeException(nameof(compIndex) + " is out of range");
 			
-            switch (image.ColorType)
-            {
-                case SKColorType.Alpha8:
-                case SKColorType.Gray8:
-                case SKColorType.Rg88:
-                case SKColorType.Rgb888x:
-                case SKColorType.Bgra8888:
-                case SKColorType.Rgba8888:
-                    return 8;
-                case SKColorType.Alpha16:
-                case SKColorType.Rg1616:
-                case SKColorType.Rgba16161616:
-                    return 16;
-                case SKColorType.Rgb565:
-                {
-                    switch (compIndex)
-                    {
-                        case 0:
-                            return 5;
-                        case 1:
-                            return 6;
-                        case 2:
-                            return 5;
-                        default:
-                            throw new ArgumentOutOfRangeException(nameof(compIndex) + " is out of range");
-                    }
-                }
-                case SKColorType.Rgb101010x:
-                case SKColorType.Bgr101010x:
-                    return 10;
-                case SKColorType.Rgba1010102:
-                case SKColorType.Bgra1010102:
-                {
-                    return compIndex == 3 ? 2 : 10;
-                }
-                case SKColorType.AlphaF16:
-                case SKColorType.RgbaF16:
-                case SKColorType.RgbaF16Clamped:
-                case SKColorType.RgF16:
-                case SKColorType.RgbaF32:
-                    throw new NotSupportedException($"Floating point colortypes ({image.ColorType}) are unsupported.");
-                case SKColorType.Argb4444:
-                    throw new NotSupportedException($"4-bit colortype ({image.ColorType}) not supported.");
-                case SKColorType.Unknown:
-                default:
-                    throw new ArgumentException(
-                        "Image colortype is unknown, Nominal range bits cannot be determined.");
-            }
+            // ImageSharp typically uses 8-bit components
+            return 8;
         }
         
         /// <summary>
@@ -133,7 +110,7 @@ namespace CoreJ2K.j2k.image.input
         public override int GetFixedPoint(int compIndex)
         {
             // Check component index
-            if (compIndex < 0 || compIndex > nc)
+            if (compIndex < 0 || compIndex >= nc)
                 throw new ArgumentOutOfRangeException(nameof(compIndex) + " is out of range");
             return 0;
         }
@@ -182,7 +159,7 @@ namespace CoreJ2K.j2k.image.input
         public override DataBlk GetInternCompData(DataBlk blk, int compIndex)
         {
             // Check component index
-            if (compIndex < 0 || compIndex > nc)
+            if (compIndex < 0 || compIndex >= nc)
             {
                 throw new ArgumentOutOfRangeException(nameof(compIndex) + " is out of range");
             }
@@ -211,35 +188,11 @@ namespace CoreJ2K.j2k.image.input
                 barr = new int[nc][];
 
                 // Reset data arrays if necessary
-                if (barr[compIndex] == null || barr[compIndex].Length < blk.w * blk.h)
+                for (var c = 0; c < nc; c++)
                 {
-                    barr[compIndex] = new int[blk.w * blk.h];
-                }
-                blk.Data = barr[compIndex];
-
-                int i;
-                if (nc > 1)
-                {
-                    i = (compIndex + 1) % nc;
-                    if (barr[i] == null || barr[i].Length < blk.w * blk.h)
+                    if (barr[c] == null || barr[c].Length < blk.w * blk.h)
                     {
-                        barr[i] = new int[blk.w * blk.h];
-                    }
-                }
-                if (nc > 2)
-                {
-                    i = (compIndex + 2) % nc;
-                    if (barr[i] == null || barr[i].Length < blk.w * blk.h)
-                    {
-                        barr[i] = new int[blk.w * blk.h];
-                    }
-                }
-                if (nc > 3)
-                {
-                    i = (compIndex + 3) % nc;
-                    if (barr[i] == null || barr[i].Length < blk.w * blk.h)
-                    {
-                        barr[i] = new int[blk.w * blk.h];
+                        barr[c] = new int[blk.w * blk.h];
                     }
                 }
 
@@ -249,51 +202,8 @@ namespace CoreJ2K.j2k.image.input
                 dbi.w = blk.w;
                 dbi.h = blk.h;
 
-                var red = barr[0];
-                var green = nc > 1 ? barr[1] : null;
-                var blue = nc > 2 ? barr[2] : null;
-                var alpha = nc > 3 ? barr[3] : null;
-                
-                // avoid a swizzle
-                if (image.ColorType == SKColorType.Bgra8888 
-                    || image.ColorType == SKColorType.Bgra1010102 
-                    || image.ColorType == SKColorType.Bgr101010x)
-                {
-                    blue = barr[2];
-                    red = barr[0];
-                }
-
-                var pixelsAddr = image.GetPixels(blk.ulx, blk.uly);
-                
-                unsafe
-                {
-                    var ptr = (byte*)pixelsAddr.ToPointer();
-
-                    switch (image.ColorType)
-                    {
-                        case SKColorType.Bgra8888:
-                        case SKColorType.Rgba8888:
-                        case SKColorType.Rgb888x:
-                        case SKColorType.Alpha8:
-                        case SKColorType.Gray8:
-                        case SKColorType.Rg88:
-                            var k = 0;
-                            for (var j = 0; j < blk.w * blk.h; ++j)
-                            {
-                                red[k] = (*(ptr + 0) & 0xFF) - DC_OFFSET;
-                                if (green != null) { green[k] = (*(ptr + 1) & 0xFF) - DC_OFFSET; }
-                                if (blue != null) { blue[k] = (*(ptr + 2) & 0xFF) - DC_OFFSET; }
-                                if (alpha != null) { alpha[k] = (*(ptr + 3) & 0xFF) - DC_OFFSET; }
-
-                                ++k;
-                                ptr += image.BytesPerPixel;
-                            }
-                            break;
-                        default:
-                            throw new NotSupportedException(
-                                $"Colortype {nameof(image.ColorType)} not currently supported.");
-                    }
-                }
+                // Read pixel data based on the image type
+                ReadPixelData(blk);
 
                 // Set buffer attributes
                 blk.Data = barr[compIndex];
@@ -311,6 +221,134 @@ namespace CoreJ2K.j2k.image.input
             // Turn off the progressive attribute
             blk.progressive = false;
             return blk;
+        }
+
+        private void ReadPixelData(DataBlk blk)
+        {
+            switch (numComponents)
+            {
+                case 1:
+                    ReadGrayscalePixels(blk);
+                    break;
+                case 2:
+                    ReadGrayscaleAlphaPixels(blk);
+                    break;
+                case 3:
+                    ReadRgbPixels(blk);
+                    break;
+                case 4:
+                    ReadRgbaPixels(blk);
+                    break;
+                default:
+                    throw new NotSupportedException($"Image with {numComponents} components is not supported.");
+            }
+        }
+
+        private void ReadGrayscalePixels(DataBlk blk)
+        {
+            var grayImage = (Image<L8>)image;
+            var gray = barr[0];
+
+            grayImage.ProcessPixelRows(accessor =>
+            {
+                for (var y = blk.uly; y < blk.uly + blk.h; y++)
+                {
+                    if (y >= accessor.Height) break;
+                    
+                    var pixelRow = accessor.GetRowSpan(y);
+                    for (var x = blk.ulx; x < blk.ulx + blk.w; x++)
+                    {
+                        if (x >= accessor.Width) break;
+                        
+                        var arrayIndex = (y - blk.uly) * blk.w + (x - blk.ulx);
+                        gray[arrayIndex] = pixelRow[x].PackedValue - DC_OFFSET;
+                    }
+                }
+            });
+        }
+
+        private void ReadGrayscaleAlphaPixels(DataBlk blk)
+        {
+            var grayAlphaImage = (Image<La16>)image;
+            var gray = barr[0];
+            var alpha = barr[1];
+
+            grayAlphaImage.ProcessPixelRows(accessor =>
+            {
+                for (var y = blk.uly; y < blk.uly + blk.h; y++)
+                {
+                    if (y >= accessor.Height) break;
+                    
+                    var pixelRow = accessor.GetRowSpan(y);
+                    for (var x = blk.ulx; x < blk.ulx + blk.w; x++)
+                    {
+                        if (x >= accessor.Width) break;
+                        
+                        var arrayIndex = (y - blk.uly) * blk.w + (x - blk.ulx);
+                        var pixel = pixelRow[x];
+                        gray[arrayIndex] = pixel.L - DC_OFFSET;
+                        alpha[arrayIndex] = pixel.A - DC_OFFSET;
+                    }
+                }
+            });
+        }
+
+        private void ReadRgbPixels(DataBlk blk)
+        {
+            var rgbImage = (Image<Rgb24>)image;
+            var red = barr[0];
+            var green = barr[1];
+            var blue = barr[2];
+
+            rgbImage.ProcessPixelRows(accessor =>
+            {
+                for (var y = blk.uly; y < blk.uly + blk.h; y++)
+                {
+                    if (y >= accessor.Height) break;
+                    
+                    var pixelRow = accessor.GetRowSpan(y);
+                    for (var x = blk.ulx; x < blk.ulx + blk.w; x++)
+                    {
+                        if (x >= accessor.Width) break;
+                        
+                        var arrayIndex = (y - blk.uly) * blk.w + (x - blk.ulx);
+                        var pixel = pixelRow[x];
+                        red[arrayIndex] = pixel.R - DC_OFFSET;
+                        green[arrayIndex] = pixel.G - DC_OFFSET;
+                        blue[arrayIndex] = pixel.B - DC_OFFSET;
+                    }
+                }
+            });
+        }
+
+        private void ReadRgbaPixels(DataBlk blk)
+        {
+            var rgbaImage = (Image<Rgba32>)image;
+            var red = barr[0];
+            var green = barr[1];
+            var blue = barr[2];
+            var alpha = barr[3];
+
+            rgbaImage.ProcessPixelRows(accessor =>
+            {
+                for (var y = blk.uly; y < blk.uly + blk.h; y++)
+                {
+                    if (y >= accessor.Height) break;
+                    
+                    var pixelRow = accessor.GetRowSpan(y);
+                    for (var x = blk.ulx; x < blk.ulx + blk.w; x++)
+                    {
+                        if (x >= accessor.Width) break;
+                        
+                        var arrayIndex = (y - blk.uly) * blk.w + (x - blk.ulx);
+                        var pixel = pixelRow[x];
+                        red[arrayIndex] = pixel.R - DC_OFFSET;
+                        green[arrayIndex] = pixel.G - DC_OFFSET;
+                        blue[arrayIndex] = pixel.B - DC_OFFSET;
+                        alpha[arrayIndex] = pixel.A - DC_OFFSET;
+                    }
+                }
+            });
         }
         
         /// <summary>
@@ -401,54 +439,16 @@ namespace CoreJ2K.j2k.image.input
         public override bool IsOrigSigned(int compIndex)
         {
             // Check component index
-            if (compIndex < 0 || compIndex > this.nc)
+            if (compIndex < 0 || compIndex >= this.nc)
                 throw new ArgumentOutOfRangeException(nameof(compIndex) + " is out of range");
             return false;
-        }
-
-        public static int GetNumberOfComponents(SKImageInfo info)
-        {
-            switch (info.ColorType)
-            {
-                case SKColorType.Alpha8:
-                //case SKColorType.Alpha16:
-                case SKColorType.Gray8:
-                    return 1;
-                case SKColorType.Rg88:
-                //case SKColorType.Rg1616:
-                    return 2;
-                case SKColorType.Rgb888x:
-                //case SKColorType.Rgb565:
-                //case SKColorType.Rgb101010x:
-                //case SKColorType.Bgr101010x:
-                    return 3;
-                //case SKColorType.Argb4444:
-                case SKColorType.Bgra8888:
-                case SKColorType.Rgba8888:
-                //case SKColorType.Rgba1010102:
-                //case SKColorType.Bgra1010102:
-                //case SKColorType.Rgba16161616:
-                    return info.AlphaType > SKAlphaType.Opaque ? 4 : 3;
-                // floating point types
-                case SKColorType.RgbaF16:
-                case SKColorType.RgbaF16Clamped:
-                case SKColorType.RgbaF32:
-                case SKColorType.RgF16:
-                case SKColorType.AlphaF16:
-                default:
-                    throw new NotSupportedException(
-                        $"Image colortype ({nameof(info.ColorType)} is not currently supported.");
-                case SKColorType.Unknown:
-                    throw new ArgumentException(
-                        "Image colortype is unknown, number of components cannot be determined.");
-            }
         }
         
         /// <summary>Returns a string of information about the object, more than 1 line long.</summary>
         /// <returns> A string of information about the object.</returns>
         public override string ToString()
         {
-            return "ImgReaderSkia: WxH = " + w + "x" + h + ", Component = 0,1,2";
+            return $"ImgReaderImageSharp: WxH = {w}x{h}, Components = {nc}";
         }
     }
 }

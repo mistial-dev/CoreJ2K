@@ -6,11 +6,12 @@
 /// $Date $
 /// ***************************************************************************
 /// </summary>
+
 using System;
 using CoreJ2K.j2k.io;
 using CoreJ2K.j2k.util;
 
-namespace CoreJ2K.Color.Boxes
+namespace CoreJ2K.Color.boxes
 {
 	
 	/// <summary> This class models the Color Specification Box in a JP2 image.

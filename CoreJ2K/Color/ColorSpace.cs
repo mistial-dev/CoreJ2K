@@ -7,6 +7,7 @@
 /// ***************************************************************************
 /// </summary>
 using System;
+using CoreJ2K.Color.boxes;
 using FileFormatBoxes = CoreJ2K.j2k.fileformat.FileFormatBoxes;
 using io_RandomAccessIO = CoreJ2K.j2k.io.RandomAccessIO;
 using reader_HeaderDecoder = CoreJ2K.j2k.codestream.reader.HeaderDecoder;
@@ -14,11 +15,11 @@ using util_ParameterList = CoreJ2K.j2k.util.ParameterList;
 
 namespace CoreJ2K.Color
 {
-	using ChannelDefinitionBox = Boxes.ChannelDefinitionBox;
-	using ColorSpecificationBox = Boxes.ColorSpecificationBox;
-	using ComponentMappingBox = Boxes.ComponentMappingBox;
-	using ImageHeaderBox = Boxes.ImageHeaderBox;
-	using PaletteBox = Boxes.PaletteBox;
+	using ChannelDefinitionBox = ChannelDefinitionBox;
+	using ColorSpecificationBox = ColorSpecificationBox;
+	using ComponentMappingBox = ComponentMappingBox;
+	using ImageHeaderBox = ImageHeaderBox;
+	using PaletteBox = PaletteBox;
 
 	/// <summary> This class analyzes the image to provide colorspace
 	/// information for the decoding chain.  It does this by

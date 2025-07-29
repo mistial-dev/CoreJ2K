@@ -47,6 +47,7 @@ using CoreJ2K.j2k.codestream.writer;
 using CoreJ2K.j2k.encoder;
 using CoreJ2K.j2k.image;
 using CoreJ2K.j2k.util;
+using CoreJ2K.Util;
 
 namespace CoreJ2K.j2k.entropy.encoder
 {

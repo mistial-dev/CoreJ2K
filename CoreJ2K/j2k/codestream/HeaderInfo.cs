@@ -45,6 +45,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using CoreJ2K.j2k.wavelet;
+using CoreJ2K.Util;
 
 namespace CoreJ2K.j2k.codestream
 {

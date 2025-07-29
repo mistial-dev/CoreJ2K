@@ -42,6 +42,8 @@
 * Copyright (c) 1999/2000 JJ2000 Partners.
 * */
 
+using CoreJ2K.Util;
+
 namespace CoreJ2K.j2k.entropy.encoder
 {
 	

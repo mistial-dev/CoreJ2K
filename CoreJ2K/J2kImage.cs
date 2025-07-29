@@ -2,6 +2,7 @@
 // Licensed under the BSD 3-Clause License.
 
 using System.Linq;
+using JetBrains.Annotations;
 
 namespace CoreJ2K
 {
@@ -38,6 +39,7 @@ namespace CoreJ2K
 
         #region Static Decoder Methods
 
+        [PublicAPI]
         public static PortableImage FromFile(string filename, ParameterList parameters = null)
         {
             using (var stream = FileStreamFactory.New(filename, "r"))
@@ -46,6 +48,7 @@ namespace CoreJ2K
             }
         }
 
+        [PublicAPI]
         public static PortableImage FromBytes(byte[] j2kdata, ParameterList parameters = null)
         {
             using (var stream = new MemoryStream(j2kdata))
@@ -54,6 +57,7 @@ namespace CoreJ2K
             }
         }
 
+        [PublicAPI]
         public static PortableImage FromStream(Stream stream, ParameterList parameters = null)
         {
             RandomAccessIO in_stream = new ISRandomAccessIO(stream);
@@ -286,11 +290,13 @@ namespace CoreJ2K
 
         #region Static Encoder Methods
 
+        [PublicAPI]
         public static BlkImgDataSrc CreateEncodableSource(Stream stream)
         {
             return CreateEncodableSource(new[] { stream });
         }
 
+        [PublicAPI]
         public static BlkImgDataSrc CreateEncodableSource(IEnumerable<Stream> streams)
         {
             if (streams == null)
@@ -352,12 +358,14 @@ namespace CoreJ2K
             return imgsrc;
         }
 
+        [PublicAPI]
         public static byte[] ToBytes(object imageObject, ParameterList parameters = null)
         {
             var imgsrc = ImageFactory.ToPortableImageSource(imageObject);
             return ToBytes(imgsrc, parameters);
         }
 
+        [PublicAPI]
         public static byte[] ToBytes(BlkImgDataSrc imgsrc, ParameterList parameters = null)
         {
             // Initialize default parameters

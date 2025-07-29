@@ -7,7 +7,7 @@
 /// ***************************************************************************
 /// </summary>
 using System;
-using CoreJ2K.Color.Boxes;
+using CoreJ2K.Color.boxes;
 using CoreJ2K.j2k.image;
 using CoreJ2K.j2k.util;
 

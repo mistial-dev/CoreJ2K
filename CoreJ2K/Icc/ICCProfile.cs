@@ -8,6 +8,8 @@
 /// ***************************************************************************
 /// </summary>
 
+using CoreJ2K.Util;
+
 namespace CoreJ2K.Icc
 {
     using System;

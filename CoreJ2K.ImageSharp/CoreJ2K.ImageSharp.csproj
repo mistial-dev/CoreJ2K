@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <AssemblyName>CoreJ2K.ImageSharp</AssemblyName>
+        <PackageId>CoreJ2K.ImageSharp</PackageId>
+        <Description>Cross-platform JPEG2000 codec library with ImageSharp integration for .NET Standard</Description>
+        <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
+        <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+        <DefineConstants>$(DefineConstants);NETSTANDARD</DefineConstants>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <Authors>Mistial Developer</Authors>
+        <Company>Mistial Developer</Company>
+        <Product>CoreJ2K.ImageSharp</Product>
+        <Copyright>Copyright (c) 1999-2000 JJ2000 Partners; Copyright (c) 2007-2012 Jason S. Clary; Copyright (c) 2013-2016 Anders Gustafsson, Cureos AB; Copyright (c) 2024-2025 Sjofn LLC; Copyright (c) 2025 Mistial Developer</Copyright>
+        <PackageProjectUrl>https://github.com/mistial-dev/CoreJ2K</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/mistial-dev/CoreJ2K</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageTags>jpeg2000;imaging;codec;cross-platform;imagesharp</PackageTags>
+        <PackageReleaseNotes>Migration from SkiaSharp to ImageSharp for true cross-platform compatibility. Removed Windows-specific dependencies.</PackageReleaseNotes>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    </PropertyGroup>
+    <ItemGroup>
+      <None Include="..\README.md" Pack="true" PackagePath="\" />
+      <None Include="..\LICENSE" Pack="true" PackagePath="\" />
+    </ItemGroup>
+    <ItemGroup>
+      <PackageReference Include="SixLabors.ImageSharp" Version="2.1.10" />
+      <PackageReference Include="JetBrains.Annotations" Version="2025.2.0" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\CoreJ2K\CoreJ2K.csproj" />
+    </ItemGroup>
+</Project>
