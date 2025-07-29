@@ -2,6 +2,10 @@
     <PropertyGroup>
         <AssemblyName>CoreJ2K.ImageSharp</AssemblyName>
         <PackageId>CoreJ2K.ImageSharp</PackageId>
+        <Version>1.0.1</Version>
+        <PackageVersion>1.0.1</PackageVersion>
+        <AssemblyVersion>1.0.1.0</AssemblyVersion>
+        <FileVersion>1.0.1.0</FileVersion>
         <Description>Cross-platform JPEG2000 codec library with ImageSharp integration for .NET Standard</Description>
         <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
         <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
@@ -17,7 +21,7 @@
         <RepositoryUrl>https://github.com/mistial-dev/CoreJ2K</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>jpeg2000;imaging;codec;cross-platform;imagesharp</PackageTags>
-        <PackageReleaseNotes>Migration from SkiaSharp to ImageSharp for true cross-platform compatibility. Removed Windows-specific dependencies.</PackageReleaseNotes>
+        <PackageReleaseNotes>Added JetBrains.Annotations support and resolved NotImplementedException for multi-component images. Updated to use NuGet CoreJ2K dependency.</PackageReleaseNotes>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     </PropertyGroup>
     <ItemGroup>
@@ -27,8 +31,6 @@
     <ItemGroup>
       <PackageReference Include="SixLabors.ImageSharp" Version="2.1.10" />
       <PackageReference Include="JetBrains.Annotations" Version="2025.2.0" />
-    </ItemGroup>
-    <ItemGroup>
-      <ProjectReference Include="..\CoreJ2K\CoreJ2K.csproj" />
+      <PackageReference Include="CoreJ2K" Version="1.1.2.50" />
     </ItemGroup>
 </Project>
