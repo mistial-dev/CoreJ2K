@@ -60,6 +60,34 @@ it is possible to create `BlkImgDataSrc` objects using either of the following m
 	
 For *PGM* and *PPM* images, you would normally use the single `Stream` overload, whereas for *PGX* images, you may enter one `Stream` object per color component.
 
+### ROI (Region of Interest) Support
+
+CoreJ2K supports ROI encoding using the Maxshift method, allowing you to prioritize specific regions of an image during compression. This ensures that important areas maintain higher quality even at lower bitrates.
+
+Basic ROI encoding example:
+```csharp
+// Create encoding parameters with a rectangular ROI
+var parameters = new ParameterList();
+parameters["Rroi"] = "R 100 100 200 150"; // Rectangle at (100,100) with width=200, height=150
+parameters["rate"] = "1.0"; // Target bitrate
+
+// Encode with ROI
+byte[] encodedData = J2kImage.ToBytes(image, parameters);
+```
+
+Facial detection ROI example (68-point landmarks):
+```csharp
+// Define 3 regions for facial encoding
+// Region 1: Eyes & eyebrows (highest priority)  
+// Region 2: Nose, mouth & jaw (medium priority)
+// Region 3: Full face with context (standard compression)
+parameters["Rroi"] = "R 180 190 150 60 R 170 250 170 150 R 120 150 280 300";
+parameters["Ralign"] = "on"; // Better performance with aligned blocks
+```
+
+For detailed ROI documentation including all supported shapes and parameters, see [docs/ROI_ENCODING.md](docs/ROI_ENCODING.md).
+For complete facial detection examples, see [Examples/FacialDetectionROIExample.cs](Examples/FacialDetectionROIExample.cs).
+
 ## Links
 
 * [Guide to the practical implementation of JPEG2000](http://www.jpeg.org/jpeg2000guide/guide/contents.html)
