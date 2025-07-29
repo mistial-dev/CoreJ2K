@@ -5,6 +5,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 
 namespace CoreJ2K.Util
 {
@@ -44,6 +45,7 @@ namespace CoreJ2K.Util
 
         #region METHODS
 
+        [PublicAPI]
         public T As<T>()
         {
             var image = ImageFactory.New(Width, Height, NumberOfComponents, 
