@@ -1,4 +1,4 @@
-name: Build and Publish to NuGet
+name: Build and Publish CoreJ2K.ImageSharp to NuGet
 
 on:
   push:
@@ -25,10 +25,10 @@ jobs:
         dotnet-version: ${{ env.DOTNET_VERSION }}
 
     - name: Restore dependencies
-      run: dotnet restore CoreJ2K.sln
+      run: dotnet restore CoreJ2K.ImageSharp.sln
 
     - name: Build
-      run: dotnet build CoreJ2K.sln --configuration Release --no-restore
+      run: dotnet build CoreJ2K.ImageSharp.sln --configuration Release --no-restore
 
     - name: Test
       run: |
